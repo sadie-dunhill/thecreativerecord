@@ -182,12 +182,69 @@
         .footer-copy { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
         .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
 
+                /* Hamburger + Mobile Nav */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-radius: var(--r-md);
+            gap: 5px;
+            padding: 4px;
+        }
+        .nav-hamburger:hover { background: var(--cream-2); }
+        .nav-hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--ink);
+            border-radius: 2px;
+            transition: transform var(--t-base), opacity var(--t-fast);
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: var(--cream);
+            border-bottom: 1px solid var(--cream-3);
+            padding: var(--s3) var(--s4);
+            z-index: 99;
+            box-shadow: var(--shadow-md);
+        }
+        .mobile-nav.open { display: block; }
+        .mobile-nav ul { list-style: none; }
+        .mobile-nav li { border-bottom: 1px solid var(--cream-3); }
+        .mobile-nav li:last-child { border-bottom: none; }
+        .mobile-nav a {
+            display: block;
+            padding: var(--s2) 0;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            text-decoration: none;
+            transition: color var(--t-fast);
+        }
+        .mobile-nav a:hover { color: var(--terra); }
+        .mobile-nav .mobile-nav-cta { margin-top: var(--s3); }
+        .mobile-nav .mobile-nav-cta .btn { width: 100%; height: 52px; font-size: 1rem; }
         @media (max-width: 1024px) {
             .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
         }
         @media (max-width: 768px) {
             .container { padding: 0 var(--s3); }
             .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; }
             .nav-cta .btn { padding: 10px 18px; font-size: 0.875rem; }
             .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
             .footer-bottom { flex-direction: column; gap: var(--s1); }
@@ -203,14 +260,29 @@
             <a href="/" class="logo">The Creative <em>Record</em></a>
             <ul class="nav-links">
                 <li><a href="/skills/">Skills</a></li>
-                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/subscribe/">Script Desk</a></li>
+                <li><a href="/custom-skill/">Custom Skill</a></li>
                 <li><a href="/about/">About</a></li>
             </ul>
             <div class="nav-cta">
                 <a href="/subscribe/" class="btn btn-primary">Book the Desk</a>
             </div>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </nav>
     </header>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <ul>
+            <li><a href="/skills/">Skills</a></li>
+            <li><a href="/subscribe/">Script Desk</a></li>
+            <li><a href="/custom-skill/">Custom Skill</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+        <div class="mobile-nav-cta">
+            <a href="/subscribe/" class="btn btn-primary">Book the Desk</a>
+        </div>
+    </nav>
 
     <!-- PAGE HERO -->
     <section class="page-hero">
@@ -338,26 +410,38 @@
                     <p class="footer-tagline">Creative strategy frameworks for advertisers. Built by the team at Goodo Studios.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Product</h4>
+                    <h4>Skills</h4>
                     <ul>
                         <li><a href="/skills/">All Skills</a></li>
-                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/skills/video-script-framework.html">Video Script Framework</a></li>
+                        <li><a href="/skills/hook-bank-template.html">Hook Bank Template</a></li>
+                        <li><a href="/skills/ugc-brief-template.html">UGC Brief Template</a></li>
+                        <li><a href="/skills/creative-audit-checklist.html">Creative Audit Checklist</a></li>
+                        <li><a href="/skills/competitor-analysis-framework.html">Competitor Analysis</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
                         <li><a href="/subscribe/">Script Desk</a></li>
+                        <li><a href="/custom-skill/">Custom Skill</a></li>
+                        <li><a href="/diy-course.html">DIY Course</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
                         <li><a href="/about/">About</a></li>
+                        <li><a href="/newsletter/">Newsletter</a></li>
                         <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="/privacy/">Privacy</a></li>
-                        <li><a href="/terms/">Terms</a></li>
-                        <li><a href="/refund/">Refunds</a></li>
+                        <li><a href="/privacy.html">Privacy</a></li>
+                        <li><a href="/terms.html">Terms</a></li>
+                        <li><a href="/refund.html">Refunds</a></li>
                     </ul>
                 </div>
             </div>
@@ -368,5 +452,30 @@
         </div>
     </footer>
 
+    <script>
+        // Mobile navigation
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            const isOpen = !mobileNav.classList.contains('open');
+            mobileNav.classList.toggle('open', isOpen);
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
 </body>
 </html>
