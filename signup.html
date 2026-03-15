@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Free Account — The Creative Record</title>
+  <meta name="description" content="Create a free account to claim your free video script. No credit card required.">
+
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="canonical" href="https://thecreativerecord.com/signup">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink:        #0f0e0d;
+      --ink-2:      #3d3a36;
+      --ink-3:      #6b6560;
+      --ink-4:      #a09890;
+      --terra:      #c8552a;
+      --terra-2:    #e8714a;
+      --terra-3:    #f4e0d6;
+      --cream:      #faf8f5;
+      --cream-2:    #f3f0eb;
+      --cream-3:    #e8e4dd;
+      --white:      #ffffff;
+      --font-serif: 'DM Serif Display', Georgia, serif;
+      --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px;
+      --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+      --shadow-sm: 0 1px 3px rgba(15,14,13,0.06);
+      --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+      --shadow-lg: 0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
+      --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+      --t-fast: 150ms ease; --t-base: 220ms ease;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans); font-weight: 400; color: var(--ink-3);
+      background: var(--cream); line-height: 1.65; -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---- HEADER ---- */
+    .site-header {
+      border-bottom: 1px solid var(--cream-3);
+      background: var(--cream);
+      padding: 18px var(--s4);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .logo em { font-style: italic; color: var(--terra); }
+    .header-signin {
+      font-size: 0.875rem;
+      color: var(--ink-4);
+    }
+    .header-signin a {
+      color: var(--terra);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .header-signin a:hover { text-decoration: underline; }
+
+    /* ---- LAYOUT ---- */
+    .page-wrap {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 64px);
+    }
+    @media (max-width: 800px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .sidebar-panel { display: none; }
+    }
+
+    /* ---- SIDEBAR ---- */
+    .sidebar-panel {
+      background: var(--ink);
+      padding: var(--s5) var(--s6);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .sidebar-panel::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(200,85,42,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .sidebar-content { position: relative; z-index: 1; }
+    .sidebar-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terra-2);
+      margin-bottom: var(--s3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sidebar-eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--terra-2);
+    }
+    .sidebar-panel h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: var(--s3);
+    }
+    .sidebar-panel h2 em { font-style: italic; color: var(--terra-2); }
+    .sidebar-panel p {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      margin-bottom: var(--s5);
+    }
+    .sidebar-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .sidebar-perk {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .perk-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(200,85,42,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--terra-2);
+      margin-top: 1px;
+    }
+    .perk-text strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 2px;
+    }
+    .perk-text span {
+      font-size: 0.825rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ---- FORM PANEL ---- */
+    .form-panel {
+      padding: var(--s5) var(--s4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .form-box {
+      width: 100%;
+      max-width: 440px;
+    }
+    .form-box-header {
+      margin-bottom: var(--s4);
+    }
+    .form-box-header h1 {
+      font-family: var(--font-serif);
+      font-size: 1.875rem;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .form-box-header p {
+      font-size: 0.9rem;
+      color: var(--ink-4);
+    }
+
+    /* ---- GOOGLE OAUTH ---- */
+    .oauth-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 20px;
+      background: var(--white);
+      border: 1.5px solid var(--cream-3);
+      border-radius: var(--r-lg);
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--t-fast);
+    }
+    .oauth-btn:hover {
+      background: var(--cream-2);
+      border-color: var(--ink-4);
+    }
+    .oauth-btn svg { flex-shrink: 0; }
+
+    .divider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: var(--s3) 0;
+    }
+    .divider-row hr {
+      flex: 1;
+      border: none;
+      border-top: 1px solid var(--cream-3);
+    }
+    .divider-row span {
+      font-size: 0.8125rem;
+      color: var(--ink-4);
+      white-space: nowrap;
+    }
+
+    /* ---- FORM FIELDS ---- */
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+      margin-bottom: var(--s3);
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 400px) { .field-row { grid-template-columns: 1fr; } }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--ink-2);
+    }
+    .field label span {
+      color: var(--ink-4);
+      font-weight: 400;
+      margin-left: 3px;
+    }
+    .field input,
+    .field select {
+      padding: 12px 14px;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      color: var(--ink);
+      background: var(--white);
+      border: 1.5px solid var(--cream-3);
+      border-radius: var(--r-lg);
+      outline: none;
+      transition: border-color var(--t-fast), box-shadow var(--t-fast);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--terra);
+      box-shadow: 0 0 0 3px rgba(200,85,42,0.12);
+    }
+    .field input::placeholder { color: var(--ink-4); }
+    .field select { background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%23a09890' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+    .field-hint {
+      font-size: 0.75rem;
+      color: var(--ink-4);
+      margin-top: 2px;
+    }
+    .field-error {
+      font-size: 0.75rem;
+      color: #c0392b;
+      margin-top: 2px;
+      display: none;
+    }
+    .field.has-error input,
+    .field.has-error select {
+      border-color: #c0392b;
+    }
+    .field.has-error .field-error { display: block; }
+
+    /* ---- TERMS ---- */
+    .terms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: var(--s3);
+    }
+    .terms-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--cream-3);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      flex-shrink: 0;
+      margin-top: 1px;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      transition: all var(--t-fast);
+      position: relative;
+    }
+    .terms-checkbox:checked {
+      background: var(--terra);
+      border-color: var(--terra);
+    }
+    .terms-checkbox:checked::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .terms-text {
+      font-size: 0.8125rem;
+      color: var(--ink-4);
+      line-height: 1.5;
+    }
+    .terms-text a {
+      color: var(--ink-3);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .terms-text a:hover { color: var(--ink); }
+
+    /* ---- SUBMIT ---- */
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--terra);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--r-lg);
+      cursor: pointer;
+      transition: background var(--t-fast), transform 120ms ease, box-shadow var(--t-fast);
+      letter-spacing: 0.01em;
+    }
+    .btn-submit:hover {
+      background: #b84a24;
+      box-shadow: var(--shadow-terra);
+      transform: translateY(-1px);
+    }
+    .btn-submit:active { transform: translateY(0); box-shadow: none; }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* ---- FOOTER LINK ---- */
+    .form-footer-note {
+      text-align: center;
+      margin-top: var(--s3);
+      font-size: 0.8125rem;
+      color: var(--ink-4);
+    }
+    .form-footer-note a {
+      color: var(--terra);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .form-footer-note a:hover { text-decoration: underline; }
+
+    /* ---- LOADING STATE ---- */
+    .btn-submit .spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin-right: 8px;
+    }
+    .btn-submit.loading .spinner { display: inline-block; }
+    .btn-submit.loading .btn-label { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ---- FORM-LEVEL ERROR ---- */
+    .form-error-banner {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: var(--r-lg);
+      padding: 12px 16px;
+      font-size: 0.875rem;
+      color: #991b1b;
+      margin-bottom: var(--s3);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo">The Creative <em>Record</em></a>
+      <span class="header-signin">Already have an account? <a href="/account.html">Sign in</a></span>
+    </div>
+  </div>
+
+  <!-- PAGE -->
+  <div class="page-wrap">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar-panel">
+      <div class="sidebar-content">
+        <span class="sidebar-eyebrow">Free Script Offer</span>
+        <h2>One script,<br><em>on the house.</em></h2>
+        <p>Create your free account and get a custom 30--60 second video script written for your product. Hook, body, CTA -- delivered in 48 hours.</p>
+
+        <div class="sidebar-perks">
+          <div class="sidebar-perk">
+            <div class="perk-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4L6.5 11L2.5 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="perk-text">
+              <strong>No credit card required</strong>
+              <span>Never asked, never stored</span>
+            </div>
+          </div>
+          <div class="sidebar-perk">
+            <div class="perk-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v4l2.5 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="perk-text">
+              <strong>Delivered in 48 hours</strong>
+              <span>Same process as paid clients</span>
+            </div>
+          </div>
+          <div class="sidebar-perk">
+            <div class="perk-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="perk-text">
+              <strong>1 revision included</strong>
+              <span>Get it exactly right</span>
+            </div>
+          </div>
+          <div class="sidebar-perk">
+            <div class="perk-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2a3 3 0 100 6 3 3 0 000-6zM2.5 14c0-2.485 2.462-4.5 5.5-4.5s5.5 2.015 5.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="perk-text">
+              <strong>Keep your account</strong>
+              <span>Upgrade to Script Desk anytime</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM PANEL -->
+    <div class="form-panel">
+      <div class="form-box">
+        <div class="form-box-header">
+          <h1>Create free account</h1>
+          <p>Takes about 60 seconds. No card needed.</p>
+        </div>
+
+        <!-- GOOGLE OAUTH (placeholder) -->
+        <button type="button" class="oauth-btn" id="google-btn" onclick="handleGoogleSignup()">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+            <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
+            <path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+
+        <div class="divider-row">
+          <hr />
+          <span>or sign up with email</span>
+          <hr />
+        </div>
+
+        <!-- ERROR BANNER -->
+        <div class="form-error-banner" id="error-banner"></div>
+
+        <form id="signup-form" novalidate>
+          <div class="field-group">
+            <div class="field-row">
+              <div class="field" id="field-name">
+                <label for="name">Name <span>*</span></label>
+                <input type="text" id="name" name="name" placeholder="Jane Smith" autocomplete="name" required />
+                <span class="field-error" id="name-error">Please enter your name.</span>
+              </div>
+              <div class="field" id="field-company">
+                <label for="company">Company / Brand <span>(optional)</span></label>
+                <input type="text" id="company" name="company" placeholder="Acme Co." autocomplete="organization" />
+              </div>
+            </div>
+
+            <div class="field" id="field-email">
+              <label for="email">Email <span>*</span></label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required />
+              <span class="field-error" id="email-error">Please enter a valid email address.</span>
+            </div>
+
+            <div class="field" id="field-password">
+              <label for="password">Password <span>*</span></label>
+              <input type="password" id="password" name="password" placeholder="8+ characters" autocomplete="new-password" required minlength="8" />
+              <span class="field-hint">Minimum 8 characters</span>
+              <span class="field-error" id="password-error">Password must be at least 8 characters.</span>
+            </div>
+
+            <div class="field" id="field-role">
+              <label for="role">What describes you? <span>*</span></label>
+              <select id="role" name="role" required>
+                <option value="" disabled selected>Select one&hellip;</option>
+                <option value="small-business">Small business owner</option>
+                <option value="agency">Agency / marketing team</option>
+                <option value="consultant">Freelance consultant</option>
+                <option value="brand">In-house brand team</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="field-error" id="role-error">Please select an option.</span>
+            </div>
+          </div>
+
+          <div class="terms-row">
+            <input type="checkbox" class="terms-checkbox" id="terms" name="terms" required />
+            <label class="terms-text" for="terms">
+              I agree to the <a href="/terms.html" target="_blank">Terms of Service</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a>. I'm okay with receiving emails about my script and The Creative Record.
+            </label>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submit-btn">
+            <span class="spinner"></span>
+            <span class="btn-label">Create Free Account →</span>
+          </button>
+        </form>
+
+        <p class="form-footer-note">Already have an account? <a href="/account.html">Sign in</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const NOTIFICATION_EMAIL = 'sadie@goodostudios.com';
+
+    function validateField(inputId, errorId, check) {
+      const input = document.getElementById(inputId);
+      const error = document.getElementById(errorId);
+      const field = input.closest('.field');
+      const valid = check(input.value.trim());
+      if (!valid) {
+        field.classList.add('has-error');
+      } else {
+        field.classList.remove('has-error');
+      }
+      return valid;
+    }
+
+    function isValidEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    document.getElementById('signup-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Clear previous errors
+      document.getElementById('error-banner').style.display = 'none';
+      document.querySelectorAll('.field').forEach(f => f.classList.remove('has-error'));
+
+      // Validate
+      let valid = true;
+      valid = validateField('name', 'name-error', v => v.length > 0) && valid;
+      valid = validateField('email', 'email-error', v => isValidEmail(v)) && valid;
+      valid = validateField('password', 'password-error', v => v.length >= 8) && valid;
+      valid = validateField('role', 'role-error', v => v !== '') && valid;
+
+      if (!document.getElementById('terms').checked) {
+        const banner = document.getElementById('error-banner');
+        banner.textContent = 'Please agree to the Terms of Service and Privacy Policy to continue.';
+        banner.style.display = 'block';
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      // Submit
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.classList.add('loading');
+
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        company: document.getElementById('company').value.trim(),
+        role: document.getElementById('role').value,
+        source: 'free-script-signup',
+        created_at: new Date().toISOString(),
+        referring_url: document.referrer || window.location.href
+      };
+
+      // Send to Beehiiv (newsletter subscription)
+      try {
+        await fetch('https://api.beehiiv.com/v2/publications/pub_7ae1d56e-7576-41fe-bd64-0cd4af00da66/subscriptions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer 5go8eJrMa0lUpgw5QZkcNFOkzfe4Md2hM8EbGKWcm6RZgkaPXUUiLie1ejMuQEHc'
+          },
+          body: JSON.stringify({
+            email: payload.email,
+            reactivate_existing: false,
+            send_welcome_email: true,
+            utm_source: 'free-script-signup',
+            utm_medium: 'organic',
+            referring_site: window.location.href,
+            custom_fields: [
+              { name: 'name', value: payload.name },
+              { name: 'company', value: payload.company || '' },
+              { name: 'role', value: payload.role }
+            ],
+            tags: ['free-script-signup', payload.role]
+          })
+        });
+      } catch (err) {
+        console.warn('Beehiiv signup error:', err);
+      }
+
+      // Store in sessionStorage for the brief form
+      sessionStorage.setItem('tcr_user', JSON.stringify(payload));
+
+      // Redirect to brief form
+      window.location.href = '/free-script-request.html?email=' + encodeURIComponent(payload.email) + '&name=' + encodeURIComponent(payload.name);
+    });
+
+    function handleGoogleSignup() {
+      // Placeholder -- full OAuth requires backend
+      const banner = document.getElementById('error-banner');
+      banner.textContent = 'Google sign-up is coming soon. Please use email signup for now.';
+      banner.style.display = 'block';
+      document.getElementById('google-btn').style.opacity = '0.5';
+    }
+  </script>
+
+</body>
+</html>

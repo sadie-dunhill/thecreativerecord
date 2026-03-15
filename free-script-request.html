@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your Script Brief — The Creative Record</title>
+  <meta name="description" content="Tell us about your product and we'll write your free video script. Takes 3 minutes. Delivered in 48 hours.">
+
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="canonical" href="https://thecreativerecord.com/free-script-request">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink:        #0f0e0d;
+      --ink-2:      #3d3a36;
+      --ink-3:      #6b6560;
+      --ink-4:      #a09890;
+      --terra:      #c8552a;
+      --terra-2:    #e8714a;
+      --terra-3:    #f4e0d6;
+      --cream:      #faf8f5;
+      --cream-2:    #f3f0eb;
+      --cream-3:    #e8e4dd;
+      --white:      #ffffff;
+      --font-serif: 'DM Serif Display', Georgia, serif;
+      --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px;
+      --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+      --shadow-sm: 0 1px 3px rgba(15,14,13,0.06);
+      --shadow-md: 0 4px 16px rgba(15,14,13,0.07);
+      --shadow-lg: 0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
+      --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+      --t-fast: 150ms ease; --t-base: 220ms ease;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans); font-weight: 400; color: var(--ink-3);
+      background: var(--cream); line-height: 1.65; -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- HEADER ---- */
+    .site-header {
+      border-bottom: 1px solid var(--cream-3);
+      background: var(--cream);
+      padding: 18px var(--s4);
+    }
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .logo em { font-style: italic; color: var(--terra); }
+    .header-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      color: var(--terra);
+      font-weight: 500;
+    }
+    .header-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--terra);
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    /* ---- PROGRESS ---- */
+    .progress-bar-wrap {
+      background: var(--cream-2);
+      border-bottom: 1px solid var(--cream-3);
+      padding: 12px var(--s4);
+    }
+    .progress-bar-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .progress-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .progress-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+    }
+    .progress-step .num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .progress-step.done .num { background: var(--terra); color: var(--white); }
+    .progress-step.done .label { color: var(--terra); }
+    .progress-step.active .num { background: var(--ink); color: var(--white); }
+    .progress-step.active .label { color: var(--ink-2); }
+    .progress-step.pending .num { background: var(--cream-3); color: var(--ink-4); }
+    .progress-step.pending .label { color: var(--ink-4); }
+    .progress-connector {
+      flex: 1;
+      height: 1px;
+      background: var(--cream-3);
+      margin: 0 10px;
+    }
+    .progress-connector.done { background: var(--terra); }
+
+    /* ---- MAIN ---- */
+    .main-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: var(--s5) var(--s4);
+    }
+
+    .page-head {
+      margin-bottom: var(--s5);
+    }
+    .page-eyebrow {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: var(--s1);
+    }
+    .page-head h1 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .page-head p {
+      font-size: 0.9375rem;
+      color: var(--ink-4);
+      line-height: 1.6;
+    }
+
+    /* ---- FORM ---- */
+    .brief-form {
+      background: var(--white);
+      border: 1px solid var(--cream-3);
+      border-radius: var(--r-xl);
+      padding: var(--s5);
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-section {
+      margin-bottom: var(--s5);
+      padding-bottom: var(--s5);
+      border-bottom: 1px solid var(--cream-3);
+    }
+    .form-section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .form-section-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: var(--s3);
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: var(--s3);
+    }
+    .field:last-child { margin-bottom: 0; }
+    .field label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+    .field label .optional {
+      font-weight: 400;
+      color: var(--ink-4);
+      font-size: 0.8125rem;
+      margin-left: 4px;
+    }
+    .field-hint {
+      font-size: 0.8125rem;
+      color: var(--ink-4);
+      line-height: 1.5;
+    }
+    .field input[type="text"],
+    .field input[type="url"],
+    .field input[type="email"],
+    .field textarea {
+      padding: 12px 14px;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      color: var(--ink);
+      background: var(--cream);
+      border: 1.5px solid var(--cream-3);
+      border-radius: var(--r-lg);
+      outline: none;
+      transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+      resize: vertical;
+    }
+    .field input[type="text"]:focus,
+    .field input[type="url"]:focus,
+    .field input[type="email"]:focus,
+    .field textarea:focus {
+      border-color: var(--terra);
+      box-shadow: 0 0 0 3px rgba(200,85,42,0.10);
+      background: var(--white);
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: var(--ink-4); }
+    .field textarea { min-height: 100px; }
+    .field-error {
+      font-size: 0.75rem;
+      color: #c0392b;
+      display: none;
+    }
+    .field.has-error input,
+    .field.has-error textarea {
+      border-color: #c0392b;
+    }
+    .field.has-error .field-error { display: block; }
+
+    /* ---- PLATFORM CHECKBOXES ---- */
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .platform-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: var(--cream);
+      border: 1.5px solid var(--cream-3);
+      border-radius: 99px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-3);
+      transition: all var(--t-fast);
+      user-select: none;
+    }
+    .platform-option:hover {
+      background: var(--terra-3);
+      border-color: rgba(200,85,42,0.3);
+      color: var(--terra);
+    }
+    .platform-option input[type="checkbox"] {
+      display: none;
+    }
+    .platform-option.selected {
+      background: var(--terra-3);
+      border-color: var(--terra);
+      color: var(--terra);
+    }
+
+    /* ---- SUBMIT ---- */
+    .form-submit-row {
+      margin-top: var(--s5);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s3);
+      flex-wrap: wrap;
+    }
+    .submit-note {
+      font-size: 0.8125rem;
+      color: var(--ink-4);
+      max-width: 280px;
+      line-height: 1.5;
+    }
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--terra);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--r-lg);
+      cursor: pointer;
+      transition: background var(--t-fast), transform 120ms ease, box-shadow var(--t-fast);
+      white-space: nowrap;
+    }
+    .btn-submit:hover {
+      background: #b84a24;
+      box-shadow: var(--shadow-terra);
+      transform: translateY(-1px);
+    }
+    .btn-submit:active { transform: translateY(0); box-shadow: none; }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ---- CHAR COUNTER ---- */
+    .char-counter {
+      font-size: 0.75rem;
+      color: var(--ink-4);
+      text-align: right;
+      margin-top: 4px;
+    }
+    .char-counter.over { color: #c0392b; }
+
+    /* ---- ERROR BANNER ---- */
+    .form-error-banner {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: var(--r-lg);
+      padding: 12px 16px;
+      font-size: 0.875rem;
+      color: #991b1b;
+      margin-bottom: var(--s3);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo">The Creative <em>Record</em></a>
+      <div class="header-badge">
+        <span class="dot"></span>
+        Free script request
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-inner">
+      <div class="progress-steps">
+        <div class="progress-step done">
+          <span class="num">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="label">Account created</span>
+        </div>
+        <div class="progress-connector done"></div>
+        <div class="progress-step active">
+          <span class="num">2</span>
+          <span class="label">Submit brief</span>
+        </div>
+        <div class="progress-connector"></div>
+        <div class="progress-step pending">
+          <span class="num">3</span>
+          <span class="label">Get your script</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-wrap">
+
+    <div class="page-head">
+      <p class="page-eyebrow">Step 2 of 3 — The brief</p>
+      <h1>Tell us about your product</h1>
+      <p>The better your brief, the better the script. Takes about 3 minutes. All fields marked required are, well, required.</p>
+    </div>
+
+    <div class="form-error-banner" id="error-banner"></div>
+
+    <form class="brief-form" id="brief-form" novalidate>
+
+      <!-- SECTION 1: Product -->
+      <div class="form-section">
+        <p class="form-section-label">The product</p>
+
+        <div class="field" id="field-product-name">
+          <label for="product-name">Product / service name</label>
+          <input type="text" id="product-name" name="product_name" placeholder="e.g. Organifi Green Juice" required />
+          <span class="field-error">Please enter your product name.</span>
+        </div>
+
+        <div class="field" id="field-product-desc">
+          <label for="product-desc">What are you selling?</label>
+          <span class="field-hint">1--2 sentences. What it is, what it does, why it's different.</span>
+          <textarea id="product-desc" name="product_desc" placeholder="e.g. A powdered greens supplement with 30+ organic ingredients. Designed for busy people who can't eat well every day." rows="3" required></textarea>
+          <div class="char-counter" id="desc-counter">0 / 300</div>
+          <span class="field-error">Please describe your product.</span>
+        </div>
+
+        <div class="field">
+          <label for="product-url">Link to your product page <span class="optional">(optional)</span></label>
+          <input type="url" id="product-url" name="product_url" placeholder="https://yoursite.com/product" />
+        </div>
+      </div>
+
+      <!-- SECTION 2: Audience & Hook -->
+      <div class="form-section">
+        <p class="form-section-label">Audience &amp; angle</p>
+
+        <div class="field" id="field-audience">
+          <label for="audience">Who is your target customer?</label>
+          <span class="field-hint">Be specific. Age, lifestyle, pain point -- the more precise, the stronger the hook.</span>
+          <textarea id="audience" name="target_audience" placeholder="e.g. Women 28--45 who are overwhelmed with work and family, feel sluggish in the afternoons, and want energy without caffeine crashes." rows="3" required></textarea>
+          <div class="char-counter" id="audience-counter">0 / 300</div>
+          <span class="field-error">Please describe your target customer.</span>
+        </div>
+
+        <div class="field" id="field-hook-angle">
+          <label for="hook-angle">What's the key benefit or hook angle?</label>
+          <span class="field-hint">What's the single most compelling thing about your product? What would make your customer stop scrolling?</span>
+          <textarea id="hook-angle" name="hook_angle" placeholder="e.g. You can get all your greens for the day in 30 seconds flat -- no prep, no cleanup, no excuses." rows="3" required></textarea>
+          <div class="char-counter" id="hook-counter">0 / 300</div>
+          <span class="field-error">Please share your key hook angle.</span>
+        </div>
+      </div>
+
+      <!-- SECTION 3: Platform & Examples -->
+      <div class="form-section">
+        <p class="form-section-label">Platform &amp; creative direction</p>
+
+        <div class="field" id="field-platforms">
+          <label>Where will this ad run?</label>
+          <span class="field-hint">Select all that apply. We'll write to the conventions of your primary platform.</span>
+          <div class="checkbox-group" id="platform-group">
+            <label class="platform-option" onclick="togglePlatform(this)">
+              <input type="checkbox" name="platforms" value="facebook"> Facebook
+            </label>
+            <label class="platform-option" onclick="togglePlatform(this)">
+              <input type="checkbox" name="platforms" value="instagram"> Instagram
+            </label>
+            <label class="platform-option" onclick="togglePlatform(this)">
+              <input type="checkbox" name="platforms" value="tiktok"> TikTok
+            </label>
+            <label class="platform-option" onclick="togglePlatform(this)">
+              <input type="checkbox" name="platforms" value="youtube"> YouTube
+            </label>
+            <label class="platform-option" onclick="togglePlatform(this)">
+              <input type="checkbox" name="platforms" value="youtube-shorts"> YouTube Shorts
+            </label>
+            <label class="platform-option" onclick="togglePlatform(this)">
+              <input type="checkbox" name="platforms" value="connected-tv"> Connected TV
+            </label>
+            <label class="platform-option" onclick="togglePlatform(this)">
+              <input type="checkbox" name="platforms" value="not-sure"> Not sure yet
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="examples">Any ad examples you like? <span class="optional">(optional)</span></label>
+          <span class="field-hint">Links or names of ads whose style, tone, or structure resonates with you. Helps us match your vibe.</span>
+          <textarea id="examples" name="examples" placeholder="e.g. I love how Purple mattress uses humor to make a technical claim feel fun. Or anything by Dr. Squatch -- that punchy, irreverent UGC style." rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- SECTION 4: Confirm email -->
+      <div class="form-section">
+        <p class="form-section-label">Delivery</p>
+        <div class="field" id="field-email">
+          <label for="confirm-email">Confirm your email</label>
+          <span class="field-hint">Where should we send the finished script?</span>
+          <input type="email" id="confirm-email" name="email" placeholder="you@company.com" autocomplete="email" required />
+          <span class="field-error">Please enter a valid email address.</span>
+        </div>
+      </div>
+
+      <div class="form-submit-row">
+        <p class="submit-note">We'll review your brief and deliver your script within 48 hours. You'll get an email when it's ready.</p>
+        <button type="submit" class="btn-submit" id="submit-btn">Submit Brief →</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    // Pre-fill email from URL params or sessionStorage
+    (function prefill() {
+      const params = new URLSearchParams(window.location.search);
+      const emailEl = document.getElementById('confirm-email');
+      const user = JSON.parse(sessionStorage.getItem('tcr_user') || '{}');
+
+      if (params.get('email')) emailEl.value = params.get('email');
+      else if (user.email) emailEl.value = user.email;
+    })();
+
+    // Platform checkbox toggle
+    function togglePlatform(label) {
+      label.classList.toggle('selected');
+    }
+
+    // Char counters
+    function wireCounter(textareaId, counterId, max) {
+      const ta = document.getElementById(textareaId);
+      const counter = document.getElementById(counterId);
+      if (!ta || !counter) return;
+      function update() {
+        const len = ta.value.length;
+        counter.textContent = len + ' / ' + max;
+        counter.className = 'char-counter' + (len > max ? ' over' : '');
+      }
+      ta.addEventListener('input', update);
+    }
+    wireCounter('product-desc', 'desc-counter', 300);
+    wireCounter('audience', 'audience-counter', 300);
+    wireCounter('hook-angle', 'hook-counter', 300);
+
+    // Validation helpers
+    function validateField(id, check) {
+      const el = document.getElementById(id);
+      const field = el.closest('.field');
+      const ok = check(el.value.trim());
+      field.classList.toggle('has-error', !ok);
+      return ok;
+    }
+
+    function isValidEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    // Submit
+    document.getElementById('brief-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      document.getElementById('error-banner').style.display = 'none';
+      document.querySelectorAll('.field').forEach(f => f.classList.remove('has-error'));
+
+      let valid = true;
+      valid = validateField('product-name', v => v.length > 0) && valid;
+      valid = validateField('product-desc', v => v.length > 10) && valid;
+      valid = validateField('audience', v => v.length > 10) && valid;
+      valid = validateField('hook-angle', v => v.length > 10) && valid;
+      valid = validateField('confirm-email', v => isValidEmail(v)) && valid;
+
+      if (!valid) {
+        const banner = document.getElementById('error-banner');
+        banner.textContent = 'Please fill in all required fields before submitting.';
+        banner.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      // Collect platforms
+      const platforms = Array.from(document.querySelectorAll('#platform-group input:checked'))
+        .map(cb => cb.value);
+
+      const user = JSON.parse(sessionStorage.getItem('tcr_user') || '{}');
+
+      const brief = {
+        email: document.getElementById('confirm-email').value.trim(),
+        name: user.name || '',
+        company: user.company || '',
+        product_name: document.getElementById('product-name').value.trim(),
+        product_desc: document.getElementById('product-desc').value.trim(),
+        product_url: document.getElementById('product-url').value.trim(),
+        target_audience: document.getElementById('audience').value.trim(),
+        hook_angle: document.getElementById('hook-angle').value.trim(),
+        platforms: platforms.join(', ') || 'Not specified',
+        examples: document.getElementById('examples').value.trim(),
+        submitted_at: new Date().toISOString(),
+        source: 'free-script-request'
+      };
+
+      // Disable submit
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting…';
+
+      // Send notification email via Beehiiv custom field update
+      // (MVP: store in sessionStorage, redirect to thanks page)
+      // In production this would POST to a backend endpoint
+      try {
+        // Add brief data as a Beehiiv subscriber tag/note for manual processing
+        await fetch('https://api.beehiiv.com/v2/publications/pub_7ae1d56e-7576-41fe-bd64-0cd4af00da66/subscriptions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer 5go8eJrMa0lUpgw5QZkcNFOkzfe4Md2hM8EbGKWcm6RZgkaPXUUiLie1ejMuQEHc'
+          },
+          body: JSON.stringify({
+            email: brief.email,
+            reactivate_existing: false,
+            send_welcome_email: false,
+            utm_source: 'free-script-brief',
+            utm_medium: 'organic',
+            tags: ['free-script-brief-submitted', 'pending-script-delivery'],
+            custom_fields: [
+              { name: 'product_name', value: brief.product_name },
+              { name: 'company', value: brief.company || brief.product_name }
+            ]
+          })
+        });
+      } catch (err) {
+        console.warn('Submission error (non-fatal):', err);
+      }
+
+      // Save brief to sessionStorage for the thanks page
+      sessionStorage.setItem('tcr_brief', JSON.stringify(brief));
+
+      // Redirect to thanks
+      window.location.href = '/free-script-thanks.html';
+    });
+  </script>
+
+</body>
+</html>
