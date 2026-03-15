@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills — The Creative Record</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #1a1a2e;
+            --white: #ffffff;
+            --coral: #e94560;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --border: #e5e7eb;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            color: var(--navy);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+        .logo span { color: var(--coral); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; }
+        .nav-links a:hover { color: var(--coral); }
+        .btn {
+            display: inline-block; padding: 12px 28px; border-radius: 6px;
+            font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+        }
+        .btn-primary { background: var(--coral); color: var(--white); }
+        .btn-primary:hover { background: #d63d56; }
+        .btn-secondary { background: var(--navy); color: var(--white); }
+        .btn-secondary:hover { background: #2d2d4a; }
+        .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+        .btn-outline:hover { background: var(--navy); color: var(--white); }
+        .btn-sm { padding: 8px 20px; font-size: 0.875rem; }
+        
+        /* Page Header */
+        .page-header { background: var(--navy); color: var(--white); padding: 80px 0 60px; text-align: center; }
+        .page-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
+        .page-header p { color: #a0a0b0; font-size: 1.25rem; max-width: 600px; margin: 0 auto; }
+        
+        /* Filters */
+        .filters { padding: 32px 0; background: var(--light-gray); border-bottom: 1px solid var(--border); }
+        .filter-list { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .filter-btn {
+            padding: 10px 20px; border-radius: 20px; border: 1px solid var(--border);
+            background: var(--white); color: var(--navy); font-weight: 500; cursor: pointer;
+        }
+        .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+        .filter-btn:hover { border-color: var(--navy); }
+        
+        /* Skills Grid */
+        .skills-section { padding: 80px 0; background: var(--white); }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px; }
+        
+        .skill-card {
+            background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+            overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; position: relative;
+        }
+        .skill-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        
+        .badge {
+            position: absolute; top: 16px; left: 16px; padding: 6px 12px;
+            border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            z-index: 10;
+        }
+        .badge-popular { background: var(--coral); color: var(--white); }
+        .badge-new { background: #10b981; color: var(--white); }
+        
+        .skill-thumb {
+            height: 200px; background: var(--light-gray);
+            display: flex; align-items: center; justify-content: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .skill-placeholder {
+            color: var(--gray); font-size: 0.875rem; text-align: center; padding: 20px;
+        }
+        
+        .skill-content { padding: 24px; }
+        .skill-category {
+            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            color: var(--coral); letter-spacing: 0.5px; margin-bottom: 8px;
+        }
+        .skill-content h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .skill-content p { color: var(--gray); font-size: 0.9375rem; margin-bottom: 20px; line-height: 1.6; }
+        
+        .skill-features { list-style: none; margin-bottom: 20px; }
+        .skill-features li {
+            padding: 6px 0 6px 24px; font-size: 0.875rem; color: var(--gray);
+            position: relative;
+        }
+        .skill-features li::before {
+            content: "✓"; position: absolute; left: 0; color: var(--coral); font-weight: 700;
+        }
+        
+        .skill-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 20px; border-top: 1px solid var(--border);
+        }
+        .skill-price { font-weight: 800; font-size: 1.5rem; color: var(--navy); }
+        .skill-actions { display: flex; gap: 12px; }
+        
+        /* Bundle CTA */
+        .bundle-cta { padding: 80px 0; background: var(--light-gray); }
+        .bundle-box {
+            background: var(--navy); color: var(--white); border-radius: 16px;
+            padding: 60px; display: flex; align-items: center; justify-content: space-between;
+            gap: 40px; flex-wrap: wrap;
+        }
+        .bundle-content h2 { font-size: 2rem; margin-bottom: 12px; }
+        .bundle-content p { color: #a0a0b0; margin-bottom: 24px; max-width: 500px; }
+        .bundle-list { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+        .bundle-list span { display: flex; align-items: center; gap: 8px; font-size: 0.9375rem; }
+        .bundle-list span::before { content: "✓"; color: var(--coral); font-weight: 700; }
+        .bundle-price { text-align: center; }
+        .bundle-price .price { font-size: 3.5rem; font-weight: 800; }
+        .bundle-price .price span { font-size: 1rem; font-weight: 400; color: #a0a0b0; }
+        .bundle-price p { color: #a0a0b0; font-size: 0.875rem; margin: 8px 0 24px; }
+        
+        /* Footer */
+        footer { background: var(--navy); color: #a0a0b0; padding: 60px 0 32px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-brand .logo { color: var(--white); margin-bottom: 16px; display: inline-block; }
+        .footer-brand p { font-size: 0.9375rem; line-height: 1.7; }
+        .footer-links h4 { color: var(--white); margin-bottom: 16px; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #a0a0b0; text-decoration: none; font-size: 0.9375rem; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { text-align: center; padding-top: 32px; border-top: 1px solid #2d2d4a; font-size: 0.875rem; }
+        
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .bundle-box { padding: 40px 24px; text-align: center; }
+            .bundle-content { width: 100%; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <span>Record</span></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/subscribe/">Subscribe</a></li>
+            </ul>
+            <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Creative Strategy Skills</h1>
+            <p>Proven frameworks to help you create better ads, faster. Each skill includes templates, checklists, and video walkthroughs.</p>
+        </div>
+    </section>
+
+    <section class="filters">
+        <div class="container">
+            <div class="filter-list">
+                <button class="filter-btn active">All Skills</button>
+                <button class="filter-btn">Script Writing</button>
+                <button class="filter-btn">Hook Generation</button>
+                <button class="filter-btn">Briefing</button>
+                <button class="filter-btn">Auditing</button>
+                <button class="filter-btn">Analysis</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <div class="container">
+            <div class="skills-grid">
+                <!-- Skill 1 -->
+                <div class="skill-card">
+                    <span class="badge badge-popular">Most Popular</span>
+                    <div class="skill-thumb">
+                        <div class="skill-placeholder">[Thumbnail: Video Script Writing System]<br>680x400 placeholder</div>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-category">Script Writing</div>
+                        <h3>Video Script Writing System</h3>
+                        <p>The 8-part framework for writing video scripts that hook in 3 seconds and convert by 30. Used by top DTC brands to produce high-performing creative.</p>
+                        <ul class="skill-features">
+                            <li>8-part script structure template</li>
+                            <li>Hook formula cheat sheet</li>
+                            <li>30-minute video walkthrough</li>
+                            <li>Notion + PDF formats</li>
+                        </ul>
+                        <div class="skill-footer">
+                            <span class="skill-price">$39</span>
+                            <div class="skill-actions">
+                                <a href="#" class="btn btn-outline btn-sm">Preview</a>
+                                <a href="#" class="btn btn-primary btn-sm">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="skill-card">
+                    <span class="badge badge-new">New</span>
+                    <div class="skill-thumb">
+                        <div class="skill-placeholder">[Thumbnail: Hook Generation Masterclass]<br>680x400 placeholder</div>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-category">Hook Generation</div>
+                        <h3>Hook Generation Masterclass</h3>
+                        <p>47 proven hook formulas with fill-in-the-blank templates for every awareness stage. Stop guessing what will stop the scroll.</p>
+                        <ul class="skill-features">
+                            <li>47 hook formulas organized by stage</li>
+                            <li>Fill-in-the-blank templates</li>
+                            <li>Real brand examples database</li>
+                            <li>Hook testing framework</li>
+                        </ul>
+                        <div class="skill-footer">
+                            <span class="skill-price">$39</span>
+                            <div class="skill-actions">
+                                <a href="#" class="btn btn-outline btn-sm">Preview</a>
+                                <a href="#" class="btn btn-primary btn-sm">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="skill-card">
+                    <div class="skill-thumb">
+                        <div class="skill-placeholder">[Thumbnail: Creative Briefing Framework]<br>680x400 placeholder</div>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-category">Briefing</div>
+                        <h3>Creative Briefing Framework</h3>
+                        <p>The same briefing template used to produce 1000+ performance ads for DTC brands. Turn strategy into production-ready briefs.</p>
+                        <ul class="skill-features">
+                            <li>Complete brief template</li>
+                            <li>Strategy-to-brief worksheet</li>
+                            <li>Creative direction checklist</li>
+                            <li>Client presentation format</li>
+                        </ul>
+                        <div class="skill-footer">
+                            <span class="skill-price">$39</span>
+                            <div class="skill-actions">
+                                <a href="#" class="btn btn-outline btn-sm">Preview</a>
+                                <a href="#" class="btn btn-primary btn-sm">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="skill-card">
+                    <div class="skill-thumb">
+                        <div class="skill-placeholder">[Thumbnail: Creative Audit Checklist]<br>680x400 placeholder</div>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-category">Auditing</div>
+                        <h3>Creative Audit Checklist</h3>
+                        <p>Systematically evaluate your creative performance with this 50-point audit. Identify what's working and what's wasting budget.</p>
+                        <ul class="skill-features">
+                            <li>50-point audit framework</li>
+                            <li>Hook performance scoring</li>
+                            <li>Fatigue detection guide</li>
+                            <li>Iteration decision matrix</li>
+                        </ul>
+                        <div class="skill-footer">
+                            <span class="skill-price">$39</span>
+                            <div class="skill-actions">
+                                <a href="#" class="btn btn-outline btn-sm">Preview</a>
+                                <a href="#" class="btn btn-primary btn-sm">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="skill-card">
+                    <span class="badge badge-new">New</span>
+                    <div class="skill-thumb">
+                        <div class="skill-placeholder">[Thumbnail: Performance Analysis Toolkit]<br>680x400 placeholder</div>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-category">Analysis</div>
+                        <h3>Performance Analysis Toolkit</h3>
+                        <p>Turn raw data into actionable insights. Learn how to analyze creative performance and make better production decisions.</p>
+                        <ul class="skill-features">
+                            <li>Metrics interpretation guide</li>
+                            <li>Creative comparison framework</li>
+                            <li>Attribution modeling basics</li>
+                            <li>Report templates for clients</li>
+                        </ul>
+                        <div class="skill-footer">
+                            <span class="skill-price">$39</span>
+                            <div class="skill-actions">
+                                <a href="#" class="btn btn-outline btn-sm">Preview</a>
+                                <a href="#" class="btn btn-primary btn-sm">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bundle-cta">
+        <div class="container">
+            <div class="bundle-box">
+                <div class="bundle-content">
+                    <h2>Get all 5 skills</h2>
+                    <p>Save $96 when you buy the complete bundle. Everything you need to write, brief, audit, and analyze creative that performs.</p>
+                    <div class="bundle-list">
+                        <span>Video Script Writing</span>
+                        <span>Hook Generation</span>
+                        <span>Creative Briefing</span>
+                        <span>Creative Audit</span>
+                        <span>Performance Analysis</span>
+                    </div>
+                    <a href="#" class="btn btn-primary" style="font-size: 1.125rem; padding: 16px 32px;">Buy Bundle — $99</a>
+                </div>
+                <div class="bundle-price">
+                    <div class="price">$99<span>one-time</span></div>
+                    <p>Save $96 vs. individual</p>
+                    <p style="color: var(--coral); font-weight: 600;">Lifetime access + updates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <span>Record</span></a>
+                    <p>Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The Creative Record. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

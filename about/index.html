@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - The Creative Record</title>
+    <meta name="description" content="The Creative Record is built by Sadie Dunhill, a creative strategist who has analyzed 1000+ DTC ad creatives.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --navy: #1a1a2e;
+            --coral: #e94560;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --dark-gray: #333333;
+            --light-gray: #666666;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: var(--white);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--coral);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--coral);
+        }
+        
+        .nav-cta {
+            background: var(--coral);
+            color: var(--white) !important;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        
+        /* Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--navy) 0%, #16213e 100%);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .page-header p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        
+        /* Content */
+        .content {
+            padding: 80px 0;
+        }
+        
+        .content h2 {
+            font-size: 32px;
+            color: var(--navy);
+            margin: 48px 0 24px;
+        }
+        
+        .content h3 {
+            font-size: 24px;
+            color: var(--navy);
+            margin: 32px 0 16px;
+        }
+        
+        .content p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        .content ul {
+            margin: 20px 0;
+            padding-left: 24px;
+        }
+        
+        .content li {
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        
+        .highlight-box {
+            background: var(--gray);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 32px 0;
+            border-left: 4px solid var(--coral);
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            font-size: 20px;
+            font-style: italic;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin: 48px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--coral);
+        }
+        
+        .stat-label {
+            color: var(--light-gray);
+            font-size: 16px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.2s;
+            margin-top: 16px;
+        }
+        
+        .btn-primary {
+            background: var(--coral);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #d63d56;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0f0f1a;
+            color: var(--white);
+            padding: 48px 0;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.6;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 32px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .content h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">The Creative <span>Record</span></a>
+            <div class="nav-links">
+                <a href="/skills/">Skills</a>
+                <a href="/feedback/">Feedback</a>
+                <a href="/subscribe/">Membership</a>
+                <a href="/subscribe/" class="nav-cta">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>About The Creative Record</h1>
+            <p>Built by someone who has analyzed 1,000+ DTC ad creatives so you don't have to guess.</p>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container">
+            <h2>The Problem</h2>
+            <p>Most DTC brands are guessing with their creative. They hire agencies that charge $20K for 3 concepts. They sit through 6-hour courses that teach theory but don't give them tools. They copy competitors without understanding why the creative works.</p>
+            
+            <p>The result? Ads that look good but don't convert. Content that fills feeds but doesn't find customers. Budget spent on production that doesn't perform.</p>
+
+            <h2>The Solution</h2>
+            <p>The Creative Record is a collection of skills -- downloadable frameworks, templates, and checklists that you can use immediately. No theory. No fluff. Just the exact tools used by brands that scale.</p>
+
+            <div class="highlight-box">
+                <p>"I don't teach creative strategy. I document what works and give you the tools to do it yourself."</p>
+            </div>
+
+            <h2>What Makes This Different</h2>
+            
+            <h3>1. It's Based on Real Analysis</h3>
+            <p>Every framework in The Creative Record comes from analyzing actual winning creatives. Not theory. Not "best practices." Real ads that real brands are running right now. I've reverse-engineered what works and packaged it into usable tools.</p>
+
+            <h3>2. It's Immediately Usable</h3>
+            <p>You don't need to watch hours of video or read a 200-page book. Download the skill, open it, use it. Most people apply what they learn within 24 hours of downloading.</p>
+
+            <h3>3. It's Affordable</h3>
+            <p>$39 for a skill that took weeks to develop. $29/month for ongoing access to everything. Compare that to a $5K agency retainer or a $2K course. The value is ridiculous because the delivery is efficient.</p>
+
+            <h2>The Numbers</h2>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">1,000+</div>
+                    <div class="stat-label">Creatives Analyzed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Brands Worked With</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$100M+</div>
+                    <div class="stat-label">Ad Spend Analyzed</div>
+                </div>
+            </div>
+
+            <h2>Who Built This</h2>
+            <p>I'm Sadie Dunhill. I've spent the last few years as a creative strategist at Goodo Studios, working with DTC brands to make ads that actually convert. Before that, I was a dancer (seriously). I approach creative with discipline, precision, and a deep respect for craft.</p>
+            
+            <p>I write The Creative Record newsletter, tweet about creative strategy at @sadie_goodo, and obsess over what makes people stop scrolling and take action.</p>
+
+            <h2>The Mission</h2>
+            <p>Democratize creative strategy. Every brand deserves access to frameworks that work, regardless of their budget. Every creative strategist deserves tools that make them better, not just busier.</p>
+
+            <p>The Creative Record is my contribution to that mission. Use it well.</p>
+
+            <p><a href="/skills/" class="btn btn-primary">Browse the Skills</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 The Creative Record. Built by @sadie_goodo.</p>
+        </div>
+    </footer>
+</body>
+</html>

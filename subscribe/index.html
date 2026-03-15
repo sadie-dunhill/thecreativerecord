@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership — The Creative Record</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #1a1a2e;
+            --white: #ffffff;
+            --coral: #e94560;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --border: #e5e7eb;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            color: var(--navy);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+        .logo span { color: var(--coral); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; }
+        .nav-links a:hover { color: var(--coral); }
+        .btn {
+            display: inline-block; padding: 12px 28px; border-radius: 6px;
+            font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+        }
+        .btn-primary { background: var(--coral); color: var(--white); }
+        .btn-primary:hover { background: #d63d56; }
+        .btn-secondary { background: var(--navy); color: var(--white); }
+        .btn-secondary:hover { background: #2d2d4a; }
+        .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+        .btn-outline:hover { background: var(--navy); color: var(--white); }
+        
+        /* Page Header */
+        .page-header { background: var(--navy); color: var(--white); padding: 80px 0 60px; text-align: center; }
+        .page-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
+        .page-header p { color: #a0a0b0; font-size: 1.25rem; max-width: 600px; margin: 0 auto; }
+        
+        /* Pricing Toggle */
+        .pricing-toggle {
+            display: flex; justify-content: center; align-items: center;
+            gap: 16px; padding: 32px 0; background: var(--light-gray);
+        }
+        .toggle-label { font-weight: 600; cursor: pointer; }
+        .toggle-label.active { color: var(--navy); }
+        .toggle-label:not(.active) { color: var(--gray); }
+        .toggle-switch {
+            width: 56px; height: 28px; background: var(--navy); border-radius: 14px;
+            position: relative; cursor: pointer;
+        }
+        .toggle-switch::after {
+            content: ''; position: absolute; width: 24px; height: 24px;
+            background: var(--white); border-radius: 50%; top: 2px; left: 2px;
+            transition: transform 0.2s;
+        }
+        .toggle-switch.annual::after { transform: translateX(28px); }
+        .save-badge {
+            background: #10b981; color: var(--white); padding: 4px 10px;
+            border-radius: 12px; font-size: 0.75rem; font-weight: 700;
+        }
+        
+        /* Pricing Cards */
+        .pricing-section { padding: 60px 0 100px; background: var(--light-gray); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 32px; max-width: 900px; margin: 0 auto; }
+        
+        .pricing-card {
+            background: var(--white); border-radius: 16px; padding: 48px 40px;
+            border: 2px solid transparent;
+        }
+        .pricing-card.featured { border-color: var(--coral); position: relative; }
+        .featured-badge {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            background: var(--coral); color: var(--white); padding: 6px 20px;
+            border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+        }
+        
+        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 8px; }
+        .pricing-card .subtitle { color: var(--gray); font-size: 0.9375rem; margin-bottom: 24px; }
+        .pricing-card .price { font-size: 3.5rem; font-weight: 800; margin-bottom: 8px; }
+        .pricing-card .price span { font-size: 1rem; font-weight: 400; color: var(--gray); }
+        .pricing-card .billing { color: var(--gray); font-size: 0.9375rem; margin-bottom: 32px; }
+        .pricing-card .cta { width: 100%; padding: 16px; font-size: 1.0625rem; margin-bottom: 32px; }
+        
+        .features-list { list-style: none; }
+        .features-list li {
+            padding: 12px 0 12px 32px; position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+        .features-list li:last-child { border-bottom: none; }
+        .features-list li::before { content: "✓"; position: absolute; left: 0; color: var(--coral); font-weight: 700; }
+        .features-list li strong { color: var(--navy); }
+        
+        /* Included Section */
+        .included { padding: 100px 0; background: var(--white); }
+        .section-header { text-align: center; margin-bottom: 64px; }
+        .section-header h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 16px; }
+        .section-header p { color: var(--gray); font-size: 1.125rem; }
+        
+        .included-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .included-item { text-align: center; }
+        .included-icon {
+            width: 80px; height: 80px; background: var(--light-gray); border-radius: 20px;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+            font-size: 2rem;
+        }
+        .included-item h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .included-item p { color: var(--gray); font-size: 0.9375rem; }
+        
+        /* Comparison */
+        .comparison { padding: 100px 0; background: var(--light-gray); }
+        .comparison-table {
+            background: var(--white); border-radius: 12px; overflow: hidden;
+            max-width: 800px; margin: 0 auto;
+        }
+        .comparison-row {
+            display: grid; grid-template-columns: 1fr 120px 120px; align-items: center;
+            padding: 20px 32px; border-bottom: 1px solid var(--border);
+        }
+        .comparison-row:last-child { border-bottom: none; }
+        .comparison-row.header { background: var(--navy); color: var(--white); font-weight: 600; }
+        .comparison-row.header .price-col { color: var(--white); }
+        .comparison-row.tcr { background: #fff5f7; }
+        .option-name { font-weight: 600; }
+        .option-desc { font-size: 0.875rem; color: var(--gray); margin-top: 4px; }
+        .price-col { text-align: center; font-weight: 600; }
+        .tcr .price-col { color: var(--coral); }
+        .check { color: #10b981; font-weight: 700; }
+        .cross { color: var(--gray); }
+        
+        /* CTA Section */
+        .cta-section { padding: 100px 0; background: var(--navy); color: var(--white); text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        .cta-section p { color: #a0a0b0; font-size: 1.25rem; margin-bottom: 32px; }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        
+        /* FAQ */
+        .faq { padding: 100px 0; background: var(--white); }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--light-gray); border-radius: 8px; margin-bottom: 16px; overflow: hidden; }
+        .faq-question { padding: 24px; font-weight: 600; }
+        .faq-answer { padding: 0 24px 24px; color: var(--gray); }
+        
+        /* Footer */
+        footer { background: var(--navy); color: #a0a0b0; padding: 60px 0 32px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-brand .logo { color: var(--white); margin-bottom: 16px; display: inline-block; }
+        .footer-brand p { font-size: 0.9375rem; line-height: 1.7; }
+        .footer-links h4 { color: var(--white); margin-bottom: 16px; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #a0a0b0; text-decoration: none; font-size: 0.9375rem; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { text-align: center; padding-top: 32px; border-top: 1px solid #2d2d4a; font-size: 0.875rem; }
+        
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .comparison-row { grid-template-columns: 1fr 80px 80px; padding: 16px 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <span>Record</span></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/subscribe/">Subscribe</a></li>
+            </ul>
+            <a href="#pricing" class="btn btn-primary">Join Now</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Join the Membership</h1>
+            <p>Get unlimited access to every skill, monthly feedback credits, and a community of DTC creatives.</p>
+        </div>
+    </section>
+
+    <div class="pricing-toggle" id="pricing">
+        <span class="toggle-label active" onclick="setBilling('monthly')">Monthly</span>
+        <div class="toggle-switch" onclick="toggleBilling()"></div>
+        <span class="toggle-label" onclick="setBilling('annual')">Annual</span>
+        <span class="save-badge">Save 17%</span>
+    </div>
+
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-grid">
+                <div class="pricing-card featured">
+                    <span class="featured-badge">Best Value</span>
+                    <h3>Annual Membership</h3>
+                    <p class="subtitle">Everything you need, all year long.</p>
+                    <div class="price annual-price">$290<span>/year</span></div>
+                    <div class="price monthly-price" style="display: none;">$29<span>/month</span></div>
+                    <p class="billing annual-billing">Billed annually — 2 months free</p>
+                    <p class="billing monthly-billing" style="display: none;">Billed monthly — cancel anytime</p>
+                    <button class="btn btn-primary cta">Join Membership</button>
+                    <ul class="features-list">
+                        <li><strong>All 5+ skills</strong> included</li>
+                        <li><strong>1 feedback credit</strong> per month</li>
+                        <li><strong>New skill</strong> every month</li>
+                        <li><strong>Private community</strong> access</li>
+                        <li><strong>Member-only</strong> content & updates</li>
+                        <li>Cancel anytime</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Monthly Membership</h3>
+                    <p class="subtitle">Flexible monthly access.</p>
+                    <div class="price">$29<span>/month</span></div>
+                    <p class="billing">Billed monthly — cancel anytime</p>
+                    <button class="btn btn-secondary cta">Join Monthly</button>
+                    <ul class="features-list">
+                        <li><strong>All 5+ skills</strong> included</li>
+                        <li><strong>1 feedback credit</strong> per month</li>
+                        <li><strong>New skill</strong> every month</li>
+                        <li><strong>Private community</strong> access</li>
+                        <li><strong>Member-only</strong> content & updates</li>
+                        <li>Cancel anytime</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="included">
+        <div class="container">
+            <div class="section-header">
+                <h2>What's included</h2>
+                <p>Everything you need to create better creative, faster.</p>
+            </div>
+            <div class="included-grid">
+                <div class="included-item">
+                    <div class="included-icon">📚</div>
+                    <h3>All Skills Library</h3>
+                    <p>Instant access to every skill — script writing, hook generation, briefing, auditing, and analysis. Plus all future skills.</p>
+                </div>
+                <div class="included-item">
+                    <div class="included-icon">💬</div>
+                    <h3>Monthly Feedback</h3>
+                    <p>One feedback credit every month. Use it for hook review ($49 value), script triage ($79 value), or brief diagnosis ($99 value).</p>
+                </div>
+                <div class="included-item">
+                    <div class="included-icon">🆕</div>
+                    <h3>New Skills Monthly</h3>
+                    <p>A brand new skill added every month based on member requests and emerging creative strategy needs.</p>
+                </div>
+                <div class="included-item">
+                    <div class="included-icon">👥</div>
+                    <h3>Private Community</h3>
+                    <p>Connect with other DTC creatives, share work, get feedback from peers, and stay on top of what's working.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2>How we compare</h2>
+                <p>See why teams choose The Creative Record over alternatives.</p>
+            </div>
+            <div class="comparison-table">
+                <div class="comparison-row header">
+                    <div>Option</div>
+                    <div class="price-col">Price</div>
+                    <div class="price-col">Feedback</div>
+                </div>
+                <div class="comparison-row tcr">
+                    <div>
+                        <div class="option-name">The Creative Record</div>
+                        <div class="option-desc">Annual membership</div>
+                    </div>
+                    <div class="price-col">$290/yr</div>
+                    <div class="price-col check">✓ Included</div>
+                </div>
+                <div class="comparison-row">
+                    <div>
+                        <div class="option-name">Creative Course</div>
+                        <div class="option-desc">Generic online course</div>
+                    </div>
+                    <div class="price-col">$500-2k</div>
+                    <div class="price-col cross">—</div>
+                </div>
+                <div class="comparison-row">
+                    <div>
+                        <div class="option-name">Agency Retainer</div>
+                        <div class="option-desc">Monthly creative support</div>
+                    </div>
+                    <div class="price-col">$3k+/mo</div>
+                    <div class="price-col check">✓ Included</div>
+                </div>
+                <div class="comparison-row">
+                    <div>
+                        <div class="option-name">Consulting Call</div>
+                        <div class="option-desc">One-hour strategy session</div>
+                    </div>
+                    <div class="price-col">$300-500</div>
+                    <div class="price-col check">✓ 1 call</div>
+                </div>
+                <div class="comparison-row">
+                    <div>
+                        <div class="option-name">Ad Creative Tools</div>
+                        <div class="option-desc">Spy tools & generators</div>
+                    </div>
+                    <div class="price-col">$100-300/mo</div>
+                    <div class="price-col cross">—</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Membership FAQ</h2>
+                <p>Common questions about joining.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">Can I cancel anytime?</div>
+                    <div class="faq-answer">Yes. Monthly memberships can be cancelled anytime with no penalty. Annual memberships can be cancelled anytime and you'll retain access until your renewal date.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What happens to my feedback credits if I don't use them?</div>
+                    <div class="faq-answer">Feedback credits roll over for up to 3 months. So if you skip a month, you can submit 2 pieces of creative the next month.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I access the community?</div>
+                    <div class="faq-answer">After joining, you'll receive an invite to our private Circle community. This is where members share work, ask questions, and get feedback from peers.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What's the difference between annual and monthly?</div>
+                    <div class="faq-answer">The only difference is price. Annual is $290/year (saving you $58, or 2 months free). Monthly is $29/month. Both get the exact same access and benefits.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer team plans?</div>
+                    <div class="faq-answer">Yes. Teams of 3+ get 20% off. Contact us at team@thecreativerecord.com for team pricing.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to join?</h2>
+            <p>Start creating better ads today with proven frameworks and expert feedback.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" style="font-size: 1.125rem; padding: 16px 36px;">Join Annual — $290</a>
+                <a href="#" class="btn" style="background: transparent; color: var(--white); border: 2px solid var(--white); font-size: 1.125rem; padding: 16px 36px;">Join Monthly — $29</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <span>Record</span></a>
+                    <p>Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The Creative Record. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleBilling() {
+            document.querySelector('.toggle-switch').classList.toggle('annual');
+            document.querySelectorAll('.toggle-label').forEach(el => el.classList.toggle('active'));
+            document.querySelectorAll('.annual-price, .annual-billing').forEach(el => el.style.display = el.style.display === 'none' ? '' : 'none');
+            document.querySelectorAll('.monthly-price, .monthly-billing').forEach(el => el.style.display = el.style.display === 'none' ? '' : 'none');
+        }
+        function setBilling(type) {
+            const isAnnual = type === 'annual';
+            const switchEl = document.querySelector('.toggle-switch');
+            if (isAnnual && !switchEl.classList.contains('annual')) switchEl.classList.add('annual');
+            if (!isAnnual && switchEl.classList.contains('annual')) switchEl.classList.remove('annual');
+            document.querySelectorAll('.toggle-label').forEach((el, i) => {
+                el.classList.toggle('active', (isAnnual && i === 1) || (!isAnnual && i === 0));
+            });
+            document.querySelectorAll('.annual-price, .annual-billing').forEach(el => el.style.display = isAnnual ? '' : 'none');
+            document.querySelectorAll('.monthly-price, .monthly-billing').forEach(el => el.style.display = isAnnual ? 'none' : '');
+        }
+    </script>
+</body>
+</html>

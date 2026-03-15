@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro-Feedback — The Creative Record</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #1a1a2e;
+            --white: #ffffff;
+            --coral: #e94560;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --border: #e5e7eb;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            color: var(--navy);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+        .logo span { color: var(--coral); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; }
+        .nav-links a:hover { color: var(--coral); }
+        .btn {
+            display: inline-block; padding: 12px 28px; border-radius: 6px;
+            font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+        }
+        .btn-primary { background: var(--coral); color: var(--white); }
+        .btn-primary:hover { background: #d63d56; }
+        .btn-secondary { background: var(--navy); color: var(--white); }
+        .btn-secondary:hover { background: #2d2d4a; }
+        .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+        .btn-outline:hover { background: var(--navy); color: var(--white); }
+        
+        /* Page Header */
+        .page-header { background: var(--navy); color: var(--white); padding: 80px 0 60px; text-align: center; }
+        .page-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
+        .page-header p { color: #a0a0b0; font-size: 1.25rem; max-width: 600px; margin: 0 auto; }
+        
+        /* Turnaround Banner */
+        .turnaround-banner {
+            background: var(--coral); color: var(--white); padding: 16px; text-align: center;
+            font-weight: 600; font-size: 0.9375rem;
+        }
+        .turnaround-banner span { margin: 0 8px; }
+        
+        /* Services */
+        .services { padding: 80px 0; background: var(--white); }
+        .section-header { text-align: center; margin-bottom: 64px; }
+        .section-header h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 16px; }
+        .section-header p { color: var(--gray); font-size: 1.125rem; }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; max-width: 1000px; margin: 0 auto; }
+        
+        .service-card {
+            background: var(--white); border: 2px solid var(--border); border-radius: 12px;
+            padding: 40px 32px; text-align: center; transition: border-color 0.2s, transform 0.2s;
+        }
+        .service-card:hover { border-color: var(--coral); transform: translateY(-4px); }
+        .service-card.featured { border-color: var(--coral); position: relative; }
+        
+        .service-icon {
+            width: 64px; height: 64px; background: var(--light-gray); border-radius: 16px;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+            font-size: 1.75rem;
+        }
+        .service-card.featured .service-icon { background: var(--coral); color: var(--white); }
+        
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .service-card .price { font-size: 2.5rem; font-weight: 800; color: var(--coral); margin-bottom: 16px; }
+        .service-card .deliverable {
+            background: var(--light-gray); padding: 16px; border-radius: 8px;
+            font-size: 0.9375rem; margin-bottom: 24px;
+        }
+        .service-card ul { list-style: none; text-align: left; margin-bottom: 32px; }
+        .service-card li { padding: 10px 0 10px 28px; position: relative; border-bottom: 1px solid var(--border); }
+        .service-card li:last-child { border-bottom: none; }
+        .service-card li::before { content: "✓"; position: absolute; left: 0; color: var(--coral); font-weight: 700; }
+        
+        /* How It Works */
+        .how-it-works { padding: 80px 0; background: var(--light-gray); }
+        .steps { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
+        .step {
+            flex: 1; min-width: 200px; max-width: 260px; background: var(--white);
+            padding: 32px 24px; border-radius: 12px; text-align: center;
+        }
+        .step-number {
+            width: 48px; height: 48px; background: var(--navy); color: var(--white);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1.25rem; margin: 0 auto 20px;
+        }
+        .step h3 { font-size: 1.125rem; margin-bottom: 8px; }
+        .step p { color: var(--gray); font-size: 0.9375rem; }
+        
+        /* Form Section */
+        .form-section { padding: 80px 0; background: var(--white); }
+        .form-container { max-width: 600px; margin: 0 auto; }
+        .form-card {
+            background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+            padding: 48px;
+        }
+        .form-card h2 { font-size: 1.75rem; margin-bottom: 8px; }
+        .form-card > p { color: var(--gray); margin-bottom: 32px; }
+        
+        .form-group { margin-bottom: 24px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9375rem; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 12px 16px; border: 1px solid var(--border);
+            border-radius: 8px; font-size: 1rem; font-family: inherit;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none; border-color: var(--coral);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        
+        .service-select { display: grid; gap: 12px; margin-bottom: 24px; }
+        .service-option {
+            border: 2px solid var(--border); border-radius: 8px; padding: 16px;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            transition: border-color 0.2s;
+        }
+        .service-option:hover { border-color: var(--gray); }
+        .service-option.selected { border-color: var(--coral); background: #fff5f7; }
+        .service-option-info h4 { font-size: 1rem; margin-bottom: 4px; }
+        .service-option-info p { font-size: 0.875rem; color: var(--gray); }
+        .service-option-price { font-weight: 700; color: var(--coral); }
+        
+        .file-upload {
+            border: 2px dashed var(--border); border-radius: 8px;
+            padding: 32px; text-align: center; cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .file-upload:hover { border-color: var(--coral); background: #fff5f7; }
+        .file-upload p { color: var(--gray); font-size: 0.9375rem; margin-top: 12px; }
+        
+        .form-submit { width: 100%; padding: 16px; font-size: 1.125rem; margin-top: 8px; }
+        
+        /* Trust */
+        .trust { padding: 60px 0; background: var(--light-gray); text-align: center; }
+        .trust p { color: var(--gray); font-size: 0.9375rem; margin-bottom: 24px; }
+        .guarantee {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: var(--white); padding: 16px 24px; border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer { background: var(--navy); color: #a0a0b0; padding: 60px 0 32px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-brand .logo { color: var(--white); margin-bottom: 16px; display: inline-block; }
+        .footer-brand p { font-size: 0.9375rem; line-height: 1.7; }
+        .footer-links h4 { color: var(--white); margin-bottom: 16px; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #a0a0b0; text-decoration: none; font-size: 0.9375rem; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { text-align: center; padding-top: 32px; border-top: 1px solid #2d2d4a; font-size: 0.875rem; }
+        
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .steps { flex-direction: column; align-items: center; }
+            .form-card { padding: 32px 24px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <span>Record</span></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/subscribe/">Subscribe</a></li>
+            </ul>
+            <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Micro-Feedback</h1>
+            <p>Get expert eyes on your creative in 24 hours. Specific, actionable feedback that makes your ads perform better.</p>
+        </div>
+    </section>
+
+    <div class="turnaround-banner">
+        <span>⚡ 24-Hour Turnaround</span> | <span>💯 Satisfaction Guarantee</span> | <span>🎯 Actionable Fixes</span>
+    </div>
+
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Choose your feedback type</h2>
+                <p>Three ways to get expert creative strategy help — pick what you need.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🪝</div>
+                    <h3>Hook Review</h3>
+                    <div class="price">$49</div>
+                    <div class="deliverable">Submit 3 hooks → Get 3 rewrites</div>
+                    <ul>
+                        <li>Review of your 3 hooks</li>
+                        <li>3 rewritten alternatives</li>
+                        <li>Why each works (or doesn't)</li>
+                        <li>Awareness stage targeting</li>
+                        <li>24-hour delivery</li>
+                    </ul>
+                    <button class="btn btn-outline" style="width: 100%;" onclick="selectService('hook')">Select Hook Review</button>
+                </div>
+
+                <div class="service-card featured">
+                    <div class="service-icon">📝</div>
+                    <h3>Script Triage</h3>
+                    <div class="price">$79</div>
+                    <div class="deliverable">Submit 30s script → Get verdict + fixes</div>
+                    <ul>
+                        <li>Full script review</li>
+                        <li>Pass/fail verdict</li>
+                        <li>Specific fixes with line edits</li>
+                        <li>Structure recommendations</li>
+                        <li>Persuasion angle feedback</li>
+                        <li>24-hour delivery</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="selectService('script')">Select Script Triage</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3>Brief Diagnosis</h3>
+                    <div class="price">$99</div>
+                    <div class="deliverable">Submit brief → Get 3 improvements</div>
+                    <ul>
+                        <li>Creative brief review</li>
+                        <li>Strategy assessment</li>
+                        <li>3 specific improvements</li>
+                        <li>Hook direction suggestions</li>
+                        <li>Production-ready notes</li>
+                        <li>24-hour delivery</li>
+                    </ul>
+                    <button class="btn btn-outline" style="width: 100%;" onclick="selectService('brief')">Select Brief Diagnosis</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How it works</h2>
+                <p>Simple process, fast turnaround, actionable results.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Submit</h3>
+                    <p>Fill out the form and upload your hooks, script, or brief.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Review</h3>
+                    <p>We analyze your creative against proven frameworks.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Receive</h3>
+                    <p>Get your feedback within 24 hours via email.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-card">
+                    <h2>Submit for feedback</h2>
+                    <p>Select a service and upload your creative.</p>
+                    
+                    <form>
+                        <div class="service-select">
+                            <div class="service-option" data-service="hook" onclick="selectService('hook')">
+                                <div class="service-option-info">
+                                    <h4>Hook Review</h4>
+                                    <p>3 hooks → 3 rewrites</p>
+                                </div>
+                                <span class="service-option-price">$49</span>
+                            </div>
+                            <div class="service-option selected" data-service="script" onclick="selectService('script')">
+                                <div class="service-option-info">
+                                    <h4>Script Triage</h4>
+                                    <p>30s script → verdict + fixes</p>
+                                </div>
+                                <span class="service-option-price">$79</span>
+                            </div>
+                            <div class="service-option" data-service="brief" onclick="selectService('brief')">
+                                <div class="service-option-info">
+                                    <h4>Brief Diagnosis</h4>
+                                    <p>Brief → 3 improvements</p>
+                                </div>
+                                <span class="service-option-price">$99</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Upload Your Creative</label>
+                            <div class="file-upload">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--gray);">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                                <p>Drag and drop your file here, or click to browse</p>
+                                <p style="font-size: 0.8125rem; margin-top: 8px;">PDF, DOC, TXT, or image files accepted</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Additional Notes (Optional)</label>
+                            <textarea id="notes" name="notes" placeholder="Any context about your brand, target audience, or specific concerns..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary form-submit">Submit for Feedback — $79</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust">
+        <div class="container">
+            <p>Not satisfied? We'll refund 100% of your payment. No questions asked.</p>
+            <div class="guarantee">
+                <span>✓</span> 14-Day Money-Back Guarantee
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <span>Record</span></a>
+                    <p>Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The Creative Record. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function selectService(service) {
+            document.querySelectorAll('.service-option').forEach(el => el.classList.remove('selected'));
+            document.querySelector('[data-service="' + service + '"]').classList.add('selected');
+            
+            const prices = { hook: 49, script: 79, brief: 99 };
+            document.querySelector('.form-submit').textContent = 'Submit for Feedback — $' + prices[service];
+        }
+    </script>
+</body>
+</html>
