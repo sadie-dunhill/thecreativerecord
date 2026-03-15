@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — The Creative Record | Ad Strategy for Small Business</title>
+    <meta name="description" content="Plain-English ad strategy for small business owners. Hooks, scripts, budgets, templates — no agency required.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Blog — The Creative Record | Ad Strategy for Small Business">
+    <meta property="og:description" content="Plain-English ad strategy for small business owners. Hooks, scripts, budgets, templates — no agency required.">
+    <meta property="og:image" content="https://thecreativerecord.com/assets/images/og-default.png">
+    <meta property="og:url" content="https://thecreativerecord.com/blog/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="The Creative Record">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sadie_goodo">
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="canonical" href="https://thecreativerecord.com/blog/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans:  'Inter', -apple-system, sans-serif;
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
+            --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            --shadow-sm: 0 1px 3px rgba(15,14,13,0.06), 0 1px 2px rgba(15,14,13,0.04);
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-lg: 0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
+            --t-base: 220ms ease;
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            font-weight: 400;
+            color: var(--ink-3);
+            background: var(--cream);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.15; }
+        h4, h5, h6 { font-family: var(--font-sans); font-weight: 600; color: var(--ink-2); }
+
+        /* ---- BUTTONS ---- */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg);
+            font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem;
+            letter-spacing: 0.01em; cursor: pointer; text-decoration: none;
+            transition: all var(--t-base); border: none;
+        }
+        .btn-primary { background: var(--terra); color: var(--white); }
+        .btn-primary:hover { background: var(--terra-2); transform: translateY(-1px); }
+        .btn-ghost { background: transparent; color: var(--ink-2); border: 1.5px solid var(--cream-3); }
+        .btn-ghost:hover { border-color: var(--terra); color: var(--terra); }
+        .btn-sm { padding: 8px 16px; font-size: 0.875rem; }
+
+        /* ---- HEADER / NAV ---- */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(250,248,245,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3);
+        }
+        nav {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 68px;
+        }
+        .logo {
+            font-family: var(--font-serif); font-size: 1.25rem;
+            color: var(--ink); text-decoration: none; letter-spacing: -0.02em;
+        }
+        .logo em { color: var(--terra); font-style: italic; }
+        .nav-links { display: flex; gap: var(--s3); list-style: none; }
+        .nav-links a {
+            font-size: 0.9rem; font-weight: 500; color: var(--ink-3);
+            text-decoration: none; transition: color var(--t-base);
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+        .nav-cta { margin-left: var(--s2); }
+        .nav-hamburger {
+            display: none; width: 40px; height: 40px; border-radius: var(--r-md);
+            background: transparent; border: none; cursor: pointer;
+            flex-direction: column; gap: 5px; align-items: center; justify-content: center;
+        }
+        .nav-hamburger span {
+            display: block; width: 20px; height: 1.5px; background: var(--ink-2);
+            transition: all 200ms ease;
+        }
+        .mobile-nav {
+            display: none; position: fixed; top: 68px; left: 0; right: 0;
+            background: var(--cream); border-bottom: 1px solid var(--cream-3);
+            z-index: 99; padding: var(--s2) 0;
+        }
+        .mobile-nav.open { display: block; }
+        .mobile-nav ul { list-style: none; }
+        .mobile-nav li { border-bottom: 1px solid var(--cream-3); }
+        .mobile-nav a { display: block; padding: var(--s2) var(--s4); font-weight: 500; color: var(--ink-2); text-decoration: none; }
+        .mobile-nav a:hover { color: var(--terra); }
+        .mobile-nav .mobile-nav-cta { padding: var(--s2) var(--s4); }
+
+        /* ---- BLOG HERO ---- */
+        .blog-hero {
+            padding: var(--s7) 0 var(--s5);
+            border-bottom: 1px solid var(--cream-3);
+        }
+        .blog-hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s6);
+            align-items: start;
+        }
+        .blog-hero-eyebrow {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: var(--s2);
+        }
+        .blog-hero h1 {
+            font-size: clamp(2.25rem, 4vw, 3.25rem);
+            margin-bottom: var(--s3);
+        }
+        .blog-hero p {
+            font-size: 1.0625rem; color: var(--ink-3); line-height: 1.7;
+            margin-bottom: var(--s4);
+        }
+        .featured-post {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+            display: block;
+            transition: transform var(--t-base), box-shadow var(--t-base);
+        }
+        .featured-post:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .featured-post-img {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, var(--terra-3) 0%, var(--cream-2) 100%);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .featured-post-img-label {
+            position: absolute; top: var(--s2); left: var(--s2);
+            background: var(--terra); color: var(--white);
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; padding: 4px 10px; border-radius: var(--r-sm);
+        }
+        .featured-post-img-icon {
+            width: 64px; height: 64px; opacity: 0.25;
+        }
+        .featured-post-body { padding: var(--s3); }
+        .featured-post-meta {
+            display: flex; align-items: center; gap: var(--s2);
+            font-size: 0.8125rem; color: var(--ink-4); margin-bottom: var(--s2);
+        }
+        .featured-post-cat {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--terra);
+        }
+        .featured-post-body h2 {
+            font-size: 1.375rem; color: var(--ink); margin-bottom: var(--s2); line-height: 1.3;
+        }
+        .featured-post-body p { font-size: 0.9375rem; color: var(--ink-3); line-height: 1.65; }
+
+        /* ---- CATEGORY FILTER ---- */
+        .category-filter {
+            padding: var(--s4) 0;
+            border-bottom: 1px solid var(--cream-3);
+        }
+        .category-filter-inner {
+            display: flex; align-items: center; gap: var(--s2); flex-wrap: wrap;
+        }
+        .filter-label {
+            font-size: 0.8125rem; font-weight: 600; color: var(--ink-4);
+            text-transform: uppercase; letter-spacing: 0.06em; margin-right: var(--s1);
+        }
+        .filter-btn {
+            padding: 6px 16px; border-radius: 99px;
+            font-size: 0.875rem; font-weight: 500; cursor: pointer;
+            border: 1.5px solid var(--cream-3); background: transparent; color: var(--ink-3);
+            transition: all var(--t-base); text-decoration: none;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--terra); border-color: var(--terra); color: var(--white);
+        }
+
+        /* ---- POST GRID ---- */
+        .posts-section { padding: var(--s6) 0; }
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--s4);
+        }
+        .post-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--t-base), box-shadow var(--t-base);
+            display: flex; flex-direction: column;
+        }
+        .post-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+        .post-card-img {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, var(--cream-2) 0%, var(--terra-3) 100%);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .post-card-img svg { width: 40px; height: 40px; opacity: 0.2; stroke: var(--terra); fill: none; stroke-width: 1.5; }
+        .post-card-body { padding: var(--s3); flex: 1; display: flex; flex-direction: column; }
+        .post-card-meta {
+            display: flex; align-items: center; gap: var(--s2); margin-bottom: var(--s2);
+        }
+        .post-card-cat {
+            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--terra);
+        }
+        .post-card-date { font-size: 0.8125rem; color: var(--ink-4); }
+        .post-card-read { font-size: 0.8125rem; color: var(--ink-4); }
+        .post-card-sep { color: var(--cream-3); }
+        .post-card-body h3 {
+            font-family: var(--font-sans); font-size: 1.0625rem; font-weight: 600;
+            color: var(--ink); line-height: 1.35; margin-bottom: var(--s2);
+        }
+        .post-card-body p {
+            font-size: 0.9rem; color: var(--ink-3); line-height: 1.6; flex: 1;
+            margin-bottom: var(--s3);
+        }
+        .post-card-link {
+            font-size: 0.875rem; font-weight: 500; color: var(--terra);
+            text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+            transition: gap var(--t-base);
+        }
+        .post-card-link:hover { gap: 8px; }
+        a.post-card-wrapper { text-decoration: none; }
+
+        /* ---- EMAIL CTA ---- */
+        .email-cta {
+            background: var(--ink);
+            padding: var(--s7) 0;
+            margin: var(--s6) 0;
+            border-radius: var(--r-xl);
+        }
+        .email-cta-inner {
+            text-align: center; max-width: 560px; margin: 0 auto;
+        }
+        .email-cta-eyebrow {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--terra-2); margin-bottom: var(--s2);
+        }
+        .email-cta h2 { color: var(--white); font-size: clamp(1.75rem, 3vw, 2.5rem); margin-bottom: var(--s2); }
+        .email-cta p { color: rgba(255,255,255,0.55); font-size: 1rem; margin-bottom: var(--s4); }
+        .email-form { display: flex; gap: var(--s2); max-width: 420px; margin: 0 auto; }
+        .email-form input {
+            flex: 1; padding: 13px 18px; border-radius: var(--r-lg);
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white); font-size: 0.9375rem; font-family: var(--font-sans);
+            outline: none; transition: border-color var(--t-base);
+        }
+        .email-form input::placeholder { color: rgba(255,255,255,0.35); }
+        .email-form input:focus { border-color: var(--terra-2); }
+        .email-form button {
+            padding: 13px 24px; background: var(--terra); color: var(--white);
+            border: none; border-radius: var(--r-lg); font-weight: 600; font-size: 0.9375rem;
+            cursor: pointer; white-space: nowrap; transition: background var(--t-base);
+            font-family: var(--font-sans);
+        }
+        .email-form button:hover { background: var(--terra-2); }
+        .email-cta-note { font-size: 0.8125rem; color: rgba(255,255,255,0.3); margin-top: var(--s2); }
+
+        /* ---- FOOTER ---- */
+        footer { background: var(--ink); color: rgba(255,255,255,0.55); padding: var(--s6) 0 var(--s4); }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+            gap: var(--s5);
+            padding-bottom: var(--s5);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer-brand .logo { color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        .footer-tagline { font-size: 0.9rem; color: rgba(255,255,255,0.4); margin-top: var(--s2); line-height: 1.6; }
+        .footer-col h4 {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: var(--s2);
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.9rem; transition: color var(--t-base); }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: var(--s3); }
+        .footer-copy { font-size: 0.8125rem; color: rgba(255,255,255,0.3); }
+        .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.3); }
+
+        /* ---- RECENT POSTS FOOTER SECTION ---- */
+        .footer-recent-posts h4 {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: var(--s2);
+        }
+        .footer-recent-item {
+            display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--s2);
+        }
+        .footer-recent-item a {
+            color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.875rem;
+            line-height: 1.4; transition: color var(--t-base);
+        }
+        .footer-recent-item a:hover { color: rgba(255,255,255,0.9); }
+        .footer-recent-item span { font-size: 0.75rem; color: rgba(255,255,255,0.28); }
+
+        /* ---- REVEAL ---- */
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 1024px) {
+            .blog-hero-inner { grid-template-columns: 1fr; }
+            .posts-grid { grid-template-columns: 1fr 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; }
+        }
+        @media (max-width: 640px) {
+            .posts-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
+            .email-form { flex-direction: column; }
+            .footer-bottom { flex-direction: column; gap: 4px; text-align: center; }
+            .container { padding: 0 var(--s3); }
+        }
+    </style>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/blog/" class="active">Blog</a></li>
+                <li><a href="/subscribe/">Script Desk</a></li>
+                <li><a href="/custom-skill/">Custom Skill</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/subscribe/" class="btn btn-primary">Book the Desk</a>
+            </div>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <ul>
+            <li><a href="/skills/">Skills</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/subscribe/">Script Desk</a></li>
+            <li><a href="/custom-skill/">Custom Skill</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+        <div class="mobile-nav-cta">
+            <a href="/subscribe/" class="btn btn-primary">Book the Desk</a>
+        </div>
+    </nav>
+
+    <!-- BLOG HERO -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-inner">
+                <!-- Left: headline + intro -->
+                <div>
+                    <div class="blog-hero-eyebrow">Creative Strategy Blog</div>
+                    <h1>Ads that work.<br><em>Explained simply.</em></h1>
+                    <p>Plain-English guides on hooks, scripts, budgets, and creative strategy — written for business owners who run their own ads. No agency jargon. No fluff. Just what works.</p>
+                    <div style="display:flex; gap:var(--s2); flex-wrap:wrap;">
+                        <a href="#posts" class="btn btn-primary">Browse All Posts</a>
+                        <a href="/newsletter/" class="btn btn-ghost">Get the Newsletter</a>
+                    </div>
+                </div>
+                <!-- Right: featured post -->
+                <a href="/blog/facebook-ads-for-small-business-beginners-guide.html" class="featured-post">
+                    <div class="featured-post-img">
+                        <span class="featured-post-img-label">Featured</span>
+                        <svg class="featured-post-img-icon" viewBox="0 0 24 24" fill="none" stroke="#c8552a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <div class="featured-post-body">
+                        <div class="featured-post-meta">
+                            <span class="featured-post-cat">SMB Tips</span>
+                            <span>&bull;</span>
+                            <span>March 15, 2026</span>
+                            <span>&bull;</span>
+                            <span>12 min read</span>
+                        </div>
+                        <h2>Facebook Ads for Small Business: A Complete Beginner's Guide</h2>
+                        <p>Everything you need to run your first Facebook ad — from setting up your account to writing copy that converts. No experience required.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORY FILTER -->
+    <div class="category-filter">
+        <div class="container">
+            <div class="category-filter-inner">
+                <span class="filter-label">Filter</span>
+                <a href="/blog/" class="filter-btn active" data-cat="all">All Posts</a>
+                <a href="#" class="filter-btn" data-cat="hooks">Hooks</a>
+                <a href="#" class="filter-btn" data-cat="scripts">Scripts</a>
+                <a href="#" class="filter-btn" data-cat="strategy">Strategy</a>
+                <a href="#" class="filter-btn" data-cat="smb-tips">SMB Tips</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- POSTS GRID -->
+    <section class="posts-section" id="posts">
+        <div class="container">
+            <div class="posts-grid">
+
+                <!-- Post 1 -->
+                <article class="post-card reveal" data-cat="smb-tips">
+                    <a href="/blog/facebook-ads-for-small-business-beginners-guide.html" style="text-decoration:none; display:block;">
+                        <div class="post-card-img">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <div class="post-card-body">
+                        <div class="post-card-meta">
+                            <span class="post-card-cat">SMB Tips</span>
+                            <span class="post-card-sep">&bull;</span>
+                            <span class="post-card-date">Mar 15, 2026</span>
+                            <span class="post-card-sep">&bull;</span>
+                            <span class="post-card-read">12 min</span>
+                        </div>
+                        <h3>Facebook Ads for Small Business: A Complete Beginner's Guide</h3>
+                        <p>Everything you need to run your first Facebook ad — account setup, audience targeting, budget allocation, and copy that converts. No experience required.</p>
+                        <a href="/blog/facebook-ads-for-small-business-beginners-guide.html" class="post-card-link">Read post &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Post 2 -->
+                <article class="post-card reveal" data-cat="strategy">
+                    <a href="/blog/ad-templates-that-work-for-any-small-business.html" style="text-decoration:none; display:block;">
+                        <div class="post-card-img">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <div class="post-card-body">
+                        <div class="post-card-meta">
+                            <span class="post-card-cat">Strategy</span>
+                            <span class="post-card-sep">&bull;</span>
+                            <span class="post-card-date">Mar 15, 2026</span>
+                            <span class="post-card-sep">&bull;</span>
+                            <span class="post-card-read">8 min</span>
+                        </div>
+                        <h3>5 Ad Templates That Work for Any Small Business</h3>
+                        <p>Fill-in-the-blank ad frameworks that have driven results across restaurants, service businesses, consultants, and local shops. Steal these directly.</p>
+                        <a href="/blog/ad-templates-that-work-for-any-small-business.html" class="post-card-link">Read post &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Post 3 -->
+                <article class="post-card reveal" data-cat="smb-tips">
+                    <a href="/blog/how-much-should-small-business-spend-on-ads.html" style="text-decoration:none; display:block;">
+                        <div class="post-card-img">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <div class="post-card-body">
+                        <div class="post-card-meta">
+                            <span class="post-card-cat">SMB Tips</span>
+                            <span class="post-card-sep">&bull;</span>
+                            <span class="post-card-date">Mar 15, 2026</span>
+                            <span class="post-card-sep">&bull;</span>
+                            <span class="post-card-read">7 min</span>
+                        </div>
+                        <h3>How Much Should Your Small Business Spend on Ads?</h3>
+                        <p>A practical budget framework for businesses spending $300 to $5,000/month on advertising. Includes benchmarks, allocation guides, and when to scale.</p>
+                        <a href="/blog/how-much-should-small-business-spend-on-ads.html" class="post-card-link">Read post &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Post 4 -->
+                <article class="post-card reveal" data-cat="hooks">
+                    <a href="/blog/8-hook-formulas-every-small-business-should-test.html" style="text-decoration:none; display:block;">
+                        <div class="post-card-img">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <div class="post-card-body">
+                        <div class="post-card-meta">
+                            <span class="post-card-cat">Hooks</span>
+                            <span class="post-card-sep">&bull;</span>
+                            <span class="post-card-date">Mar 15, 2026</span>
+                            <span class="post-card-sep">&bull;</span>
+                            <span class="post-card-read">10 min</span>
+                        </div>
+                        <h3>The 8 Hook Formulas Every Small Business Should Test</h3>
+                        <p>The first 3 seconds determine whether anyone sees your ad. Here are 8 proven hook structures with fill-in-the-blank examples for any business type.</p>
+                        <a href="/blog/8-hook-formulas-every-small-business-should-test.html" class="post-card-link">Read post &rarr;</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EMAIL CTA -->
+    <section style="padding: 0 0 var(--s6);">
+        <div class="container">
+            <div class="email-cta">
+                <div class="email-cta-inner">
+                    <div class="email-cta-eyebrow">The Creative Record Newsletter</div>
+                    <h2>Weekly creative strategy.<br><em>Straight to your inbox.</em></h2>
+                    <p>Every Tuesday: one hook breakdown, one actionable tip, and the frameworks small business owners use to make ads that work.</p>
+                    <form class="email-form" id="blog-email-form" onsubmit="handleSubscribe(event)">
+                        <input type="email" name="email" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="email-cta-note">Tuesdays at 8am PT &bull; No spam, ever &bull; Unsubscribe anytime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for small business owners and advertisers. Built by Goodo Studios.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Skills</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/skills/video-script-framework.html">Video Script Framework</a></li>
+                        <li><a href="/skills/hook-bank-template.html">Hook Bank Template</a></li>
+                        <li><a href="/skills/ugc-brief-template.html">UGC Brief Template</a></li>
+                        <li><a href="/skills/creative-audit-checklist.html">Creative Audit Checklist</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Recent Posts</h4>
+                    <ul>
+                        <li class="footer-recent-item">
+                            <a href="/blog/facebook-ads-for-small-business-beginners-guide.html">Facebook Ads: Beginner's Guide</a>
+                            <span>Mar 15, 2026</span>
+                        </li>
+                        <li class="footer-recent-item">
+                            <a href="/blog/ad-templates-that-work-for-any-small-business.html">5 Ad Templates That Work</a>
+                            <span>Mar 15, 2026</span>
+                        </li>
+                        <li class="footer-recent-item">
+                            <a href="/blog/how-much-should-small-business-spend-on-ads.html">How Much to Spend on Ads?</a>
+                            <span>Mar 15, 2026</span>
+                        </li>
+                        <li class="footer-recent-item">
+                            <a href="/blog/8-hook-formulas-every-small-business-should-test.html">8 Hook Formulas to Test</a>
+                            <span>Mar 15, 2026</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/newsletter/">Newsletter</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html">Privacy</a></li>
+                        <li><a href="/terms.html">Terms</a></li>
+                        <li><a href="/refund.html">Refunds</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            const open = hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open', open);
+            hamburger.setAttribute('aria-expanded', open);
+        });
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+
+        // Category filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const postCards = document.querySelectorAll('.post-card');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.dataset.cat;
+                postCards.forEach(card => {
+                    if (cat === 'all' || card.dataset.cat === cat) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Email subscribe
+        async function handleSubscribe(e) {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.email.value;
+            const btn = form.querySelector('button');
+            btn.textContent = 'Subscribing...';
+            btn.disabled = true;
+            try {
+                const res = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ email, source: 'blog-index' })
+                });
+                if (res.ok) {
+                    btn.textContent = 'You\'re in!';
+                    form.reset();
+                } else {
+                    btn.textContent = 'Try again';
+                    btn.disabled = false;
+                }
+            } catch {
+                btn.textContent = 'Try again';
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

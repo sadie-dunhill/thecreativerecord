@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TEMPLATE: Replace these meta tags for each post -->
+    <title>{{POST_TITLE}} — The Creative Record</title>
+    <meta name="description" content="{{POST_DESCRIPTION}}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{POST_TITLE}} — The Creative Record">
+    <meta property="og:description" content="{{POST_DESCRIPTION}}">
+    <meta property="og:image" content="https://thecreativerecord.com/assets/images/og-default.png">
+    <meta property="og:url" content="https://thecreativerecord.com/blog/{{POST_SLUG}}.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="The Creative Record">
+    <meta property="article:published_time" content="{{POST_DATE_ISO}}">
+    <meta property="article:author" content="Sadie Dunhill">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sadie_goodo">
+
+    <!-- Schema.org Article -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{POST_TITLE}}",
+        "description": "{{POST_DESCRIPTION}}",
+        "author": {
+            "@type": "Person",
+            "name": "Sadie Dunhill"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "The Creative Record",
+            "url": "https://thecreativerecord.com"
+        },
+        "datePublished": "{{POST_DATE_ISO}}",
+        "url": "https://thecreativerecord.com/blog/{{POST_SLUG}}.html"
+    }
+    </script>
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="canonical" href="https://thecreativerecord.com/blog/{{POST_SLUG}}.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans:  'Inter', -apple-system, sans-serif;
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px;
+            --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            --shadow-sm: 0 1px 3px rgba(15,14,13,0.06);
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07);
+            --t-base: 220ms ease;
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans); font-weight: 400; color: var(--ink-3);
+            background: var(--cream); line-height: 1.65; -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.2; }
+        h4, h5, h6 { font-family: var(--font-sans); font-weight: 600; color: var(--ink-2); }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg);
+            font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem;
+            cursor: pointer; text-decoration: none; transition: all var(--t-base); border: none;
+        }
+        .btn-primary { background: var(--terra); color: var(--white); }
+        .btn-primary:hover { background: var(--terra-2); }
+        .btn-ghost { background: transparent; color: var(--ink-2); border: 1.5px solid var(--cream-3); }
+        .btn-ghost:hover { border-color: var(--terra); color: var(--terra); }
+
+        /* ---- HEADER ---- */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(250,248,245,0.95); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3);
+        }
+        nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .logo { font-family: var(--font-serif); font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+        .logo em { color: var(--terra); font-style: italic; }
+        .nav-links { display: flex; gap: var(--s3); list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-base); }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+        .nav-cta { margin-left: var(--s2); }
+        .nav-hamburger {
+            display: none; width: 40px; height: 40px; border-radius: var(--r-md);
+            background: transparent; border: none; cursor: pointer;
+            flex-direction: column; gap: 5px; align-items: center; justify-content: center;
+        }
+        .nav-hamburger span { display: block; width: 20px; height: 1.5px; background: var(--ink-2); transition: all 200ms ease; }
+        .mobile-nav {
+            display: none; position: fixed; top: 68px; left: 0; right: 0;
+            background: var(--cream); border-bottom: 1px solid var(--cream-3); z-index: 99; padding: var(--s2) 0;
+        }
+        .mobile-nav.open { display: block; }
+        .mobile-nav ul { list-style: none; }
+        .mobile-nav li { border-bottom: 1px solid var(--cream-3); }
+        .mobile-nav a { display: block; padding: var(--s2) var(--s4); font-weight: 500; color: var(--ink-2); text-decoration: none; }
+        .mobile-nav .mobile-nav-cta { padding: var(--s2) var(--s4); }
+
+        /* ---- ARTICLE LAYOUT ---- */
+        .article-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: var(--s6);
+            padding: var(--s6) 0;
+            align-items: start;
+        }
+
+        /* ---- BREADCRUMB ---- */
+        .breadcrumb {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.8125rem; color: var(--ink-4); margin-bottom: var(--s4);
+        }
+        .breadcrumb a { color: var(--ink-4); text-decoration: none; transition: color var(--t-base); }
+        .breadcrumb a:hover { color: var(--terra); }
+        .breadcrumb-sep { opacity: 0.4; }
+
+        /* ---- POST HEADER ---- */
+        .post-header { margin-bottom: var(--s5); }
+        .post-cat {
+            display: inline-block; font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase; color: var(--terra);
+            background: var(--terra-3); padding: 4px 10px; border-radius: var(--r-sm);
+            margin-bottom: var(--s2);
+        }
+        .post-header h1 { font-size: clamp(1.875rem, 4vw, 2.75rem); margin-bottom: var(--s3); }
+        .post-header .post-subtitle {
+            font-size: 1.125rem; color: var(--ink-3); line-height: 1.7; margin-bottom: var(--s3);
+        }
+        .post-meta {
+            display: flex; align-items: center; gap: var(--s2); flex-wrap: wrap;
+            padding: var(--s3) 0; border-top: 1px solid var(--cream-3); border-bottom: 1px solid var(--cream-3);
+        }
+        .post-author {
+            display: flex; align-items: center; gap: var(--s1);
+            font-size: 0.875rem; font-weight: 500; color: var(--ink-2);
+        }
+        .post-author-avatar {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--terra-3); display: flex; align-items: center; justify-content: center;
+            font-size: 0.6875rem; font-weight: 700; color: var(--terra);
+        }
+        .post-meta-sep { color: var(--cream-3); }
+        .post-meta-item { font-size: 0.875rem; color: var(--ink-4); }
+
+        /* ---- POST BODY ---- */
+        .post-body { color: var(--ink-3); }
+        .post-body p { font-size: 1.0625rem; line-height: 1.8; margin-bottom: var(--s3); }
+        .post-body h2 { font-size: 1.75rem; margin: var(--s5) 0 var(--s3); color: var(--ink); }
+        .post-body h3 { font-size: 1.25rem; margin: var(--s4) 0 var(--s2); color: var(--ink-2); font-family: var(--font-sans); font-weight: 600; }
+        .post-body h4 { font-size: 1.0625rem; margin: var(--s3) 0 var(--s2); }
+        .post-body ul, .post-body ol { margin: var(--s2) 0 var(--s3) var(--s4); }
+        .post-body li { font-size: 1.0625rem; line-height: 1.75; margin-bottom: 8px; }
+        .post-body a { color: var(--terra); text-decoration: underline; text-underline-offset: 3px; }
+        .post-body a:hover { color: var(--terra-2); }
+        .post-body strong { color: var(--ink-2); font-weight: 600; }
+        .post-body blockquote {
+            border-left: 3px solid var(--terra); margin: var(--s4) 0;
+            padding: var(--s2) var(--s3); background: var(--terra-3); border-radius: 0 var(--r-md) var(--r-md) 0;
+        }
+        .post-body blockquote p { margin: 0; font-style: italic; color: var(--ink-2); }
+
+        /* Callout box */
+        .callout {
+            background: var(--cream-2); border: 1px solid var(--cream-3); border-radius: var(--r-xl);
+            padding: var(--s3); margin: var(--s4) 0;
+        }
+        .callout-label {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: var(--s1);
+        }
+        .callout p { margin: 0; font-size: 0.9375rem; }
+
+        /* Template/example box */
+        .template-box {
+            background: var(--ink); color: rgba(255,255,255,0.85);
+            border-radius: var(--r-xl); padding: var(--s3); margin: var(--s4) 0;
+            font-family: monospace; font-size: 0.9375rem; line-height: 1.7;
+        }
+        .template-box .template-label {
+            font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra-2);
+            margin-bottom: var(--s2);
+        }
+
+        /* Numbered step */
+        .step-list { list-style: none; margin: var(--s3) 0; padding: 0; }
+        .step-item {
+            display: flex; gap: var(--s3); margin-bottom: var(--s3);
+            padding-bottom: var(--s3); border-bottom: 1px solid var(--cream-3);
+        }
+        .step-item:last-child { border-bottom: none; }
+        .step-number {
+            flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+            background: var(--terra); color: var(--white);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.9375rem; margin-top: 2px;
+        }
+        .step-content h4 { margin-bottom: 6px; font-size: 1.0625rem; }
+        .step-content p { font-size: 0.9375rem; margin: 0; }
+
+        /* ---- SIDEBAR ---- */
+        .sidebar { position: sticky; top: 88px; }
+        .sidebar-widget {
+            background: var(--white); border: 1px solid var(--cream-3); border-radius: var(--r-xl);
+            padding: var(--s3); margin-bottom: var(--s3);
+        }
+        .sidebar-widget h4 {
+            font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--ink-4); margin-bottom: var(--s2);
+        }
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: var(--s1); }
+        .toc-list a {
+            font-size: 0.875rem; color: var(--ink-3); text-decoration: none; line-height: 1.5;
+            transition: color var(--t-base); display: block; padding: 4px 0;
+            border-left: 2px solid transparent; padding-left: var(--s2);
+        }
+        .toc-list a:hover, .toc-list a.toc-active { color: var(--terra); border-left-color: var(--terra); }
+        .newsletter-widget { background: var(--ink); color: var(--white); }
+        .newsletter-widget h4 { color: rgba(255,255,255,0.5); }
+        .newsletter-widget p { font-size: 0.875rem; color: rgba(255,255,255,0.55); margin-bottom: var(--s2); }
+        .newsletter-widget input {
+            width: 100%; padding: 10px 14px; border-radius: var(--r-md);
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white); font-size: 0.875rem; margin-bottom: 8px; outline: none;
+        }
+        .newsletter-widget input::placeholder { color: rgba(255,255,255,0.3); }
+        .newsletter-widget button {
+            width: 100%; padding: 10px; background: var(--terra); color: var(--white);
+            border: none; border-radius: var(--r-md); font-weight: 600; font-size: 0.875rem;
+            cursor: pointer; transition: background var(--t-base);
+        }
+        .newsletter-widget button:hover { background: var(--terra-2); }
+        .sidebar-cta-widget {
+            background: var(--terra-3); border: 1px solid rgba(200,85,42,0.2);
+        }
+        .sidebar-cta-widget h4 { color: var(--terra); }
+        .sidebar-cta-widget p { font-size: 0.875rem; color: var(--ink-2); margin-bottom: var(--s2); }
+        .sidebar-cta-widget .btn { width: 100%; justify-content: center; }
+
+        /* ---- RELATED POSTS ---- */
+        .related-section { padding: var(--s6) 0; border-top: 1px solid var(--cream-3); }
+        .related-section h2 { font-size: 1.5rem; margin-bottom: var(--s4); }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3); }
+        .related-card {
+            background: var(--white); border: 1px solid var(--cream-3); border-radius: var(--r-xl);
+            padding: var(--s3); text-decoration: none;
+            transition: transform var(--t-base), box-shadow var(--t-base);
+        }
+        .related-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .related-cat {
+            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: 6px;
+        }
+        .related-card h3 { font-size: 1rem; font-family: var(--font-sans); font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 8px; }
+        .related-card p { font-size: 0.875rem; color: var(--ink-3); line-height: 1.5; }
+
+        /* ---- FOOTER ---- */
+        footer { background: var(--ink); color: rgba(255,255,255,0.55); padding: var(--s6) 0 var(--s4); }
+        .footer-top {
+            display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+            gap: var(--s5); padding-bottom: var(--s5); border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer-brand .logo { color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        .footer-tagline { font-size: 0.9rem; color: rgba(255,255,255,0.4); margin-top: var(--s2); line-height: 1.6; }
+        .footer-col h4 {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: var(--s2);
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.9rem; transition: color var(--t-base); }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        .footer-recent-item { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--s2); }
+        .footer-recent-item a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.875rem; line-height: 1.4; }
+        .footer-recent-item a:hover { color: rgba(255,255,255,0.9); }
+        .footer-recent-item span { font-size: 0.75rem; color: rgba(255,255,255,0.28); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: var(--s3); }
+        .footer-copy { font-size: 0.8125rem; color: rgba(255,255,255,0.3); }
+        .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.3); }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 1024px) {
+            .article-wrapper { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .related-grid { grid-template-columns: 1fr 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; }
+        }
+        @media (max-width: 640px) {
+            .related-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 4px; text-align: center; }
+            .container { padding: 0 var(--s3); }
+        }
+    </style>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/blog/" class="active">Blog</a></li>
+                <li><a href="/subscribe/">Script Desk</a></li>
+                <li><a href="/custom-skill/">Custom Skill</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/subscribe/" class="btn btn-primary">Book the Desk</a>
+            </div>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <ul>
+            <li><a href="/skills/">Skills</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/subscribe/">Script Desk</a></li>
+            <li><a href="/custom-skill/">Custom Skill</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+        <div class="mobile-nav-cta">
+            <a href="/subscribe/" class="btn btn-primary">Book the Desk</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="container">
+            <div class="article-wrapper">
+
+                <!-- ARTICLE -->
+                <article>
+                    <!-- Breadcrumb -->
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="/">Home</a>
+                        <span class="breadcrumb-sep">/</span>
+                        <a href="/blog/">Blog</a>
+                        <span class="breadcrumb-sep">/</span>
+                        <span>{{POST_TITLE_SHORT}}</span>
+                    </nav>
+
+                    <!-- Post Header -->
+                    <header class="post-header">
+                        <span class="post-cat">{{POST_CATEGORY}}</span>
+                        <h1>{{POST_TITLE}}</h1>
+                        <p class="post-subtitle">{{POST_SUBTITLE}}</p>
+                        <div class="post-meta">
+                            <div class="post-author">
+                                <div class="post-author-avatar">SD</div>
+                                Sadie Dunhill
+                            </div>
+                            <span class="post-meta-sep">&bull;</span>
+                            <span class="post-meta-item">{{POST_DATE}}</span>
+                            <span class="post-meta-sep">&bull;</span>
+                            <span class="post-meta-item">{{POST_READ_TIME}}</span>
+                        </div>
+                    </header>
+
+                    <!-- Post Body -->
+                    <!-- TEMPLATE: Replace everything inside .post-body with actual post content -->
+                    <div class="post-body" id="post-content">
+
+                        <p>{{OPENING_PARAGRAPH}}</p>
+
+                        <h2 id="section-1">{{SECTION_1_HEADING}}</h2>
+                        <p>{{SECTION_1_CONTENT}}</p>
+
+                        <div class="callout">
+                            <div class="callout-label">Key Takeaway</div>
+                            <p>{{CALLOUT_TEXT}}</p>
+                        </div>
+
+                        <h2 id="section-2">{{SECTION_2_HEADING}}</h2>
+                        <p>{{SECTION_2_CONTENT}}</p>
+
+                        <div class="template-box">
+                            <div class="template-label">Template</div>
+                            {{TEMPLATE_CONTENT}}
+                        </div>
+
+                        <h2 id="section-3">{{SECTION_3_HEADING}}</h2>
+                        <p>{{SECTION_3_CONTENT}}</p>
+
+                        <ol class="step-list">
+                            <li class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>{{STEP_1_TITLE}}</h4>
+                                    <p>{{STEP_1_CONTENT}}</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>{{STEP_2_TITLE}}</h4>
+                                    <p>{{STEP_2_CONTENT}}</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>{{STEP_3_TITLE}}</h4>
+                                    <p>{{STEP_3_CONTENT}}</p>
+                                </div>
+                            </li>
+                        </ol>
+
+                        <h2 id="section-4">{{SECTION_4_HEADING}}</h2>
+                        <p>{{SECTION_4_CONTENT}}</p>
+
+                        <blockquote>
+                            <p>{{PULL_QUOTE}}</p>
+                        </blockquote>
+
+                        <h2 id="conclusion">Wrapping Up</h2>
+                        <p>{{CONCLUSION}}</p>
+
+                        <p>Want to go deeper? Check out the <a href="/skills/">Skills Library</a> for templates and frameworks you can put to work today.</p>
+
+                    </div>
+                </article>
+
+                <!-- SIDEBAR -->
+                <aside class="sidebar">
+                    <!-- Table of Contents -->
+                    <div class="sidebar-widget">
+                        <h4>In This Post</h4>
+                        <!-- TEMPLATE: Update TOC links to match actual section IDs -->
+                        <ul class="toc-list" id="toc">
+                            <li><a href="#section-1">{{SECTION_1_HEADING_SHORT}}</a></li>
+                            <li><a href="#section-2">{{SECTION_2_HEADING_SHORT}}</a></li>
+                            <li><a href="#section-3">{{SECTION_3_HEADING_SHORT}}</a></li>
+                            <li><a href="#section-4">{{SECTION_4_HEADING_SHORT}}</a></li>
+                            <li><a href="#conclusion">Wrapping Up</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter Signup -->
+                    <div class="sidebar-widget newsletter-widget">
+                        <h4>The Creative Record</h4>
+                        <p>Weekly ad strategy for small business owners. Every Tuesday at 8am PT.</p>
+                        <form onsubmit="handleSidebarSubscribe(event)">
+                            <input type="email" placeholder="your@email.com" required>
+                            <button type="submit">Get the Newsletter</button>
+                        </form>
+                    </div>
+
+                    <!-- Skills CTA -->
+                    <div class="sidebar-widget sidebar-cta-widget">
+                        <h4>Ready to go deeper?</h4>
+                        <p>Download the exact templates used by top-performing advertisers.</p>
+                        <a href="/skills/" class="btn btn-primary btn-sm">Browse Skills &rarr;</a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+
+        <!-- RELATED POSTS -->
+        <!-- TEMPLATE: Update related posts for each article -->
+        <section class="related-section">
+            <div class="container">
+                <h2>Keep Reading</h2>
+                <div class="related-grid">
+                    <a href="/blog/facebook-ads-for-small-business-beginners-guide.html" class="related-card">
+                        <div class="related-cat">SMB Tips</div>
+                        <h3>Facebook Ads for Small Business: A Complete Beginner's Guide</h3>
+                        <p>Everything from account setup to your first converting ad.</p>
+                    </a>
+                    <a href="/blog/ad-templates-that-work-for-any-small-business.html" class="related-card">
+                        <div class="related-cat">Strategy</div>
+                        <h3>5 Ad Templates That Work for Any Small Business</h3>
+                        <p>Fill-in-the-blank frameworks across every business type.</p>
+                    </a>
+                    <a href="/blog/8-hook-formulas-every-small-business-should-test.html" class="related-card">
+                        <div class="related-cat">Hooks</div>
+                        <h3>The 8 Hook Formulas Every Small Business Should Test</h3>
+                        <p>The first 3 seconds determine everything. Start here.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for small business owners and advertisers. Built by Goodo Studios.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Skills</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/skills/video-script-framework.html">Video Script Framework</a></li>
+                        <li><a href="/skills/hook-bank-template.html">Hook Bank Template</a></li>
+                        <li><a href="/skills/ugc-brief-template.html">UGC Brief Template</a></li>
+                        <li><a href="/skills/creative-audit-checklist.html">Creative Audit Checklist</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Recent Posts</h4>
+                    <ul>
+                        <li class="footer-recent-item">
+                            <a href="/blog/facebook-ads-for-small-business-beginners-guide.html">Facebook Ads: Beginner's Guide</a>
+                            <span>Mar 15, 2026</span>
+                        </li>
+                        <li class="footer-recent-item">
+                            <a href="/blog/ad-templates-that-work-for-any-small-business.html">5 Ad Templates That Work</a>
+                            <span>Mar 15, 2026</span>
+                        </li>
+                        <li class="footer-recent-item">
+                            <a href="/blog/how-much-should-small-business-spend-on-ads.html">How Much to Spend on Ads?</a>
+                            <span>Mar 15, 2026</span>
+                        </li>
+                        <li class="footer-recent-item">
+                            <a href="/blog/8-hook-formulas-every-small-business-should-test.html">8 Hook Formulas to Test</a>
+                            <span>Mar 15, 2026</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/newsletter/">Newsletter</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html">Privacy</a></li>
+                        <li><a href="/terms.html">Terms</a></li>
+                        <li><a href="/refund.html">Refunds</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            const open = hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open', open);
+            hamburger.setAttribute('aria-expanded', open);
+        });
+
+        // TOC active state on scroll
+        const headings = document.querySelectorAll('.post-body h2[id]');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(link => link.classList.remove('toc-active'));
+                    const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+                    if (active) active.classList.add('toc-active');
+                }
+            });
+        }, { rootMargin: '-20% 0% -70% 0%' });
+        headings.forEach(h => scrollObserver.observe(h));
+
+        // Sidebar newsletter subscribe
+        async function handleSidebarSubscribe(e) {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.querySelector('input[type="email"]').value;
+            const btn = form.querySelector('button');
+            btn.textContent = 'Subscribing...';
+            btn.disabled = true;
+            try {
+                const res = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ email, source: 'blog-post-sidebar' })
+                });
+                btn.textContent = res.ok ? 'You\'re in!' : 'Try again';
+                if (!res.ok) btn.disabled = false;
+            } catch {
+                btn.textContent = 'Try again';
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
