@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         :root {
             --ink:        #0f0e0d;
             --ink-2:      #3d3a36;
@@ -412,6 +412,104 @@
         .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
         .footer-copy, .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
         
+        /* ---- SERVICE CARD (visual distinction from product skills) ---- */
+        .skill-card.service-card {
+            border-color: rgba(200,85,42,0.2);
+            background: var(--white);
+        }
+        .skill-card.service-card:hover {
+            border-color: rgba(200,85,42,0.35);
+        }
+        .service-thumb {
+            height: 196px;
+            background: linear-gradient(135deg, var(--terra-3) 0%, rgba(244,224,214,0.3) 100%);
+            display: flex; align-items: center; justify-content: center;
+            border-bottom: 1px solid rgba(200,85,42,0.12);
+        }
+        .service-thumb-icon {
+            width: 68px; height: 68px;
+            border-radius: 16px;
+            background: var(--terra);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .service-thumb-icon svg {
+            width: 32px; height: 32px;
+            stroke: var(--white); fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .badge-service {
+            background: var(--terra-3); color: var(--terra);
+            border: 1px solid rgba(200,85,42,0.3);
+        }
+
+        /* ---- COMING SOON CARD ---- */
+        .skill-card.coming-soon-card {
+            border-style: dashed;
+            border-color: var(--cream-3);
+            background: var(--cream-2);
+            opacity: 0.85;
+        }
+        .skill-card.coming-soon-card:hover {
+            opacity: 1;
+            border-color: var(--cream-3);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .coming-soon-thumb {
+            height: 196px;
+            background: var(--cream-2);
+            display: flex; align-items: center; justify-content: center;
+            border-bottom: 1px dashed var(--cream-3);
+        }
+        .coming-soon-thumb-icon {
+            width: 68px; height: 68px;
+            border-radius: 16px;
+            background: var(--cream-3);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .coming-soon-thumb-icon svg {
+            width: 32px; height: 32px;
+            stroke: var(--ink-4); fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .badge-coming { background: var(--cream-3); color: var(--ink-4); }
+
+        /* ---- MORE SKILLS TEASER ---- */
+        .more-skills-teaser {
+            padding: var(--s6) 0;
+            background: var(--cream-2);
+            border-top: 1px solid var(--cream-3);
+            text-align: center;
+        }
+        .more-skills-teaser p {
+            font-size: 0.9375rem; color: var(--ink-4); margin-bottom: var(--s3);
+        }
+        .skill-upcoming-tags {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+        }
+        .skill-upcoming-tag {
+            padding: 7px 15px;
+            border-radius: 100px;
+            background: var(--white);
+            border: 1px dashed var(--cream-3);
+            font-size: 0.8125rem; color: var(--ink-4);
+        }
+
+        /* ---- SECTION DIVIDER ---- */
+        .skills-section-divider {
+            grid-column: 1 / -1;
+            display: flex; align-items: center; gap: var(--s3);
+            padding: var(--s2) 0 var(--s1);
+        }
+        .skills-section-divider-line {
+            flex: 1; height: 1px; background: var(--cream-3);
+        }
+        .skills-section-divider-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.09em;
+            text-transform: uppercase; color: var(--ink-4);
+            white-space: nowrap;
+        }
+
         /* ---- REVEAL ---- */
         .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -453,7 +551,7 @@
             <div class="page-header-inner">
                 <div class="page-eyebrow">Skills Library</div>
                 <h1>Creative Strategy<br><em>Skills</em></h1>
-                <p>Proven frameworks to help you create better ads, faster. Each skill includes templates, checklists, and video walkthroughs.</p>
+                <p>Proven frameworks to help you create better ads, faster. 10 skills in progress — each includes templates, checklists, and video walkthroughs.</p>
             </div>
         </div>
     </section>
@@ -461,12 +559,13 @@
     <div class="filters">
         <div class="container">
             <div class="filter-list">
-                <button class="filter-btn active">All Skills</button>
+                <button class="filter-btn active">All</button>
                 <button class="filter-btn">Script Writing</button>
                 <button class="filter-btn">Hook Generation</button>
                 <button class="filter-btn">Briefing</button>
                 <button class="filter-btn">Auditing</button>
                 <button class="filter-btn">Analysis</button>
+                <button class="filter-btn">Services</button>
             </div>
         </div>
     </div>
@@ -613,6 +712,209 @@
                     </div>
                 </div>
 
+                <!-- SECTION DIVIDER: Coming Soon Skills -->
+                <div class="skills-section-divider">
+                    <div class="skills-section-divider-line"></div>
+                    <span class="skills-section-divider-label">Coming Soon — 5 More Skills</span>
+                    <div class="skills-section-divider-line"></div>
+                </div>
+
+                <!-- Skill 6: Coming Soon -->
+                <div class="skill-card coming-soon-card reveal">
+                    <span class="skill-badge badge-coming">Coming Soon</span>
+                    <div class="coming-soon-thumb">
+                        <div class="coming-soon-thumb-icon">
+                            <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+                        </div>
+                    </div>
+                    <div class="skill-body">
+                        <div class="skill-category" style="color: var(--ink-4);">Testing</div>
+                        <h3 style="color: var(--ink-3);">Ad Creative Testing System</h3>
+                        <p>How to test creative systematically and iterate without burning budget. Build a testing architecture that tells you what to make next.</p>
+                        <ul class="skill-includes">
+                            <li>Testing framework and hypothesis structure</li>
+                            <li>Metrics to track at each stage</li>
+                            <li>Iteration decision tree</li>
+                            <li>Budget allocation by test phase</li>
+                        </ul>
+                        <div class="skill-foot">
+                            <span class="skill-price" style="color: var(--ink-4);">$39</span>
+                            <div class="skill-actions">
+                                <a href="/subscribe/" class="btn btn-ghost btn-sm">Notify Me</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 7: Coming Soon -->
+                <div class="skill-card coming-soon-card reveal">
+                    <span class="skill-badge badge-coming">Coming Soon</span>
+                    <div class="coming-soon-thumb">
+                        <div class="coming-soon-thumb-icon">
+                            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        </div>
+                    </div>
+                    <div class="skill-body">
+                        <div class="skill-category" style="color: var(--ink-4);">Conversion</div>
+                        <h3 style="color: var(--ink-3);">Landing Page Copy Framework</h3>
+                        <p>Conversion-focused page structure from first headline to final CTA. Build pages that close the gap between ad click and purchase.</p>
+                        <ul class="skill-includes">
+                            <li>Above-the-fold formula</li>
+                            <li>Social proof placement guide</li>
+                            <li>Objection handling section templates</li>
+                            <li>CTA copy variations by offer type</li>
+                        </ul>
+                        <div class="skill-foot">
+                            <span class="skill-price" style="color: var(--ink-4);">$39</span>
+                            <div class="skill-actions">
+                                <a href="/subscribe/" class="btn btn-ghost btn-sm">Notify Me</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 8: Coming Soon -->
+                <div class="skill-card coming-soon-card reveal">
+                    <span class="skill-badge badge-coming">Coming Soon</span>
+                    <div class="coming-soon-thumb">
+                        <div class="coming-soon-thumb-icon">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                    </div>
+                    <div class="skill-body">
+                        <div class="skill-category" style="color: var(--ink-4);">Email</div>
+                        <h3 style="color: var(--ink-3);">Email Sequence Blueprint</h3>
+                        <p>Nurture and sales email series built for conversion. The sequence structure, subject line formulas, and send cadence that moves subscribers toward purchase.</p>
+                        <ul class="skill-includes">
+                            <li>Welcome sequence (5-email framework)</li>
+                            <li>Sales sequence structure</li>
+                            <li>Subject line formula bank</li>
+                            <li>Re-engagement sequence template</li>
+                        </ul>
+                        <div class="skill-foot">
+                            <span class="skill-price" style="color: var(--ink-4);">$39</span>
+                            <div class="skill-actions">
+                                <a href="/subscribe/" class="btn btn-ghost btn-sm">Notify Me</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 9: Coming Soon -->
+                <div class="skill-card coming-soon-card reveal">
+                    <span class="skill-badge badge-coming">Coming Soon</span>
+                    <div class="coming-soon-thumb">
+                        <div class="coming-soon-thumb-icon">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        </div>
+                    </div>
+                    <div class="skill-body">
+                        <div class="skill-category" style="color: var(--ink-4);">Auditing</div>
+                        <h3 style="color: var(--ink-3);">Creative Fatigue Detection</h3>
+                        <p>When creative stops working and why. Learn to spot fatigue signals early, understand the refresh cycle, and know exactly what to change vs. retire.</p>
+                        <ul class="skill-includes">
+                            <li>10 fatigue signal checklist</li>
+                            <li>Refresh decision framework</li>
+                            <li>Creative lifespan benchmarks</li>
+                            <li>What to change first (hook, visual, angle)</li>
+                        </ul>
+                        <div class="skill-foot">
+                            <span class="skill-price" style="color: var(--ink-4);">$39</span>
+                            <div class="skill-actions">
+                                <a href="/subscribe/" class="btn btn-ghost btn-sm">Notify Me</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 10: Coming Soon -->
+                <div class="skill-card coming-soon-card reveal">
+                    <span class="skill-badge badge-coming">Coming Soon</span>
+                    <div class="coming-soon-thumb">
+                        <div class="coming-soon-thumb-icon">
+                            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                    </div>
+                    <div class="skill-body">
+                        <div class="skill-category" style="color: var(--ink-4);">Scaling</div>
+                        <h3 style="color: var(--ink-3);">Budget Scaling Playbook</h3>
+                        <p>How to scale spend without breaking performance. The creative refresh cadence, incrementality approach, and scaling signals that hold up under pressure.</p>
+                        <ul class="skill-includes">
+                            <li>Scaling signal checklist</li>
+                            <li>Creative volume requirements by budget</li>
+                            <li>Incrementality testing framework</li>
+                            <li>When to hold vs. scale</li>
+                        </ul>
+                        <div class="skill-foot">
+                            <span class="skill-price" style="color: var(--ink-4);">$39</span>
+                            <div class="skill-actions">
+                                <a href="/subscribe/" class="btn btn-ghost btn-sm">Notify Me</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION DIVIDER: Services -->
+                <div class="skills-section-divider">
+                    <div class="skills-section-divider-line"></div>
+                    <span class="skills-section-divider-label">Done-For-You Services</span>
+                    <div class="skills-section-divider-line"></div>
+                </div>
+
+                <!-- Custom Skill Service Card -->
+                <div class="skill-card service-card reveal">
+                    <span class="skill-badge badge-service">Service</span>
+                    <div class="service-thumb">
+                        <div class="service-thumb-icon">
+                            <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                        </div>
+                    </div>
+                    <div class="skill-body">
+                        <div class="skill-category">Done-For-You</div>
+                        <h3>Custom Skill Creation</h3>
+                        <p>Upload your internal documents, processes, or methodology. We extract the framework and deliver a clean, reusable skill in 48 hours.</p>
+                        <ul class="skill-includes">
+                            <li>Custom skill built from your docs</li>
+                            <li>Extracted framework + process map</li>
+                            <li>Implementation guide</li>
+                            <li>One revision round included</li>
+                        </ul>
+                        <div class="skill-foot">
+                            <span class="skill-price">$20</span>
+                            <div class="skill-actions">
+                                <a href="/custom-skill.html" class="btn btn-primary btn-sm">Learn More →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DIY Course Coming Soon Card -->
+                <div class="skill-card coming-soon-card reveal" style="border-style: solid; border-color: rgba(200,85,42,0.15); background: var(--white);">
+                    <span class="skill-badge" style="background: rgba(200,85,42,0.1); color: var(--terra);">Course — Coming Soon</span>
+                    <div class="coming-soon-thumb" style="background: linear-gradient(135deg, rgba(244,224,214,0.5) 0%, var(--cream-2) 100%); border-color: rgba(200,85,42,0.1);">
+                        <div class="coming-soon-thumb-icon" style="background: var(--terra-3);">
+                            <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        </div>
+                    </div>
+                    <div class="skill-body">
+                        <div class="skill-category">Video Course</div>
+                        <h3>DIY Skill Building Course</h3>
+                        <p>Learn to build skills that sell. Extract your expertise, structure it for others, and create a product from your own knowledge.</p>
+                        <ul class="skill-includes">
+                            <li>4 modules, 14 video lessons</li>
+                            <li>Course workbook + templates</li>
+                            <li>Pre-launch price: $49 (reg. $99)</li>
+                            <li>Waitlist open now</li>
+                        </ul>
+                        <div class="skill-foot">
+                            <span class="skill-price" style="color: var(--terra);">$49</span>
+                            <div class="skill-actions">
+                                <a href="/diy-course.html" class="btn btn-primary btn-sm">Join Waitlist →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -624,13 +926,14 @@
                 <div class="bundle-content">
                     <div class="bundle-label">Complete Bundle</div>
                     <h2>Get all 5 skills for $99</h2>
-                    <p>Save $96 when you buy the complete bundle. Everything you need to write, brief, audit, and analyze creative that performs.</p>
+                    <p>Save $96 when you buy the complete bundle. Everything you need to write, brief, audit, and analyze creative that performs. 5 more skills dropping over the next 30 days — bundle buyers get them free.</p>
                     <div class="bundle-skills">
                         <span class="bundle-skill-tag">Video Script Writing</span>
                         <span class="bundle-skill-tag">Hook Generation</span>
                         <span class="bundle-skill-tag">Creative Briefing</span>
                         <span class="bundle-skill-tag">Creative Audit</span>
                         <span class="bundle-skill-tag">Performance Analysis</span>
+                        <span class="bundle-skill-tag" style="opacity: 0.5;">+ 5 more coming</span>
                     </div>
                     <a href="#" class="btn btn-primary" style="font-size: 1rem; padding: 15px 32px;">Buy Bundle — $99</a>
                 </div>
@@ -638,8 +941,36 @@
                     <div class="bundle-amount">$99</div>
                     <span class="bundle-period">one-time</span>
                     <div class="bundle-savings">Save $96 vs. individual</div>
-                    <a href="#" class="btn btn-primary btn-full" style="font-size: 1rem; padding: 15px 32px;">Buy Bundle — $99</a>
+                    <a href="#" class="btn btn-primary btn-full" style="font-size: 1rem; padding: 15px 32px; margin-bottom: 12px;">Buy Bundle — $99</a>
                 </div>
+            </div>
+
+            <!-- Services teaser row -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); margin-top: var(--s3);" class="reveal">
+                <a href="/custom-skill.html" style="text-decoration: none;">
+                    <div style="background: var(--white); border: 1px solid var(--cream-3); border-radius: var(--r-xl); padding: var(--s3); display: flex; align-items: center; gap: var(--s3); transition: all var(--t-base);" onmouseover="this.style.borderColor='rgba(200,85,42,0.3)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.borderColor='var(--cream-3)'; this.style.boxShadow='none'">
+                        <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--terra-3); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8552a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terra); margin-bottom: 4px;">Service — $20</div>
+                            <div style="font-size: 0.9375rem; font-weight: 600; color: var(--ink);">Custom Skill Creation</div>
+                            <div style="font-size: 0.8125rem; color: var(--ink-4);">We build a skill from your docs in 48h →</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/diy-course.html" style="text-decoration: none;">
+                    <div style="background: var(--white); border: 1px solid var(--cream-3); border-radius: var(--r-xl); padding: var(--s3); display: flex; align-items: center; gap: var(--s3); transition: all var(--t-base);" onmouseover="this.style.borderColor='rgba(200,85,42,0.3)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.borderColor='var(--cream-3)'; this.style.boxShadow='none'">
+                        <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--terra-3); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8552a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terra); margin-bottom: 4px;">Course — Coming Soon — $49</div>
+                            <div style="font-size: 0.9375rem; font-weight: 600; color: var(--ink);">DIY Skill Building Course</div>
+                            <div style="font-size: 0.8125rem; color: var(--ink-4);">Learn to build skills that sell →</div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -655,7 +986,8 @@
                     <h4>Product</h4>
                     <ul>
                         <li><a href="/skills/">All Skills</a></li>
-                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/custom-skill.html">Custom Skill</a></li>
+                        <li><a href="/diy-course.html">DIY Course</a></li>
                         <li><a href="/subscribe/">Membership</a></li>
                     </ul>
                 </div>

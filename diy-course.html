@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIY Skill Building Course — The Creative Record</title>
+    <meta name="description" content="Learn to build skills that sell. A video course for consultants, agency owners, and experts who want to package their knowledge and create a new revenue stream.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="DIY Skill Building Course — The Creative Record">
+    <meta property="og:description" content="Learn to build skills that sell. Package your expertise, structure it for others, and create a product you can sell repeatedly.">
+    <meta property="og:image" content="https://thecreativerecord.com/assets/images/og-default.png">
+    <meta property="og:url" content="https://thecreativerecord.com/diy-course">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="The Creative Record">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DIY Skill Building Course — The Creative Record">
+    <meta name="twitter:description" content="Learn to build skills that sell. Package your expertise, structure it for others, and create a product you can sell repeatedly.">
+    <meta name="twitter:image" content="https://thecreativerecord.com/assets/images/og-default.png">
+    <meta name="twitter:site" content="@sadie_goodo">
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="canonical" href="https://thecreativerecord.com/diy-course">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
+
+            --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+
+            --shadow-sm: 0 1px 3px rgba(15,14,13,0.06), 0 1px 2px rgba(15,14,13,0.04);
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-lg: 0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+
+            --t-fast: 150ms ease; --t-base: 220ms ease; --t-slow: 350ms ease;
+        }
+
+        html { font-size: 16px; }
+        body {
+            font-family: var(--font-sans);
+            font-weight: 400;
+            color: var(--ink-3);
+            background: var(--cream);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+        .container-narrow { max-width: 760px; margin: 0 auto; padding: 0 var(--s4); }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.15;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg);
+            font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem;
+            letter-spacing: 0.01em; text-decoration: none; border: 1px solid transparent;
+            cursor: pointer; transition: all var(--t-base); white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--terra); color: var(--white); border-color: var(--terra);
+        }
+        .btn-primary:hover {
+            background: #b84a24; border-color: #b84a24;
+            box-shadow: var(--shadow-terra); transform: translateY(-1px);
+        }
+        .btn-ghost {
+            background: transparent; color: var(--ink); border-color: var(--cream-3);
+        }
+        .btn-ghost:hover { background: var(--cream-2); }
+        .btn-ghost-inv {
+            background: transparent; color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.25);
+        }
+        .btn-ghost-inv:hover {
+            background: rgba(255,255,255,0.08); color: var(--white); border-color: rgba(255,255,255,0.45);
+        }
+        .btn-lg { padding: 17px 36px; font-size: 1.0625rem; border-radius: var(--r-xl); }
+        .btn-full { width: 100%; }
+
+        /* HEADER */
+        header {
+            background: rgba(250,248,245,0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3);
+            position: sticky; top: 0; z-index: 200;
+        }
+        nav {
+            display: flex; align-items: center; justify-content: space-between; height: 64px;
+        }
+        .logo {
+            font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400;
+            color: var(--ink); text-decoration: none;
+        }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links {
+            display: flex; align-items: center; gap: var(--s5); list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.9rem; font-weight: 500; color: var(--ink-3);
+            text-decoration: none; transition: color var(--t-fast);
+        }
+        .nav-links a:hover { color: var(--ink); }
+
+        /* COMING SOON BANNER */
+        .coming-soon-banner {
+            background: var(--terra);
+            padding: 12px var(--s4);
+            text-align: center;
+        }
+        .coming-soon-banner p {
+            font-size: 0.875rem; font-weight: 500; color: var(--white);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .coming-soon-banner strong { font-weight: 600; }
+        .banner-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+        }
+
+        /* COURSE BADGE */
+        .course-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(232,113,74,0.12); color: var(--terra-2);
+            border: 1px solid rgba(232,113,74,0.2);
+            border-radius: 100px;
+            padding: 6px 14px;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .course-pill::before {
+            content: '★';
+            font-size: 0.7rem;
+        }
+
+        /* HERO */
+        .hero {
+            background: var(--ink);
+            padding: var(--s8) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px; right: -150px;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(200,85,42,0.07) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            position: relative; z-index: 1;
+            max-width: 780px;
+        }
+        .hero-eyebrow { margin-bottom: var(--s3); }
+        .hero h1 {
+            font-size: clamp(2.75rem, 5vw, 4.5rem);
+            color: var(--white);
+            margin-bottom: var(--s3);
+        }
+        .hero h1 em { font-style: italic; color: var(--terra-2); }
+        .hero-sub {
+            font-size: 1.1875rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.75;
+            margin-bottom: var(--s5);
+            max-width: 580px;
+        }
+
+        /* PRICING PILLS */
+        .price-stack {
+            display: inline-flex; align-items: center; gap: var(--s3);
+            margin-bottom: var(--s5);
+        }
+        .price-prelaunoch {
+            background: var(--terra);
+            border-radius: var(--r-lg);
+            padding: 14px 24px;
+        }
+        .price-prelaunoch .price-num {
+            font-family: var(--font-serif);
+            font-size: 2.5rem; color: var(--white); line-height: 1;
+            display: block;
+        }
+        .price-prelaunoch .price-label {
+            font-size: 0.75rem; color: rgba(255,255,255,0.65); margin-top: 2px;
+        }
+        .price-regular {
+            opacity: 0.4;
+        }
+        .price-regular .price-num {
+            font-family: var(--font-serif);
+            font-size: 1.5rem; color: var(--white); line-height: 1;
+            text-decoration: line-through;
+            display: block;
+        }
+        .price-regular .price-label {
+            font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 2px;
+        }
+        .price-arrow {
+            color: rgba(255,255,255,0.25);
+            font-size: 1.25rem;
+        }
+
+        .hero-cta-group {
+            display: flex; align-items: center; gap: var(--s2); flex-wrap: wrap;
+        }
+        .hero-cta-note {
+            font-size: 0.8125rem; color: rgba(255,255,255,0.3);
+        }
+
+        /* SECTION COMMON */
+        .section-eyebrow {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: var(--s2);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .section-eyebrow::before {
+            content: ''; display: block; width: 20px; height: 1px; background: var(--terra);
+        }
+        .section-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            margin-bottom: var(--s2);
+        }
+        .section-sub {
+            font-size: 1.0625rem; color: var(--ink-3);
+            max-width: 540px; line-height: 1.75;
+            margin-bottom: var(--s6);
+        }
+
+        /* WHO IT'S FOR */
+        .who {
+            padding: var(--s7) 0;
+            background: var(--cream);
+        }
+        .who-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3);
+        }
+        .who-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            padding: var(--s4);
+        }
+        .who-icon {
+            font-size: 2rem; margin-bottom: var(--s2);
+        }
+        .who-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1rem; font-weight: 600; color: var(--ink);
+            margin-bottom: 8px;
+        }
+        .who-card p {
+            font-size: 0.875rem; color: var(--ink-3); line-height: 1.65;
+        }
+
+        /* CURRICULUM */
+        .curriculum {
+            padding: var(--s7) 0;
+            background: var(--cream-2);
+            border-top: 1px solid var(--cream-3);
+            border-bottom: 1px solid var(--cream-3);
+        }
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--s3);
+        }
+        .module-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+        }
+        .module-header {
+            padding: var(--s3) var(--s4);
+            background: var(--ink);
+            display: flex; align-items: center; gap: var(--s2);
+        }
+        .module-num {
+            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--terra-2);
+            flex-shrink: 0;
+        }
+        .module-header h3 {
+            font-family: var(--font-sans);
+            font-size: 1rem; font-weight: 600; color: var(--white);
+        }
+        .module-body {
+            padding: var(--s3) var(--s4);
+        }
+        .module-body p {
+            font-size: 0.875rem; color: var(--ink-3); margin-bottom: var(--s2); line-height: 1.65;
+        }
+        .lesson-list {
+            list-style: none;
+        }
+        .lesson-list li {
+            display: flex; align-items: flex-start; gap: 10px;
+            font-size: 0.8125rem; color: var(--ink-3);
+            padding: 7px 0;
+            border-bottom: 1px solid var(--cream-3);
+        }
+        .lesson-list li:last-child { border-bottom: none; }
+        .lesson-dot {
+            width: 5px; height: 5px; border-radius: 50%;
+            background: var(--terra); flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        /* FORMAT */
+        .format {
+            padding: var(--s7) 0;
+        }
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3);
+        }
+        .format-card {
+            padding: var(--s4);
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            text-align: center;
+        }
+        .format-icon {
+            width: 56px; height: 56px;
+            border-radius: 14px;
+            background: var(--terra-3);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto var(--s3);
+        }
+        .format-icon svg {
+            width: 24px; height: 24px;
+            stroke: var(--terra); fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .format-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1rem; font-weight: 600; color: var(--ink);
+            margin-bottom: 8px;
+        }
+        .format-card p {
+            font-size: 0.875rem; color: var(--ink-3); line-height: 1.65;
+        }
+
+        /* WAITLIST */
+        .waitlist {
+            padding: var(--s7) 0 var(--s8);
+            background: var(--ink);
+            position: relative;
+            overflow: hidden;
+        }
+        .waitlist::before {
+            content: '';
+            position: absolute;
+            top: -150px; right: -100px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(200,85,42,0.09) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .waitlist-inner {
+            position: relative; z-index: 1;
+            max-width: 620px;
+        }
+        .waitlist-eyebrow {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--terra-2); margin-bottom: var(--s3);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .waitlist-eyebrow::before {
+            content: ''; width: 20px; height: 1px; background: var(--terra-2);
+        }
+        .waitlist h2 {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            color: var(--white); margin-bottom: var(--s3);
+        }
+        .waitlist h2 em { font-style: italic; color: var(--terra-2); }
+        .waitlist p {
+            font-size: 1.0625rem; color: rgba(255,255,255,0.45);
+            line-height: 1.75; margin-bottom: var(--s5);
+        }
+
+        .waitlist-perks {
+            list-style: none;
+            margin-bottom: var(--s5);
+        }
+        .waitlist-perks li {
+            display: flex; align-items: flex-start; gap: 12px;
+            font-size: 0.9375rem; color: rgba(255,255,255,0.6);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .waitlist-perks li:last-child { border-bottom: none; }
+        .waitlist-perks li::before {
+            content: '✓'; color: var(--terra-2); flex-shrink: 0; font-size: 0.875rem;
+        }
+
+        /* Waitlist form */
+        .waitlist-form {
+            display: flex; gap: var(--s1);
+        }
+        .waitlist-input {
+            flex: 1;
+            padding: 14px 18px;
+            border-radius: var(--r-lg);
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.06);
+            color: var(--white);
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            outline: none;
+            transition: border-color var(--t-fast);
+        }
+        .waitlist-input::placeholder { color: rgba(255,255,255,0.25); }
+        .waitlist-input:focus { border-color: rgba(255,255,255,0.3); }
+        .waitlist-form-note {
+            font-size: 0.8125rem; color: rgba(255,255,255,0.2); margin-top: 10px;
+        }
+        .success-msg {
+            display: none;
+            background: rgba(200,85,42,0.15);
+            border: 1px solid rgba(200,85,42,0.25);
+            border-radius: var(--r-lg);
+            padding: var(--s3);
+            font-size: 0.9375rem; color: rgba(255,255,255,0.75);
+        }
+
+        /* PRICING SECTION */
+        .pricing-section {
+            padding: var(--s7) 0;
+            background: var(--cream);
+        }
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--s3);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .price-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            padding: var(--s4);
+            text-align: center;
+            position: relative;
+        }
+        .price-card.featured {
+            border-color: var(--terra);
+            border-width: 2px;
+        }
+        .price-card-badge {
+            position: absolute;
+            top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--terra);
+            color: var(--white);
+            border-radius: 100px;
+            padding: 4px 14px;
+            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .price-card-timing {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: var(--s2);
+        }
+        .price-card-amount {
+            font-family: var(--font-serif);
+            font-size: 3.5rem; color: var(--ink); line-height: 1;
+            margin-bottom: 4px;
+        }
+        .price-card-note {
+            font-size: 0.8125rem; color: var(--ink-4); margin-bottom: var(--s3);
+        }
+        .price-card-desc {
+            font-size: 0.875rem; color: var(--ink-3); line-height: 1.6; margin-bottom: var(--s3);
+        }
+        .price-card-savings {
+            font-size: 0.8125rem; color: var(--terra); font-weight: 500;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--ink); padding: var(--s7) 0 var(--s5);
+        }
+        .footer-top {
+            display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
+            gap: var(--s7); margin-bottom: var(--s6); padding-bottom: var(--s6);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .footer-brand .logo { display: inline-block; margin-bottom: var(--s3); color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
+        .footer-col h4 {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(255,255,255,0.35); margin-bottom: var(--s3);
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--t-fast); }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+        .footer-copy, .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .who-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 var(--s3); }
+            .modules { grid-template-columns: 1fr; }
+            .format-grid { grid-template-columns: 1fr; }
+            .pricing-cards { grid-template-columns: 1fr; }
+            .who-grid { grid-template-columns: 1fr; }
+            .waitlist-form { flex-direction: column; }
+            .price-stack { flex-direction: column; align-items: flex-start; gap: var(--s2); }
+            .price-arrow { display: none; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-bottom { flex-direction: column; gap: 4px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COMING SOON BANNER -->
+    <div class="coming-soon-banner">
+        <p>
+            <strong>Coming Soon</strong>
+            <span class="banner-dot"></span>
+            Join the waitlist for pre-launch pricing — $49 (regular $99)
+            <span class="banner-dot"></span>
+            <a href="#waitlist" style="color: white; font-weight: 600; text-decoration: underline;">Save Your Spot →</a>
+        </p>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+            <div>
+                <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-eyebrow">
+                    <span class="course-pill">Video Course — Coming Soon</span>
+                </div>
+                <h1>Learn to Build<br><em>Skills That Sell</em></h1>
+                <p class="hero-sub">You've spent years developing expertise. This course teaches you how to extract it from your head, structure it for others, and package it into a product you can sell, share, or use as a competitive advantage.</p>
+
+                <div class="price-stack">
+                    <div class="price-prelaunoch">
+                        <span class="price-num">$49</span>
+                        <span class="price-label">Pre-launch price</span>
+                    </div>
+                    <span class="price-arrow">→</span>
+                    <div class="price-regular">
+                        <span class="price-num">$99</span>
+                        <span class="price-label">Regular price</span>
+                    </div>
+                </div>
+
+                <div class="hero-cta-group">
+                    <a href="#waitlist" class="btn btn-primary btn-lg">Join the Waitlist</a>
+                    <a href="#curriculum" class="btn btn-ghost-inv">See the Curriculum</a>
+                </div>
+                <p class="hero-cta-note" style="margin-top: var(--s2);">Waitlist gets early access + $50 off. No spam, no obligation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section class="who">
+        <div class="container">
+            <div class="section-eyebrow">Who It's For</div>
+            <h2 class="section-title reveal">Built for people with expertise<br>they haven't packaged yet</h2>
+            <p class="section-sub reveal">You don't need to be a creator or a course builder. You need a methodology worth teaching -- and most people already have one.</p>
+
+            <div class="who-grid">
+                <div class="who-card reveal">
+                    <div class="who-icon">🏢</div>
+                    <h3>Agency Owners</h3>
+                    <p>You have a process that took years to develop. Stop explaining it from scratch on every sales call. Package it once, use it forever -- as an internal training tool or a paid product.</p>
+                </div>
+                <div class="who-card reveal">
+                    <div class="who-icon">💼</div>
+                    <h3>Consultants &amp; Advisors</h3>
+                    <p>Your methodology is your competitive advantage. This course shows you how to extract it, structure it, and turn it into something clients can buy before they even hire you.</p>
+                </div>
+                <div class="who-card reveal">
+                    <div class="who-icon">🧠</div>
+                    <h3>Domain Experts</h3>
+                    <p>You know things most people in your industry don't. A skill is the cleanest way to monetize that knowledge without becoming a full-time educator or launching a 40-hour course.</p>
+                </div>
+                <div class="who-card reveal">
+                    <div class="who-icon">🚀</div>
+                    <h3>Founders Building in Public</h3>
+                    <p>Your operational frameworks, hiring processes, and growth playbooks are worth more than you think. Turn them into products that generate revenue while you sleep.</p>
+                </div>
+                <div class="who-card reveal">
+                    <div class="who-icon">📣</div>
+                    <h3>Content Creators</h3>
+                    <p>Your audience wants to learn your approach, not just watch you do it. A well-structured skill document is a faster, cheaper, and more useful product than another ebook.</p>
+                </div>
+                <div class="who-card reveal">
+                    <div class="who-icon">🎯</div>
+                    <h3>Marketing &amp; Creative Pros</h3>
+                    <p>The frameworks you use every day -- creative briefs, testing systems, content calendars -- are sellable. This course shows you how to structure and sell them professionally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRICULUM -->
+    <section class="curriculum" id="curriculum">
+        <div class="container">
+            <div class="section-eyebrow">Curriculum</div>
+            <h2 class="section-title reveal">4 modules. Start to finish.</h2>
+            <p class="section-sub reveal">Each module covers one phase of the skill-building process: understanding, extracting, building, and distributing. You'll leave with a finished skill, not just a plan.</p>
+
+            <div class="modules">
+
+                <div class="module-card reveal">
+                    <div class="module-header">
+                        <span class="module-num">Module 01</span>
+                        <h3>What Makes a Great Skill</h3>
+                    </div>
+                    <div class="module-body">
+                        <p>Before you build anything, you need to understand what separates a skill people use from one that collects digital dust. Most fail at this first step.</p>
+                        <ul class="lesson-list">
+                            <li><span class="lesson-dot"></span>Frameworks vs. templates vs. checklists -- and when to use each</li>
+                            <li><span class="lesson-dot"></span>The anatomy of a skill that actually gets used (and why most don't)</li>
+                            <li><span class="lesson-dot"></span>Common structure mistakes that make skills feel unusable</li>
+                            <li><span class="lesson-dot"></span>Skill audit: evaluate your existing knowledge assets</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card reveal">
+                    <div class="module-header">
+                        <span class="module-num">Module 02</span>
+                        <h3>Extract the Knowledge</h3>
+                    </div>
+                    <div class="module-body">
+                        <p>The hardest part of building a skill is getting the knowledge out of your head. You'll learn two techniques that work even when you "don't know how to explain it."</p>
+                        <ul class="lesson-list">
+                            <li><span class="lesson-dot"></span>The self-interview method: structured questions to surface your process</li>
+                            <li><span class="lesson-dot"></span>From case study to teachable system: reverse-engineering real work</li>
+                            <li><span class="lesson-dot"></span>How to document processes you've been doing on autopilot</li>
+                            <li><span class="lesson-dot"></span>When to ask for help vs. extract alone</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card reveal">
+                    <div class="module-header">
+                        <span class="module-num">Module 03</span>
+                        <h3>Build the Skill</h3>
+                    </div>
+                    <div class="module-body">
+                        <p>Structure, writing, templates -- this is where the skill comes together. You'll build your first skill during this module, not after it.</p>
+                        <ul class="lesson-list">
+                            <li><span class="lesson-dot"></span>The 5-part skill structure that works for any type of expertise</li>
+                            <li><span class="lesson-dot"></span>Writing for someone who doesn't have your context</li>
+                            <li><span class="lesson-dot"></span>Building the implementation guide (the most skipped piece)</li>
+                            <li><span class="lesson-dot"></span>Templates, examples, and visual aids -- what to include, what to cut</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card reveal">
+                    <div class="module-header">
+                        <span class="module-num">Module 04</span>
+                        <h3>Package and Distribute</h3>
+                    </div>
+                    <div class="module-body">
+                        <p>A skill is only valuable if it reaches the right people. You'll learn how to format, price, and distribute your skill -- whether you want to sell it, share it, or use it internally.</p>
+                        <ul class="lesson-list">
+                            <li><span class="lesson-dot"></span>Formats that work: Markdown, Notion, PDF, and web</li>
+                            <li><span class="lesson-dot"></span>How to price a skill (and what pricing signals to buyers)</li>
+                            <li><span class="lesson-dot"></span>Where to sell it: Gumroad, your own site, skill marketplaces</li>
+                            <li><span class="lesson-dot"></span>Using skills internally as training and onboarding tools</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMAT -->
+    <section class="format">
+        <div class="container">
+            <div class="section-eyebrow">Format</div>
+            <h2 class="section-title reveal">Video + workbook +<br>templates</h2>
+            <p class="section-sub reveal">Everything you need to build and ship a skill. Watch the videos, use the workbook, fill in the templates. You'll have a finished product by the end.</p>
+
+            <div class="format-grid">
+                <div class="format-card reveal">
+                    <div class="format-icon">
+                        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                    </div>
+                    <h3>Video Lessons</h3>
+                    <p>4 modules, 14 total lessons. Each 8–15 minutes -- dense, practical, no filler. Watch at your own pace, rewatch what you need, skip what you know.</p>
+                </div>
+                <div class="format-card reveal">
+                    <div class="format-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <h3>Course Workbook</h3>
+                    <p>A companion workbook that walks you through each module. Exercises, prompts, and reflection questions designed to produce an actual skill by Module 4 -- not just notes.</p>
+                </div>
+                <div class="format-card reveal">
+                    <div class="format-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <h3>Starter Templates</h3>
+                    <p>Skill structure templates, self-interview prompts, the 5-part skill framework, and a pricing worksheet. Starting from a blank page is optional. Starting from a template is smarter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-eyebrow">Pricing</div>
+            <h2 class="section-title reveal" style="text-align: center; margin-bottom: var(--s2);">Get in early</h2>
+            <p style="font-size: 1.0625rem; color: var(--ink-3); text-align: center; margin-bottom: var(--s5); line-height: 1.75;" class="reveal">Pre-launch price is locked at $49. When the course ships, it goes to $99. Join the waitlist to hold the lower price.</p>
+
+            <div class="pricing-cards">
+                <div class="price-card featured reveal">
+                    <div class="price-card-badge">Waitlist Price</div>
+                    <div class="price-card-timing">Pre-Launch</div>
+                    <div class="price-card-amount">$49</div>
+                    <div class="price-card-note">one-time · locked for waitlist</div>
+                    <div class="price-card-desc">Join now, pay when the course ships. You get early access before public release and $50 off the regular price.</div>
+                    <div class="price-card-savings">Save $50 vs. regular price</div>
+                    <br>
+                    <a href="#waitlist" class="btn btn-primary btn-full">Join Waitlist</a>
+                </div>
+                <div class="price-card reveal">
+                    <div class="price-card-timing">Regular</div>
+                    <div class="price-card-amount">$99</div>
+                    <div class="price-card-note">one-time · after launch</div>
+                    <div class="price-card-desc">Available after the course publicly launches. Same content, same access, same lifetime guarantee.</div>
+                    <div class="price-card-savings" style="color: var(--ink-4);">Standard rate</div>
+                    <br>
+                    <a href="#waitlist" class="btn btn-ghost btn-full">Join Waitlist Instead</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WAITLIST -->
+    <section class="waitlist" id="waitlist">
+        <div class="container">
+            <div class="waitlist-inner">
+                <div class="waitlist-eyebrow">Join the Waitlist</div>
+                <h2>Get notified when<br>the course <em>launches</em></h2>
+                <p>Drop your email. When the course ships, you get early access and your locked-in $49 rate. No spam between now and then.</p>
+
+                <ul class="waitlist-perks">
+                    <li>Early access before public launch</li>
+                    <li>$49 pre-launch price locked (saves $50)</li>
+                    <li>Bonus: The Skill Starter Template sent immediately</li>
+                    <li>No payment until the course is ready</li>
+                </ul>
+
+                <form class="waitlist-form" id="waitlist-form">
+                    <input
+                        type="email"
+                        class="waitlist-input"
+                        placeholder="your@email.com"
+                        required
+                        id="waitlist-email"
+                    >
+                    <button type="submit" class="btn btn-primary btn-lg">Save My Spot</button>
+                </form>
+                <p class="waitlist-form-note">No spam. Unsubscribe any time.</p>
+
+                <div class="success-msg" id="success-msg">
+                    You're on the list. We'll email you when the course launches with your early access link and locked-in price.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for advertisers. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/custom-skill.html">Custom Skill</a></li>
+                        <li><a href="/diy-course.html">DIY Course</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/newsletter/">Newsletter</a></li>
+                        <li><a href="/affiliates/">Affiliates</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html">Privacy</a></li>
+                        <li><a href="/terms.html">Terms</a></li>
+                        <li><a href="/refund.html">Refunds</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Waitlist form
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('waitlist-email').value;
+            if (email) {
+                this.style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+                // TODO: wire up to beehiiv or ConvertKit API
+            }
+        });
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 70);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+
+</body>
+</html>
