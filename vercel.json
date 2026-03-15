@@ -1,5 +1,19 @@
 {
+  "functions": {
+    "api/subscribe.js": {
+      "maxDuration": 10
+    },
+    "api/create-checkout.js": {
+      "maxDuration": 15
+    },
+    "api/webhook.js": {
+      "maxDuration": 30
+    }
+  },
   "routes": [
+    { "src": "/api/subscribe", "dest": "/api/subscribe.js" },
+    { "src": "/api/create-checkout", "dest": "/api/create-checkout.js" },
+    { "src": "/api/webhook", "dest": "/api/webhook.js" },
     { "src": "/([^/]+)/?", "dest": "/$1.html" },
     { "src": "/skills/([^/]+)/?", "dest": "/skills/$1.html" },
     { "src": "/newsletter/([^/]+)/?", "dest": "/newsletter/$1.html" },

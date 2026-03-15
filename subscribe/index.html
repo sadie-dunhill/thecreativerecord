@@ -551,6 +551,46 @@
         .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
+        /* ---- HAMBURGER ---- */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 44px; height: 44px;
+            background: none; border: none; cursor: pointer;
+            padding: 4px; border-radius: var(--r-md);
+            transition: background var(--t-fast);
+        }
+        .nav-hamburger:hover { background: var(--cream-2); }
+        .nav-hamburger span {
+            display: block; width: 22px; height: 2px;
+            background: var(--ink); border-radius: 2px;
+            transition: all var(--t-base);
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-nav {
+            display: none; position: fixed; top: 64px; left: 0; right: 0;
+            background: var(--cream); border-bottom: 1px solid var(--cream-3);
+            z-index: 199; padding: var(--s3) var(--s3) var(--s4);
+            box-shadow: 0 8px 24px rgba(15,14,13,0.08);
+        }
+        .mobile-nav.open { display: block; }
+        .mobile-nav ul { list-style: none; }
+        .mobile-nav li { border-bottom: 1px solid var(--cream-3); }
+        .mobile-nav li:last-child { border-bottom: none; }
+        .mobile-nav a {
+            display: block; padding: 14px 4px; font-size: 1rem;
+            font-weight: 500; color: var(--ink-2); text-decoration: none;
+            transition: color var(--t-fast);
+        }
+        .mobile-nav a:hover { color: var(--terra); }
+        .mobile-nav .mobile-nav-cta { margin-top: var(--s3); }
+        .mobile-nav .mobile-nav-cta .btn { width: 100%; height: 52px; font-size: 1rem; }
+
         @media (max-width: 1024px) {
             .pricing-grid { grid-template-columns: repeat(2, 1fr); }
             .addons-grid { grid-template-columns: 1fr 1fr; }
@@ -560,20 +600,29 @@
             .problem-inner { grid-template-columns: 1fr; gap: var(--s5); }
         }
         @media (max-width: 768px) {
-            .container { padding: 0 var(--s3); }
+            .container { padding: 0 var(--s2); }
             .faq-grid { grid-template-columns: 1fr; }
             .for-grid { grid-template-columns: 1fr; }
             .usecases-grid { grid-template-columns: 1fr; }
-            .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-            .addons-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
+            .addons-grid { grid-template-columns: 1fr; max-width: 100%; }
             .trust-divider { display: none; }
             .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
-            .footer-bottom { flex-direction: column; gap: 4px; }
+            .footer-bottom { flex-direction: column; gap: 4px; text-align: center; }
             .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; }
             .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .page-header h1 { font-size: clamp(1.875rem, 7vw, 2.5rem); }
+            .hero-cta { flex-direction: column; }
+            .hero-cta .btn { width: 100%; min-height: 52px; font-size: 1rem; }
+            .no-calls-strip { gap: var(--s1); }
+            .trust-inner { gap: var(--s3); flex-wrap: wrap; justify-content: center; }
         }
         @media (max-width: 480px) {
             .steps-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
+            .pricing-card { padding: var(--s4) var(--s3); }
         }
     </style>
 </head>
@@ -586,11 +635,23 @@
                 <li><a href="/skills/">Skills</a></li>
                 <li><a href="/about/">About</a></li>
             </ul>
-            <div>
+            <div class="nav-cta">
                 <a href="#pricing" class="btn btn-primary">Book the Desk</a>
             </div>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </nav>
     </header>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <ul>
+            <li><a href="/skills/">Skills</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+        <div class="mobile-nav-cta">
+            <a href="#pricing" class="btn btn-primary">Book the Desk</a>
+        </div>
+    </nav>
 
     <!-- HERO -->
     <section class="page-header">
@@ -760,7 +821,7 @@
                             <span><span class="feature-label">3-month desk access</span><br><span class="feature-note">Use anytime in that window</span></span>
                         </li>
                     </ul>
-                    <a href="mailto:hi@thecreativerecord.com?subject=Script Desk — Starter (10 scripts)" class="btn btn-ghost-inv btn-full btn-lg">Get Started</a>
+                    <a href="https://buy.stripe.com/dRm3cvdMj2lrb8e7P02cg06" class="btn btn-ghost-inv btn-full btn-lg">Get Started</a>
                 </div>
 
                 <!-- Growth Package — featured -->
@@ -800,7 +861,7 @@
                             <span><span class="feature-label">6-month desk access</span><br><span class="feature-note">Plenty of runway for ongoing work</span></span>
                         </li>
                     </ul>
-                    <a href="mailto:hi@thecreativerecord.com?subject=Script Desk — Growth (20 scripts)" class="btn btn-primary btn-full btn-lg">Get Started</a>
+                    <a href="https://buy.stripe.com/6oUaEXbEb0dj906c5g2cg07" class="btn btn-primary btn-full btn-lg">Get Started</a>
                 </div>
 
                 <!-- Scale Package -->
@@ -839,7 +900,7 @@
                             <span><span class="feature-label">12-month desk access + priority queue</span><br><span class="feature-note">A full year on the desk, front-of-line status</span></span>
                         </li>
                     </ul>
-                    <a href="mailto:hi@thecreativerecord.com?subject=Script Desk — Scale (50 scripts)" class="btn btn-ghost-inv btn-full btn-lg">Get Started</a>
+                    <a href="https://buy.stripe.com/6oU9AT8rZgch3FM0my2cg08" class="btn btn-ghost-inv btn-full btn-lg">Get Started</a>
                 </div>
 
             </div>
@@ -1075,7 +1136,33 @@
             });
         }, { threshold: 0.08 });
         reveals.forEach(el => observer.observe(el));
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
     </script>
+
+    <!-- Hook Vault Popup -->
+    <script src="/js/popup.js" defer></script>
 
 </body>
 </html>

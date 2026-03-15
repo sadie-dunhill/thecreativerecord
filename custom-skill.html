@@ -568,6 +568,40 @@
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
         /* RESPONSIVE */
+        /* ---- HAMBURGER ---- */
+        .nav-hamburger {
+            display: none; flex-direction: column; justify-content: center;
+            align-items: center; gap: 5px; width: 44px; height: 44px;
+            background: none; border: none; cursor: pointer; padding: 4px;
+            border-radius: var(--r-md); transition: background 150ms ease;
+        }
+        .nav-hamburger:hover { background: var(--cream-2); }
+        .nav-hamburger span {
+            display: block; width: 22px; height: 2px; background: var(--ink);
+            border-radius: 2px; transition: all 220ms ease;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-nav {
+            display: none; position: fixed; top: 64px; left: 0; right: 0;
+            background: var(--cream); border-bottom: 1px solid var(--cream-3);
+            z-index: 199; padding: 24px 24px 32px;
+            box-shadow: 0 8px 24px rgba(15,14,13,0.08);
+        }
+        .mobile-nav.open { display: block; }
+        .mobile-nav ul { list-style: none; }
+        .mobile-nav li { border-bottom: 1px solid var(--cream-3); }
+        .mobile-nav li:last-child { border-bottom: none; }
+        .mobile-nav a {
+            display: block; padding: 14px 4px; font-size: 1rem;
+            font-weight: 500; color: var(--ink-2); text-decoration: none;
+            transition: color 150ms ease;
+        }
+        .mobile-nav a:hover { color: var(--terra); }
+        .mobile-nav .mobile-nav-cta { margin-top: 16px; }
+        .mobile-nav .mobile-nav-cta .btn { width: 100%; height: 52px; font-size: 1rem; }
+
         @media (max-width: 1024px) {
             .hero-inner { grid-template-columns: 1fr; }
             .hero-card { display: none; }
@@ -576,16 +610,25 @@
             .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
         }
         @media (max-width: 768px) {
-            .container { padding: 0 var(--s3); }
-            .container-narrow { padding: 0 var(--s3); }
+            .container { padding: 0 16px; }
+            .container-narrow { padding: 0 16px; }
             .steps { grid-template-columns: 1fr; }
             .steps::before, .steps::after { display: none; }
             .included-grid { grid-template-columns: 1fr; }
-            .pricing-card { grid-template-columns: 1fr; padding: var(--s5) var(--s4); }
+            .pricing-card { grid-template-columns: 1fr; padding: var(--s4) var(--s3); }
             .pricing-right { text-align: left; }
             .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
-            .footer-bottom { flex-direction: column; gap: 4px; }
+            .footer-bottom { flex-direction: column; gap: 4px; text-align: center; }
             .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; }
+            .hero h1 { font-size: clamp(1.875rem, 7vw, 2.5rem); }
+            .hero-cta { flex-direction: column; }
+            .hero-cta .btn { width: 100%; min-height: 52px; }
+        }
+        @media (max-width: 480px) {
+            .footer-top { grid-template-columns: 1fr; }
+            .hero-stats { flex-wrap: wrap; gap: 16px; }
         }
     </style>
 </head>
@@ -599,11 +642,24 @@
                 <li><a href="/feedback/">Feedback</a></li>
                 <li><a href="/about/">About</a></li>
             </ul>
-            <div>
+            <div class="nav-cta">
                 <a href="/subscribe/" class="btn btn-primary">Book the Desk</a>
             </div>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </nav>
     </header>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <ul>
+            <li><a href="/skills/">Skills</a></li>
+            <li><a href="/feedback/">Feedback</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+        <div class="mobile-nav-cta">
+            <a href="/subscribe/" class="btn btn-primary">Book the Desk</a>
+        </div>
+    </nav>
 
     <!-- HERO -->
     <section class="hero">
@@ -659,7 +715,7 @@
                         <span class="price-amount">$20</span>
                         <span class="price-note">one-time</span>
                     </div>
-                    <a href="mailto:hi@thecreativerecord.com?subject=Custom%20Skill%20Request" class="btn btn-primary btn-full">Upload Your Documents →</a>
+                    <a href="https://buy.stripe.com/eVq00jbEbf8da4a8T42cg09" class="btn btn-primary btn-full">Get Your Custom Skill — $20</a>
                 </div>
             </div>
         </div>
@@ -867,13 +923,13 @@
                         <li>Full rights to use, share, or sell</li>
                         <li>Accepts: PDF, DOCX, Google Docs, Notion links, plain text</li>
                     </ul>
-                    <a href="mailto:hi@thecreativerecord.com?subject=Custom%20Skill%20Request" class="btn btn-primary btn-lg">Upload Your Documents →</a>
+                    <a href="https://buy.stripe.com/eVq00jbEbf8da4a8T42cg09" class="btn btn-primary btn-lg">Get Your Custom Skill — $20</a>
                 </div>
                 <div class="pricing-right">
                     <div class="pricing-amount">$20</div>
                     <span class="pricing-once">per custom skill</span>
                     <div class="pricing-turnaround">Delivered in 48 hours</div>
-                    <a href="mailto:hi@thecreativerecord.com?subject=Custom%20Skill%20Request" class="btn btn-primary btn-full btn-lg">Get Your Skill</a>
+                    <a href="https://buy.stripe.com/eVq00jbEbf8da4a8T42cg09" class="btn btn-primary btn-full btn-lg">Get Your Skill — $20</a>
                 </div>
             </div>
         </div>
@@ -953,7 +1009,7 @@
             <div class="section-eyebrow" style="justify-content: center; margin-bottom: var(--s3);">Get Started</div>
             <h2 class="reveal">Your expertise deserves<br>a better document</h2>
             <p class="reveal">Send us the mess. We'll send back a skill.</p>
-            <a href="mailto:hi@thecreativerecord.com?subject=Custom%20Skill%20Request" class="btn btn-primary btn-lg reveal">Upload Your Documents →</a>
+            <a href="https://buy.stripe.com/eVq00jbEbf8da4a8T42cg09" class="btn btn-primary btn-lg reveal">Get Your Custom Skill — $20</a>
             <p class="cta-sub reveal">$20 · 48-hour turnaround · One revision included</p>
         </div>
     </section>
@@ -1021,7 +1077,33 @@
             });
         }, { threshold: 0.08 });
         reveals.forEach(el => observer.observe(el));
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
     </script>
+
+    <!-- Hook Vault Popup -->
+    <script src="/js/popup.js" defer></script>
 
 </body>
 </html>

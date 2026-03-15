@@ -119,6 +119,19 @@
             margin: 0 auto;
         }
 
+        .product-badge {
+            display: inline-block;
+            background: var(--terra);
+            color: var(--white);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 100px;
+            margin-bottom: var(--s3);
+        }
+
         /* Steps */
         .steps-card {
             background: var(--white);
@@ -241,7 +254,7 @@
                 <li><a href="/skills/">Skills</a></li>
                 <li><a href="/feedback/">Feedback</a></li>
                 <li><a href="/about/">About</a></li>
-                <li><a href="/subscribe/" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.875rem;">Join</a></li>
+                <li><a href="/subscribe/" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.875rem;">Book the Desk</a></li>
             </ul>
         </nav>
     </header>
@@ -251,34 +264,15 @@
 
             <div class="thankyou-header">
                 <div class="confirm-badge">✓</div>
-                <h1>You're in. Thank you.</h1>
-                <p>Your purchase is confirmed. Here's everything you need to get started.</p>
+                <div id="product-badge" class="product-badge" style="display:none;"></div>
+                <h1 id="thankyou-heading">You're in. Thank you.</h1>
+                <p id="thankyou-subtext">Your purchase is confirmed. Here's everything you need to get started.</p>
             </div>
 
             <div class="steps-card">
-                <h2>What happens next</h2>
-                <ol class="step-list">
-                    <li class="step-item">
-                        <span class="step-num">1</span>
-                        <div class="step-body">
-                            <strong>Check your email</strong>
-                            <p>A confirmation email is on its way with your download links and access instructions. Check your spam folder if it doesn't arrive within a few minutes.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <span class="step-num">2</span>
-                        <div class="step-body">
-                            <strong>Access your files</strong>
-                            <p>Your purchase includes a PDF guide, a Notion template, and a video walkthrough. All three are linked in your confirmation email.</p>
-                        </div>
-                    </li>
-                    <li class="step-item">
-                        <span class="step-num">3</span>
-                        <div class="step-body">
-                            <strong>Bookmark your account</strong>
-                            <p>Log in at any time to re-download your files, view your purchase history, and access any future updates.</p>
-                        </div>
-                    </li>
+                <h2 id="steps-heading">What happens next</h2>
+                <ol class="step-list" id="steps-list">
+                    <!-- filled by JS -->
                 </ol>
 
                 <div class="account-box">
@@ -296,7 +290,7 @@
                     <a href="https://twitter.com/sadie_goodo" target="_blank" rel="noopener" class="social-link">
                         <span>𝕏</span> Follow @sadie_goodo
                     </a>
-                    <a href="/skills/" class="social-link">
+                    <a href="/skills/" class="social-link" id="browse-link">
                         <span>→</span> Browse more skills
                     </a>
                 </div>
@@ -313,6 +307,267 @@
             </div>
         </div>
     </footer>
+
+    <script>
+    // Product-specific thank you content
+    const PRODUCTS = {
+        'video-script-framework': {
+            name: 'Video Script Framework',
+            heading: 'Your script framework is ready.',
+            subtext: 'Purchase confirmed. Check your email for the download link and Notion template access.',
+            steps: [
+                {
+                    title: 'Check your email',
+                    desc: 'Your confirmation email includes a direct download link for the PDF guide and Notion template. Check spam if it doesn\'t arrive in a few minutes.'
+                },
+                {
+                    title: 'Duplicate the Notion template',
+                    desc: 'Open the Notion link in your email, click "Duplicate" to add it to your workspace. The 8-part script structure and hook formula cheat sheet are inside.'
+                },
+                {
+                    title: 'Watch the walkthrough',
+                    desc: 'A 30-minute video walkthrough is included — covers how to apply the framework to any product or offer. Start there if you\'re new to performance scripts.'
+                }
+            ]
+        },
+        'hook-bank-template': {
+            name: 'Hook Bank Template',
+            heading: 'Your hook bank is ready.',
+            subtext: 'Purchase confirmed. 350+ hooks organized by awareness stage are waiting in your inbox.',
+            steps: [
+                {
+                    title: 'Check your email',
+                    desc: 'Your email has a download link for the Hook Bank PDF and the Notion database with all 350+ hooks.'
+                },
+                {
+                    title: 'Filter by awareness stage',
+                    desc: 'In Notion, use the awareness stage filter to find hooks matched to where your customer is in the buying journey. Problem-aware, solution-aware, and product-aware hooks are all tagged.'
+                },
+                {
+                    title: 'Use the testing framework',
+                    desc: 'The hook testing framework tells you how to run a structured test across 3-5 hooks before committing to production. Start there.'
+                }
+            ]
+        },
+        'ugc-brief-template': {
+            name: 'UGC Brief Template',
+            heading: 'Your brief template is ready.',
+            subtext: 'Purchase confirmed. Your creator brief template is in your inbox.',
+            steps: [
+                {
+                    title: 'Check your email',
+                    desc: 'Download link and Notion template access are in your confirmation email.'
+                },
+                {
+                    title: 'Fill in your brand section first',
+                    desc: 'The template has a brand context block you fill in once -- tone, avoid list, visual style. Everything flows from that. Takes 20 minutes the first time, seconds after that.'
+                },
+                {
+                    title: 'Send your first brief',
+                    desc: 'The template is designed to be copy-pasted directly to creators. Use the PDF version if you prefer to export and send as a file.'
+                }
+            ]
+        },
+        'creative-audit-checklist': {
+            name: 'Creative Audit Checklist',
+            heading: 'Your audit checklist is ready.',
+            subtext: 'Purchase confirmed. 50 audit points for your ad account are in your inbox.',
+            steps: [
+                {
+                    title: 'Check your email',
+                    desc: 'Download the PDF checklist and Notion template from the link in your confirmation email.'
+                },
+                {
+                    title: 'Run the hook performance section first',
+                    desc: 'Section 1 of the checklist covers hook performance scoring. If you\'re tight on time, start there -- it\'s where most spend is won or lost.'
+                },
+                {
+                    title: 'Use the iteration decision matrix',
+                    desc: 'The matrix tells you whether to iterate a creative, let it rest, or kill it. Saves the conversation with clients about why something isn\'t working.'
+                }
+            ]
+        },
+        'competitor-analysis-framework': {
+            name: 'Competitor Analysis Framework',
+            heading: 'Your analysis framework is ready.',
+            subtext: 'Purchase confirmed. The competitor analysis framework is in your inbox.',
+            steps: [
+                {
+                    title: 'Check your email',
+                    desc: 'Your confirmation email has the PDF and Notion template download links.'
+                },
+                {
+                    title: 'Start with the ad library audit',
+                    desc: 'The framework begins with a structured pull from competitor ad libraries. The template walks you through what to capture and how to categorize it.'
+                },
+                {
+                    title: 'Fill the gap map',
+                    desc: 'The gap map section shows you what your competitors are NOT saying -- that\'s where your angles live. This is where the framework earns its money.'
+                }
+            ]
+        },
+        'skill-bundle': {
+            name: 'Complete Skill Bundle',
+            heading: 'All 5 skills are yours.',
+            subtext: 'Purchase confirmed. Your full bundle is ready -- check your email for all download links.',
+            steps: [
+                {
+                    title: 'Check your email',
+                    desc: 'Your confirmation email has download links for all 5 skills: Video Script Framework, Hook Bank Template, UGC Brief Template, Creative Audit Checklist, and Competitor Analysis Framework.'
+                },
+                {
+                    title: 'Start with the framework that matches your current problem',
+                    desc: 'Running scripts? Start with Video Script Framework. Testing hooks? Hook Bank. Briefing creators? UGC Brief. Auditing account? Audit Checklist. Analyzing competitors? Analysis Framework.'
+                },
+                {
+                    title: 'Access your library any time',
+                    desc: 'All 5 skills are in your account. Log in to re-download files or access Notion templates anytime.'
+                }
+            ]
+        },
+        'script-desk-starter': {
+            name: 'Script Desk Starter',
+            heading: 'Your Script Desk is booked.',
+            subtext: 'Purchase confirmed. 10 script sessions are ready. No calls, no Slack -- just submit requests.',
+            steps: [
+                {
+                    title: 'Check your email',
+                    desc: 'Your onboarding email explains how to submit your first script request. It includes the intake form link and brief template.'
+                },
+                {
+                    title: 'Submit your first request',
+                    desc: 'Fill in the script intake form with your brand context, offer details, target audience, and hook direction. First script delivered in 48-72 hours.'
+                },
+                {
+                    title: 'Your desk sessions are valid for 6 months',
+                    desc: 'No rush. Submit requests as your campaigns come up. All 10 sessions stay live for 6 months from purchase date.'
+                }
+            ]
+        },
+        'script-desk-growth': {
+            name: 'Script Desk Growth',
+            heading: 'Your Script Desk is booked.',
+            subtext: 'Purchase confirmed. 20 script sessions are ready. Submit requests when you need them.',
+            steps: [
+                {
+                    title: 'Check your email',
+                    desc: 'Your onboarding email has the intake form link and brief template. Everything you need to submit your first request is in there.'
+                },
+                {
+                    title: 'Submit your first request',
+                    desc: 'Fill in the intake form with brand context, offer details, target audience, and hook direction. First script delivered in 48-72 hours.'
+                },
+                {
+                    title: 'Your desk sessions are valid for 9 months',
+                    desc: '20 sessions across however many campaigns, clients, or products you\'re running. Valid for 9 months -- use at whatever pace your account needs.'
+                }
+            ]
+        },
+        'script-desk-scale': {
+            name: 'Script Desk Scale',
+            heading: 'Your Script Desk is booked.',
+            subtext: 'Purchase confirmed. 50 script sessions ready. Scale your creative output.',
+            steps: [
+                {
+                    title: 'Check your email',
+                    desc: 'Onboarding email with intake form, brief template, and batch request instructions is on its way.'
+                },
+                {
+                    title: 'Submit batch requests for efficiency',
+                    desc: 'At 50 sessions, most clients batch their requests by campaign. The intake form supports batch submissions -- include hook variants and format notes for each.'
+                },
+                {
+                    title: 'Your desk sessions are valid for 12 months',
+                    desc: '50 sessions over a full year. Use them for one brand or allocate across multiple clients. No pressure, no expiry surprises.'
+                }
+            ]
+        },
+        'custom-skill': {
+            name: 'Custom Skill Creation',
+            heading: 'Your custom skill request is confirmed.',
+            subtext: 'Purchase confirmed. We\'ll build your custom AI skill within 48 hours.',
+            steps: [
+                {
+                    title: 'Check your email',
+                    desc: 'Your confirmation email has a link to the intake form where you\'ll upload your brand documents and describe what you need the skill to do.'
+                },
+                {
+                    title: 'Fill in the intake form',
+                    desc: 'The more specific you are, the better the skill. Include your brand voice, the task you want the skill to handle, and any examples of good vs. bad output you\'ve seen.'
+                },
+                {
+                    title: 'Skill delivered in 48 hours',
+                    desc: 'You\'ll receive your custom skill as a Notion template and PDF. One revision round is included -- if something isn\'t right, just reply to the delivery email.'
+                }
+            ]
+        }
+    };
+
+    // Default steps for unknown product
+    const DEFAULT_PRODUCT = {
+        name: 'Your Purchase',
+        heading: 'You\'re in. Thank you.',
+        subtext: 'Your purchase is confirmed. Here\'s everything you need to get started.',
+        steps: [
+            {
+                title: 'Check your email',
+                desc: 'A confirmation email is on its way with your download links and access instructions. Check your spam folder if it doesn\'t arrive within a few minutes.'
+            },
+            {
+                title: 'Access your files',
+                desc: 'Your purchase includes a PDF guide, a Notion template, and a video walkthrough. All three are linked in your confirmation email.'
+            },
+            {
+                title: 'Bookmark your account',
+                desc: 'Log in at any time to re-download your files, view your purchase history, and access any future updates.'
+            }
+        ]
+    };
+
+    function getProductKey() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('product') || '';
+    }
+
+    function renderThankYou() {
+        const key = getProductKey();
+        const product = PRODUCTS[key] || DEFAULT_PRODUCT;
+
+        // Update heading
+        document.getElementById('thankyou-heading').textContent = product.heading;
+        document.getElementById('thankyou-subtext').textContent = product.subtext;
+
+        // Show product badge if we have a key
+        if (key && PRODUCTS[key]) {
+            const badge = document.getElementById('product-badge');
+            badge.textContent = product.name;
+            badge.style.display = 'inline-block';
+        }
+
+        // Render steps
+        const stepsList = document.getElementById('steps-list');
+        stepsList.innerHTML = product.steps.map((step, i) => `
+            <li class="step-item">
+                <span class="step-num">${i + 1}</span>
+                <div class="step-body">
+                    <strong>${step.title}</strong>
+                    <p>${step.desc}</p>
+                </div>
+            </li>
+        `).join('');
+
+        // Script Desk purchases don't need "Browse more skills" -- swap for relevant CTA
+        if (key && key.startsWith('script-desk')) {
+            const browseLink = document.getElementById('browse-link');
+            if (browseLink) {
+                browseLink.href = '/skills/';
+                browseLink.innerHTML = '<span>→</span> Grab a skill framework';
+            }
+        }
+    }
+
+    renderThankYou();
+    </script>
 
 </body>
 </html>

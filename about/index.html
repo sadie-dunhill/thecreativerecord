@@ -273,18 +273,59 @@
         .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         
+        /* ---- HAMBURGER ---- */
+        .nav-hamburger {
+            display: none; flex-direction: column; justify-content: center;
+            align-items: center; gap: 5px; width: 44px; height: 44px;
+            background: none; border: none; cursor: pointer; padding: 4px;
+            border-radius: var(--r-md); transition: background 150ms ease;
+        }
+        .nav-hamburger:hover { background: var(--cream-2); }
+        .nav-hamburger span {
+            display: block; width: 22px; height: 2px; background: var(--ink);
+            border-radius: 2px; transition: all 220ms ease;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-nav {
+            display: none; position: fixed; top: 64px; left: 0; right: 0;
+            background: var(--cream); border-bottom: 1px solid var(--cream-3);
+            z-index: 199; padding: 24px 24px 32px;
+            box-shadow: 0 8px 24px rgba(15,14,13,0.08);
+        }
+        .mobile-nav.open { display: block; }
+        .mobile-nav ul { list-style: none; }
+        .mobile-nav li { border-bottom: 1px solid var(--cream-3); }
+        .mobile-nav li:last-child { border-bottom: none; }
+        .mobile-nav a {
+            display: block; padding: 14px 4px; font-size: 1rem;
+            font-weight: 500; color: var(--ink-2); text-decoration: none;
+            transition: color 150ms ease;
+        }
+        .mobile-nav a:hover { color: var(--terra); }
+        .mobile-nav .mobile-nav-cta { margin-top: 16px; }
+        .mobile-nav .mobile-nav-cta .btn { width: 100%; height: 52px; font-size: 1rem; }
+
         @media (max-width: 1024px) {
             .content-grid { grid-template-columns: 1fr; }
             .content-sidebar { display: none; }
             .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
         }
         @media (max-width: 768px) {
-            .container, .container-narrow { padding: 0 var(--s3); }
+            .container, .container-narrow { padding: 0 16px; }
             .header-stats { gap: var(--s4); flex-wrap: wrap; }
             .bio-header { flex-direction: column; }
             .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
-            .footer-bottom { flex-direction: column; gap: 4px; }
+            .footer-bottom { flex-direction: column; gap: 4px; text-align: center; }
             .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; }
+            .page-header h1 { font-size: clamp(1.875rem, 7vw, 2.5rem); }
+        }
+        @media (max-width: 480px) {
+            .footer-top { grid-template-columns: 1fr; }
+            .header-stats { justify-content: flex-start; }
         }
     </style>
 </head>
@@ -298,11 +339,24 @@
                 <li><a href="/feedback/">Feedback</a></li>
                 <li><a href="/about/" class="active">About</a></li>
             </ul>
-            <div>
+            <div class="nav-cta">
                 <a href="/skills/" class="btn btn-primary">Browse Skills</a>
             </div>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </nav>
     </header>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <ul>
+            <li><a href="/skills/">Skills</a></li>
+            <li><a href="/feedback/">Feedback</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+        <div class="mobile-nav-cta">
+            <a href="/skills/" class="btn btn-primary">Browse Skills</a>
+        </div>
+    </nav>
 
     <section class="page-header">
         <div class="container">
@@ -513,7 +567,33 @@
         }, { threshold: 0.5 });
         
         sections.forEach(s => sectionObserver.observe(s));
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
     </script>
+
+    <!-- Hook Vault Popup -->
+    <script src="/js/popup.js" defer></script>
 
 </body>
 </html>
