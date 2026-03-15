@@ -8,12 +8,22 @@
     },
     "api/webhook.js": {
       "maxDuration": 30
+    },
+    "api/distribute-to-bots.js": {
+      "maxDuration": 30
+    },
+    "api/bots/subscribe.js": {
+      "maxDuration": 15
     }
   },
   "routes": [
     { "src": "/api/subscribe", "dest": "/api/subscribe.js" },
     { "src": "/api/create-checkout", "dest": "/api/create-checkout.js" },
     { "src": "/api/webhook", "dest": "/api/webhook.js" },
+    { "src": "/api/distribute-to-bots", "dest": "/api/distribute-to-bots.js" },
+    { "src": "/api/bots/subscribe", "dest": "/api/bots/subscribe.js" },
+    { "src": "/blog/([^/]+)", "dest": "/blog/$1" },
+    { "src": "/blog/?", "dest": "/blog/index.html" },
     { "src": "/([^/]+)/?", "dest": "/$1.html" },
     { "src": "/skills/([^/]+)/?", "dest": "/skills/$1.html" },
     { "src": "/newsletter/([^/]+)/?", "dest": "/newsletter/$1.html" },
