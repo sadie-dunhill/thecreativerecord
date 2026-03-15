@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Creative Record Newsletter — Creative Strategy for DTC Teams</title>
+    <meta name="description" content="Weekly creative strategy breakdowns, free templates, and behind-the-scenes analysis from inside DTC ad accounts. Join 1,000+ brand builders.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="The Creative Record Newsletter — Creative Strategy for DTC Teams">
+    <meta property="og:description" content="Weekly creative strategy breakdowns, free templates, and behind-the-scenes analysis from inside DTC ad accounts.">
+    <meta property="og:image" content="https://thecreativerecord.com/assets/images/og-default.png">
+    <meta property="og:url" content="https://thecreativerecord.com/newsletter/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Creative Record Newsletter">
+    <meta name="twitter:description" content="Weekly creative strategy breakdowns, free templates, and behind-the-scenes analysis from inside DTC ad accounts.">
+    <meta name="twitter:image" content="https://thecreativerecord.com/assets/images/og-default.png">
+    <meta name="twitter:site" content="@sadie_goodo">
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="canonical" href="https://thecreativerecord.com/newsletter/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
+            --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            --shadow-sm: 0 1px 3px rgba(15,14,13,0.06);
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-lg: 0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            --t-fast: 150ms ease; --t-base: 220ms ease;
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans); font-weight: 400;
+            color: var(--ink-3); background: var(--cream);
+            line-height: 1.65; -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+        .container-narrow { max-width: 680px; margin: 0 auto; padding: 0 var(--s4); }
+
+        h1, h2, h3 {
+            font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.15;
+        }
+        h4, h5, h6 {
+            font-family: var(--font-sans); font-weight: 600; color: var(--ink-2); line-height: 1.3;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg);
+            font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem;
+            letter-spacing: 0.01em; text-decoration: none; border: 1px solid transparent;
+            cursor: pointer; transition: all var(--t-base); white-space: nowrap;
+        }
+        .btn-primary { background: var(--terra); color: var(--white); border-color: var(--terra); }
+        .btn-primary:hover { background: #b84a24; border-color: #b84a24; box-shadow: var(--shadow-terra); transform: translateY(-1px); }
+        .btn-ghost { background: transparent; color: var(--ink); border-color: var(--cream-3); }
+        .btn-ghost:hover { background: var(--cream-2); }
+        .btn-lg { padding: 16px 32px; font-size: 1rem; }
+
+        /* ---- HEADER ---- */
+        header {
+            background: rgba(250,248,245,0.94); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3); position: sticky; top: 0; z-index: 200;
+        }
+        nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links { display: flex; align-items: center; gap: var(--s5); list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+
+        /* ---- HERO ---- */
+        .hero {
+            padding: var(--s8) 0 var(--s7);
+            background: linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+            border-bottom: 1px solid var(--cream-3);
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s7);
+            align-items: center;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--terra-3);
+            color: var(--terra);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: var(--s3);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.25rem, 5vw, 3.25rem);
+            margin-bottom: var(--s3);
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--ink-3);
+            margin-bottom: var(--s4);
+            max-width: 500px;
+        }
+
+        .hero-social-proof {
+            display: flex;
+            align-items: center;
+            gap: var(--s2);
+            margin-top: var(--s3);
+        }
+
+        .avatar-stack {
+            display: flex;
+        }
+        .avatar-stack .avatar {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--cream-3);
+            border: 2px solid var(--white);
+            margin-left: -8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--ink-2);
+            overflow: hidden;
+        }
+        .avatar-stack .avatar:first-child { margin-left: 0; }
+        .avatar-stack .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .social-proof-text {
+            font-size: 0.875rem;
+            color: var(--ink-3);
+        }
+        .social-proof-text strong { color: var(--ink); }
+
+        /* Signup form (hero) */
+        .signup-form {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            padding: var(--s5);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .signup-form h3 {
+            font-size: 1.25rem;
+            margin-bottom: 6px;
+        }
+
+        .signup-form .form-subtext {
+            font-size: 0.9rem;
+            color: var(--ink-3);
+            margin-bottom: var(--s4);
+        }
+
+        .form-field {
+            margin-bottom: var(--s2);
+        }
+
+        .form-field label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--ink-2);
+            margin-bottom: 6px;
+        }
+
+        .form-field .optional {
+            font-weight: 400;
+            color: var(--ink-4);
+            font-size: 0.8125rem;
+        }
+
+        .form-field input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-md);
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            color: var(--ink);
+            background: var(--cream);
+            transition: border-color var(--t-fast), box-shadow var(--t-fast);
+            outline: none;
+        }
+
+        .form-field input:focus {
+            border-color: var(--terra);
+            box-shadow: 0 0 0 3px rgba(200,85,42,0.1);
+            background: var(--white);
+        }
+
+        .form-field input::placeholder { color: var(--ink-4); }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--terra);
+            color: var(--white);
+            border: none;
+            border-radius: var(--r-lg);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--t-base);
+            margin-top: var(--s1);
+        }
+        .form-submit:hover { background: #b84a24; box-shadow: var(--shadow-terra); transform: translateY(-1px); }
+
+        .form-privacy {
+            text-align: center;
+            font-size: 0.8125rem;
+            color: var(--ink-4);
+            margin-top: var(--s2);
+        }
+
+        /* Success state */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: var(--s4);
+        }
+        .form-success.active { display: block; }
+        .form-success .success-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--s2);
+        }
+        .form-success h3 { font-size: 1.375rem; margin-bottom: var(--s2); }
+        .form-success p { font-size: 0.9375rem; color: var(--ink-3); }
+
+        /* ---- WHAT YOU GET ---- */
+        .benefits-section {
+            padding: var(--s7) 0;
+        }
+
+        .section-label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--terra);
+            margin-bottom: var(--s2);
+        }
+
+        .benefits-section h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: var(--s5);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3);
+        }
+
+        .benefit-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            padding: var(--s4);
+            transition: box-shadow var(--t-base);
+        }
+        .benefit-card:hover { box-shadow: var(--shadow-md); }
+
+        .benefit-icon {
+            width: 44px; height: 44px;
+            background: var(--terra-3);
+            border-radius: var(--r-lg);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: var(--s2);
+        }
+
+        .benefit-card h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            font-size: 0.9rem;
+            color: var(--ink-3);
+            line-height: 1.6;
+        }
+
+        /* ---- SAMPLE ISSUE ---- */
+        .sample-section {
+            padding: var(--s7) 0;
+            background: var(--cream-2);
+            border-top: 1px solid var(--cream-3);
+            border-bottom: 1px solid var(--cream-3);
+        }
+
+        .sample-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s7);
+            align-items: center;
+        }
+
+        .sample-section h2 {
+            font-size: clamp(1.75rem, 4vw, 2.375rem);
+            margin-bottom: var(--s3);
+        }
+
+        .sample-section p {
+            font-size: 1rem;
+            color: var(--ink-3);
+            margin-bottom: var(--s4);
+        }
+
+        .sample-preview {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .sample-preview-header {
+            background: var(--cream-2);
+            border-bottom: 1px solid var(--cream-3);
+            padding: var(--s3) var(--s4);
+            display: flex;
+            align-items: center;
+            gap: var(--s2);
+        }
+
+        .preview-dots { display: flex; gap: 6px; }
+        .preview-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--cream-3);
+        }
+        .preview-dot.red { background: #ff5f57; }
+        .preview-dot.yellow { background: #febc2e; }
+        .preview-dot.green { background: #28c840; }
+
+        .preview-title {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--ink-3);
+        }
+
+        .sample-preview-body {
+            padding: var(--s4);
+        }
+
+        .sample-issue-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--terra);
+            margin-bottom: var(--s2);
+        }
+
+        .sample-issue-title {
+            font-family: var(--font-serif);
+            font-size: 1.375rem;
+            color: var(--ink);
+            line-height: 1.3;
+            margin-bottom: var(--s2);
+        }
+
+        .sample-issue-meta {
+            font-size: 0.8125rem;
+            color: var(--ink-4);
+            margin-bottom: var(--s3);
+        }
+
+        .sample-issue-body p {
+            font-size: 0.875rem;
+            color: var(--ink-3);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .sample-blur {
+            position: relative;
+        }
+        .sample-blur::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--white));
+        }
+
+        /* ---- TESTIMONIALS ---- */
+        .testimonials-section {
+            padding: var(--s7) 0;
+        }
+
+        .testimonials-section h2 {
+            font-size: clamp(1.75rem, 4vw, 2.375rem);
+            margin-bottom: var(--s5);
+            text-align: center;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3);
+        }
+
+        .testimonial {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            padding: var(--s4);
+        }
+
+        .testimonial-quote {
+            font-size: 0.9375rem;
+            color: var(--ink-3);
+            line-height: 1.7;
+            margin-bottom: var(--s3);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--s2);
+        }
+
+        .t-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--terra-3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 600; color: var(--terra);
+        }
+
+        .author-name { font-size: 0.875rem; font-weight: 600; color: var(--ink-2); }
+        .author-role { font-size: 0.8125rem; color: var(--ink-4); }
+
+        /* ---- BOTTOM CTA / INLINE FORM ---- */
+        .cta-section {
+            padding: var(--s7) 0;
+            background: var(--ink);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: var(--s3);
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.65);
+            font-size: 1.0625rem;
+            margin-bottom: var(--s5);
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Inline form (dark bg) */
+        .form-inline {
+            display: flex;
+            gap: var(--s2);
+            max-width: 480px;
+            margin: 0 auto var(--s2);
+        }
+
+        .form-inline input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--r-lg);
+            background: rgba(255,255,255,0.08);
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            color: var(--white);
+            outline: none;
+            transition: border-color var(--t-fast), background var(--t-fast);
+        }
+        .form-inline input::placeholder { color: rgba(255,255,255,0.4); }
+        .form-inline input:focus {
+            border-color: var(--terra-2);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .form-inline button {
+            padding: 14px 24px;
+            background: var(--terra);
+            color: var(--white);
+            border: none;
+            border-radius: var(--r-lg);
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--t-base);
+            white-space: nowrap;
+        }
+        .form-inline button:hover { background: var(--terra-2); transform: translateY(-1px); }
+
+        .form-inline-privacy {
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ---- FOOTER ---- */
+        footer {
+            background: var(--ink);
+            color: var(--ink-4);
+            padding: var(--s5) 0 var(--s4);
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--s6);
+            padding-bottom: var(--s5);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .footer-brand .logo { color: var(--cream); }
+        .footer-tagline { font-size: 0.875rem; color: var(--ink-4); margin-top: var(--s2); line-height: 1.6; }
+        .footer-col h4 { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: var(--s2); }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: var(--s1); }
+        .footer-col a { font-size: 0.875rem; color: var(--ink-4); text-decoration: none; transition: color var(--t-fast); }
+        .footer-col a:hover { color: var(--cream); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: var(--s3); font-size: 0.8125rem; color: var(--ink-4); }
+
+        /* ---- REVEAL ---- */
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; gap: var(--s5); }
+            .sample-inner { grid-template-columns: 1fr; gap: var(--s5); }
+            .benefits-grid { grid-template-columns: 1fr 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .form-inline { flex-direction: column; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: var(--s1); text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/subscribe/" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.875rem;">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div>
+                    <div class="hero-label">📬 Free Newsletter</div>
+                    <h1>Creative strategy delivered every Tuesday</h1>
+                    <p>Real breakdowns from inside active DTC ad accounts. No fluff, no theory. The stuff you can use this week.</p>
+                    <div class="hero-social-proof">
+                        <div class="avatar-stack">
+                            <div class="avatar"><img src="/assets/images/avatar-1.png" alt="subscriber" onerror="this.parentElement.textContent='JK'"></div>
+                            <div class="avatar"><img src="/assets/images/avatar-2.png" alt="subscriber" onerror="this.parentElement.textContent='RM'"></div>
+                            <div class="avatar"><img src="/assets/images/avatar-3.png" alt="subscriber" onerror="this.parentElement.textContent='TL'"></div>
+                        </div>
+                        <span class="social-proof-text">Joined by <strong>1,000+ DTC creatives</strong></span>
+                    </div>
+                </div>
+
+                <div class="signup-form" id="hero-form-wrapper">
+                    <div id="hero-form-fields">
+                        <h3>Get The Creative Record</h3>
+                        <p class="form-subtext">Free. Every Tuesday. Unsubscribe anytime.</p>
+                        <form id="newsletter-form-hero" onsubmit="handleSignup(event, 'hero')">
+                            <div class="form-field">
+                                <label for="name-hero">First name <span class="optional">(optional)</span></label>
+                                <input type="text" id="name-hero" name="name" placeholder="Your first name" autocomplete="given-name">
+                            </div>
+                            <div class="form-field">
+                                <label for="email-hero">Email address</label>
+                                <input type="email" id="email-hero" name="email" placeholder="you@yourcompany.com" required autocomplete="email">
+                            </div>
+                            <button type="submit" class="form-submit">Subscribe — It's Free</button>
+                        </form>
+                        <p class="form-privacy">We respect your privacy. Unsubscribe anytime.</p>
+                    </div>
+                    <div class="form-success" id="hero-success">
+                        <div class="success-icon">🎉</div>
+                        <h3>You're on the list</h3>
+                        <p>Check your inbox for a confirmation email. First issue lands Tuesday.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT YOU GET -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">What's Inside</div>
+                <h2>Not a tips newsletter.</h2>
+            </div>
+            <div class="benefits-grid" style="margin-top: var(--s5);">
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">🔍</div>
+                    <h4>Ad Breakdowns</h4>
+                    <p>Real creatives from real DTC brands. What's working, what isn't, and exactly why -- hook to CTA.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">📁</div>
+                    <h4>Free Templates</h4>
+                    <p>Subscribers get first access to new skills, templates, and frameworks before they hit the store.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">📊</div>
+                    <h4>Trend Analysis</h4>
+                    <p>What's actually performing across categories this week. Data-backed, not vibe-checked.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">🎯</div>
+                    <h4>Strategy Deep Dives</h4>
+                    <p>One concept, examined completely. Awareness stage, persuasion angle, hook formula -- all of it.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">⚡</div>
+                    <h4>Early Access</h4>
+                    <p>Subscribers get early access to new skills, limited feedback slots, and member-only pricing.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">💬</div>
+                    <h4>Q&amp;A Segments</h4>
+                    <p>Real questions from subscribers, answered in the newsletter. Your question might make it in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAMPLE ISSUE PREVIEW -->
+    <section class="sample-section">
+        <div class="container">
+            <div class="sample-inner">
+                <div class="reveal">
+                    <div class="section-label">Sample Issue</div>
+                    <h2>Here's what a typical Tuesday looks like</h2>
+                    <p>This is from Issue 03: why one supplement brand's hook outperformed their "best" creative by 4x, and how to reverse-engineer it.</p>
+                    <a href="/subscribe/" class="btn btn-primary btn-lg" style="margin-top: var(--s2);">Subscribe to Read More</a>
+                </div>
+                <div class="sample-preview reveal">
+                    <div class="sample-preview-header">
+                        <div class="preview-dots">
+                            <div class="preview-dot red"></div>
+                            <div class="preview-dot yellow"></div>
+                            <div class="preview-dot green"></div>
+                        </div>
+                        <span class="preview-title">The Creative Record — Issue 03</span>
+                    </div>
+                    <div class="sample-preview-body">
+                        <div class="sample-issue-label">Issue 03 · Ad Breakdown</div>
+                        <div class="sample-issue-title">Why This Hook Killed It (And What Most Brands Get Wrong)</div>
+                        <div class="sample-issue-meta">By Sadie Dunhill &nbsp;·&nbsp; 6 min read</div>
+                        <div class="sample-blur">
+                            <div class="sample-issue-body">
+                                <p>The ad opened with a woman in her kitchen, no ring light, morning chaos in the background. She looked directly at the camera and said: "I've been hiding something from my doctor."</p>
+                                <p>That's it. Seven words. No product. No before/after. No price reveal. And it generated 4x the ROAS of their polished studio spot.</p>
+                                <p>Here's why it worked -- and why most brands would've killed it in review before it ever ran...</p>
+                                <p>The awareness stage was problem-aware. The audience already knew something was off with their sleep. What they needed was...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="reveal">What subscribers say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial reveal">
+                    <p class="testimonial-quote">"I've unsubscribed from every other marketing newsletter. This is the only one I actually read all the way through."</p>
+                    <div class="testimonial-author">
+                        <div class="t-avatar">JP</div>
+                        <div>
+                            <div class="author-name">Jessica Park</div>
+                            <div class="author-role">Founder, Bloom Skincare</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial reveal">
+                    <p class="testimonial-quote">"The breakdown in Issue 06 changed how my whole team briefs creators. We reference it constantly."</p>
+                    <div class="testimonial-author">
+                        <div class="t-avatar">MR</div>
+                        <div>
+                            <div class="author-name">Marcus Reid</div>
+                            <div class="author-role">Creative Director, Apex Supplements</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial reveal">
+                    <p class="testimonial-quote">"Finally, a newsletter that treats creative strategy as a discipline and not a personality contest."</p>
+                    <div class="testimonial-author">
+                        <div class="t-avatar">LC</div>
+                        <div>
+                            <div class="author-name">Lauren Chen</div>
+                            <div class="author-role">Media Buyer & Strategist</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="reveal">One email a week.<br>Genuinely worth it.</h2>
+            <p class="reveal">Join 1,000+ DTC creatives who read The Creative Record every Tuesday.</p>
+            <form id="newsletter-form-bottom" onsubmit="handleSignup(event, 'bottom')" style="display: contents;">
+                <div class="form-inline reveal" id="bottom-form-fields">
+                    <input type="email" id="email-bottom" name="email" placeholder="Enter your email address" required autocomplete="email">
+                    <button type="submit">Subscribe Free</button>
+                </div>
+            </form>
+            <div id="bottom-success" style="display:none; color: rgba(255,255,255,0.85); margin-top: var(--s3);">
+                <strong style="font-size: 1.125rem;">You're in! 🎉</strong> Check your inbox for a confirmation.
+            </div>
+            <p class="form-inline-privacy reveal">We respect your privacy. Unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/newsletter/">Newsletter</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html">Privacy</a></li>
+                        <li><a href="/terms.html">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span>Built by Goodo Studios</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+
+        // Form handlers
+        function handleSignup(e, formId) {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.querySelector('[type="email"]').value;
+            if (!email) return;
+
+            if (formId === 'hero') {
+                document.getElementById('hero-form-fields').style.display = 'none';
+                document.getElementById('hero-success').classList.add('active');
+            } else {
+                document.getElementById('bottom-form-fields').style.display = 'none';
+                document.getElementById('bottom-success').style.display = 'block';
+            }
+
+            // TODO: Wire to Beehiiv API or form provider
+            console.log('Signup:', email);
+        }
+    </script>
+
+</body>
+</html>

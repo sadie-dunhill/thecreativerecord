@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support — The Creative Record</title>
+    <meta name="description" content="Get help with your purchase, downloads, or membership. We respond within 24-48 hours.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
+            --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            --shadow-sm: 0 1px 3px rgba(15,14,13,0.06), 0 1px 2px rgba(15,14,13,0.04);
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            --t-fast: 150ms ease; --t-base: 220ms ease;
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans); font-weight: 400; color: var(--ink-3);
+            background: var(--cream); line-height: 1.65; -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.15; letter-spacing: -0.01em; }
+        h4, h5 { font-family: var(--font-sans); font-weight: 600; color: var(--ink-2); line-height: 1.3; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg); font-family: var(--font-sans);
+            font-weight: 500; font-size: 0.9375rem; letter-spacing: 0.01em; text-decoration: none;
+            border: 1px solid transparent; cursor: pointer; transition: all var(--t-base); white-space: nowrap;
+        }
+        .btn-primary { background: var(--terra); color: var(--white); border-color: var(--terra); }
+        .btn-primary:hover { background: #b84a24; border-color: #b84a24; box-shadow: var(--shadow-terra); transform: translateY(-1px); }
+        .btn-primary:active { transform: translateY(0); box-shadow: none; }
+        .btn-ghost { background: transparent; color: var(--ink); border-color: var(--cream-3); }
+        .btn-ghost:hover { background: var(--cream-2); }
+        .btn-full { width: 100%; }
+
+        header {
+            background: rgba(250,248,245,0.94); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--cream-3);
+            position: sticky; top: 0; z-index: 200;
+        }
+        nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links { display: flex; align-items: center; gap: var(--s5); list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-cta { margin-left: var(--s2); }
+
+        .page-hero {
+            background: var(--ink); padding: var(--s6) 0 var(--s7);
+            position: relative; overflow: hidden;
+        }
+        .page-hero::after {
+            content: ''; position: absolute; top: -200px; right: -100px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(200,85,42,0.10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-hero-inner { position: relative; z-index: 1; }
+        .page-hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--terra-2); margin-bottom: var(--s3);
+        }
+        .page-hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--terra-2); }
+        .page-hero h1 { font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: var(--s2); }
+        .page-hero p { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 480px; }
+
+        /* CONTACT STRIP */
+        .contact-strip {
+            background: var(--cream-2);
+            border-bottom: 1px solid var(--cream-3);
+            padding: var(--s4) 0;
+        }
+        .contact-strip-inner {
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s3);
+        }
+        .contact-method {
+            display: flex; align-items: center; gap: var(--s2);
+        }
+        .contact-icon {
+            width: 40px; height: 40px;
+            background: var(--terra-3);
+            border-radius: var(--r-lg);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .contact-icon svg { width: 20px; height: 20px; stroke: var(--terra); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+        .contact-label { font-size: 0.8125rem; color: var(--ink-4); margin-bottom: 2px; }
+        .contact-value { font-size: 0.9375rem; font-weight: 500; color: var(--ink); }
+        .contact-value a { color: var(--terra); text-decoration: none; }
+        .contact-value a:hover { text-decoration: underline; }
+
+        /* SUPPORT LAYOUT */
+        .support-section { padding: var(--s7) 0; background: var(--cream); }
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: var(--s6);
+            align-items: start;
+        }
+
+        /* FAQ */
+        .section-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: var(--s3);
+        }
+        .support-section h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); margin-bottom: var(--s5); }
+
+        .faq-list { display: flex; flex-direction: column; gap: var(--s2); }
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+        }
+        .faq-toggle {
+            width: 100%; background: none; border: none; cursor: pointer;
+            padding: var(--s3) var(--s4);
+            display: flex; align-items: center; justify-content: space-between; gap: var(--s3);
+            text-align: left; transition: background var(--t-fast);
+        }
+        .faq-toggle:hover { background: var(--cream-2); }
+        .faq-q {
+            font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 600;
+            color: var(--ink); line-height: 1.4;
+        }
+        .faq-arrow {
+            width: 20px; height: 20px; min-width: 20px;
+            stroke: var(--ink-4); fill: none; stroke-width: 1.5;
+            stroke-linecap: round; stroke-linejoin: round;
+            transition: transform var(--t-base);
+        }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+        .faq-body {
+            display: none;
+            padding: 0 var(--s4) var(--s3);
+        }
+        .faq-item.open .faq-body { display: block; }
+        .faq-body p { font-size: 0.9rem; color: var(--ink-3); line-height: 1.7; margin-bottom: var(--s2); }
+        .faq-body p:last-child { margin-bottom: 0; }
+        .faq-body a { color: var(--terra); text-decoration: none; }
+        .faq-body a:hover { text-decoration: underline; }
+
+        /* CONTACT FORM */
+        .contact-form-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            padding: var(--s5) var(--s4);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 80px;
+        }
+        .contact-form-card h3 {
+            font-size: 1.375rem;
+            margin-bottom: var(--s1);
+        }
+        .contact-form-card > p {
+            font-size: 0.875rem;
+            color: var(--ink-4);
+            margin-bottom: var(--s4);
+        }
+
+        .form-group { margin-bottom: var(--s3); }
+        .form-group label {
+            display: block; font-size: 0.8125rem; font-weight: 600;
+            color: var(--ink-2); margin-bottom: 6px; letter-spacing: 0.01em;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 11px 14px;
+            font-family: var(--font-sans); font-size: 0.9375rem;
+            color: var(--ink); background: var(--cream);
+            border: 1px solid var(--cream-3); border-radius: var(--r-md);
+            transition: border-color var(--t-fast), box-shadow var(--t-fast);
+            appearance: none;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--terra);
+            box-shadow: 0 0 0 3px rgba(200,85,42,0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        .form-response-note {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.8125rem; color: var(--ink-4);
+            margin-top: var(--s2); padding-top: var(--s2);
+        }
+        .response-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #22c55e; flex-shrink: 0;
+        }
+
+        footer { background: var(--ink); padding: var(--s7) 0 var(--s5); }
+        .footer-top {
+            display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: var(--s7);
+            margin-bottom: var(--s6); padding-bottom: var(--s6);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .footer-brand .logo { display: inline-block; margin-bottom: var(--s3); color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: var(--s3); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--t-fast); }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+        .footer-copy { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+        .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+
+        @media (max-width: 1024px) {
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+            .support-grid { grid-template-columns: 1fr; }
+            .contact-form-card { position: static; }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 var(--s3); }
+            .nav-links { display: none; }
+            .nav-cta .btn { padding: 10px 18px; font-size: 0.875rem; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-bottom { flex-direction: column; gap: var(--s1); }
+            .contact-strip-inner { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-inner">
+                <div class="page-hero-eyebrow">Help Center</div>
+                <h1>How can we help?</h1>
+                <p>Browse common questions below or send us a message. We respond within 24-48 hours.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT STRIP -->
+    <div class="contact-strip">
+        <div class="container">
+            <div class="contact-strip-inner">
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-label">Email us</div>
+                        <div class="contact-value"><a href="mailto:support@thecreativerecord.com">support@thecreativerecord.com</a></div>
+                    </div>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-label">Response time</div>
+                        <div class="contact-value">Within 24-48 hours</div>
+                    </div>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-label">Refund policy</div>
+                        <div class="contact-value"><a href="/refund/">30-day guarantee →</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN SUPPORT CONTENT -->
+    <section class="support-section">
+        <div class="container">
+            <div class="support-grid">
+
+                <!-- FAQ -->
+                <div class="faq-column">
+                    <div class="section-label">FAQ</div>
+                    <h2>Common questions</h2>
+
+                    <div class="faq-list">
+
+                        <div class="faq-item open">
+                            <button class="faq-toggle" onclick="toggleFaq(this)">
+                                <span class="faq-q">How do I access my purchased skills?</span>
+                                <svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-body">
+                                <p>After completing your purchase, you'll receive an email with a download link. You can also access all your purchases anytime by logging into your account at <a href="/account/">/account</a>.</p>
+                                <p>If you don't see the confirmation email, check your spam folder or contact us and we'll resend it.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-toggle" onclick="toggleFaq(this)">
+                                <span class="faq-q">What file formats are included with each skill?</span>
+                                <svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-body">
+                                <p>Each skill includes a PDF guide, a Notion template (shared as a duplicatable link), and a video walkthrough. All files are yours to keep permanently once purchased.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-toggle" onclick="toggleFaq(this)">
+                                <span class="faq-q">Can I use these skills for client work?</span>
+                                <svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-body">
+                                <p>Yes. Once purchased, you can apply any framework or template to client work you're directly managing. Your license covers personal and single-business use, including client projects.</p>
+                                <p>You cannot resell or redistribute the original files. See our <a href="/terms/">Terms of Service</a> for the full license details.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-toggle" onclick="toggleFaq(this)">
+                                <span class="faq-q">How do I cancel my membership?</span>
+                                <svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-body">
+                                <p>You can cancel your membership anytime from your <a href="/account/">account settings</a> under the Billing tab. Cancellation stops future billing immediately. You'll retain access to all membership content through the end of your current paid period.</p>
+                                <p>If you need help canceling, email us and we'll take care of it.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-toggle" onclick="toggleFaq(this)">
+                                <span class="faq-q">What's your refund policy?</span>
+                                <svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-body">
+                                <p>We offer a 30-day money-back guarantee on all purchases. If you're not satisfied for any reason, email us within 30 days and we'll refund you in full -- no questions asked.</p>
+                                <p>See the full details at <a href="/refund/">our Refund Policy page →</a></p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-toggle" onclick="toggleFaq(this)">
+                                <span class="faq-q">Do you offer team pricing?</span>
+                                <svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="faq-body">
+                                <p>Teams of 3 or more get 20% off. Email us at <a href="mailto:support@thecreativerecord.com">support@thecreativerecord.com</a> with the number of people on your team and we'll set up a team arrangement.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="margin-top: var(--s5); padding-top: var(--s4); border-top: 1px solid var(--cream-3);">
+                        <p style="font-size: 0.875rem; color: var(--ink-4);">
+                            Also helpful: <a href="/terms/" style="color: var(--terra); text-decoration: none;">Terms of Service</a> &nbsp;·&nbsp; <a href="/privacy/" style="color: var(--terra); text-decoration: none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="/refund/" style="color: var(--terra); text-decoration: none;">Refund Policy</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONTACT FORM -->
+                <div class="contact-form-card">
+                    <h3>Send us a message</h3>
+                    <p>We'll get back to you within 24-48 hours.</p>
+
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">What's this about?</label>
+                            <select id="subject" name="subject">
+                                <option value="">Select a topic...</option>
+                                <option value="download">Can't access my download</option>
+                                <option value="refund">Refund request</option>
+                                <option value="billing">Billing question</option>
+                                <option value="membership">Membership / account</option>
+                                <option value="team">Team pricing</option>
+                                <option value="other">Something else</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Describe what you need help with..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+
+                        <div class="form-response-note">
+                            <div class="response-dot"></div>
+                            <span>Typically respond within 24-48 hours</span>
+                        </div>
+                    </form>
+
+                    <div id="formSuccess" style="display:none; text-align: center; padding: var(--s4) 0;">
+                        <div style="font-size: 2rem; margin-bottom: var(--s2);">✓</div>
+                        <h4 style="color: var(--ink); margin-bottom: var(--s1);">Message sent</h4>
+                        <p style="font-size: 0.875rem; color: var(--ink-4);">We'll get back to you at the email you provided within 24-48 hours.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy/">Privacy</a></li>
+                        <li><a href="/terms/">Terms</a></li>
+                        <li><a href="/refund/">Refunds</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            // close all
+            document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+            // open this one if it wasn't open
+            if (!isOpen) item.classList.add('open');
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            // In production, wire this to your form backend (Netlify Forms, Formspree, etc.)
+            // For now, show success state
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

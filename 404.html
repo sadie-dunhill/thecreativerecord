@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found — The Creative Record</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Head back to The Creative Record to find what you need.">
+    <meta name="robots" content="noindex">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Page Not Found — The Creative Record">
+    <meta property="og:description" content="The page you're looking for doesn't exist. Head back to The Creative Record to find what you need.">
+    <meta property="og:image" content="https://thecreativerecord.com/assets/images/og-default.png">
+    <meta property="og:url" content="https://thecreativerecord.com/404">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Page Not Found — The Creative Record">
+    <meta name="twitter:description" content="The page you're looking for doesn't exist. Head back to The Creative Record.">
+    <meta name="twitter:image" content="https://thecreativerecord.com/assets/images/og-default.png">
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
+            --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            --t-fast: 150ms ease; --t-base: 220ms ease;
+        }
+
+        html { font-size: 16px; }
+        body {
+            font-family: var(--font-sans); font-weight: 400;
+            color: var(--ink-3); background: var(--cream);
+            line-height: 1.65; -webkit-font-smoothing: antialiased;
+            min-height: 100vh; display: flex; flex-direction: column;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+
+        h1, h2, h3 {
+            font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.15;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg);
+            font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem;
+            letter-spacing: 0.01em; text-decoration: none; border: 1px solid transparent;
+            cursor: pointer; transition: all var(--t-base); white-space: nowrap;
+        }
+        .btn-primary { background: var(--terra); color: var(--white); border-color: var(--terra); }
+        .btn-primary:hover { background: #b84a24; border-color: #b84a24; box-shadow: var(--shadow-terra); transform: translateY(-1px); }
+        .btn-ghost { background: transparent; color: var(--ink); border-color: var(--cream-3); }
+        .btn-ghost:hover { background: var(--cream-2); }
+
+        /* ---- HEADER ---- */
+        header {
+            background: rgba(250,248,245,0.94); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3); position: sticky; top: 0; z-index: 200;
+        }
+        nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links { display: flex; align-items: center; gap: var(--s5); list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
+        .nav-links a:hover { color: var(--ink); }
+
+        /* ---- 404 CONTENT ---- */
+        .error-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--s8) var(--s4);
+            text-align: center;
+        }
+
+        .error-inner { max-width: 580px; }
+
+        .error-code {
+            font-family: var(--font-serif);
+            font-size: clamp(6rem, 15vw, 10rem);
+            color: var(--terra-3);
+            line-height: 1;
+            display: block;
+            margin-bottom: var(--s3);
+            letter-spacing: -0.04em;
+        }
+
+        .error-inner h1 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: var(--s3);
+        }
+
+        .error-inner p {
+            font-size: 1.0625rem;
+            color: var(--ink-3);
+            margin-bottom: var(--s5);
+            max-width: 440px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .error-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--s2);
+            flex-wrap: wrap;
+            margin-bottom: var(--s6);
+        }
+
+        .error-links {
+            border-top: 1px solid var(--cream-3);
+            padding-top: var(--s4);
+        }
+
+        .error-links p {
+            font-size: 0.875rem;
+            color: var(--ink-4);
+            margin-bottom: var(--s2);
+        }
+
+        .error-links-list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--s3);
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .error-links-list a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--terra);
+            text-decoration: none;
+            transition: color var(--t-fast);
+        }
+        .error-links-list a:hover { color: var(--terra-2); }
+
+        /* ---- FOOTER ---- */
+        footer {
+            background: var(--ink);
+            color: var(--ink-4);
+            padding: var(--s5) 0 var(--s4);
+            margin-top: 0;
+        }
+        .footer-bottom {
+            display: flex; align-items: center; justify-content: space-between;
+            padding-top: var(--s3); font-size: 0.8125rem; color: var(--ink-4);
+        }
+        .footer-made { color: var(--ink-4); }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .footer-bottom { flex-direction: column; gap: var(--s1); text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/subscribe/" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.875rem;">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="error-section">
+        <div class="error-inner">
+            <span class="error-code">404</span>
+            <h1>This page doesn't exist</h1>
+            <p>The link might be broken, the page may have moved, or you may have typed something slightly off. It happens.</p>
+            <div class="error-actions">
+                <a href="/" class="btn btn-primary">Back to Home</a>
+                <a href="/skills/" class="btn btn-ghost">Browse Skills</a>
+            </div>
+            <div class="error-links">
+                <p>Popular pages</p>
+                <ul class="error-links-list">
+                    <li><a href="/skills/">All Skills</a></li>
+                    <li><a href="/subscribe/">Membership</a></li>
+                    <li><a href="/feedback/">Get Feedback</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <span>&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

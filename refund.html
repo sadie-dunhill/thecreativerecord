@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Policy — The Creative Record</title>
+    <meta name="description" content="30-day money-back guarantee. No questions asked. Here's how refunds work at The Creative Record.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
+            --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            --t-fast: 150ms ease; --t-base: 220ms ease;
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans); font-weight: 400; color: var(--ink-3);
+            background: var(--cream); line-height: 1.65; -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.15; letter-spacing: -0.01em; }
+        h4 { font-family: var(--font-sans); font-weight: 600; color: var(--ink-2); line-height: 1.3; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg); font-family: var(--font-sans);
+            font-weight: 500; font-size: 0.9375rem; letter-spacing: 0.01em; text-decoration: none;
+            border: 1px solid transparent; cursor: pointer; transition: all var(--t-base);
+        }
+        .btn-primary { background: var(--terra); color: var(--white); border-color: var(--terra); }
+        .btn-primary:hover { background: #b84a24; border-color: #b84a24; transform: translateY(-1px); }
+        .btn-ghost { background: transparent; color: var(--ink); border-color: var(--cream-3); }
+        .btn-ghost:hover { background: var(--cream-2); }
+
+        header {
+            background: rgba(250,248,245,0.94); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--cream-3);
+            position: sticky; top: 0; z-index: 200;
+        }
+        nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links { display: flex; align-items: center; gap: var(--s5); list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-cta { margin-left: var(--s2); }
+
+        .page-hero {
+            background: var(--ink); padding: var(--s6) 0 var(--s7);
+            position: relative; overflow: hidden;
+        }
+        .page-hero::after {
+            content: ''; position: absolute; top: -200px; right: -100px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(200,85,42,0.10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-hero-inner { position: relative; z-index: 1; }
+        .page-hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--terra-2); margin-bottom: var(--s3);
+        }
+        .page-hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--terra-2); }
+        .page-hero h1 { font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: var(--s2); }
+        .page-hero p { font-size: 1rem; color: rgba(255,255,255,0.45); }
+
+        /* GUARANTEE CALLOUT */
+        .guarantee-section {
+            padding: var(--s7) 0 var(--s5);
+            background: var(--cream);
+        }
+        .guarantee-card {
+            max-width: 720px;
+            margin: 0 auto var(--s6);
+            background: var(--ink);
+            border-radius: var(--r-xl);
+            padding: var(--s6) var(--s5);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .guarantee-card::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(200,85,42,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .guarantee-icon {
+            width: 72px; height: 72px;
+            background: rgba(200,85,42,0.15);
+            border: 2px solid rgba(200,85,42,0.4);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto var(--s3);
+            position: relative; z-index: 1;
+        }
+        .guarantee-icon svg {
+            width: 36px; height: 36px;
+            stroke: var(--terra-2); fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .guarantee-card h2 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: var(--s2);
+            position: relative; z-index: 1;
+        }
+        .guarantee-card p {
+            font-size: 1.0625rem;
+            color: rgba(255,255,255,0.55);
+            max-width: 440px;
+            margin: 0 auto;
+            line-height: 1.7;
+            position: relative; z-index: 1;
+        }
+
+        .legal-content { padding: 0 0 var(--s7); background: var(--cream); }
+        .legal-inner { max-width: 720px; margin: 0 auto; }
+        .legal-meta {
+            font-size: 0.875rem; color: var(--ink-4); margin-bottom: var(--s6);
+            padding-bottom: var(--s4); border-bottom: 1px solid var(--cream-3);
+        }
+        .legal-inner h2 {
+            font-size: 1.5rem; margin-top: var(--s6); margin-bottom: var(--s3);
+            padding-bottom: var(--s2); border-bottom: 1px solid var(--cream-3);
+        }
+        .legal-inner h3 {
+            font-size: 1.125rem; margin-top: var(--s4); margin-bottom: var(--s2);
+            font-family: var(--font-sans); font-weight: 600; color: var(--ink-2);
+        }
+        .legal-inner p { font-size: 0.9375rem; color: var(--ink-3); line-height: 1.75; margin-bottom: var(--s3); }
+        .legal-inner ul { margin: 0 0 var(--s3) var(--s4); }
+        .legal-inner li { font-size: 0.9375rem; color: var(--ink-3); line-height: 1.75; margin-bottom: var(--s1); }
+        .legal-inner a { color: var(--terra); text-decoration: none; }
+        .legal-inner a:hover { text-decoration: underline; }
+
+        /* STEPS */
+        .steps-list { list-style: none; margin: 0 0 var(--s4) 0 !important; }
+        .step-item {
+            display: flex; gap: var(--s3);
+            padding: var(--s3) 0;
+            border-bottom: 1px solid var(--cream-3);
+        }
+        .step-item:last-child { border-bottom: none; }
+        .step-num {
+            width: 32px; height: 32px; min-width: 32px;
+            background: var(--terra-3);
+            border: 1px solid rgba(200,85,42,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            color: var(--terra);
+            margin-top: 2px;
+        }
+        .step-body h4 { font-size: 0.9375rem; margin-bottom: 4px; }
+        .step-body p { font-size: 0.9rem; color: var(--ink-3); margin-bottom: 0; }
+
+        footer { background: var(--ink); padding: var(--s7) 0 var(--s5); }
+        .footer-top {
+            display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: var(--s7);
+            margin-bottom: var(--s6); padding-bottom: var(--s6);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .footer-brand .logo { display: inline-block; margin-bottom: var(--s3); color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: var(--s3); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--t-fast); }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+        .footer-copy { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+        .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+
+        @media (max-width: 1024px) { .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); } }
+        @media (max-width: 768px) {
+            .container { padding: 0 var(--s3); }
+            .nav-links { display: none; }
+            .nav-cta .btn { padding: 10px 18px; font-size: 0.875rem; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-bottom { flex-direction: column; gap: var(--s1); }
+            .guarantee-card { padding: var(--s4) var(--s3); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-inner">
+                <div class="page-hero-eyebrow">Policy</div>
+                <h1>Refund Policy</h1>
+                <p>We stand behind our work. If it's not right for you, we make it right.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUARANTEE CALLOUT -->
+    <section class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-card">
+                <div class="guarantee-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h2>30-Day Money-Back Guarantee</h2>
+                <p>If you're not satisfied with a purchase for any reason, email us within 30 days and we'll refund you in full. No questions asked, no hoops to jump through.</p>
+            </div>
+
+            <div class="legal-inner">
+                <div class="legal-meta">
+                    Last updated: March 15, 2026
+                </div>
+
+                <h2>How to Request a Refund</h2>
+                <p>The process is simple. Here's exactly what to do:</p>
+
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-body">
+                            <h4>Email us within 30 days of purchase</h4>
+                            <p>Send a message to <a href="mailto:support@thecreativerecord.com">support@thecreativerecord.com</a> from the email address you used to purchase. Subject line: "Refund Request."</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-body">
+                            <h4>Include your order details</h4>
+                            <p>Include your order number or the email address used at checkout. This helps us locate your purchase quickly.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-body">
+                            <h4>We'll confirm and process</h4>
+                            <p>We'll confirm receipt within one business day and initiate the refund through Stripe. You don't need to explain why -- though feedback is always welcome.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">4</div>
+                        <div class="step-body">
+                            <h4>Refund appears in 5-10 business days</h4>
+                            <p>Once processed, refunds typically appear on your original payment method within 5-10 business days, depending on your card issuer.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <h2>Eligible Purchases</h2>
+                <p>Our 30-day guarantee applies to:</p>
+                <ul>
+                    <li>Individual skill purchases</li>
+                    <li>Complete skill bundles</li>
+                    <li>Membership subscriptions (prorated refund for the unused portion of current billing period)</li>
+                </ul>
+
+                <h2>Processing Timeline</h2>
+                <p>Once we initiate a refund:</p>
+                <ul>
+                    <li>You'll receive an email confirmation from us within 1 business day</li>
+                    <li>Stripe processes the refund within 2 business days</li>
+                    <li>Your card issuer typically applies the credit within 5-10 business days</li>
+                    <li>Total time from request to card credit: typically 7-12 business days</li>
+                </ul>
+
+                <h2>Membership Refunds</h2>
+                <p>For monthly membership subscribers:</p>
+                <ul>
+                    <li>Cancel anytime through your account settings at <a href="/account/">/account</a></li>
+                    <li>Cancellation stops future billing immediately</li>
+                    <li>Refund requests within 30 days of any charge will be honored in full</li>
+                    <li>Access to membership content continues until the end of your paid billing period</li>
+                </ul>
+
+                <h2>Exceptions</h2>
+                <p>We keep exceptions to a minimum. We will decline a refund request only if:</p>
+                <ul>
+                    <li>The request is received more than 30 days after the original purchase date</li>
+                    <li>The account has been flagged for abuse (e.g., repeatedly purchasing and refunding, sharing purchased content)</li>
+                </ul>
+                <p>If you're outside the 30-day window but have a genuine issue with a product, email us anyway. We'll do our best to make it right.</p>
+
+                <h2>Contact</h2>
+                <p>Refund questions or requests:</p>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:support@thecreativerecord.com">support@thecreativerecord.com</a></li>
+                    <li><strong>Response time:</strong> Within 1 business day</li>
+                </ul>
+                <p>See also: <a href="/terms/">Terms of Service</a> &nbsp;·&nbsp; <a href="/support/">Support Center</a></p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy/">Privacy</a></li>
+                        <li><a href="/terms/">Terms</a></li>
+                        <li><a href="/refund/">Refunds</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

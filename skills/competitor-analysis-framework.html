@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitor Analysis Framework — Spy on Competitors Ethically and Effectively | The Creative Record</title>
+    <meta name="description" content="The systematic competitor intelligence framework for DTC brands. Track ad creative, find positioning gaps, and turn competitor research into creative advantage -- without copying anyone.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --ink: #0f0e0d; --ink-2: #3d3a36; --ink-3: #6b6560; --ink-4: #a09890;
+            --terra: #c8552a; --terra-2: #e8714a; --terra-3: #f4e0d6;
+            --cream: #faf8f5; --cream-2: #f3f0eb; --cream-3: #e8e4dd; --white: #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
+            --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            --t-fast: 150ms ease; --t-base: 220ms ease;
+        }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body { font-family: var(--font-sans); font-weight: 400; color: var(--ink-3); background: var(--cream); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.15; letter-spacing: -0.01em; }
+        h4, h5, h6 { font-family: var(--font-sans); font-weight: 600; color: var(--ink-2); line-height: 1.3; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 26px; border-radius: var(--r-lg); font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem; letter-spacing: 0.01em; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: all var(--t-base); white-space: nowrap; }
+        .btn-primary { background: var(--terra); color: var(--white); border-color: var(--terra); }
+        .btn-primary:hover { background: #b84a24; border-color: #b84a24; box-shadow: var(--shadow-terra); transform: translateY(-1px); }
+        .btn-ghost { background: transparent; color: var(--ink); border-color: var(--cream-3); }
+        .btn-ghost:hover { background: var(--cream-2); border-color: var(--cream-3); }
+        .btn-ghost-inv { background: transparent; color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.25); }
+        .btn-ghost-inv:hover { color: var(--white); background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.45); }
+        .btn-lg { padding: 16px 34px; font-size: 1rem; }
+        .btn-full { width: 100%; }
+
+        header { background: rgba(250,248,245,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--cream-3); position: sticky; top: 0; z-index: 200; }
+        nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links { display: flex; align-items: center; gap: var(--s5); list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-cta { margin-left: var(--s2); }
+
+        .skill-hero { background: var(--ink); color: var(--white); padding: var(--s7) 0 var(--s8); position: relative; overflow: hidden; }
+        .skill-hero::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); opacity: 0.35; pointer-events: none; }
+        .skill-hero::after { content: ''; position: absolute; top: -200px; right: -100px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(200,85,42,0.12) 0%, transparent 70%); pointer-events: none; }
+        .skill-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 400px; gap: var(--s7); align-items: center; }
+        .skill-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.8125rem; color: rgba(255,255,255,0.35); margin-bottom: var(--s3); }
+        .skill-breadcrumb a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color var(--t-fast); }
+        .skill-breadcrumb a:hover { color: rgba(255,255,255,0.65); }
+        .skill-breadcrumb span { color: rgba(255,255,255,0.2); }
+        .skill-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terra-2); margin-bottom: var(--s3); }
+        .skill-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--terra-2); }
+        .skill-hero h1 { font-size: clamp(2.25rem, 4.5vw, 3.5rem); color: var(--white); margin-bottom: var(--s2); line-height: 1.1; }
+        .skill-hero h1 em { font-style: italic; color: var(--terra-2); }
+        .skill-hero-subtitle { font-size: 1.125rem; color: rgba(255,255,255,0.55); max-width: 480px; margin-bottom: var(--s5); line-height: 1.7; }
+        .skill-hero-cta { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+        .hero-price { font-family: var(--font-serif); font-size: 2rem; color: var(--white); }
+        .hero-guarantee { font-size: 0.8125rem; color: rgba(255,255,255,0.35); margin-top: var(--s2); }
+        .skill-hero-visual { display: flex; align-items: center; justify-content: center; }
+        .skill-icon-large { width: 240px; height: 240px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .skill-icon-large svg { width: 80px; height: 80px; stroke: var(--terra-2); fill: none; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; opacity: 0.85; }
+        .skill-icon-tag { position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); background: var(--terra); color: var(--white); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 18px; border-radius: var(--r-md) var(--r-md) 0 0; white-space: nowrap; }
+
+        .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra); margin-bottom: var(--s3); }
+
+        .problem { background: var(--ink-2); color: var(--white); padding: var(--s8) 0; position: relative; overflow: hidden; }
+        .problem::before { content: ''; position: absolute; top: -100px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(200,85,42,0.06) 0%, transparent 70%); pointer-events: none; }
+        .problem-inner { position: relative; z-index: 1; max-width: 760px; }
+        .problem .section-label { color: var(--terra-2); }
+        .problem h2 { font-size: clamp(1.875rem, 3.5vw, 2.75rem); color: var(--white); margin-bottom: var(--s3); }
+        .problem-lead { font-size: 1.125rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: var(--s5); }
+        .problem-list { list-style: none; display: flex; flex-direction: column; gap: var(--s3); }
+        .problem-list li { display: flex; align-items: flex-start; gap: var(--s2); font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+        .problem-list li::before { content: '×'; font-size: 1.25rem; color: var(--terra-2); font-weight: 300; flex-shrink: 0; line-height: 1.4; }
+
+        .inside { background: var(--cream); padding: var(--s8) 0; }
+        .inside-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s6); align-items: start; }
+        .inside-left h2 { font-size: clamp(1.875rem, 3vw, 2.5rem); margin-bottom: var(--s3); }
+        .inside-left p { font-size: 1rem; color: var(--ink-3); line-height: 1.7; margin-bottom: var(--s4); }
+        .deliverable-list { list-style: none; display: flex; flex-direction: column; gap: var(--s2); }
+        .deliverable-list li { display: flex; align-items: flex-start; gap: var(--s2); font-size: 0.9375rem; color: var(--ink-2); line-height: 1.55; padding: var(--s2) var(--s3); background: var(--white); border: 1px solid var(--cream-3); border-radius: var(--r-lg); }
+        .check-icon { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; background: var(--terra-3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+        .check-icon svg { width: 10px; height: 8px; stroke: var(--terra); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .deliverable-strong { font-weight: 600; color: var(--ink); }
+
+        /* Intelligence card */
+        .intel-card { background: var(--ink); border-radius: var(--r-xl); padding: var(--s4); border: 1px solid rgba(255,255,255,0.07); }
+        .ic-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra-2); margin-bottom: var(--s3); }
+        .ic-item { display: flex; gap: var(--s2); padding: var(--s2) 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .ic-item:last-child { border-bottom: none; }
+        .ic-icon { width: 32px; height: 32px; min-width: 32px; border-radius: var(--r-md); background: rgba(200,85,42,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .ic-icon svg { width: 14px; height: 14px; stroke: var(--terra-2); fill: none; stroke-width: 1.5; stroke-linecap: round; }
+        .ic-name { font-size: 0.875rem; font-weight: 600; color: rgba(255,255,255,0.85); margin-bottom: 2px; }
+        .ic-desc { font-size: 0.8125rem; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+        /* Right vs Wrong */
+        .approach-section { background: var(--cream-2); padding: var(--s8) 0; border-top: 1px solid var(--cream-3); }
+        .approach-header { margin-bottom: var(--s6); }
+        .approach-header h2 { font-size: clamp(1.875rem, 3vw, 2.5rem); margin-bottom: var(--s3); }
+        .approach-header p { font-size: 1rem; color: var(--ink-3); line-height: 1.7; max-width: 560px; }
+        .approach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); }
+        .approach-card { border-radius: var(--r-xl); padding: var(--s4); }
+        .approach-card.wrong { background: rgba(200,85,42,0.06); border: 1px solid rgba(200,85,42,0.2); }
+        .approach-card.right { background: var(--white); border: 1px solid var(--cream-3); }
+        .approach-label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--s3); }
+        .approach-label.wrong-label { color: var(--terra); }
+        .approach-label.right-label { color: #2a8a4a; }
+        .approach-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .approach-card ul li { font-size: 0.9rem; color: var(--ink-2); line-height: 1.55; padding-left: 16px; position: relative; }
+        .approach-card.wrong ul li::before { content: '×'; position: absolute; left: 0; color: var(--terra); font-weight: 600; }
+        .approach-card.right ul li::before { content: '→'; position: absolute; left: 0; color: #2a8a4a; font-weight: 600; }
+
+        .for-who { background: var(--cream); padding: var(--s8) 0; border-top: 1px solid var(--cream-3); border-bottom: 1px solid var(--cream-3); }
+        .for-who-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s7); align-items: start; }
+        .for-who h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); margin-bottom: var(--s3); }
+        .for-who p { font-size: 1rem; color: var(--ink-3); line-height: 1.7; }
+        .for-list { list-style: none; display: flex; flex-direction: column; gap: var(--s2); margin-top: var(--s4); }
+        .for-list li { display: flex; align-items: flex-start; gap: var(--s2); font-size: 0.9375rem; color: var(--ink-2); line-height: 1.6; padding: var(--s3); background: var(--white); border: 1px solid var(--cream-3); border-radius: var(--r-lg); }
+
+        .outcomes { background: var(--cream-2); padding: var(--s8) 0; }
+        .outcomes-header { text-align: center; max-width: 600px; margin: 0 auto var(--s6); }
+        .outcomes-header h2 { font-size: clamp(1.875rem, 3.5vw, 2.75rem); margin-bottom: var(--s3); }
+        .outcomes-header p { font-size: 1.0625rem; color: var(--ink-3); line-height: 1.7; }
+        .outcomes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3); max-width: 800px; margin: 0 auto; }
+        .outcome-card { background: var(--white); border: 1px solid var(--cream-3); border-radius: var(--r-xl); padding: var(--s4); transition: transform var(--t-base), box-shadow var(--t-base); }
+        .outcome-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .outcome-number { font-family: var(--font-serif); font-size: 2.5rem; color: var(--terra); line-height: 1; margin-bottom: var(--s2); }
+        .outcome-text { font-size: 0.9375rem; font-weight: 600; color: var(--ink); line-height: 1.4; margin-bottom: 6px; }
+        .outcome-detail { font-size: 0.875rem; color: var(--ink-3); line-height: 1.6; }
+
+        .pricing-section { background: var(--ink); padding: var(--s8) 0; position: relative; overflow: hidden; }
+        .pricing-section::before { content: ''; position: absolute; bottom: -200px; left: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(200,85,42,0.08) 0%, transparent 70%); pointer-events: none; }
+        .pricing-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; text-align: center; }
+        .pricing-section .section-label { color: var(--terra-2); }
+        .pricing-section h2 { font-size: clamp(1.875rem, 3.5vw, 2.75rem); color: var(--white); margin-bottom: var(--s2); }
+        .pricing-section .subtitle { font-size: 1.0625rem; color: rgba(255,255,255,0.45); margin-bottom: var(--s5); line-height: 1.7; }
+        .pricing-card-solo { background: rgba(255,255,255,0.05); border: 1px solid rgba(200,85,42,0.4); border-radius: var(--r-xl); padding: var(--s5); margin-bottom: var(--s4); }
+        .price-big { font-family: var(--font-serif); font-size: 4rem; color: var(--white); line-height: 1; margin-bottom: var(--s1); }
+        .price-note { font-size: 0.875rem; color: rgba(255,255,255,0.35); margin-bottom: var(--s4); }
+        .pricing-includes { list-style: none; text-align: left; margin-bottom: var(--s5); padding-bottom: var(--s4); border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .pricing-includes li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; font-size: 0.9rem; color: rgba(255,255,255,0.65); }
+        .pricing-includes li::before { content: ''; display: block; width: 16px; height: 16px; min-width: 16px; border-radius: 50%; background: rgba(200,85,42,0.15); border: 1.5px solid var(--terra); background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%23c8552a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; top: 1px; position: relative; flex-shrink: 0; }
+        .guarantee-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 8px 18px; font-size: 0.8125rem; color: rgba(255,255,255,0.5); margin-top: var(--s3); }
+        .guarantee-badge svg { width: 14px; height: 14px; stroke: var(--terra-2); fill: none; stroke-width: 1.5; }
+
+        .faq-section { background: var(--cream); padding: var(--s8) 0; }
+        .faq-header { text-align: center; margin-bottom: var(--s6); }
+        .faq-header h2 { font-size: clamp(1.875rem, 3vw, 2.5rem); }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); max-width: 900px; margin: 0 auto; }
+        .faq-item { background: var(--white); border: 1px solid var(--cream-3); border-radius: var(--r-lg); padding: var(--s4); }
+        .faq-q { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+        .faq-a { font-size: 0.9rem; color: var(--ink-3); line-height: 1.65; }
+
+        .footer-cta { background: var(--cream-2); padding: var(--s8) 0; text-align: center; border-top: 1px solid var(--cream-3); }
+        .footer-cta h2 { font-size: clamp(1.875rem, 3.5vw, 2.75rem); margin-bottom: var(--s3); }
+        .footer-cta p { font-size: 1.0625rem; color: var(--ink-3); max-width: 420px; margin: 0 auto var(--s5); line-height: 1.7; }
+        .footer-cta-buttons { display: flex; gap: var(--s2); justify-content: center; flex-wrap: wrap; }
+
+        footer { background: var(--ink); padding: var(--s7) 0 var(--s5); }
+        .footer-top { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: var(--s7); margin-bottom: var(--s6); padding-bottom: var(--s6); border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .footer-brand .logo { display: inline-block; margin-bottom: var(--s3); color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: var(--s3); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--t-fast); }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+        .footer-copy { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+        .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+
+        .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1024px) {
+            .skill-hero-inner { grid-template-columns: 1fr; }
+            .skill-hero-visual { display: none; }
+            .inside-grid { grid-template-columns: 1fr; }
+            .approach-grid { grid-template-columns: 1fr; }
+            .for-who-inner { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 var(--s3); }
+            .skill-hero { padding: var(--s6) 0 var(--s7); }
+            .outcomes-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-bottom { flex-direction: column; gap: var(--s1); }
+            .nav-links { display: none; }
+            .nav-cta .btn { padding: 10px 18px; font-size: 0.875rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="skill-hero">
+        <div class="container">
+            <div class="skill-hero-inner">
+                <div class="skill-hero-content">
+                    <div class="skill-breadcrumb">
+                        <a href="/">Home</a><span>›</span>
+                        <a href="/skills/">Skills</a><span>›</span>
+                        Competitor Analysis Framework
+                    </div>
+                    <div class="skill-eyebrow">Competitive Intelligence</div>
+                    <h1>Turn Competitor Research<br>Into <em>Creative Advantage</em></h1>
+                    <p class="skill-hero-subtitle">The systematic framework for tracking competitor ads, identifying positioning gaps, and building creative strategy from real market intelligence -- not guesswork. Learn from what's working around you, then do something better.</p>
+                    <div class="skill-hero-cta">
+                        <div>
+                            <a href="#pricing" class="btn btn-primary btn-lg">Get Access — $39</a>
+                            <div class="hero-guarantee">30-day money-back guarantee</div>
+                        </div>
+                        <span class="hero-price">$39</span>
+                    </div>
+                </div>
+                <div class="skill-hero-visual">
+                    <div class="skill-icon-large">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <div class="skill-icon-tag">Competitive Intel</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <div class="problem-inner reveal">
+                <div class="section-label">The Problem</div>
+                <h2>Most brands do competitor research backwards -- and end up behind</h2>
+                <p class="problem-lead">Copying what your competitors are doing puts you permanently one step behind. The goal isn't to imitate -- it's to understand why their creative works, find the gaps they're missing, and build creative that owns territory they've left open.</p>
+                <ul class="problem-list">
+                    <li>Copying competitors' exact hooks and visual styles without understanding the strategy behind them -- so you get their aesthetic but miss the insight that makes it work</li>
+                    <li>No systematic process for tracking what competitors are running, so you're reacting to what you happen to see in your feed instead of monitoring what they're actually spending on</li>
+                    <li>Treating competitor analysis as a one-time exercise instead of a weekly intelligence habit -- by the time you look again, the market has moved and your positioning is based on stale data</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="inside">
+        <div class="container">
+            <div class="inside-grid">
+                <div class="inside-left reveal">
+                    <div class="section-label">What's Inside</div>
+                    <h2>A complete system for turning competitor data into creative strategy</h2>
+                    <p>Not a surface-level "look at their ads" exercise. A structured analysis methodology that produces positioning insights and actionable creative briefs.</p>
+
+                    <ul class="deliverable-list">
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">5-Dimension Analysis Framework</span> — Creative Volume, Creative Lifespan, Hook Patterns, Visual Style, and Offers & Positioning, with specific tracking metrics for each</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">Competitive Matrix Templates</span> — pre-built comparison tables for direct competitors, indirect competitors, and aspirational brands, with the 4-quadrant positioning map</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">Platform-by-Platform Research Guide</span> — step-by-step instructions for Meta Ad Library, TikTok Creative Center, YouTube, and Google with exactly what to look for</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">Weekly 15-Minute Review Process</span> — a repeatable Monday routine that keeps you current without becoming a full-time intelligence analyst</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">Gap Analysis Framework</span> — four questions that identify the creative angles, audience segments, formats, and benefits your competitors are leaving on the table</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">Tools & Resources Guide</span> — which free tools (Meta Ad Library, TikTok Creative Center) are enough and which paid tools (AdSpy, Pathmatics) are worth investing in</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="reveal">
+                    <div class="intel-card">
+                        <div class="ic-label">5 Dimensions You'll Track</div>
+                        <div class="ic-item">
+                            <div class="ic-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                            <div>
+                                <div class="ic-name">Creative Volume & Frequency</div>
+                                <div class="ic-desc">How many new ads per week, what formats they're prioritizing, seasonal patterns</div>
+                            </div>
+                        </div>
+                        <div class="ic-item">
+                            <div class="ic-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                            <div>
+                                <div class="ic-name">Creative Lifespan</div>
+                                <div class="ic-desc">How long they run the same ad (7-14 days = testing, 30+ days = winning)</div>
+                            </div>
+                        </div>
+                        <div class="ic-item">
+                            <div class="ic-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                            <div>
+                                <div class="ic-name">Hook Patterns & Messaging</div>
+                                <div class="ic-desc">Awareness stage targeting, pain points emphasized, benefit angles tested</div>
+                            </div>
+                        </div>
+                        <div class="ic-item">
+                            <div class="ic-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+                            <div>
+                                <div class="ic-name">Visual Style & Production</div>
+                                <div class="ic-desc">UGC vs. polished, settings, talent types, aesthetic evolution</div>
+                            </div>
+                        </div>
+                        <div class="ic-item">
+                            <div class="ic-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                            <div>
+                                <div class="ic-name">Offers & Positioning</div>
+                                <div class="ic-desc">What offers convert, price framing, guarantees, premium vs. value</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Right vs Wrong way -->
+    <section class="approach-section">
+        <div class="container">
+            <div class="approach-header reveal">
+                <div class="section-label">Intelligence vs. Imitation</div>
+                <h2>The right way to use competitor data</h2>
+                <p>Competitor research is input, not strategy. The framework teaches you to extract the underlying pattern, not copy the surface execution.</p>
+            </div>
+            <div class="approach-grid">
+                <div class="approach-card wrong reveal">
+                    <div class="approach-label wrong-label">Wrong Way</div>
+                    <ul>
+                        <li>Copy their exact hooks and hope for the same results</li>
+                        <li>Chase every trend they start</li>
+                        <li>Assume what works for them works for you</li>
+                        <li>Mimic their visual style exactly</li>
+                    </ul>
+                </div>
+                <div class="approach-card right reveal">
+                    <div class="approach-label right-label">Right Way</div>
+                    <ul>
+                        <li>Understand what awareness stage they're targeting and why</li>
+                        <li>Find the positioning angles they're ignoring</li>
+                        <li>Identify audience segments they're not speaking to</li>
+                        <li>Use their data to build your own differentiated angle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="for-who">
+        <div class="container">
+            <div class="for-who-inner">
+                <div class="reveal">
+                    <div class="section-label">Who This Is For</div>
+                    <h2>For teams that want to compete smarter, not louder</h2>
+                    <p>Competitive intelligence is most valuable when you don't have the biggest budget. Knowing where competitors are weak is the most efficient way to find your advantage.</p>
+                </div>
+                <div class="reveal">
+                    <ul class="for-list">
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><strong>Creative strategists and media buyers</strong> who want to ground their creative concepts in real market data rather than internal assumptions about what the competition is doing</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><strong>DTC brand teams scaling from $1M to $10M</strong> where reading the competitive landscape can reveal white space that significantly changes your creative positioning</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><strong>Agency creative teams</strong> who need a repeatable research process they can run for any new client to quickly understand the competitive landscape</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="outcomes">
+        <div class="container">
+            <div class="outcomes-header reveal">
+                <div class="section-label">What You'll Be Able To Do</div>
+                <h2>Know your market the way your best competitors don't</h2>
+                <p>Most brands do competitive research reactively. This framework makes it a weekly habit with a 15-minute process that compounds over time.</p>
+            </div>
+            <div class="outcomes-grid">
+                <div class="outcome-card reveal">
+                    <div class="outcome-number">01</div>
+                    <div class="outcome-text">Identify exactly what your top 3 competitors are spending on</div>
+                    <div class="outcome-detail">The Meta Ad Library and TikTok Creative Center guide tells you exactly where to look, what to track, and how to distinguish a test ad from a winner.</div>
+                </div>
+                <div class="outcome-card reveal">
+                    <div class="outcome-number">02</div>
+                    <div class="outcome-text">Find the positioning gap no one is owning</div>
+                    <div class="outcome-detail">The gap analysis questions reveal the angles, audiences, formats, and benefits your competitors are systematically ignoring -- that's your creative opportunity.</div>
+                </div>
+                <div class="outcome-card reveal">
+                    <div class="outcome-number">03</div>
+                    <div class="outcome-text">Run a complete competitive audit in under 2 hours</div>
+                    <div class="outcome-detail">The 5-day action plan takes you from zero to a full competitive matrix in one week. The monthly deep dive keeps it current without becoming a major project.</div>
+                </div>
+                <div class="outcome-card reveal">
+                    <div class="outcome-number">04</div>
+                    <div class="outcome-text">Brief creative from real market intelligence</div>
+                    <div class="outcome-detail">When your creative strategy is built on what competitors are actually doing -- not assumptions -- every brief comes with a clear differentiation rationale.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="pricing-inner reveal">
+                <div class="section-label">Get Access</div>
+                <h2>Stop guessing what competitors are doing.</h2>
+                <p class="subtitle">A systematic intelligence framework that turns market research into creative advantage.</p>
+                <div class="pricing-card-solo">
+                    <div class="price-big">$39</div>
+                    <div class="price-note">One-time purchase — lifetime access</div>
+                    <ul class="pricing-includes">
+                        <li>5-Dimension Analysis Framework (PDF + Notion)</li>
+                        <li>Competitive matrix templates (direct, indirect, aspirational)</li>
+                        <li>4-quadrant positioning map</li>
+                        <li>Platform research guide (Meta, TikTok, YouTube, Google)</li>
+                        <li>Weekly 15-minute review process + monthly deep-dive structure</li>
+                        <li>Gap analysis framework + tools guide + video walkthrough</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-full btn-lg">Buy Now — $39</a>
+                </div>
+                <div class="guarantee-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    30-day money-back guarantee. No questions asked.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-header reveal">
+                <div class="section-label">FAQ</div>
+                <h2>Common questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item reveal">
+                    <div class="faq-q">Do I need paid tools to use this framework?</div>
+                    <div class="faq-a">No. The framework is built around free tools -- Meta Ad Library and TikTok Creative Center -- which are sufficient for most brands spending under $10K/month. The paid tools guide is for when manual analysis becomes a time constraint.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">How often should I run a competitive analysis?</div>
+                    <div class="faq-a">The framework includes two rhythms: a 15-minute weekly review for tracking new ads and a 1-hour monthly deep dive for the full competitive matrix update. The weekly habit is what builds compounding advantage.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Is this ethical -- aren't I spying on competitors?</div>
+                    <div class="faq-a">Yes and yes. All the research methods in this framework use publicly available information -- ad libraries, social media, search ads. The framework includes an ethics section on what to do and what not to do. Analyze publicly. Compete on value.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Can I use this for a client I'm onboarding?</div>
+                    <div class="faq-a">Absolutely. The framework is designed to be run for any brand or category. Many agencies use it as their standard competitive landscape exercise during client onboarding to quickly understand the market before briefing creative.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer-cta">
+        <div class="container">
+            <div class="reveal">
+                <h2>Know the market.<br>Own the positioning.</h2>
+                <p>Intelligence, not imitation. Turn competitor research into the creative advantage they can't see coming.</p>
+                <div class="footer-cta-buttons">
+                    <a href="#pricing" class="btn btn-primary btn-lg">Get Access — $39</a>
+                    <a href="/skills/" class="btn btn-ghost btn-lg">Browse All Skills</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

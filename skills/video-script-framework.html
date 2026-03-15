@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Script Framework — The 30-Second Structure That Converts | The Creative Record</title>
+    <meta name="description" content="The exact 5-beat video script structure used by 8-figure DTC brands. Stop winging scripts. Start converting in 30 seconds.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
+            --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            --shadow-sm:  0 1px 3px rgba(15,14,13,0.06), 0 1px 2px rgba(15,14,13,0.04);
+            --shadow-md:  0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-lg:  0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            --t-fast: 150ms ease; --t-base: 220ms ease; --t-slow: 350ms ease;
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            font-weight: 400;
+            color: var(--ink-3);
+            background: var(--cream);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+
+        h4, h5, h6 {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            color: var(--ink-2);
+            line-height: 1.3;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: var(--r-lg);
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            letter-spacing: 0.01em;
+            text-decoration: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all var(--t-base);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--terra);
+            color: var(--white);
+            border-color: var(--terra);
+        }
+        .btn-primary:hover {
+            background: #b84a24;
+            border-color: #b84a24;
+            box-shadow: var(--shadow-terra);
+            transform: translateY(-1px);
+        }
+        .btn-primary:active { transform: translateY(0); box-shadow: none; }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--ink);
+            border-color: var(--cream-3);
+        }
+        .btn-ghost:hover { background: var(--cream-2); border-color: var(--cream-3); }
+
+        .btn-ghost-inv {
+            background: transparent;
+            color: rgba(255,255,255,0.85);
+            border-color: rgba(255,255,255,0.25);
+        }
+        .btn-ghost-inv:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.45);
+        }
+
+        .btn-lg { padding: 16px 34px; font-size: 1rem; }
+        .btn-full { width: 100%; }
+
+        /* HEADER */
+        header {
+            background: rgba(250,248,245,0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3);
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+        .logo em { font-style: italic; color: var(--terra); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: var(--s5);
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            transition: color var(--t-fast);
+        }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-cta { margin-left: var(--s2); }
+
+        /* HERO */
+        .skill-hero {
+            background: var(--ink);
+            color: var(--white);
+            padding: var(--s7) 0 var(--s8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .skill-hero::after {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -100px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(200,85,42,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .skill-hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--s7);
+            align-items: center;
+        }
+
+        .skill-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: var(--s3);
+        }
+        .skill-breadcrumb a {
+            color: rgba(255,255,255,0.35);
+            text-decoration: none;
+            transition: color var(--t-fast);
+        }
+        .skill-breadcrumb a:hover { color: rgba(255,255,255,0.65); }
+        .skill-breadcrumb span { color: rgba(255,255,255,0.2); }
+
+        .skill-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--terra-2);
+            margin-bottom: var(--s3);
+        }
+        .skill-eyebrow::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--terra-2);
+        }
+
+        .skill-hero h1 {
+            font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+            color: var(--white);
+            margin-bottom: var(--s2);
+            line-height: 1.1;
+        }
+        .skill-hero h1 em { font-style: italic; color: var(--terra-2); }
+
+        .skill-hero-subtitle {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.55);
+            max-width: 480px;
+            margin-bottom: var(--s5);
+            line-height: 1.7;
+        }
+
+        .skill-hero-cta {
+            display: flex;
+            align-items: center;
+            gap: var(--s3);
+            flex-wrap: wrap;
+        }
+
+        .hero-price {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .hero-guarantee {
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.35);
+            margin-top: var(--s2);
+        }
+
+        /* Skill Icon Box */
+        .skill-hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-icon-large {
+            width: 240px;
+            height: 240px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .skill-icon-large svg {
+            width: 80px;
+            height: 80px;
+            stroke: var(--terra-2);
+            fill: none;
+            stroke-width: 1.25;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.85;
+        }
+
+        .skill-icon-tag {
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--terra);
+            color: var(--white);
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: var(--r-md) var(--r-md) 0 0;
+            white-space: nowrap;
+        }
+
+        /* SECTION COMMONS */
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--terra);
+            margin-bottom: var(--s3);
+        }
+
+        /* PROBLEM SECTION */
+        .problem {
+            background: var(--ink-2);
+            color: var(--white);
+            padding: var(--s8) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(200,85,42,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .problem-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+        }
+
+        .problem .section-label { color: var(--terra-2); }
+
+        .problem h2 {
+            font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+            color: var(--white);
+            margin-bottom: var(--s3);
+        }
+
+        .problem-lead {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+            margin-bottom: var(--s5);
+        }
+
+        .problem-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--s3);
+        }
+
+        .problem-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--s2);
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+
+        .problem-list li::before {
+            content: '×';
+            font-size: 1.25rem;
+            color: var(--terra-2);
+            font-weight: 300;
+            flex-shrink: 0;
+            line-height: 1.4;
+        }
+
+        /* WHAT'S INSIDE */
+        .inside {
+            background: var(--cream);
+            padding: var(--s8) 0;
+        }
+
+        .inside-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s6);
+            align-items: start;
+        }
+
+        .inside-left h2 {
+            font-size: clamp(1.875rem, 3vw, 2.5rem);
+            margin-bottom: var(--s3);
+        }
+
+        .inside-left p {
+            font-size: 1rem;
+            color: var(--ink-3);
+            line-height: 1.7;
+            margin-bottom: var(--s4);
+        }
+
+        .deliverable-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--s2);
+        }
+
+        .deliverable-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--s2);
+            font-size: 0.9375rem;
+            color: var(--ink-2);
+            line-height: 1.55;
+            padding: var(--s2) var(--s3);
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-lg);
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border-radius: 50%;
+            background: var(--terra-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .check-icon svg {
+            width: 10px;
+            height: 8px;
+            stroke: var(--terra);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .deliverable-strong {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        /* Beat preview card */
+        .beat-preview {
+            background: var(--ink);
+            border-radius: var(--r-xl);
+            padding: var(--s4);
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .beat-preview-label {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--terra-2);
+            margin-bottom: var(--s3);
+        }
+
+        .beat-item {
+            display: flex;
+            gap: var(--s2);
+            padding: var(--s2) 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .beat-item:last-child { border-bottom: none; }
+
+        .beat-time {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terra);
+            width: 64px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .beat-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 2px;
+        }
+
+        .beat-desc {
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.5;
+        }
+
+        /* FOR WHO */
+        .for-who {
+            background: var(--cream-2);
+            padding: var(--s8) 0;
+            border-top: 1px solid var(--cream-3);
+            border-bottom: 1px solid var(--cream-3);
+        }
+
+        .for-who-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s7);
+            align-items: start;
+        }
+
+        .for-who h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            margin-bottom: var(--s3);
+        }
+
+        .for-who p {
+            font-size: 1rem;
+            color: var(--ink-3);
+            line-height: 1.7;
+        }
+
+        .for-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--s2);
+            margin-top: var(--s4);
+        }
+
+        .for-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--s2);
+            font-size: 0.9375rem;
+            color: var(--ink-2);
+            line-height: 1.6;
+            padding: var(--s3);
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-lg);
+        }
+
+        .for-list li .check-icon { background: var(--terra-3); }
+
+        /* OUTCOMES */
+        .outcomes {
+            background: var(--cream);
+            padding: var(--s8) 0;
+        }
+
+        .outcomes-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto var(--s6);
+        }
+
+        .outcomes-header h2 {
+            font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+            margin-bottom: var(--s3);
+        }
+
+        .outcomes-header p {
+            font-size: 1.0625rem;
+            color: var(--ink-3);
+            line-height: 1.7;
+        }
+
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--s3);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .outcome-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            padding: var(--s4);
+            transition: transform var(--t-base), box-shadow var(--t-base);
+        }
+        .outcome-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        .outcome-number {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--terra);
+            line-height: 1;
+            margin-bottom: var(--s2);
+        }
+
+        .outcome-text {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .outcome-detail {
+            font-size: 0.875rem;
+            color: var(--ink-3);
+            line-height: 1.6;
+        }
+
+        /* PRICING */
+        .pricing-section {
+            background: var(--ink);
+            padding: var(--s8) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            left: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(200,85,42,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .pricing-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 560px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pricing-section .section-label { color: var(--terra-2); }
+
+        .pricing-section h2 {
+            font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+            color: var(--white);
+            margin-bottom: var(--s2);
+        }
+
+        .pricing-section .subtitle {
+            font-size: 1.0625rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: var(--s5);
+            line-height: 1.7;
+        }
+
+        .pricing-card-solo {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(200,85,42,0.4);
+            border-radius: var(--r-xl);
+            padding: var(--s5) var(--s5);
+            margin-bottom: var(--s4);
+        }
+
+        .price-big {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: var(--s1);
+        }
+
+        .price-note {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: var(--s4);
+        }
+
+        .pricing-includes {
+            list-style: none;
+            text-align: left;
+            margin-bottom: var(--s5);
+            padding-bottom: var(--s4);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .pricing-includes li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 9px 0;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+        }
+
+        .pricing-includes li::before {
+            content: '';
+            display: block;
+            width: 16px;
+            height: 16px;
+            min-width: 16px;
+            border-radius: 50%;
+            background: rgba(200,85,42,0.15);
+            border: 1.5px solid var(--terra);
+            background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%23c8552a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            top: 1px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .guarantee-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: var(--s3);
+        }
+
+        .guarantee-badge svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--terra-2);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        /* FAQ */
+        .faq-section {
+            background: var(--cream);
+            padding: var(--s8) 0;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: var(--s6);
+        }
+
+        .faq-header h2 {
+            font-size: clamp(1.875rem, 3vw, 2.5rem);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s2);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-lg);
+            padding: var(--s4);
+        }
+
+        .faq-q {
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 10px;
+        }
+
+        .faq-a {
+            font-size: 0.9rem;
+            color: var(--ink-3);
+            line-height: 1.65;
+        }
+
+        /* FOOTER CTA */
+        .footer-cta {
+            background: var(--cream-2);
+            padding: var(--s8) 0;
+            text-align: center;
+            border-top: 1px solid var(--cream-3);
+        }
+
+        .footer-cta h2 {
+            font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+            margin-bottom: var(--s3);
+        }
+
+        .footer-cta p {
+            font-size: 1.0625rem;
+            color: var(--ink-3);
+            max-width: 420px;
+            margin: 0 auto var(--s5);
+            line-height: 1.7;
+        }
+
+        .footer-cta-buttons {
+            display: flex;
+            gap: var(--s2);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--ink);
+            padding: var(--s7) 0 var(--s5);
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr 1fr;
+            gap: var(--s7);
+            margin-bottom: var(--s6);
+            padding-bottom: var(--s6);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .footer-brand .logo { display: inline-block; margin-bottom: var(--s3); color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+
+        .footer-tagline {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.35);
+            line-height: 1.7;
+            max-width: 240px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: var(--s3);
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: color var(--t-fast);
+        }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-copy { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+        .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .skill-hero-inner { grid-template-columns: 1fr; }
+            .skill-hero-visual { display: none; }
+            .inside-grid { grid-template-columns: 1fr; }
+            .for-who-inner { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 var(--s3); }
+            .skill-hero { padding: var(--s6) 0 var(--s7); }
+            .outcomes-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-bottom { flex-direction: column; gap: var(--s1); }
+            .nav-links { display: none; }
+            .nav-cta .btn { padding: 10px 18px; font-size: 0.875rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="skill-hero">
+        <div class="container">
+            <div class="skill-hero-inner">
+                <div class="skill-hero-content">
+                    <div class="skill-breadcrumb">
+                        <a href="/">Home</a>
+                        <span>›</span>
+                        <a href="/skills/">Skills</a>
+                        <span>›</span>
+                        Video Script Framework
+                    </div>
+                    <div class="skill-eyebrow">Script Writing</div>
+                    <h1>The 30-Second Script<br>Structure That <em>Converts</em></h1>
+                    <p class="skill-hero-subtitle">The exact 5-beat framework used by 8-figure DTC brands to write video ads that hook in 3 seconds and drive action by second 30. Works across every platform and category.</p>
+                    <div class="skill-hero-cta">
+                        <div>
+                            <a href="#pricing" class="btn btn-primary btn-lg">Get Access — $39</a>
+                            <div class="hero-guarantee">30-day money-back guarantee</div>
+                        </div>
+                        <span class="hero-price">$39</span>
+                    </div>
+                </div>
+                <div class="skill-hero-visual">
+                    <div class="skill-icon-large">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                        <div class="skill-icon-tag">Script Writing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="problem">
+        <div class="container">
+            <div class="problem-inner reveal">
+                <div class="section-label">The Problem</div>
+                <h2>Most video scripts fail before the first cut</h2>
+                <p class="problem-lead">You're not bad at writing. You're writing in the wrong order. Most brands lead with the product, bury the hook, and wonder why nobody watches past 3 seconds. The structure is the problem -- and it's fixable.</p>
+                <ul class="problem-list">
+                    <li>Opening with brand logos, slow establishing shots, or "Hi, I'm [name]" -- all guaranteed scroll-triggers in the wrong direction</li>
+                    <li>Listing features when viewers need to feel the problem first. Emotional relevance before logical proof, every time</li>
+                    <li>Weak CTAs that say "check us out" instead of giving viewers one clear, specific next step with a reason to act now</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT'S INSIDE -->
+    <section class="inside">
+        <div class="container">
+            <div class="inside-grid">
+                <div class="inside-left reveal">
+                    <div class="section-label">What's Inside</div>
+                    <h2>Everything you need to write scripts that perform</h2>
+                    <p>Not another theory framework. The exact structure, formulas, and complete example scripts you can adapt and ship this week.</p>
+
+                    <ul class="deliverable-list">
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">5-Beat Script Structure</span> — the exact Hook → Setup → Discovery → Proof → CTA breakdown with timing for each beat</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">14 Hook Formulas</span> — fill-in-the-blank formulas for every situation: contrarian, curiosity, result-first, pattern interrupt</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">5 Complete Example Scripts</span> — skincare, supplements, fashion, home, and fitness, fully written out at 30 seconds each</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">Blank Script Template</span> — a timed, fillable template so you never start from scratch again</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">Platform Adaptation Guide</span> — how to compress the framework to 15s or expand to 60s, with TikTok/Meta/YouTube-specific notes</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><span class="deliverable-strong">5 Common Mistakes</span> — the script-killers diagnosed with specific fixes, not vague advice</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="reveal">
+                    <div class="beat-preview">
+                        <div class="beat-preview-label">The 5-Beat Structure at a Glance</div>
+                        <div class="beat-item">
+                            <div class="beat-time">0 – 3s</div>
+                            <div>
+                                <div class="beat-name">Beat 1: The Hook</div>
+                                <div class="beat-desc">Stop the scroll. Create pattern interrupt. Visual or audio surprise.</div>
+                            </div>
+                        </div>
+                        <div class="beat-item">
+                            <div class="beat-time">3 – 8s</div>
+                            <div>
+                                <div class="beat-name">Beat 2: The Setup</div>
+                                <div class="beat-desc">Establish context. Make the problem visceral and relatable.</div>
+                            </div>
+                        </div>
+                        <div class="beat-item">
+                            <div class="beat-time">8 – 15s</div>
+                            <div>
+                                <div class="beat-name">Beat 3: The Discovery</div>
+                                <div class="beat-desc">Introduce your solution naturally. Build credibility.</div>
+                            </div>
+                        </div>
+                        <div class="beat-item">
+                            <div class="beat-time">15 – 25s</div>
+                            <div>
+                                <div class="beat-name">Beat 4: The Proof</div>
+                                <div class="beat-desc">Show transformation. Specific numbers. Overcome objections.</div>
+                            </div>
+                        </div>
+                        <div class="beat-item">
+                            <div class="beat-time">25 – 30s</div>
+                            <div>
+                                <div class="beat-name">Beat 5: The CTA</div>
+                                <div class="beat-desc">One specific action. Remove friction. Create real urgency.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO THIS IS FOR -->
+    <section class="for-who">
+        <div class="container">
+            <div class="for-who-inner">
+                <div class="reveal">
+                    <div class="section-label">Who This Is For</div>
+                    <h2>Built for people who need to write scripts that actually work</h2>
+                    <p>Not for people who want to theory-craft. For people who have a product to sell and need a repeatable process to write scripts that perform.</p>
+                </div>
+                <div class="reveal">
+                    <ul class="for-list">
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><strong>DTC brand operators</strong> writing scripts in-house and tired of the blank page, slow starts, and inconsistent results</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><strong>Creative strategists and media buyers</strong> who need a reliable brief-to-script workflow that accounts for hook rate and completion rate</div>
+                        </li>
+                        <li>
+                            <div class="check-icon"><svg viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1"/></svg></div>
+                            <div><strong>Founders and content creators</strong> running ads without a full agency, who need a framework that produces professional-level output</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUTCOMES -->
+    <section class="outcomes">
+        <div class="container">
+            <div class="outcomes-header reveal">
+                <div class="section-label">What You'll Be Able To Do</div>
+                <h2>Write scripts in an hour, not a week</h2>
+                <p>This framework eliminates the most common time-sinks in script writing: unclear structure, hook second-guessing, and CTA paralysis.</p>
+            </div>
+            <div class="outcomes-grid">
+                <div class="outcome-card reveal">
+                    <div class="outcome-number">01</div>
+                    <div class="outcome-text">Hook in 3 seconds, every time</div>
+                    <div class="outcome-detail">With 14 proven hook formulas, you'll have a pattern-interrupt ready before you write a single other line.</div>
+                </div>
+                <div class="outcome-card reveal">
+                    <div class="outcome-number">02</div>
+                    <div class="outcome-text">Adapt any product to the 5-beat structure</div>
+                    <div class="outcome-detail">Skincare, supplements, SaaS, apparel -- the beats work across categories. Fill in the blanks, time it, ship it.</div>
+                </div>
+                <div class="outcome-card reveal">
+                    <div class="outcome-number">03</div>
+                    <div class="outcome-text">Brief and test new creative 2x faster</div>
+                    <div class="outcome-detail">When your structure is locked, you spend less time debating and more time iterating on what actually moves the needle.</div>
+                </div>
+                <div class="outcome-card reveal">
+                    <div class="outcome-number">04</div>
+                    <div class="outcome-text">Repurpose one script across three platforms</div>
+                    <div class="outcome-detail">The adaptation guide shows exactly how to compress or expand the framework for TikTok, Meta, and YouTube pre-roll.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="pricing-inner reveal">
+                <div class="section-label">Get Access</div>
+                <h2>One framework. Infinite scripts.</h2>
+                <p class="subtitle">Buy once, use forever. No subscription. No upsells. Just the framework.</p>
+
+                <div class="pricing-card-solo">
+                    <div class="price-big">$39</div>
+                    <div class="price-note">One-time purchase — lifetime access</div>
+                    <ul class="pricing-includes">
+                        <li>The 5-Beat Video Script Structure (PDF + Notion)</li>
+                        <li>14 fill-in-the-blank Hook Formulas</li>
+                        <li>5 complete example scripts (30-second, word-for-word)</li>
+                        <li>Blank timed script template</li>
+                        <li>Platform adaptation guide (15s / 30s / 60s)</li>
+                        <li>Video walkthrough</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-full btn-lg">Buy Now — $39</a>
+                </div>
+
+                <div class="guarantee-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    30-day money-back guarantee. No questions asked.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-header reveal">
+                <div class="section-label">FAQ</div>
+                <h2>Common questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item reveal">
+                    <div class="faq-q">Does this only work for 30-second ads?</div>
+                    <div class="faq-a">No. The framework includes a full adaptation guide for 15-second and 60-second formats. The 5 beats scale in both directions -- the timing shifts, the structure stays the same.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">What categories does this work for?</div>
+                    <div class="faq-a">Any direct-to-consumer product. The framework includes complete example scripts for skincare, supplements, fashion, home goods, and fitness. The beats are category-agnostic.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Do I need a big production budget to use this?</div>
+                    <div class="faq-a">No. The structure works for polished studio creative and raw UGC alike. Several example scripts are written specifically for authentic, low-production formats.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Can I use this for client work?</div>
+                    <div class="faq-a">Yes. Once you purchase, you can apply the framework to unlimited client projects. It's designed for agency and freelance use as much as in-house teams.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="reveal">
+                <h2>Stop guessing.<br>Start with a structure that works.</h2>
+                <p>Every script you write from here uses the same 5-beat framework. Pick up the framework and start today.</p>
+                <div class="footer-cta-buttons">
+                    <a href="#pricing" class="btn btn-primary btn-lg">Get Access — $39</a>
+                    <a href="/skills/" class="btn btn-ghost btn-lg">Browse All Skills</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

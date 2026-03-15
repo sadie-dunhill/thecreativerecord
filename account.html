@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account — The Creative Record</title>
+    <meta name="description" content="Access your purchased skills and manage your Creative Record membership.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
+            --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            --shadow-sm: 0 1px 3px rgba(15,14,13,0.06), 0 1px 2px rgba(15,14,13,0.04);
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            --t-fast: 150ms ease; --t-base: 220ms ease;
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans); font-weight: 400; color: var(--ink-3);
+            background: var(--cream); line-height: 1.65; -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.15; letter-spacing: -0.01em; }
+        h4, h5 { font-family: var(--font-sans); font-weight: 600; color: var(--ink-2); line-height: 1.3; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg); font-family: var(--font-sans);
+            font-weight: 500; font-size: 0.9375rem; letter-spacing: 0.01em; text-decoration: none;
+            border: 1px solid transparent; cursor: pointer; transition: all var(--t-base); white-space: nowrap;
+        }
+        .btn-primary { background: var(--terra); color: var(--white); border-color: var(--terra); }
+        .btn-primary:hover { background: #b84a24; border-color: #b84a24; box-shadow: var(--shadow-terra); transform: translateY(-1px); }
+        .btn-primary:active { transform: translateY(0); box-shadow: none; }
+        .btn-ghost { background: transparent; color: var(--ink); border-color: var(--cream-3); }
+        .btn-ghost:hover { background: var(--cream-2); }
+        .btn-sm { padding: 8px 18px; font-size: 0.8125rem; border-radius: var(--r-md); }
+        .btn-full { width: 100%; }
+
+        /* HEADER */
+        header {
+            background: rgba(250,248,245,0.94); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--cream-3);
+            position: sticky; top: 0; z-index: 200;
+        }
+        nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links { display: flex; align-items: center; gap: var(--s5); list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-cta { margin-left: var(--s2); display: flex; align-items: center; gap: var(--s2); }
+        .nav-account-badge {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.875rem; color: var(--ink-3);
+        }
+        .nav-avatar {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--terra-3); border: 2px solid rgba(200,85,42,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-serif); font-size: 0.875rem; color: var(--terra);
+        }
+
+        /* ACCOUNT LAYOUT */
+        .account-wrap {
+            min-height: calc(100vh - 64px);
+            display: grid;
+            grid-template-columns: 240px 1fr;
+        }
+
+        /* SIDEBAR */
+        .account-sidebar {
+            background: var(--white);
+            border-right: 1px solid var(--cream-3);
+            padding: var(--s5) 0;
+            position: sticky;
+            top: 64px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+        }
+
+        .sidebar-user {
+            padding: 0 var(--s4) var(--s4);
+            border-bottom: 1px solid var(--cream-3);
+            margin-bottom: var(--s3);
+        }
+        .sidebar-avatar {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: var(--terra-3);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-serif); font-size: 1.25rem; color: var(--terra);
+            margin-bottom: var(--s2);
+        }
+        .sidebar-name { font-size: 0.9375rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+        .sidebar-email { font-size: 0.8125rem; color: var(--ink-4); }
+
+        .sidebar-membership-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 4px 10px; border-radius: var(--r-sm);
+            background: var(--terra-3); color: var(--terra);
+            margin-top: var(--s1);
+        }
+        .sidebar-membership-badge.free {
+            background: var(--cream-2); color: var(--ink-4);
+        }
+
+        .sidebar-nav { padding: 0 var(--s2); }
+        .sidebar-nav-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 14px; border-radius: var(--r-md);
+            font-size: 0.9rem; font-weight: 500; color: var(--ink-3);
+            text-decoration: none; cursor: pointer;
+            transition: background var(--t-fast), color var(--t-fast);
+            border: none; background: none; width: 100%; text-align: left;
+        }
+        .sidebar-nav-item:hover { background: var(--cream-2); color: var(--ink); }
+        .sidebar-nav-item.active { background: var(--terra-3); color: var(--terra); }
+        .sidebar-nav-item svg {
+            width: 18px; height: 18px; flex-shrink: 0;
+            stroke: currentColor; fill: none; stroke-width: 1.5;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+        .sidebar-divider {
+            height: 1px; background: var(--cream-3);
+            margin: var(--s2) var(--s4);
+        }
+        .sidebar-section-label {
+            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--ink-4);
+            padding: var(--s1) 14px; margin: 0 var(--s2);
+        }
+
+        /* MAIN CONTENT */
+        .account-main {
+            background: var(--cream);
+            padding: var(--s5) var(--s6);
+            min-height: 100%;
+        }
+
+        .account-panel { display: none; }
+        .account-panel.active { display: block; }
+
+        /* PANEL HEADER */
+        .panel-header { margin-bottom: var(--s5); }
+        .panel-eyebrow {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: var(--s1);
+        }
+        .panel-header h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: var(--s1); }
+        .panel-header p { font-size: 0.9rem; color: var(--ink-4); }
+
+        /* SKILLS GRID */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--s3);
+            margin-bottom: var(--s5);
+        }
+
+        .skill-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            transition: transform var(--t-base), box-shadow var(--t-base);
+        }
+        .skill-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        .skill-card-header {
+            height: 100px; background: var(--ink);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .skill-card-header::after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 70% 50%, rgba(200,85,42,0.18) 0%, transparent 65%);
+        }
+        .skill-card-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; z-index: 1;
+        }
+        .skill-card-icon svg {
+            width: 24px; height: 24px;
+            stroke: rgba(255,255,255,0.75); fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        .skill-card-body { padding: var(--s3); }
+        .skill-tag {
+            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: 6px;
+        }
+        .skill-card-body h4 { font-size: 1rem; color: var(--ink); margin-bottom: var(--s1); }
+        .skill-card-body p { font-size: 0.875rem; color: var(--ink-3); line-height: 1.55; margin-bottom: var(--s3); }
+
+        .skill-card-footer {
+            padding: var(--s2) var(--s3);
+            border-top: 1px solid var(--cream-3);
+            display: flex; align-items: center; gap: var(--s2); flex-wrap: wrap;
+        }
+        .btn-download {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 9px 16px; border-radius: var(--r-md);
+            font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 600;
+            background: var(--terra); color: var(--white);
+            text-decoration: none; border: none; cursor: pointer;
+            transition: background var(--t-fast), transform var(--t-fast);
+        }
+        .btn-download:hover { background: #b84a24; transform: translateY(-1px); }
+        .btn-download svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-view-notion {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 9px 16px; border-radius: var(--r-md);
+            font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 500;
+            background: transparent; color: var(--ink-3);
+            border: 1px solid var(--cream-3); text-decoration: none; cursor: pointer;
+            transition: background var(--t-fast), color var(--t-fast);
+        }
+        .btn-view-notion:hover { background: var(--cream-2); color: var(--ink); }
+
+        .skill-purchased-date {
+            font-size: 0.75rem; color: var(--ink-4); margin-left: auto;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: var(--s7) var(--s4);
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+        }
+        .empty-state-icon {
+            width: 64px; height: 64px;
+            background: var(--cream-2); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto var(--s3);
+        }
+        .empty-state-icon svg { width: 28px; height: 28px; stroke: var(--ink-4); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+        .empty-state h3 { font-size: 1.25rem; margin-bottom: var(--s2); }
+        .empty-state p { font-size: 0.9rem; color: var(--ink-4); max-width: 320px; margin: 0 auto var(--s4); }
+
+        /* MEMBERSHIP STATUS */
+        .membership-card {
+            background: var(--white); border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl); padding: var(--s4); margin-bottom: var(--s3);
+            display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s4);
+        }
+        .membership-card.active-member { border-color: rgba(200,85,42,0.3); background: var(--terra-3); }
+        .membership-info h4 { font-size: 1rem; color: var(--ink); margin-bottom: 4px; }
+        .membership-info p { font-size: 0.875rem; color: var(--ink-3); }
+        .membership-status {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.75rem; font-weight: 600; padding: 4px 10px;
+            border-radius: var(--r-sm); white-space: nowrap;
+        }
+        .membership-status.active { background: rgba(34,197,94,0.12); color: #15803d; }
+        .membership-status.inactive { background: var(--cream-2); color: var(--ink-4); }
+        .membership-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+        /* BILLING TABLE */
+        .billing-table {
+            width: 100%; border-collapse: collapse;
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            margin-bottom: var(--s4);
+        }
+        .billing-table th {
+            font-family: var(--font-sans); font-weight: 600; font-size: 0.8125rem;
+            color: var(--ink-4); text-align: left; padding: 12px 20px;
+            background: var(--cream-2); border-bottom: 1px solid var(--cream-3);
+            letter-spacing: 0.02em;
+        }
+        .billing-table td {
+            padding: 14px 20px; font-size: 0.9rem; color: var(--ink-3);
+            border-bottom: 1px solid var(--cream-3);
+        }
+        .billing-table tr:last-child td { border-bottom: none; }
+        .billing-table tr:hover td { background: var(--cream-2); }
+        .billing-amount { font-weight: 600; color: var(--ink); }
+        .billing-status {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 0.75rem; font-weight: 600; padding: 3px 8px;
+            border-radius: var(--r-sm);
+        }
+        .billing-status.paid { background: rgba(34,197,94,0.1); color: #15803d; }
+        .billing-status.paid::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+        /* SETTINGS */
+        .settings-section {
+            background: var(--white); border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl); margin-bottom: var(--s3); overflow: hidden;
+        }
+        .settings-section-header {
+            padding: var(--s3) var(--s4); border-bottom: 1px solid var(--cream-3);
+            font-size: 0.9375rem; font-weight: 600; color: var(--ink);
+        }
+        .settings-section-body { padding: var(--s4); }
+        .settings-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 0; border-bottom: 1px solid var(--cream-3);
+            gap: var(--s4);
+        }
+        .settings-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .settings-row-label { font-size: 0.9rem; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+        .settings-row-desc { font-size: 0.8125rem; color: var(--ink-4); }
+
+        /* Toggle switch */
+        .toggle-switch {
+            position: relative; width: 44px; height: 24px; flex-shrink: 0;
+        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-track {
+            position: absolute; cursor: pointer; inset: 0;
+            background: var(--cream-3); border-radius: 12px;
+            transition: background var(--t-fast);
+        }
+        .toggle-track::before {
+            content: ''; position: absolute;
+            width: 18px; height: 18px; left: 3px; bottom: 3px;
+            background: var(--white); border-radius: 50%;
+            transition: transform var(--t-fast);
+            box-shadow: var(--shadow-sm);
+        }
+        .toggle-switch input:checked + .toggle-track { background: var(--terra); }
+        .toggle-switch input:checked + .toggle-track::before { transform: translateX(20px); }
+
+        .form-group { margin-bottom: var(--s3); }
+        .form-group label { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--ink-2); margin-bottom: 6px; }
+        .form-group input {
+            width: 100%; max-width: 380px;
+            padding: 11px 14px; font-family: var(--font-sans); font-size: 0.9375rem;
+            color: var(--ink); background: var(--cream);
+            border: 1px solid var(--cream-3); border-radius: var(--r-md);
+            transition: border-color var(--t-fast);
+        }
+        .form-group input:focus { outline: none; border-color: var(--terra); box-shadow: 0 0 0 3px rgba(200,85,42,0.1); }
+
+        /* SUPPORT IN ACCOUNT */
+        .support-card {
+            background: var(--white); border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl); padding: var(--s4); margin-bottom: var(--s3);
+            display: flex; gap: var(--s3); align-items: flex-start;
+        }
+        .support-card-icon {
+            width: 44px; height: 44px; border-radius: var(--r-lg);
+            background: var(--terra-3); display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .support-card-icon svg { width: 22px; height: 22px; stroke: var(--terra); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+        .support-card h4 { font-size: 0.9375rem; color: var(--ink); margin-bottom: 4px; }
+        .support-card p { font-size: 0.875rem; color: var(--ink-3); margin-bottom: var(--s2); }
+        .support-card a { font-size: 0.875rem; color: var(--terra); text-decoration: none; font-weight: 500; }
+        .support-card a:hover { text-decoration: underline; }
+
+        /* FOOTER */
+        footer { background: var(--ink); padding: var(--s7) 0 var(--s5); }
+        .footer-top {
+            display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: var(--s7);
+            margin-bottom: var(--s6); padding-bottom: var(--s6);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .footer-brand .logo { display: inline-block; margin-bottom: var(--s3); color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: var(--s3); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--t-fast); }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+        .footer-copy { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+        .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+            .account-main { padding: var(--s4) var(--s4); }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 var(--s3); }
+            .nav-links { display: none; }
+            .nav-cta .btn { padding: 10px 18px; font-size: 0.875rem; }
+            .account-wrap { grid-template-columns: 1fr; }
+            .account-sidebar {
+                position: static; height: auto;
+                border-right: none; border-bottom: 1px solid var(--cream-3);
+                padding: var(--s3) 0;
+            }
+            .sidebar-nav { display: flex; overflow-x: auto; gap: var(--s1); padding: 0 var(--s3); }
+            .sidebar-nav-item { white-space: nowrap; flex-shrink: 0; }
+            .sidebar-section-label, .sidebar-divider, .sidebar-user { display: none; }
+            .account-main { padding: var(--s3); }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-bottom { flex-direction: column; gap: var(--s1); }
+            .membership-card { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <div class="nav-account-badge">
+                    <div class="nav-avatar" id="navAvatar">SG</div>
+                    <span id="navName">Sarah G.</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ACCOUNT LAYOUT -->
+    <div class="account-wrap">
+
+        <!-- SIDEBAR -->
+        <aside class="account-sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-avatar" id="sidebarAvatar">SG</div>
+                <div class="sidebar-name" id="sidebarName">Sarah Gardner</div>
+                <div class="sidebar-email" id="sidebarEmail">sarah@example.com</div>
+                <div class="sidebar-membership-badge" id="membershipBadge">Member</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="sidebar-section-label">Library</div>
+                <button class="sidebar-nav-item active" onclick="showPanel('skills', this)">
+                    <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                    My Skills
+                </button>
+
+                <div class="sidebar-divider"></div>
+                <div class="sidebar-section-label">Account</div>
+
+                <button class="sidebar-nav-item" onclick="showPanel('billing', this)">
+                    <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    Billing
+                </button>
+                <button class="sidebar-nav-item" onclick="showPanel('settings', this)">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    Settings
+                </button>
+                <button class="sidebar-nav-item" onclick="showPanel('support', this)">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Support
+                </button>
+
+                <div class="sidebar-divider"></div>
+
+                <a href="/skills/" class="sidebar-nav-item" style="color: var(--terra);">
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Browse More Skills
+                </a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="account-main">
+
+            <!-- SKILLS PANEL -->
+            <div class="account-panel active" id="panel-skills">
+                <div class="panel-header">
+                    <div class="panel-eyebrow">Library</div>
+                    <h2>My Skills</h2>
+                    <p>All your purchased frameworks and templates in one place.</p>
+                </div>
+
+                <div class="skills-grid">
+
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-card-icon">
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                            </div>
+                        </div>
+                        <div class="skill-card-body">
+                            <div class="skill-tag">Script Writing</div>
+                            <h4>Video Script Writing System</h4>
+                            <p>The 8-part framework for writing scripts that hook in 3 seconds and convert by 30.</p>
+                        </div>
+                        <div class="skill-card-footer">
+                            <a href="#" class="btn-download">
+                                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Download PDF
+                            </a>
+                            <a href="#" class="btn-view-notion">Notion →</a>
+                            <span class="skill-purchased-date">Mar 1, 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-card-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            </div>
+                        </div>
+                        <div class="skill-card-body">
+                            <div class="skill-tag">Hook Generation</div>
+                            <h4>Hook Generation Masterclass</h4>
+                            <p>47 proven hook formulas with fill-in-the-blank templates for every awareness stage.</p>
+                        </div>
+                        <div class="skill-card-footer">
+                            <a href="#" class="btn-download">
+                                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Download PDF
+                            </a>
+                            <a href="#" class="btn-view-notion">Notion →</a>
+                            <span class="skill-purchased-date">Mar 1, 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-card-icon">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                            </div>
+                        </div>
+                        <div class="skill-card-body">
+                            <div class="skill-tag">Briefing</div>
+                            <h4>Creative Briefing Framework</h4>
+                            <p>The same briefing template used to produce 1,000+ performance ads.</p>
+                        </div>
+                        <div class="skill-card-footer">
+                            <a href="#" class="btn-download">
+                                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Download PDF
+                            </a>
+                            <a href="#" class="btn-view-notion">Notion →</a>
+                            <span class="skill-purchased-date">Feb 15, 2026</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- UPSELL: MORE SKILLS -->
+                <div style="background: var(--ink); border-radius: var(--r-xl); padding: var(--s4); display: flex; align-items: center; justify-content: space-between; gap: var(--s4); flex-wrap: wrap; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(200,85,42,0.12) 0%, transparent 70%); pointer-events: none;"></div>
+                    <div style="position: relative; z-index: 1;">
+                        <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra-2); margin-bottom: 6px;">2 more skills available</div>
+                        <h3 style="color: var(--white); font-size: 1.25rem; margin-bottom: 6px;">Complete your collection</h3>
+                        <p style="font-size: 0.875rem; color: rgba(255,255,255,0.45);">Static Ads Playbook and UGC Direction Guide. Add them individually or upgrade to the bundle.</p>
+                    </div>
+                    <div style="display: flex; gap: var(--s2); flex-shrink: 0; position: relative; z-index: 1;">
+                        <a href="/skills/" class="btn btn-primary btn-sm">View Skills</a>
+                        <a href="/subscribe/" class="btn btn-sm" style="background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.12);">Get Bundle</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BILLING PANEL -->
+            <div class="account-panel" id="panel-billing">
+                <div class="panel-header">
+                    <div class="panel-eyebrow">Account</div>
+                    <h2>Billing</h2>
+                    <p>Your membership status and purchase history.</p>
+                </div>
+
+                <!-- Membership Status -->
+                <div class="membership-card active-member" style="margin-bottom: var(--s4);">
+                    <div class="membership-info">
+                        <h4>Monthly Membership</h4>
+                        <p>$29/month &nbsp;·&nbsp; Renews April 1, 2026</p>
+                        <p style="font-size: 0.8125rem; color: var(--ink-4); margin-top: 4px;">Includes all skills + 1 feedback credit per month + new skill every month</p>
+                    </div>
+                    <div>
+                        <div class="membership-status active">Active</div>
+                        <div style="margin-top: var(--s2);">
+                            <button class="btn btn-ghost btn-sm" onclick="alert('Cancel flow would connect to Stripe billing portal here.')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Billing History -->
+                <h4 style="margin-bottom: var(--s2); color: var(--ink-2);">Purchase History</h4>
+                <table class="billing-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mar 1, 2026</td>
+                            <td>Monthly Membership</td>
+                            <td class="billing-amount">$29.00</td>
+                            <td><span class="billing-status paid">Paid</span></td>
+                            <td><a href="#" style="font-size: 0.8125rem; color: var(--terra); text-decoration: none;">Receipt</a></td>
+                        </tr>
+                        <tr>
+                            <td>Feb 15, 2026</td>
+                            <td>Creative Briefing Framework</td>
+                            <td class="billing-amount">$39.00</td>
+                            <td><span class="billing-status paid">Paid</span></td>
+                            <td><a href="#" style="font-size: 0.8125rem; color: var(--terra); text-decoration: none;">Receipt</a></td>
+                        </tr>
+                        <tr>
+                            <td>Feb 1, 2026</td>
+                            <td>Monthly Membership</td>
+                            <td class="billing-amount">$29.00</td>
+                            <td><span class="billing-status paid">Paid</span></td>
+                            <td><a href="#" style="font-size: 0.8125rem; color: var(--terra); text-decoration: none;">Receipt</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 0.8125rem; color: var(--ink-4);">Payment issues? <a href="mailto:support@thecreativerecord.com" style="color: var(--terra); text-decoration: none;">Contact support</a> or view your <a href="/refund/" style="color: var(--terra); text-decoration: none;">Refund Policy</a>.</p>
+            </div>
+
+            <!-- SETTINGS PANEL -->
+            <div class="account-panel" id="panel-settings">
+                <div class="panel-header">
+                    <div class="panel-eyebrow">Account</div>
+                    <h2>Settings</h2>
+                    <p>Manage your account details and email preferences.</p>
+                </div>
+
+                <!-- Profile -->
+                <div class="settings-section">
+                    <div class="settings-section-header">Profile</div>
+                    <div class="settings-section-body">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" value="Sarah Gardner" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input type="email" value="sarah@example.com" placeholder="your@email.com">
+                        </div>
+                        <button class="btn btn-primary btn-sm" onclick="alert('Profile update would be handled by your auth/account backend.')">Save Changes</button>
+                    </div>
+                </div>
+
+                <!-- Email Preferences -->
+                <div class="settings-section">
+                    <div class="settings-section-header">Email Preferences</div>
+                    <div class="settings-section-body">
+                        <div class="settings-row">
+                            <div>
+                                <div class="settings-row-label">Product updates</div>
+                                <div class="settings-row-desc">New skills, features, and improvements</div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-track"></span>
+                            </label>
+                        </div>
+                        <div class="settings-row">
+                            <div>
+                                <div class="settings-row-label">Creative Record newsletter</div>
+                                <div class="settings-row-desc">Weekly creative strategy insights</div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-track"></span>
+                            </label>
+                        </div>
+                        <div class="settings-row">
+                            <div>
+                                <div class="settings-row-label">Transactional emails</div>
+                                <div class="settings-row-desc">Receipts, download links, account notices (cannot be disabled)</div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked disabled>
+                                <span class="toggle-track"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="settings-section" style="border-color: rgba(220, 38, 38, 0.2);">
+                    <div class="settings-section-header" style="color: #dc2626;">Danger Zone</div>
+                    <div class="settings-section-body">
+                        <div class="settings-row">
+                            <div>
+                                <div class="settings-row-label">Delete account</div>
+                                <div class="settings-row-desc">Permanently delete your account and all associated data. This cannot be undone.</div>
+                            </div>
+                            <button class="btn btn-sm" style="background: transparent; color: #dc2626; border-color: rgba(220,38,38,0.3);" onclick="alert('Account deletion would require email confirmation.')">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUPPORT PANEL -->
+            <div class="account-panel" id="panel-support">
+                <div class="panel-header">
+                    <div class="panel-eyebrow">Help</div>
+                    <h2>Support</h2>
+                    <p>Get help with your account, purchases, or products.</p>
+                </div>
+
+                <div class="support-card">
+                    <div class="support-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div>
+                        <h4>Email Support</h4>
+                        <p>We respond to every message within 24-48 hours, usually much faster.</p>
+                        <a href="mailto:support@thecreativerecord.com">support@thecreativerecord.com →</a>
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <div class="support-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Refund Request</h4>
+                        <p>Not satisfied? Our 30-day guarantee means no questions asked.</p>
+                        <a href="/refund/">View Refund Policy →</a>
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <div class="support-card-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <div>
+                        <h4>FAQ &amp; Help Center</h4>
+                        <p>Common questions about downloads, billing, and using the frameworks.</p>
+                        <a href="/support/">Visit Support Center →</a>
+                    </div>
+                </div>
+
+                <div style="margin-top: var(--s4); padding: var(--s4); background: var(--cream-2); border-radius: var(--r-lg); border: 1px solid var(--cream-3);">
+                    <p style="font-size: 0.875rem; color: var(--ink-3); margin-bottom: 0;">
+                        Legal: <a href="/terms/" style="color: var(--terra); text-decoration: none;">Terms of Service</a> &nbsp;·&nbsp;
+                        <a href="/privacy/" style="color: var(--terra); text-decoration: none;">Privacy Policy</a> &nbsp;·&nbsp;
+                        <a href="/refund/" style="color: var(--terra); text-decoration: none;">Refund Policy</a>
+                    </p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy/">Privacy</a></li>
+                        <li><a href="/terms/">Terms</a></li>
+                        <li><a href="/refund/">Refunds</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showPanel(name, btn) {
+            // hide all panels
+            document.querySelectorAll('.account-panel').forEach(p => p.classList.remove('active'));
+            // deactivate all nav items
+            document.querySelectorAll('.sidebar-nav-item').forEach(b => b.classList.remove('active'));
+            // show target
+            document.getElementById('panel-' + name).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // Simulate logged-in user (would be replaced with real auth)
+        const user = { name: 'Sarah Gardner', email: 'sarah@example.com', initials: 'SG', plan: 'Member' };
+        document.getElementById('navAvatar').textContent = user.initials;
+        document.getElementById('navName').textContent = user.name.split(' ')[0] + ' ' + user.name.split(' ')[1][0] + '.';
+        document.getElementById('sidebarAvatar').textContent = user.initials;
+        document.getElementById('sidebarName').textContent = user.name;
+        document.getElementById('sidebarEmail').textContent = user.email;
+    </script>
+
+</body>
+</html>

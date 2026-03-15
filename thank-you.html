@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You — The Creative Record</title>
+    <meta name="description" content="Your purchase is confirmed. Check your email for download links and access instructions.">
+    <meta name="robots" content="noindex">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Thank You — The Creative Record">
+    <meta property="og:description" content="Your purchase is confirmed. Check your email for download links and access instructions.">
+    <meta property="og:image" content="https://thecreativerecord.com/assets/images/og-default.png">
+    <meta property="og:url" content="https://thecreativerecord.com/thank-you">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Thank You — The Creative Record">
+    <meta name="twitter:description" content="Your purchase is confirmed. Check your email for download links and access instructions.">
+    <meta name="twitter:image" content="https://thecreativerecord.com/assets/images/og-default.png">
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
+            --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            --shadow-sm: 0 1px 3px rgba(15,14,13,0.06);
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            --t-fast: 150ms ease; --t-base: 220ms ease;
+        }
+
+        html { font-size: 16px; }
+        body {
+            font-family: var(--font-sans); font-weight: 400;
+            color: var(--ink-3); background: var(--cream);
+            line-height: 1.65; -webkit-font-smoothing: antialiased;
+            min-height: 100vh; display: flex; flex-direction: column;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+        .container-narrow { max-width: 640px; margin: 0 auto; padding: 0 var(--s4); }
+
+        h1, h2, h3 {
+            font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.15;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg);
+            font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem;
+            letter-spacing: 0.01em; text-decoration: none; border: 1px solid transparent;
+            cursor: pointer; transition: all var(--t-base); white-space: nowrap;
+        }
+        .btn-primary { background: var(--terra); color: var(--white); border-color: var(--terra); }
+        .btn-primary:hover { background: #b84a24; border-color: #b84a24; box-shadow: var(--shadow-terra); transform: translateY(-1px); }
+        .btn-ghost { background: transparent; color: var(--ink); border-color: var(--cream-3); }
+        .btn-ghost:hover { background: var(--cream-2); }
+
+        /* ---- HEADER ---- */
+        header {
+            background: rgba(250,248,245,0.94); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3); position: sticky; top: 0; z-index: 200;
+        }
+        nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links { display: flex; align-items: center; gap: var(--s5); list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
+        .nav-links a:hover { color: var(--ink); }
+
+        /* ---- THANK YOU CONTENT ---- */
+        .thankyou-section {
+            flex: 1;
+            padding: var(--s7) 0 var(--s8);
+        }
+
+        .confirm-badge {
+            width: 64px; height: 64px;
+            background: var(--terra-3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto var(--s4);
+            font-size: 1.75rem;
+        }
+
+        .thankyou-header {
+            text-align: center;
+            margin-bottom: var(--s6);
+        }
+
+        .thankyou-header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: var(--s2);
+        }
+
+        .thankyou-header p {
+            font-size: 1.0625rem;
+            color: var(--ink-3);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Steps */
+        .steps-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            padding: var(--s5);
+            margin-bottom: var(--s4);
+            box-shadow: var(--shadow-md);
+        }
+
+        .steps-card h2 {
+            font-size: 1.375rem;
+            margin-bottom: var(--s4);
+        }
+
+        .step-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--s3);
+        }
+
+        .step-item {
+            display: flex;
+            gap: var(--s3);
+            align-items: flex-start;
+        }
+
+        .step-num {
+            width: 32px; height: 32px; min-width: 32px;
+            background: var(--terra);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+
+        .step-body { flex: 1; }
+        .step-body strong { display: block; color: var(--ink-2); font-size: 0.9375rem; margin-bottom: 4px; }
+        .step-body p { font-size: 0.9rem; color: var(--ink-3); margin: 0; }
+
+        /* Account access box */
+        .account-box {
+            background: var(--terra-3);
+            border: 1px solid rgba(200,85,42,0.15);
+            border-radius: var(--r-lg);
+            padding: var(--s3) var(--s4);
+            margin-top: var(--s4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--s3);
+            flex-wrap: wrap;
+        }
+
+        .account-box p { font-size: 0.9375rem; color: var(--ink-2); margin: 0; }
+        .account-box strong { color: var(--ink); }
+
+        /* Secondary CTAs */
+        .secondary-section {
+            border-top: 1px solid var(--cream-3);
+            padding-top: var(--s5);
+            margin-top: var(--s5);
+        }
+
+        .secondary-section h3 {
+            font-size: 1.125rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            color: var(--ink-2);
+            margin-bottom: var(--s3);
+        }
+
+        .secondary-actions {
+            display: flex;
+            gap: var(--s2);
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--cream-2);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-lg);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ink-2);
+            text-decoration: none;
+            transition: all var(--t-fast);
+        }
+        .social-link:hover { background: var(--cream-3); color: var(--ink); }
+
+        /* ---- FOOTER ---- */
+        footer {
+            background: var(--ink); color: var(--ink-4);
+            padding: var(--s5) 0 var(--s4);
+        }
+        .footer-bottom {
+            display: flex; align-items: center; justify-content: space-between;
+            padding-top: var(--s3); font-size: 0.8125rem; color: var(--ink-4);
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .account-box { flex-direction: column; align-items: flex-start; }
+            .footer-bottom { flex-direction: column; gap: var(--s1); text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/subscribe/" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.875rem;">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="thankyou-section">
+        <div class="container-narrow">
+
+            <div class="thankyou-header">
+                <div class="confirm-badge">✓</div>
+                <h1>You're in. Thank you.</h1>
+                <p>Your purchase is confirmed. Here's everything you need to get started.</p>
+            </div>
+
+            <div class="steps-card">
+                <h2>What happens next</h2>
+                <ol class="step-list">
+                    <li class="step-item">
+                        <span class="step-num">1</span>
+                        <div class="step-body">
+                            <strong>Check your email</strong>
+                            <p>A confirmation email is on its way with your download links and access instructions. Check your spam folder if it doesn't arrive within a few minutes.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <span class="step-num">2</span>
+                        <div class="step-body">
+                            <strong>Access your files</strong>
+                            <p>Your purchase includes a PDF guide, a Notion template, and a video walkthrough. All three are linked in your confirmation email.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <span class="step-num">3</span>
+                        <div class="step-body">
+                            <strong>Bookmark your account</strong>
+                            <p>Log in at any time to re-download your files, view your purchase history, and access any future updates.</p>
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="account-box">
+                    <p><strong>Member account access</strong> — Log in to view your library and redownload files anytime.</p>
+                    <a href="/account.html" class="btn btn-primary" style="padding: 10px 22px; font-size: 0.875rem;">Go to Account</a>
+                </div>
+            </div>
+
+            <div class="secondary-section">
+                <h3>While you're here</h3>
+                <div class="secondary-actions">
+                    <a href="/newsletter/" class="social-link">
+                        <span>📬</span> Join the newsletter
+                    </a>
+                    <a href="https://twitter.com/sadie_goodo" target="_blank" rel="noopener" class="social-link">
+                        <span>𝕏</span> Follow @sadie_goodo
+                    </a>
+                    <a href="/skills/" class="social-link">
+                        <span>→</span> Browse more skills
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <span>&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span>Questions? <a href="mailto:hi@thecreativerecord.com" style="color: var(--ink-4); text-decoration: underline;">hi@thecreativerecord.com</a></span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
