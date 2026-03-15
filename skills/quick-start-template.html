@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Start Template — The Creative Record</title>
+  <style>
+    @media print {
+      nav, .no-print, footer { display: none; }
+      body { background: #fff; }
+      .skill-page { page-break-after: always; }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #faf9f7; color: #1a1a1a; }
+    nav { background: #1a1a1a; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
+    nav .logo { color: #fff; font-size: 1.1em; text-decoration: none; }
+    nav a { color: #ccc; text-decoration: none; font-size: 0.85em; margin-left: 20px; }
+    .intro { text-align: center; padding: 60px 32px 40px; max-width: 700px; margin: 0 auto; }
+    .intro h1 { font-size: 2em; font-family: Georgia, serif; margin-bottom: 12px; }
+    .intro p { color: #666; font-size: 1em; margin-bottom: 24px; }
+    .print-btn { background: #1a1a1a; color: #fff; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9em; font-family: Arial, sans-serif; }
+    .skills-container { max-width: 780px; margin: 0 auto; padding: 20px 32px 80px; }
+
+    /* SKILL CARD */
+    .skill-page {
+      background: #fff;
+      border: 2px solid #1a1a1a;
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #1a1a1a;
+      margin-bottom: 28px;
+    }
+    .skill-header .left h2 { font-size: 1.5em; margin-bottom: 4px; }
+    .skill-header .left .brand { font-size: 0.75em; text-transform: uppercase; letter-spacing: 1.5px; color: #888; }
+    .skill-header .emoji { font-size: 2.5em; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 28px; }
+    .col-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 8px; }
+    .col-content { font-size: 0.95em; line-height: 1.6; }
+    .col-content p { font-weight: bold; margin-bottom: 6px; }
+    .col-content span { color: #555; font-weight: normal; font-size: 0.9em; }
+    hr.divider { border: none; border-top: 1px solid #e0e0e0; margin: 24px 0; }
+    .steps-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 14px; }
+    .steps { }
+    .step-row { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+    .step-row .n { width: 24px; height: 24px; background: #1a1a1a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: bold; flex-shrink: 0; margin-top: 1px; }
+    .step-row .t { font-size: 0.88em; line-height: 1.5; }
+    .step-row .t strong { display: block; margin-bottom: 1px; }
+    .step-row .t span { color: #666; }
+    .example-section { background: #f5f5f5; border-radius: 8px; padding: 20px; margin: 20px 0; }
+    .example-section .ex-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 10px; }
+    .example-section .ex-content { font-size: 0.88em; line-height: 1.6; color: #333; }
+    .skill-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 8px;
+    }
+    .skill-footer .contact { font-size: 0.8em; color: #888; }
+    .skill-footer .contact strong { color: #1a1a1a; }
+    .qr { width: 60px; height: 60px; border: 2px dashed #ccc; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.6em; text-align: center; color: #bbb; line-height: 1.4; }
+    footer { text-align: center; padding: 40px; color: #888; font-size: 0.82em; border-top: 1px solid #e8e5e0; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">The Creative Record</a>
+  <div>
+    <a href="/skills/index.html">Skills</a>
+    <a href="/how-to-use.html">How to Use</a>
+    <a href="/support.html">Help</a>
+  </div>
+</nav>
+
+<div class="intro no-print">
+  <h1>Quick Start Guides</h1>
+  <p>One-page printable summaries for each skill. Keep them open while you work — or print them out and pin them to your wall.</p>
+  <button class="print-btn" onclick="window.print()">🖨️ Print All Quick Starts</button>
+</div>
+
+<div class="skills-container">
+
+  <!-- SKILL 1: VIDEO SCRIPT FRAMEWORK -->
+  <div class="skill-page">
+    <div class="skill-header">
+      <div class="left">
+        <div class="brand">THE CREATIVE RECORD — QUICK START</div>
+        <h2>Video Script Framework</h2>
+      </div>
+      <div class="emoji">🎬</div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-label">What It Helps You Do</div>
+        <div class="col-content">
+          <p>Write a 30-second video ad script for any product.</p>
+          <span>Uses a 5-beat structure that works across every product category. No advertising experience needed.</span>
+        </div>
+      </div>
+      <div>
+        <div class="col-label">When to Use It</div>
+        <div class="col-content">
+          <p>Any time you need a video ad and don't know where to start.</p>
+          <span>Works for Facebook/Instagram ads, TikTok, YouTube, and any short promotional video.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="steps-label">3-Step Process</div>
+    <div class="steps">
+      <div class="step-row">
+        <div class="n">1</div>
+        <div class="t"><strong>Read an example (5 min)</strong><span>Open EXAMPLES/example-skincare-brand.md. Read the whole script. You'll see how all 5 beats flow together before writing your own.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="n">2</div>
+        <div class="t"><strong>Fill in your product details (10 min)</strong><span>Open TEMPLATES/script-template-blank.md. Answer the 8 questions at the top. Replace every [BRACKET] with your own information.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="n">3</div>
+        <div class="t"><strong>Write one beat at a time, then read it aloud (20 min)</strong><span>Write Beat 1 (hook) through Beat 5 (CTA). Time your final script: aim for 28–32 seconds out loud.</span></div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <div class="ex-label">Example — Skincare Brand Script (29 seconds)</div>
+      <div class="ex-content">
+        <strong>Hook:</strong> "If you're still breaking out in your 30s — this is why." &nbsp;|&nbsp;
+        <strong>Problem:</strong> "Adult acne is hormonal. Most products treat you like you're 16." &nbsp;|&nbsp;
+        <strong>Product:</strong> "Clear Skin Co. uses willow bark and niacinamide — gentle ingredients that work with your cycle." &nbsp;|&nbsp;
+        <strong>Proof:</strong> "847 reviews, 4.8 stars. First clear month in years." &nbsp;|&nbsp;
+        <strong>CTA:</strong> "Visit clearskinco.com — code FIRST20 for 20% off."
+      </div>
+    </div>
+
+    <div class="skill-footer">
+      <div class="contact"><strong>Need help?</strong><br>sadie@goodostudios.com<br>thecreativerecord.com/how-to-use</div>
+      <div class="qr">Full Guide<br>QR Code</div>
+    </div>
+  </div>
+
+  <!-- SKILL 2: HOOK BANK -->
+  <div class="skill-page">
+    <div class="skill-header">
+      <div class="left">
+        <div class="brand">THE CREATIVE RECORD — QUICK START</div>
+        <h2>Hook Bank Template</h2>
+      </div>
+      <div class="emoji">🎣</div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-label">What It Helps You Do</div>
+        <div class="col-content">
+          <p>Find the perfect first line for any video ad.</p>
+          <span>100+ proven hooks organized by awareness stage. Find your section, pick a hook, swap in your details.</span>
+        </div>
+      </div>
+      <div>
+        <div class="col-label">When to Use It</div>
+        <div class="col-content">
+          <p>Every time you write a new video ad and need a strong opening line.</p>
+          <span>The hook is the most important part of any ad. Use this before every video shoot.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="steps-label">3-Step Process</div>
+    <div class="steps">
+      <div class="step-row">
+        <div class="n">1</div>
+        <div class="t"><strong>Find your awareness stage (2 min)</strong><span>Does your customer know they have a problem? Yes → Problem-Aware section. No → Unaware. Tried other products → Solution-Aware.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="n">2</div>
+        <div class="t"><strong>Read your section and pick 3 hooks (5 min)</strong><span>Open hook-bank-template.md and go to your section. When a hook makes you think "that's my customer" — that's the one. Pick 3 to test.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="n">3</div>
+        <div class="t"><strong>Replace the brackets with specific details (5 min)</strong><span>Swap every [BRACKET] with your real product, result, or timeframe. Specific beats vague — "17 lbs" beats "lose weight."</span></div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <div class="ex-label">3 Examples by Category</div>
+      <div class="ex-content">
+        <strong>Skincare:</strong> "Still breaking out in your 30s? Here's why your cleanser is making it worse." &nbsp;|&nbsp;
+        <strong>Supplement:</strong> "I was sleeping 8 hours and still exhausted. Turns out it wasn't a sleep problem." &nbsp;|&nbsp;
+        <strong>Fitness:</strong> "The 12-minute routine I've done every morning for 2 years."
+      </div>
+    </div>
+
+    <div class="skill-footer">
+      <div class="contact"><strong>Need help?</strong><br>sadie@goodostudios.com<br>thecreativerecord.com/how-to-use</div>
+      <div class="qr">Full Guide<br>QR Code</div>
+    </div>
+  </div>
+
+  <!-- SKILL 3: UGC BRIEF -->
+  <div class="skill-page">
+    <div class="skill-header">
+      <div class="left">
+        <div class="brand">THE CREATIVE RECORD — QUICK START</div>
+        <h2>UGC Brief Template</h2>
+      </div>
+      <div class="emoji">🎥</div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-label">What It Helps You Do</div>
+        <div class="col-content">
+          <p>Write a clear brief for any content creator.</p>
+          <span>Tell creators exactly what to say and show so they deliver exactly what you need — on the first try.</span>
+        </div>
+      </div>
+      <div>
+        <div class="col-label">When to Use It</div>
+        <div class="col-content">
+          <p>Every time you hire a creator or influencer to make a video about your product.</p>
+          <span>Also works when briefing employees, friends, or yourself to film a video.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="steps-label">3-Step Process</div>
+    <div class="steps">
+      <div class="step-row">
+        <div class="n">1</div>
+        <div class="t"><strong>Open the blank brief and fill in Section 1 (5 min)</strong><span>Open TEMPLATES/ugc-brief-blank.md. Answer the 5 product overview questions. This is the foundation everything else builds on.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="n">2</div>
+        <div class="t"><strong>Write 4 talking points as complete sentences (10 min)</strong><span>Section 2 is most important. Write each point as a full sentence — not a topic, a sentence the creator could almost say directly.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="n">3</div>
+        <div class="t"><strong>Send with one instruction (2 min)</strong><span>Send the brief and say: "Please confirm you've read all of this before filming." That single line prevents 90% of revision requests.</span></div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <div class="ex-label">Example Talking Points — Skincare Brand</div>
+      <div class="ex-content">
+        1. "I've struggled with adult acne for years and nothing was working — always breaking out right before my period." &nbsp;|&nbsp;
+        2. "Clear Skin Co. uses gentle ingredients that work with your hormonal cycle — no harsh chemicals." &nbsp;|&nbsp;
+        3. "Within 6 weeks, my clearest skin in years. No peeling, no dryness." &nbsp;|&nbsp;
+        4. "If you're an adult still dealing with breakouts, this is different from anything else I've tried."
+      </div>
+    </div>
+
+    <div class="skill-footer">
+      <div class="contact"><strong>Need help?</strong><br>sadie@goodostudios.com<br>thecreativerecord.com/how-to-use</div>
+      <div class="qr">Full Guide<br>QR Code</div>
+    </div>
+  </div>
+
+  <!-- SKILL 4: CREATIVE AUDIT -->
+  <div class="skill-page">
+    <div class="skill-header">
+      <div class="left">
+        <div class="brand">THE CREATIVE RECORD — QUICK START</div>
+        <h2>Creative Audit Checklist</h2>
+      </div>
+      <div class="emoji">✅</div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-label">What It Helps You Do</div>
+        <div class="col-content">
+          <p>Score any video ad on 25 points and know what to fix.</p>
+          <span>Takes 20 minutes. Gives you a number between 0–125 and tells you exactly what's working and what's broken.</span>
+        </div>
+      </div>
+      <div>
+        <div class="col-label">When to Use It</div>
+        <div class="col-content">
+          <p>Before spending money on a new ad, or when an existing ad stops working.</p>
+          <span>Use it on your best performers too — even good ads have something to improve.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="steps-label">3-Step Process</div>
+    <div class="steps">
+      <div class="step-row">
+        <div class="n">1</div>
+        <div class="t"><strong>Watch your ad twice before scoring (5 min)</strong><span>First watch: just watch. Second watch: take notes on what feels weak. Now open TEMPLATES/audit-scorecard-blank.md.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="n">2</div>
+        <div class="t"><strong>Score all 25 points 1–5 (15 min)</strong><span>5 sections: Hook, Problem, Product, Proof, CTA. Score each point while watching. When unsure, give a 3. Total score = 5 sections × 5 points × 5 max = 125.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="n">3</div>
+        <div class="t"><strong>Fix the lowest section first (immediately)</strong><span>100–125 = scale it. 75–99 = one section to fix. 50–74 = major revision. Below 50 = rebuild from scratch using the Video Script Framework.</span></div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <div class="ex-label">Example Score — Supplement Brand Ad</div>
+      <div class="ex-content">
+        Hook: 18/25 (good but not specific enough) &nbsp;|&nbsp; Problem: 21/25 (strong) &nbsp;|&nbsp; Product: 18/25 (missing differentiator) &nbsp;|&nbsp; Proof: 21/25 (strong) &nbsp;|&nbsp; CTA: 20/25 (no urgency) &nbsp;|&nbsp; <strong>Total: 98/125 — Good. Fix: add differentiator in Beat 3.</strong>
+      </div>
+    </div>
+
+    <div class="skill-footer">
+      <div class="contact"><strong>Need help?</strong><br>sadie@goodostudios.com<br>thecreativerecord.com/how-to-use</div>
+      <div class="qr">Full Guide<br>QR Code</div>
+    </div>
+  </div>
+
+  <!-- SKILL 5: COMPETITOR ANALYSIS -->
+  <div class="skill-page">
+    <div class="skill-header">
+      <div class="left">
+        <div class="brand">THE CREATIVE RECORD — QUICK START</div>
+        <h2>Competitor Analysis Framework</h2>
+      </div>
+      <div class="emoji">🔍</div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-label">What It Helps You Do</div>
+        <div class="col-content">
+          <p>See what competitors are running — and find the gaps they're missing.</p>
+          <span>Uses the free Meta Ad Library. No advertising experience needed. Takes 45 minutes total.</span>
+        </div>
+      </div>
+      <div>
+        <div class="col-label">When to Use It</div>
+        <div class="col-content">
+          <p>Before creating new ads, or when your existing ads feel like everyone else's.</p>
+          <span>Do this quarterly to stay ahead of what's getting saturated in your market.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="steps-label">3-Step Process</div>
+    <div class="steps">
+      <div class="step-row">
+        <div class="n">1</div>
+        <div class="t"><strong>Go to facebook.com/ads/library (free) (10 min)</strong><span>Search 3–5 competitor brand names. Look at their active ads. Write down the hook (first line) of every ad running 30+ days.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="n">2</div>
+        <div class="t"><strong>Fill in the competitor tracker (15 min)</strong><span>Open TEMPLATES/competitor-tracker-blank.md. One row per ad. Track: hook, claim, proof, format, how long it's been running.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="n">3</div>
+        <div class="t"><strong>Find what nobody is doing (10 min)</strong><span>What angle does every competitor use? That's the crowded lane. What angle is nobody using? What problem is nobody talking about? That's your gap.</span></div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <div class="ex-label">Example Gap — Adult Acne Category</div>
+      <div class="ex-content">
+        <strong>Everyone is saying:</strong> "Say goodbye to acne," "Dermatologist recommended," "Natural ingredients" — no differentiation. &nbsp;|&nbsp;
+        <strong>Nobody is saying:</strong> "Adult hormonal acne is different from teenage acne — you need a different solution." &nbsp;|&nbsp;
+        <strong>The ad:</strong> "I'm 34 and I break out worse now than in high school. Turns out that's a completely different problem."
+      </div>
+    </div>
+
+    <div class="skill-footer">
+      <div class="contact"><strong>Need help?</strong><br>sadie@goodostudios.com<br>thecreativerecord.com/how-to-use</div>
+      <div class="qr">Full Guide<br>QR Code</div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="no-print">
+  <p>© 2026 The Creative Record &nbsp;|&nbsp; <a href="/support.html">Help & Support</a> &nbsp;|&nbsp; <a href="/how-to-use.html">How to Use Skills</a></p>
+</footer>
+
+</body>
+</html>

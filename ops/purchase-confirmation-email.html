@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase Confirmation Email — Concept</title>
+  <style>
+    /* PREVIEW WRAPPER — not part of email */
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 40px; margin: 0; }
+    .preview-note { max-width: 620px; margin: 0 auto 24px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 16px 20px; font-size: 0.88em; color: #856404; }
+    .preview-note strong { display: block; margin-bottom: 4px; }
+
+    /* EMAIL STYLES */
+    .email-wrapper { max-width: 620px; margin: 0 auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .email-header { background: #1a1a1a; padding: 32px 40px; }
+    .email-header .logo { color: #fff; font-size: 1.2em; font-family: Georgia, serif; letter-spacing: -0.5px; }
+    .email-header .tagline { color: #888; font-size: 0.8em; margin-top: 4px; }
+    .email-body { padding: 40px; }
+    h1 { font-size: 1.6em; font-family: Georgia, serif; margin-bottom: 16px; letter-spacing: -0.5px; color: #1a1a1a; }
+    .greeting { font-size: 1em; color: #333; margin-bottom: 24px; line-height: 1.7; }
+
+    .success-box { background: #e8f5e9; border: 2px solid #4caf50; border-radius: 10px; padding: 20px 24px; margin-bottom: 28px; text-align: center; }
+    .success-box .check { font-size: 2em; margin-bottom: 8px; }
+    .success-box h3 { color: #1b5e20; font-size: 1em; margin-bottom: 4px; }
+    .success-box p { color: #2e7d32; font-size: 0.88em; }
+
+    .step-list { margin-bottom: 32px; }
+    .step-row { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; }
+    .step-num { width: 32px; height: 32px; background: #1a1a1a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9em; font-weight: bold; flex-shrink: 0; }
+    .step-text h4 { font-size: 0.95em; margin-bottom: 3px; color: #1a1a1a; }
+    .step-text p { font-size: 0.85em; color: #666; line-height: 1.5; }
+
+    .download-btn {
+      display: block;
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 18px 32px;
+      border-radius: 8px;
+      font-size: 1.05em;
+      font-weight: bold;
+      text-decoration: none;
+      margin-bottom: 28px;
+    }
+
+    .reminder-box { background: #fff8e1; border-left: 4px solid #f9a825; padding: 16px 20px; border-radius: 0 6px 6px 0; margin-bottom: 28px; }
+    .reminder-box strong { display: block; margin-bottom: 4px; font-size: 0.9em; }
+    .reminder-box p { font-size: 0.85em; color: #666; line-height: 1.6; }
+
+    .help-section { border-top: 1px solid #e8e5e0; padding-top: 24px; margin-top: 8px; }
+    .help-section p { font-size: 0.88em; color: #666; line-height: 1.7; }
+    .help-section a { color: #1a1a1a; }
+
+    .email-footer { background: #f5f5f5; padding: 24px 40px; text-align: center; font-size: 0.78em; color: #888; line-height: 1.7; }
+    .email-footer a { color: #666; }
+
+    .product-list { background: #f5f5f5; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; }
+    .product-list .label { font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 10px; }
+    .product-item { display: flex; gap: 10px; font-size: 0.88em; margin-bottom: 6px; }
+    .product-item span:first-child { color: #4caf50; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="preview-note">
+  <strong>📋 Design Concept — Purchase Confirmation Email</strong>
+  This is the email customers receive after buying. The download link should expire after 5 clicks or 7 days (configurable via Stripe + download service). Content below is the actual email — everything above this box is preview scaffolding only.
+</div>
+
+<!-- EMAIL STARTS HERE -->
+<div class="email-wrapper">
+
+  <div class="email-header">
+    <div class="logo">The Creative Record</div>
+    <div class="tagline">Skills for better creative</div>
+  </div>
+
+  <div class="email-body">
+
+    <h1>Your skills are ready. 🎉</h1>
+
+    <p class="greeting">Hi {{first_name}},<br><br>
+    Your purchase is confirmed. Everything you need is in the download below — no accounts, no passwords, no setup.</p>
+
+    <div class="success-box">
+      <div class="check">✓</div>
+      <h3>Payment received. Skills ready to download.</h3>
+      <p>Your skills are in your inbox. Click the button below to download.</p>
+    </div>
+
+    <div class="product-list">
+      <div class="label">What you purchased</div>
+      <!-- Single skill version -->
+      <div class="product-item"><span>✓</span> <span>{{product_name}} — ${{amount}}</span></div>
+      <!-- Bundle version (uncomment when applicable) -->
+      <!-- <div class="product-item"><span>✓</span><span>Video Script Framework</span></div> -->
+      <!-- <div class="product-item"><span>✓</span><span>Hook Bank Template</span></div> -->
+      <!-- <div class="product-item"><span>✓</span><span>UGC Brief Template</span></div> -->
+      <!-- <div class="product-item"><span>✓</span><span>Creative Audit Checklist</span></div> -->
+      <!-- <div class="product-item"><span>✓</span><span>Competitor Analysis Framework</span></div> -->
+    </div>
+
+    <a href="{{download_url}}" class="download-btn">
+      ⬇️ Download Your Skills
+    </a>
+
+    <div class="step-list">
+      <p style="font-size:0.9em; font-weight:bold; color:#1a1a1a; margin-bottom:16px;">Here's exactly what to do after you download:</p>
+
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h4>Click the button above and save the folder</h4>
+          <p>It will download to your Downloads folder. On a phone, it saves in the Files app.</p>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h4>Open the folder</h4>
+          <p>If it downloads as a .zip file, double-click it to open it. Nothing installs — it just unpacks into a regular folder.</p>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h4>Open README-FIRST.html</h4>
+          <p>Find the file called "README-FIRST.html" and double-click it. It opens in your web browser and tells you exactly what to do next.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="reminder-box">
+      <strong>💡 The one thing to remember</strong>
+      <p>Always start with README-FIRST.html. It's the guide for everything else. The TEMPLATES/ folder is where you do your work. The EXAMPLES/ folder shows you what "done" looks like before you start.</p>
+    </div>
+
+    <div class="help-section">
+      <p>
+        <strong>Need help?</strong> Reply to this email or write to <a href="mailto:sadie@goodostudios.com">sadie@goodostudios.com</a>. I read every message. Most questions get answered the same day.<br><br>
+        Full how-to guide (with screenshots): <a href="https://thecreativerecord.com/how-to-use">thecreativerecord.com/how-to-use</a>
+      </p>
+    </div>
+
+  </div>
+
+  <div class="email-footer">
+    <p>
+      The Creative Record &nbsp;·&nbsp; <a href="https://thecreativerecord.com">thecreativerecord.com</a><br>
+      Questions? <a href="mailto:sadie@goodostudios.com">sadie@goodostudios.com</a> &nbsp;|&nbsp; <a href="{{unsubscribe_url}}">Unsubscribe</a><br>
+      <a href="https://thecreativerecord.com/refund">Refund Policy</a> &nbsp;·&nbsp; <a href="https://thecreativerecord.com/privacy">Privacy Policy</a>
+    </p>
+    <p style="margin-top:8px; color:#aaa;">This download link is valid for 7 days. After that, email us and we'll send a fresh one.</p>
+  </div>
+
+</div>
+
+<!-- BUNDLE VERSION CONCEPT NOTE -->
+<div class="preview-note" style="margin-top: 24px;">
+  <strong>📋 Template Variables</strong>
+  {{first_name}} — customer first name<br>
+  {{product_name}} — skill name or "Complete Skill Bundle"<br>
+  {{amount}} — purchase amount<br>
+  {{download_url}} — Stripe delivery link or custom download URL<br>
+  {{unsubscribe_url}} — email list unsubscribe link<br><br>
+  <strong>For bundle purchases:</strong> Replace the product list section with all 5 items. Keep everything else identical.
+</div>
+
+</body>
+</html>
