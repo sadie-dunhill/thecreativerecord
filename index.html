@@ -723,6 +723,101 @@
             line-height: 1.65;
         }
         
+        /* ---- SERVICES TEASERS ---- */
+
+        .services {
+            padding: var(--s8) 0;
+            background: var(--cream-2);
+            border-top: 1px solid var(--cream-3);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3);
+            margin-top: var(--s5);
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            padding: var(--s4);
+            display: flex;
+            flex-direction: column;
+            gap: var(--s2);
+            transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--cream-2);
+        }
+
+        .service-card.coming-soon {
+            opacity: 0.8;
+        }
+
+        .service-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--terra);
+            background: var(--terra-3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .service-badge.badge-soon {
+            color: var(--ink-4);
+            background: var(--cream-2);
+        }
+
+        .service-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin: 0;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--ink-3);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .service-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: var(--s2);
+            border-top: 1px solid var(--cream-3);
+            margin-top: auto;
+        }
+
+        .service-price {
+            font-family: var(--font-sans);
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid { grid-template-columns: 1fr; }
+        }
+
         /* ---- CTA SECTION ---- */
         
         .cta-section {
@@ -929,11 +1024,12 @@
             <a href="/" class="logo">The Creative <em>Record</em></a>
             <ul class="nav-links">
                 <li><a href="/skills/">Skills</a></li>
-                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/subscribe/">Script Desk</a></li>
+                <li><a href="/custom-skill/">Custom Skill</a></li>
                 <li><a href="/about/">About</a></li>
             </ul>
             <div class="nav-cta">
-                <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+                <a href="/subscribe/" class="btn btn-primary">Book the Desk</a>
             </div>
         </nav>
     </header>
@@ -947,7 +1043,7 @@
                 <p>The exact templates, checklists, and scripts used by top-performing advertisers to create ads that stop the scroll and drive revenue — whether you're selling products, services, or B2B solutions.</p>
                 <div class="hero-cta">
                     <a href="/skills/" class="btn btn-primary btn-lg">Browse Skills</a>
-                    <a href="/subscribe/" class="btn btn-ghost-inv btn-lg">Join Membership</a>
+                    <a href="/subscribe/" class="btn btn-ghost-inv btn-lg">View Script Desk</a>
                 </div>
                 <div class="hero-proof">
                     <div class="proof-item">
@@ -989,7 +1085,7 @@
                         <p>The 8-part framework for writing scripts that hook in 3 seconds and convert by 30. Works for any product, service, or offer.</p>
                         <div class="skill-footer">
                             <span class="skill-price">$39</span>
-                            <a href="/skills/" class="btn btn-ghost btn-sm">View Details</a>
+                            <a href="/skills/video-script-framework/" class="btn btn-ghost btn-sm">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -1006,7 +1102,7 @@
                         <p>47 proven hook formulas with fill-in-the-blank templates for every awareness stage. Stop guessing what stops the scroll.</p>
                         <div class="skill-footer">
                             <span class="skill-price">$39</span>
-                            <a href="/skills/" class="btn btn-ghost btn-sm">View Details</a>
+                            <a href="/skills/hook-bank-template/" class="btn btn-ghost btn-sm">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -1023,7 +1119,7 @@
                         <p>The same briefing template used to produce 1,000+ performance ads. Turn strategy into production-ready briefs.</p>
                         <div class="skill-footer">
                             <span class="skill-price">$39</span>
-                            <a href="/skills/" class="btn btn-ghost btn-sm">View Details</a>
+                            <a href="/skills/ugc-brief-template/" class="btn btn-ghost btn-sm">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -1041,7 +1137,7 @@
             <div class="section-header reveal">
                 <div class="section-label">Pricing</div>
                 <h2>Pick your access level</h2>
-                <p>Individual skills or unlock everything with a membership.</p>
+                <p>Individual skills, bundles, or done-for-you scripts via Script Desk.</p>
             </div>
 
             <div class="pricing-grid">
@@ -1076,24 +1172,24 @@
                         <li>Lifetime access</li>
                         <li>Future updates included</li>
                     </ul>
-                    <a href="#" class="btn btn-primary btn-full">Buy Bundle — $99</a>
+                    <a href="/skills/" class="btn btn-primary btn-full">Buy Bundle — $99</a>
                 </div>
 
                 <div class="pricing-card reveal">
-                    <h3>Membership</h3>
+                    <h3>Script Desk</h3>
                     <div class="price-display">
                         <span class="price-amount">$29</span>
                         <span class="price-period">/ month</span>
                     </div>
-                    <p class="pricing-desc">For teams who need ongoing frameworks and expert feedback every month.</p>
+                    <p class="pricing-desc">Done-for-you scripts on your schedule. Book sessions in bulk, use them when you need them.</p>
                     <ul class="pricing-features">
                         <li>All skills included</li>
-                        <li>1 feedback credit / month</li>
-                        <li>New skill every month</li>
+                        <li>New scripts every month</li>
+                        <li>Custom skill creation ($20)</li>
                         <li>Private community access</li>
                         <li>Cancel anytime</li>
                     </ul>
-                    <a href="/subscribe/" class="btn btn-ghost-inv btn-full">Start Membership</a>
+                    <a href="/subscribe/" class="btn btn-ghost-inv btn-full">View Script Desk</a>
                 </div>
             </div>
         </div>
@@ -1167,8 +1263,8 @@
                     <div class="faq-a">No 6-hour videos to sit through. You get the exact templates, checklists, and frameworks — the tools you actually need to do the work faster.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q">What's included in the membership?</div>
-                    <div class="faq-a">All current skills, one feedback credit per month, a new skill every month, and access to our private community of advertisers and marketers.</div>
+                    <div class="faq-q">What's included in Script Desk?</div>
+                    <div class="faq-a">Book sessions in bulk (10, 20, or 50 scripts). Each script delivered in 48--72 hours, on your schedule. No monthly commitment. Need something custom? Add a custom skill for $20.</div>
                 </div>
                 <div class="faq-item reveal">
                     <div class="faq-q">Do you offer refunds?</div>
@@ -1204,6 +1300,49 @@
         </div>
     </section>
 
+    <!-- SERVICES TEASERS -->
+    <section class="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">More Ways to Work Together</div>
+                <h2>Beyond the skills library</h2>
+                <p>Need scripts written for you? Want something built to your exact spec? We've got options.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <span class="service-badge">Script Desk</span>
+                    <h3>Script Desk</h3>
+                    <p>Stop writing from scratch every time. Book desk sessions and get proven scripts tailored to your brand and offer — delivered in 48--72 hours, ready to hand off to your team or creator.</p>
+                    <div class="service-card-footer">
+                        <span class="service-price">From $199</span>
+                        <a href="/subscribe/" class="btn btn-primary btn-sm">View Script Desk</a>
+                    </div>
+                </div>
+
+                <div class="service-card reveal">
+                    <span class="service-badge">Custom Skill</span>
+                    <h3>Build Your Own Skill</h3>
+                    <p>Got a specific framework, checklist, or workflow you want turned into a polished skill? We'll build it for you. Send us the brief, we'll package it up.</p>
+                    <div class="service-card-footer">
+                        <span class="service-price">$20 / skill</span>
+                        <a href="/custom-skill/" class="btn btn-primary btn-sm">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="service-card coming-soon reveal">
+                    <span class="service-badge badge-soon">Coming Soon</span>
+                    <h3>DIY Creative Course</h3>
+                    <p>A structured path through the full creative strategy system — from brand awareness to hook writing to post-production feedback. Everything in one place.</p>
+                    <div class="service-card-footer">
+                        <span class="service-price">Notify me</span>
+                        <a href="/subscribe/" class="btn btn-ghost btn-sm">Join Waitlist</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section">
         <div class="container">
@@ -1212,7 +1351,7 @@
                 <p>Join hundreds of advertisers and marketing teams using these frameworks to create better ads, faster.</p>
                 <div class="cta-buttons">
                     <a href="/skills/" class="btn btn-primary btn-lg">Browse Skills</a>
-                    <a href="/subscribe/" class="btn btn-ghost btn-lg">Join Membership</a>
+                    <a href="/subscribe/" class="btn btn-ghost btn-lg">Script Desk</a>
                 </div>
             </div>
         </div>
@@ -1227,11 +1366,14 @@
                     <p class="footer-tagline">Creative strategy frameworks for advertisers. Built by the team at Goodo Studios.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Product</h4>
+                    <h4>Skills</h4>
                     <ul>
                         <li><a href="/skills/">All Skills</a></li>
-                        <li><a href="/feedback/">Feedback</a></li>
-                        <li><a href="/subscribe/">Membership</a></li>
+                        <li><a href="/skills/video-script-framework/">Video Script Framework</a></li>
+                        <li><a href="/skills/hook-bank-template/">Hook Bank</a></li>
+                        <li><a href="/skills/ugc-brief-template/">UGC Brief</a></li>
+                        <li><a href="/subscribe/">Script Desk</a></li>
+                        <li><a href="/custom-skill/">Custom Skill — $20</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1239,7 +1381,6 @@
                     <ul>
                         <li><a href="/about/">About</a></li>
                         <li><a href="/newsletter/">Newsletter</a></li>
-                        <li><a href="/affiliates/">Affiliates</a></li>
                         <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
                     </ul>
                 </div>
