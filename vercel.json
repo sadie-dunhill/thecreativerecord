@@ -1,0 +1,8 @@
+{
+  "routes": [
+    { "src": "/([^/]+)/?", "dest": "/$1.html" },
+    { "src": "/skills/([^/]+)/?", "dest": "/skills/$1.html" },
+    { "src": "/newsletter/([^/]+)/?", "dest": "/newsletter/$1.html" },
+    { "src": "/affiliates/([^/]+)/?", "dest": "/affiliates/$1.html" }
+  ]
+}
