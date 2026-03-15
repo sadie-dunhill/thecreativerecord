@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Membership — The Creative Record</title>
-    <meta name="description" content="Get unlimited access to every creative strategy skill, monthly feedback credits, and a community of advertisers and marketers.">
+    <title>Script Packages — The Creative Record</title>
+    <meta name="description" content="Buy scripts in bulk, use them when you need them. 10, 20, or 50 video scripts delivered in 48–72 hours. No monthly commitment.">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Membership — The Creative Record">
-    <meta property="og:description" content="Get unlimited access to every creative strategy skill, monthly feedback credits, and a community of advertisers and marketers.">
+    <meta property="og:title" content="Script Packages — The Creative Record">
+    <meta property="og:description" content="Buy scripts in bulk, use them when you need them. No monthly commitment. 48–72 hour delivery per script.">
     <meta property="og:image" content="https://thecreativerecord.com/assets/images/og-default.png">
     <meta property="og:url" content="https://thecreativerecord.com/subscribe/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="The Creative Record">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Membership — The Creative Record">
-    <meta name="twitter:description" content="Get unlimited access to every creative strategy skill, monthly feedback credits, and a community of advertisers and marketers.">
+    <meta name="twitter:title" content="Script Packages — The Creative Record">
+    <meta name="twitter:description" content="Buy scripts in bulk, use them when you need them. No monthly commitment. 48–72 hour delivery per script.">
     <meta name="twitter:image" content="https://thecreativerecord.com/assets/images/og-default.png">
     <meta name="twitter:site" content="@sadie_goodo">
 
@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         :root {
             --ink:        #0f0e0d;
             --ink-2:      #3d3a36;
@@ -40,37 +40,37 @@
             --cream-2:    #f3f0eb;
             --cream-3:    #e8e4dd;
             --white:      #ffffff;
-            
+
             --font-serif: 'DM Serif Display', Georgia, serif;
             --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            
+
             --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
             --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
-            
+
             --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
-            
+
             --shadow-sm: 0 1px 3px rgba(15,14,13,0.06);
             --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
             --shadow-lg: 0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
             --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
-            
+
             --t-fast: 150ms ease; --t-base: 220ms ease;
         }
-        
+
         html { font-size: 16px; }
         body {
             font-family: var(--font-sans); font-weight: 400;
             color: var(--ink-3); background: var(--cream);
             line-height: 1.65; -webkit-font-smoothing: antialiased;
         }
-        
+
         .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
-        
+
         h1, h2, h3 {
             font-family: var(--font-serif); font-weight: 400;
             color: var(--ink); line-height: 1.15;
         }
-        
+
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             padding: 13px 26px; border-radius: var(--r-lg);
@@ -95,7 +95,7 @@
         }
         .btn-full { width: 100%; }
         .btn-lg { padding: 16px 34px; font-size: 1rem; }
-        
+
         /* ---- HEADER ---- */
         header {
             background: rgba(250,248,245,0.94); backdrop-filter: blur(12px);
@@ -107,144 +107,110 @@
         .nav-links { display: flex; align-items: center; gap: var(--s5); list-style: none; }
         .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
         .nav-links a:hover, .nav-links a.active { color: var(--ink); }
-        
-        /* ---- PAGE HEADER ---- */
+
+        /* ---- HERO ---- */
         .page-header {
-            background: var(--ink); padding: var(--s7) 0;
+            background: var(--ink); padding: var(--s7) 0 var(--s8);
             position: relative; overflow: hidden; text-align: center;
         }
         .page-header::after {
             content: ''; position: absolute; top: -150px; right: 50%; transform: translateX(50%);
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(200,85,42,0.1) 0%, transparent 70%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(200,85,42,0.12) 0%, transparent 70%);
             pointer-events: none;
         }
-        .page-header-inner { position: relative; z-index: 1; }
+        .page-header-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
         .page-eyebrow {
             font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
             color: var(--terra-2); margin-bottom: var(--s3);
         }
-        .page-header h1 { font-size: clamp(2.25rem, 4vw, 3.5rem); color: var(--white); margin-bottom: var(--s3); }
-        .page-header p { font-size: 1.0625rem; color: rgba(255,255,255,0.5); max-width: 500px; margin: 0 auto; line-height: 1.7; }
-        
-        /* ---- BILLING TOGGLE ---- */
-        .billing-toggle {
-            background: var(--cream-2); border-bottom: 1px solid var(--cream-3);
-            padding: var(--s3) 0;
+        .page-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem); color: var(--white); margin-bottom: var(--s3);
         }
-        .toggle-inner {
-            display: flex; align-items: center; justify-content: center; gap: var(--s3);
+        .page-header p {
+            font-size: 1.125rem; color: rgba(255,255,255,0.5);
+            max-width: 520px; margin: 0 auto var(--s4); line-height: 1.7;
         }
-        .toggle-label {
-            font-size: 0.9rem; font-weight: 500; color: var(--ink-4); cursor: pointer;
-            transition: color var(--t-fast);
+
+        /* No-calls badge strip */
+        .no-calls-strip {
+            display: flex; justify-content: center; gap: var(--s3);
+            flex-wrap: wrap; margin-bottom: var(--s5);
         }
-        .toggle-label.active { color: var(--ink); }
-        .toggle-track {
-            width: 48px; height: 26px;
-            background: var(--cream-3); border-radius: 13px;
-            position: relative; cursor: pointer;
-            transition: background var(--t-base);
+        .no-calls-badge {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 7px 14px; border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.8125rem; font-weight: 500; color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.05);
         }
-        .toggle-track.on { background: var(--ink); }
-        .toggle-thumb {
-            position: absolute; top: 3px; left: 3px;
-            width: 20px; height: 20px;
-            background: var(--white); border-radius: 50%;
-            transition: transform var(--t-base);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        .no-calls-badge .badge-x {
+            width: 16px; height: 16px; border-radius: 50%;
+            background: rgba(200,85,42,0.35);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.625rem; color: var(--terra-2); font-weight: 700; flex-shrink: 0;
         }
-        .toggle-track.on .toggle-thumb { transform: translateX(22px); }
-        .save-chip {
-            background: var(--terra-3); color: var(--terra);
-            font-size: 0.75rem; font-weight: 600; padding: 4px 10px;
-            border-radius: 100px;
+        .no-calls-badge .badge-check {
+            width: 16px; height: 16px; border-radius: 50%;
+            background: rgba(200,85,42,0.35);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.625rem; color: var(--terra-2); font-weight: 700; flex-shrink: 0;
         }
-        
-        /* ---- PRICING ---- */
-        .pricing-section {
-            padding: var(--s7) 0 var(--s8);
-            background: var(--cream);
+        .hero-cta { display: flex; gap: var(--s2); justify-content: center; flex-wrap: wrap; }
+
+        /* ---- PROBLEM ---- */
+        .problem-section {
+            padding: var(--s8) 0; background: var(--cream-2);
         }
-        .pricing-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: var(--s3); max-width: 820px; margin: 0 auto;
+        .problem-inner {
+            display: grid; grid-template-columns: 1fr 1fr; gap: var(--s7);
+            align-items: center; max-width: 960px; margin: 0 auto;
         }
-        
-        .pricing-card {
+        .problem-copy .section-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: var(--s2);
+        }
+        .problem-copy h2 { font-size: clamp(1.875rem, 3vw, 2.5rem); margin-bottom: var(--s3); }
+        .problem-copy p { font-size: 1.0625rem; color: var(--ink-3); line-height: 1.75; margin-bottom: var(--s3); }
+        .problem-copy p:last-child { margin-bottom: 0; }
+
+        .problem-contrast {
+            display: flex; flex-direction: column; gap: var(--s2);
+        }
+        .contrast-item {
+            border-radius: var(--r-xl); padding: var(--s3) var(--s4);
+        }
+        .contrast-item.bad {
             background: var(--white); border: 1px solid var(--cream-3);
-            border-radius: var(--r-xl); padding: var(--s5) var(--s4);
-            position: relative; transition: box-shadow var(--t-base);
         }
-        .pricing-card:hover { box-shadow: var(--shadow-md); }
-        
-        .pricing-card.featured {
-            border-color: var(--terra); border-width: 1.5px;
-            box-shadow: 0 0 0 3px var(--terra-3);
+        .contrast-item.bad .contrast-label {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--ink-4); margin-bottom: 8px;
         }
-        .pricing-card.featured:hover {
-            box-shadow: 0 0 0 3px var(--terra-3), var(--shadow-md);
+        .contrast-item.good {
+            background: var(--ink); border: 1px solid var(--ink);
         }
-        
-        .featured-label {
-            position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
-            background: var(--terra); color: var(--white);
-            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-            padding: 5px 16px; border-radius: 0 0 var(--r-md) var(--r-md);
+        .contrast-item.good .contrast-label {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--terra-2); margin-bottom: 8px;
         }
-        
-        .card-plan {
-            font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-            color: var(--ink-4); margin-bottom: var(--s3);
-        }
-        
-        .card-price {
-            display: flex; align-items: baseline; gap: 4px; margin-bottom: var(--s1);
-        }
-        .price-main {
-            font-family: var(--font-serif); font-size: 3.5rem; color: var(--ink); line-height: 1;
-        }
-        .price-sub {
+        .contrast-item.good .contrast-text { color: rgba(255,255,255,0.7); }
+        .contrast-text { font-size: 0.9375rem; color: var(--ink-3); line-height: 1.6; }
+        .contrast-row { display: flex; flex-direction: column; gap: 6px; }
+        .contrast-row span {
+            display: flex; align-items: center; gap: 8px;
             font-size: 0.875rem; color: var(--ink-4);
         }
-        
-        .card-billing {
-            font-size: 0.8rem; color: var(--ink-4); margin-bottom: var(--s4);
+        .contrast-row span::before {
+            content: '✕'; font-size: 0.75rem; color: var(--ink-4); flex-shrink: 0;
         }
-        
-        .card-desc {
-            font-size: 0.9375rem; color: var(--ink-3); margin-bottom: var(--s4);
-            padding-bottom: var(--s4); border-bottom: 1px solid var(--cream-3);
-            line-height: 1.65;
+        .contrast-row.yes span { color: rgba(255,255,255,0.65); }
+        .contrast-row.yes span::before {
+            content: '✓'; color: var(--terra-2);
         }
-        
-        .card-features {
-            list-style: none; margin-bottom: var(--s5);
-        }
-        .card-features li {
-            display: flex; align-items: flex-start; gap: 10px;
-            padding: 10px 0; font-size: 0.9rem; color: var(--ink-2);
-            border-bottom: 1px solid var(--cream-3);
-        }
-        .card-features li:last-child { border-bottom: none; }
-        .card-features li .icon {
-            width: 18px; height: 18px; min-width: 18px;
-            border-radius: 50%;
-            background: var(--terra-3);
-            display: flex; align-items: center; justify-content: center;
-            position: relative; top: 1px;
-        }
-        .card-features li .icon::after {
-            content: '';
-            width: 9px; height: 7px;
-            background-image: url("data:image/svg+xml,%3Csvg width='9' height='7' viewBox='0 0 9 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3.5L3.2 5.5L8 1' stroke='%23c8552a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-        }
-        .feature-label { font-weight: 500; color: var(--ink); }
-        .feature-note { font-size: 0.8125rem; color: var(--ink-4); }
-        
-        /* ---- INCLUDED ---- */
-        .included { padding: var(--s8) 0; background: var(--cream-2); }
+
+        /* ---- HOW IT WORKS ---- */
+        .how-it-works { padding: var(--s8) 0; background: var(--cream); }
         .section-header { margin-bottom: var(--s6); }
         .section-label {
             font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
@@ -252,74 +218,269 @@
         }
         .section-header h2 { font-size: clamp(1.875rem, 3.5vw, 2.875rem); margin-bottom: var(--s2); }
         .section-header p { font-size: 1.0625rem; color: var(--ink-3); max-width: 480px; }
-        
-        .included-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s4);
+
+        .steps-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+            position: relative;
         }
-        
-        .included-item {
+        .steps-grid::before {
+            content: ''; position: absolute;
+            top: 28px; left: calc(10% + 20px); right: calc(10% + 20px);
+            height: 1px; background: var(--cream-3); z-index: 0;
+        }
+        .step-item {
+            padding: 0 var(--s2); text-align: center; position: relative; z-index: 1;
+        }
+        .step-number-wrap {
+            width: 56px; height: 56px; border-radius: 50%;
             background: var(--white); border: 1px solid var(--cream-3);
-            border-radius: var(--r-xl); padding: var(--s4);
-        }
-        
-        .included-icon {
-            width: 52px; height: 52px; border-radius: 12px;
-            background: var(--terra-3);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: var(--s3);
+            margin: 0 auto var(--s3);
         }
-        .included-icon svg {
-            width: 26px; height: 26px;
-            stroke: var(--terra); fill: none;
-            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        .step-number {
+            font-family: var(--font-serif); font-size: 1.25rem; color: var(--terra);
+            line-height: 1;
         }
-        
-        .included-item h3 {
-            font-family: var(--font-sans); font-size: 1rem; font-weight: 600;
-            color: var(--ink); margin-bottom: 8px;
+        .step-item h3 {
+            font-family: var(--font-sans); font-size: 0.875rem; font-weight: 600;
+            color: var(--ink); margin-bottom: 6px;
         }
-        .included-item p { font-size: 0.875rem; color: var(--ink-3); line-height: 1.65; }
-        
-        /* ---- COMPARISON ---- */
-        .comparison { padding: var(--s8) 0; background: var(--cream); }
-        
-        .comparison-table {
-            max-width: 780px; margin: 0 auto;
-            background: var(--white); border: 1px solid var(--cream-3);
-            border-radius: var(--r-xl); overflow: hidden;
+        .step-item p { font-size: 0.8125rem; color: var(--ink-3); line-height: 1.55; }
+        .step-async-note {
+            margin-top: var(--s5); text-align: center;
+            padding: var(--s3) var(--s4); background: var(--cream-2); border-radius: var(--r-xl);
+            font-size: 0.9375rem; color: var(--ink-3);
+            border: 1px solid var(--cream-3);
+            max-width: 600px; margin-left: auto; margin-right: auto;
         }
-        
-        .compare-row {
-            display: grid; grid-template-columns: 1fr 140px 140px;
-            align-items: center; padding: var(--s3) var(--s4);
+        .step-async-note strong { color: var(--ink); }
+
+        /* ---- PRICING ---- */
+        .pricing-section {
+            padding: var(--s8) 0;
+            background: var(--ink);
+            position: relative; overflow: hidden;
+        }
+        .pricing-section::before {
+            content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(200,85,42,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .pricing-section .section-header { position: relative; z-index: 1; text-align: center; }
+        .pricing-section .section-label { color: var(--terra-2); }
+        .pricing-section .section-header h2 { color: var(--white); }
+        .pricing-section .section-header p { color: rgba(255,255,255,0.45); max-width: 480px; margin: 0 auto; }
+
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3); position: relative; z-index: 1;
+        }
+
+        .pricing-card {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--r-xl); padding: var(--s4) var(--s3);
+            position: relative; transition: box-shadow var(--t-base), border-color var(--t-base);
+        }
+        .pricing-card:hover {
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .pricing-card.featured {
+            background: var(--white); border-color: var(--white);
+        }
+        .pricing-card.featured:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        .pricing-card.featured .card-plan { color: var(--terra); }
+        .pricing-card.featured .price-main { color: var(--ink); }
+        .pricing-card.featured .price-sub { color: var(--ink-4); }
+        .pricing-card.featured .card-billing { color: var(--ink-4); }
+        .pricing-card.featured .card-desc { color: var(--ink-3); border-color: var(--cream-3); }
+        .pricing-card.featured .card-features li { color: var(--ink-2); border-color: var(--cream-3); }
+        .pricing-card.featured .feature-label { color: var(--ink); }
+        .pricing-card.featured .feature-note { color: var(--ink-4); }
+
+        .featured-label {
+            position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+            background: var(--terra); color: var(--white);
+            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 5px 16px; border-radius: 0 0 var(--r-md) var(--r-md);
+        }
+
+        .card-plan {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(255,255,255,0.4); margin-bottom: var(--s2);
+        }
+        .card-price {
+            display: flex; align-items: baseline; gap: 4px; margin-bottom: var(--s1);
+        }
+        .price-main {
+            font-family: var(--font-serif); font-size: 2.75rem; color: var(--white); line-height: 1;
+        }
+        .price-sub {
+            font-size: 0.875rem; color: rgba(255,255,255,0.4);
+        }
+        .card-billing {
+            font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-bottom: var(--s3);
+        }
+        .card-desc {
+            font-size: 0.875rem; color: rgba(255,255,255,0.5); margin-bottom: var(--s3);
+            padding-bottom: var(--s3); border-bottom: 1px solid rgba(255,255,255,0.08);
+            line-height: 1.65;
+        }
+        .card-features {
+            list-style: none; margin-bottom: var(--s4);
+        }
+        .card-features li {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 9px 0; font-size: 0.875rem; color: rgba(255,255,255,0.65);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .card-features li:last-child { border-bottom: none; }
+        .card-features li .icon {
+            width: 16px; height: 16px; min-width: 16px; border-radius: 50%;
+            background: rgba(200,85,42,0.25);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; top: 2px;
+        }
+        .pricing-card.featured .card-features li .icon { background: var(--terra-3); }
+        .card-features li .icon::after {
+            content: '';
+            width: 9px; height: 7px;
+            background-image: url("data:image/svg+xml,%3Csvg width='9' height='7' viewBox='0 0 9 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3.5L3.2 5.5L8 1' stroke='%23c8552a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+        .feature-label { font-weight: 500; color: var(--white); }
+        .pricing-card.featured .feature-label { color: var(--ink); }
+        .feature-note { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+        .pricing-card.featured .feature-note { color: var(--ink-4); }
+
+        /* Script counter badge */
+        .script-count {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(200,85,42,0.15); border: 1px solid rgba(200,85,42,0.25);
+            border-radius: 100px; padding: 4px 12px; margin-bottom: var(--s2);
+            font-size: 0.8125rem; font-weight: 600; color: var(--terra-2);
+        }
+        .pricing-card.featured .script-count {
+            background: var(--terra-3); border-color: rgba(200,85,42,0.2); color: var(--terra);
+        }
+
+        /* Validity pill */
+        .card-validity {
+            font-size: 0.75rem; color: rgba(255,255,255,0.3);
+            margin-bottom: var(--s3); letter-spacing: 0.01em;
+        }
+        .pricing-card.featured .card-validity { color: var(--ink-4); }
+
+        /* ---- ADD-ONS ---- */
+        .addons-section {
+            padding: var(--s7) 0; background: var(--ink);
+            border-top: 1px solid rgba(255,255,255,0.07);
+            position: relative; z-index: 1;
+        }
+        .addons-inner { max-width: 860px; margin: 0 auto; }
+        .addons-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--terra-2); margin-bottom: var(--s3);
+            text-align: center;
+        }
+        .addons-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3);
+        }
+        .addon-card {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--r-xl); padding: var(--s3) var(--s3);
+            display: flex; align-items: flex-start; gap: var(--s2);
+        }
+        .addon-price {
+            font-family: var(--font-serif); font-size: 1.375rem; color: var(--white);
+            line-height: 1; white-space: nowrap;
+        }
+        .addon-info h4 {
+            font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600;
+            color: var(--white); margin-bottom: 4px; line-height: 1.3;
+        }
+        .addon-info p { font-size: 0.8125rem; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+        .plans-footer {
+            position: relative; z-index: 1;
+            text-align: center; margin-top: var(--s5);
+            padding-top: var(--s4); border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .plans-footer-items {
+            display: flex; justify-content: center; flex-wrap: wrap; gap: var(--s4);
+        }
+        .plans-footer-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.875rem; color: rgba(255,255,255,0.4);
+        }
+        .plans-footer-item .check-icon {
+            width: 16px; height: 16px; min-width: 16px; border-radius: 50%;
+            background: rgba(200,85,42,0.25);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .plans-footer-item .check-icon::after {
+            content: '';
+            width: 8px; height: 6px;
+            background-image: url("data:image/svg+xml,%3Csvg width='8' height='6' viewBox='0 0 8 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3L2.8 5L7 1' stroke='%23c8552a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+
+        /* ---- WHO IT'S FOR ---- */
+        .for-section { padding: var(--s8) 0; background: var(--cream-2); }
+        .for-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: var(--s6);
+            max-width: 860px; margin: 0 auto;
+        }
+        .for-col h3 {
+            font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s3);
+        }
+        .for-col.good h3 { color: var(--terra); }
+        .for-col.bad h3 { color: var(--ink-4); }
+        .for-list { list-style: none; }
+        .for-list li {
+            display: flex; align-items: flex-start; gap: 12px;
+            padding: 12px 0; font-size: 0.9375rem; color: var(--ink-2);
             border-bottom: 1px solid var(--cream-3);
         }
-        .compare-row:last-child { border-bottom: none; }
-        
-        .compare-row.header {
-            background: var(--ink); padding: var(--s2) var(--s4);
+        .for-list li:last-child { border-bottom: none; }
+        .for-list li .dot {
+            width: 8px; height: 8px; min-width: 8px;
+            border-radius: 50%; margin-top: 7px;
         }
-        .compare-row.header div {
-            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
-            text-transform: uppercase; color: rgba(255,255,255,0.4);
+        .for-col.good .dot { background: var(--terra); }
+        .for-col.bad .dot { background: var(--cream-3); }
+        .for-col.bad .for-list li { color: var(--ink-4); }
+
+        /* ---- USE CASES ---- */
+        .usecases-section { padding: var(--s8) 0; background: var(--cream); }
+        .usecases-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4);
         }
-        .compare-row.header .compare-featured-col {
-            color: var(--terra-2);
+        .usecase-card {
+            background: var(--white); border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl); padding: var(--s4);
+            transition: box-shadow var(--t-base);
         }
-        
-        .compare-row.highlight { background: var(--terra-3); }
-        
-        .compare-name { font-weight: 600; font-size: 0.9375rem; color: var(--ink); }
-        .compare-desc { font-size: 0.8125rem; color: var(--ink-4); margin-top: 3px; }
-        
-        .compare-price-col, .compare-featured-col {
-            text-align: center; font-size: 0.9375rem;
+        .usecase-card:hover { box-shadow: var(--shadow-md); }
+        .usecase-type {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--terra); margin-bottom: var(--s2);
         }
-        .compare-price-col { color: var(--ink-3); }
-        .compare-featured-col { font-weight: 600; color: var(--terra); }
-        .compare-check { color: var(--terra); font-weight: 600; }
-        .compare-dash { color: var(--ink-4); }
-        
+        .usecase-card h3 {
+            font-family: var(--font-sans); font-size: 1rem; font-weight: 600;
+            color: var(--ink); margin-bottom: 8px; line-height: 1.4;
+        }
+        .usecase-card p { font-size: 0.875rem; color: var(--ink-3); line-height: 1.65; }
+        .usecase-package {
+            display: inline-block; margin-top: var(--s3);
+            font-size: 0.875rem; font-weight: 600; color: var(--terra);
+            background: var(--terra-3); padding: 5px 12px; border-radius: 100px;
+        }
+
         /* ---- FAQ ---- */
         .faq-section { padding: var(--s8) 0; background: var(--cream-2); }
         .faq-grid {
@@ -332,7 +493,24 @@
         }
         .faq-q { font-size: 0.9375rem; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
         .faq-a { font-size: 0.875rem; color: var(--ink-3); line-height: 1.65; }
-        
+
+        /* ---- TRUST ---- */
+        .trust-section {
+            padding: var(--s6) 0; background: var(--cream);
+            border-top: 1px solid var(--cream-3); border-bottom: 1px solid var(--cream-3);
+        }
+        .trust-inner {
+            display: flex; justify-content: center; align-items: center;
+            flex-wrap: wrap; gap: var(--s6);
+        }
+        .trust-item { text-align: center; }
+        .trust-number {
+            font-family: var(--font-serif); font-size: 2rem; color: var(--ink);
+            display: block; line-height: 1.1; margin-bottom: 4px;
+        }
+        .trust-label { font-size: 0.8125rem; color: var(--ink-4); font-weight: 500; }
+        .trust-divider { width: 1px; height: 48px; background: var(--cream-3); }
+
         /* ---- CTA ---- */
         .cta-section {
             padding: var(--s8) 0; background: var(--ink);
@@ -347,7 +525,7 @@
         .cta-section h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: var(--s3); }
         .cta-section p { font-size: 1.0625rem; color: rgba(255,255,255,0.45); max-width: 440px; margin: 0 auto var(--s5); }
         .cta-buttons { display: flex; gap: var(--s2); justify-content: center; flex-wrap: wrap; }
-        
+
         /* ---- FOOTER ---- */
         footer { background: var(--ink); padding: var(--s7) 0 var(--s5); border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-top {
@@ -368,26 +546,34 @@
         .footer-col a:hover { color: rgba(255,255,255,0.85); }
         .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
         .footer-copy, .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
-        
+
         /* ---- REVEAL ---- */
         .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-        
+
         @media (max-width: 1024px) {
-            .included-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .addons-grid { grid-template-columns: 1fr 1fr; }
+            .steps-grid { grid-template-columns: repeat(3, 1fr); }
+            .steps-grid::before { display: none; }
             .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+            .problem-inner { grid-template-columns: 1fr; gap: var(--s5); }
         }
         @media (max-width: 768px) {
             .container { padding: 0 var(--s3); }
-            .pricing-grid, .faq-grid { grid-template-columns: 1fr; }
-            .included-grid { grid-template-columns: 1fr 1fr; }
-            .compare-row { grid-template-columns: 1fr 100px 100px; padding: var(--s2) var(--s3); }
+            .faq-grid { grid-template-columns: 1fr; }
+            .for-grid { grid-template-columns: 1fr; }
+            .usecases-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+            .addons-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+            .trust-divider { display: none; }
             .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
             .footer-bottom { flex-direction: column; gap: 4px; }
             .nav-links { display: none; }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 480px) {
-            .included-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -398,206 +584,383 @@
             <a href="/" class="logo">The Creative <em>Record</em></a>
             <ul class="nav-links">
                 <li><a href="/skills/">Skills</a></li>
-                <li><a href="/feedback/">Feedback</a></li>
                 <li><a href="/about/">About</a></li>
             </ul>
             <div>
-                <a href="#pricing" class="btn btn-primary">Join Now</a>
+                <a href="#pricing" class="btn btn-primary">See Packages</a>
             </div>
         </nav>
     </header>
 
+    <!-- HERO -->
     <section class="page-header">
         <div class="container">
             <div class="page-header-inner">
-                <div class="page-eyebrow">Membership</div>
-                <h1>Join the<br><em>Creative Record</em></h1>
-                <p>Unlimited access to every skill, monthly feedback credits, and a community of advertisers and marketers.</p>
+                <div class="page-eyebrow">Script Packages</div>
+                <h1>Script Packages for Advertisers Who Need Consistent Creative</h1>
+                <p>Buy a bundle of scripts, use them when you need them. No monthly pressure. No batch delivery. Each script in 48--72 hours, on demand.</p>
+                <div class="no-calls-strip">
+                    <span class="no-calls-badge"><span class="badge-check">✓</span>Buy once, use over time</span>
+                    <span class="no-calls-badge"><span class="badge-check">✓</span>No monthly commitment</span>
+                    <span class="no-calls-badge"><span class="badge-check">✓</span>48--72 hour delivery</span>
+                    <span class="no-calls-badge"><span class="badge-check">✓</span>Save up to 40%</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="#pricing" class="btn btn-primary btn-lg">Choose Your Package</a>
+                    <a href="#how-it-works" class="btn btn-ghost-inv btn-lg">See How It Works</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="billing-toggle" id="pricing">
-        <div class="toggle-inner">
-            <span class="toggle-label active" id="label-monthly" onclick="setBilling('monthly')">Monthly</span>
-            <div class="toggle-track" id="toggle" onclick="toggleBilling()">
-                <div class="toggle-thumb"></div>
+    <!-- TRUST BAR -->
+    <div class="trust-section">
+        <div class="container">
+            <div class="trust-inner">
+                <div class="trust-item">
+                    <span class="trust-number">48--72h</span>
+                    <span class="trust-label">Turnaround per script</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <span class="trust-number">1,000+</span>
+                    <span class="trust-label">Scripts delivered</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <span class="trust-number">Up to 40%</span>
+                    <span class="trust-label">Savings vs. per-script rate</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <span class="trust-number">3--12 mo</span>
+                    <span class="trust-label">To use your package</span>
+                </div>
             </div>
-            <span class="toggle-label" id="label-annual" onclick="setBilling('annual')">Annual</span>
-            <span class="save-chip">Save 17%</span>
         </div>
     </div>
 
-    <section class="pricing-section">
+    <!-- THE PROBLEM -->
+    <section class="problem-section">
         <div class="container">
-            <div class="pricing-grid">
-                <div class="pricing-card featured reveal">
-                    <span class="featured-label">Best Value</span>
-                    <div class="card-plan">Annual Plan</div>
-                    <div class="card-price">
-                        <span class="price-main annual-price">$290</span>
-                        <span class="price-main monthly-price" style="display:none;">$29</span>
-                        <span class="price-sub annual-period">/year</span>
-                        <span class="price-sub monthly-period" style="display:none;">/month</span>
-                    </div>
-                    <div class="card-billing annual-billing">Billed annually — 2 months free</div>
-                    <div class="card-billing monthly-billing" style="display:none;">Billed monthly — cancel anytime</div>
-                    <p class="card-desc">Everything you need, all year long. Best value if you're serious about leveling up your creative.</p>
-                    <ul class="card-features">
-                        <li>
-                            <span class="icon"></span>
-                            <span><span class="feature-label">All 5+ skills</span><br><span class="feature-note">Instant access to the full library</span></span>
-                        </li>
-                        <li>
-                            <span class="icon"></span>
-                            <span><span class="feature-label">1 feedback credit / month</span><br><span class="feature-note">Hook review, script triage, or brief diagnosis</span></span>
-                        </li>
-                        <li>
-                            <span class="icon"></span>
-                            <span><span class="feature-label">New skill every month</span><br><span class="feature-note">Based on member requests</span></span>
-                        </li>
-                        <li>
-                            <span class="icon"></span>
-                            <span><span class="feature-label">Private community access</span><br><span class="feature-note">Circle community, peer feedback</span></span>
-                        </li>
-                        <li>
-                            <span class="icon"></span>
-                            <span><span class="feature-label">Member-only content</span><br><span class="feature-note">Deep-dives and strategy updates</span></span>
-                        </li>
-                    </ul>
-                    <button class="btn btn-primary btn-full btn-lg">Join Annual — $290</button>
+            <div class="problem-inner">
+                <div class="problem-copy reveal">
+                    <div class="section-label">The Problem</div>
+                    <h2>Monthly retainers force you to use scripts whether you need them or not.</h2>
+                    <p>You're on a monthly plan. You have 3 scripts coming whether your campaign is ready or not. Some months you need 10. Some months you need 0. You're paying for a schedule, not for output.</p>
+                    <p>Packages flip that. You buy the scripts you need -- 10, 20, or 50 -- and submit requests when you're actually ready to use them. Campaign launching next month? Submit 5 at once. Quiet quarter? Save them for later.</p>
+                    <p>One flat fee. Scripts that don't expire for 3--12 months. Use them on your timeline, not a billing cycle.</p>
                 </div>
-
-                <div class="pricing-card reveal">
-                    <div class="card-plan">Monthly Plan</div>
-                    <div class="card-price">
-                        <span class="price-main">$29</span>
-                        <span class="price-sub">/month</span>
+                <div class="problem-contrast reveal">
+                    <div class="contrast-item bad">
+                        <div class="contrast-label">Monthly retainer</div>
+                        <div class="contrast-row">
+                            <span>Fixed scripts per month whether you need them or not</span>
+                            <span>Unused scripts don't roll over</span>
+                            <span>Monthly billing pressure to "use it or lose it"</span>
+                            <span>Quiet months waste budget</span>
+                            <span>Commit before you know your pipeline</span>
+                        </div>
                     </div>
-                    <div class="card-billing">Billed monthly — cancel anytime</div>
-                    <p class="card-desc">Flexible month-to-month access with everything included. Same benefits, no annual commitment.</p>
-                    <ul class="card-features">
-                        <li>
-                            <span class="icon"></span>
-                            <span><span class="feature-label">All 5+ skills</span><br><span class="feature-note">Instant access to the full library</span></span>
-                        </li>
-                        <li>
-                            <span class="icon"></span>
-                            <span><span class="feature-label">1 feedback credit / month</span><br><span class="feature-note">Hook review, script triage, or brief diagnosis</span></span>
-                        </li>
-                        <li>
-                            <span class="icon"></span>
-                            <span><span class="feature-label">New skill every month</span><br><span class="feature-note">Based on member requests</span></span>
-                        </li>
-                        <li>
-                            <span class="icon"></span>
-                            <span><span class="feature-label">Private community access</span><br><span class="feature-note">Circle community, peer feedback</span></span>
-                        </li>
-                        <li>
-                            <span class="icon"></span>
-                            <span><span class="feature-label">Cancel anytime</span><br><span class="feature-note">No penalties or lock-in</span></span>
-                        </li>
-                    </ul>
-                    <button class="btn btn-ghost btn-full btn-lg">Join Monthly — $29</button>
+                    <div class="contrast-item good">
+                        <div class="contrast-label">Script package</div>
+                        <div class="contrast-row yes">
+                            <span>Buy scripts in bulk, up to 40% cheaper</span>
+                            <span>Submit requests when you're actually ready</span>
+                            <span>Valid for 3, 6, or 12 months</span>
+                            <span>Batch requests for launch weeks</span>
+                            <span>No pressure when things slow down</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- WHAT'S INCLUDED -->
-    <section class="included">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-label">Included in Every Plan</div>
-                <h2>What you get</h2>
-                <p>Everything you need to create better creative, faster.</p>
-            </div>
-            <div class="included-grid">
-                <div class="included-item reveal">
-                    <div class="included-icon">
-                        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                    </div>
-                    <h3>Skills Library</h3>
-                    <p>Instant access to every skill -- script writing, hook generation, briefing, auditing, analysis. Plus all future skills the moment they're released.</p>
-                </div>
-                <div class="included-item reveal">
-                    <div class="included-icon">
-                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    </div>
-                    <h3>Monthly Feedback</h3>
-                    <p>One feedback credit every month. Use it for hook review ($49 value), script triage ($79 value), or brief diagnosis ($99 value). Credits roll over 3 months.</p>
-                </div>
-                <div class="included-item reveal">
-                    <div class="included-icon">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                    </div>
-                    <h3>New Skills Monthly</h3>
-                    <p>A new skill added every month based on member requests and emerging creative strategy needs. You never run out of frameworks to apply.</p>
-                </div>
-                <div class="included-item reveal">
-                    <div class="included-icon">
-                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                    <h3>Private Community</h3>
-                    <p>Connect with other advertisers and marketers on Circle. Share work, get peer feedback, and stay on top of what's working across industries and budgets.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPARISON -->
-    <section class="comparison">
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
         <div class="container">
             <div class="section-header reveal" style="text-align: center;">
-                <div class="section-label">How We Compare</div>
-                <h2>The obvious choice</h2>
-                <p>See why teams choose The Creative Record over the alternatives.</p>
+                <div class="section-label">The Process</div>
+                <h2>How packages work</h2>
+                <p>Buy once. Submit requests when you need them. That's it.</p>
             </div>
-            <div class="comparison-table reveal">
-                <div class="compare-row header">
-                    <div>Option</div>
-                    <div class="compare-featured-col">TCR</div>
-                    <div class="compare-price-col">Alternative</div>
+            <div class="steps-grid">
+                <div class="step-item reveal">
+                    <div class="step-number-wrap"><span class="step-number">1</span></div>
+                    <h3>Buy a Package</h3>
+                    <p>Choose 10, 20, or 50 scripts. Pay once. Your package is valid for 3, 6, or 12 months.</p>
                 </div>
-                <div class="compare-row highlight">
-                    <div>
-                        <div class="compare-name">The Creative Record</div>
-                        <div class="compare-desc">Annual membership + feedback</div>
-                    </div>
-                    <div class="compare-featured-col compare-check">$290/yr</div>
-                    <div class="compare-price-col compare-dash">—</div>
+                <div class="step-item reveal">
+                    <div class="step-number-wrap"><span class="step-number">2</span></div>
+                    <h3>Submit Requests</h3>
+                    <p>When you're ready for a script, fill out the request form. Use one script at a time or batch several for a launch.</p>
                 </div>
-                <div class="compare-row">
-                    <div>
-                        <div class="compare-name">Creative Course</div>
-                        <div class="compare-desc">Generic online course, no feedback</div>
-                    </div>
-                    <div class="compare-featured-col compare-check">✓</div>
-                    <div class="compare-price-col">$500–$2k</div>
+                <div class="step-item reveal">
+                    <div class="step-number-wrap"><span class="step-number">3</span></div>
+                    <h3>Receive via Google Doc</h3>
+                    <p>Your script lands in your inbox within 48--72 hours. Beat-by-beat, with dialogue and stage direction.</p>
                 </div>
-                <div class="compare-row">
-                    <div>
-                        <div class="compare-name">Agency Retainer</div>
-                        <div class="compare-desc">Monthly creative support</div>
-                    </div>
-                    <div class="compare-featured-col compare-check">✓</div>
-                    <div class="compare-price-col">$3k+/mo</div>
+                <div class="step-item reveal">
+                    <div class="step-number-wrap"><span class="step-number">4</span></div>
+                    <h3>Request Revisions</h3>
+                    <p>If you need changes, submit via form. 1--2 revision rounds included per script depending on your package.</p>
                 </div>
-                <div class="compare-row">
-                    <div>
-                        <div class="compare-name">Consulting Call</div>
-                        <div class="compare-desc">One-hour strategy session</div>
-                    </div>
-                    <div class="compare-featured-col compare-check">✓</div>
-                    <div class="compare-price-col">$300–$500</div>
+                <div class="step-item reveal">
+                    <div class="step-number-wrap"><span class="step-number">5</span></div>
+                    <h3>Track Remaining</h3>
+                    <p>Every delivery email shows how many scripts you have left. Submit your next request whenever you're ready.</p>
                 </div>
-                <div class="compare-row">
-                    <div>
-                        <div class="compare-name">Ad Creative Tools</div>
-                        <div class="compare-desc">Spy tools, no strategy education</div>
+            </div>
+            <div class="step-async-note reveal">
+                <strong>No monthly pressure.</strong> Buy once, use over time. Packages are valid for 3, 6, or 12 months -- plenty of time for campaign launches, quarterly planning, or steady ongoing work.
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header reveal" style="margin-bottom: var(--s6);">
+                <div class="section-label">Packages</div>
+                <h2>Buy scripts in bulk, save up to 40%</h2>
+                <p>One flat fee. Scripts delivered individually on your schedule. No monthly commitment, no rollover pressure.</p>
+            </div>
+            <div class="pricing-grid">
+
+                <!-- Starter Package -->
+                <div class="pricing-card reveal">
+                    <div class="card-plan">Starter Package</div>
+                    <div class="script-count">10 scripts</div>
+                    <div class="card-price">
+                        <span class="price-main">$497</span>
                     </div>
-                    <div class="compare-featured-col compare-check">✓</div>
-                    <div class="compare-price-col">$100–$300/mo</div>
+                    <div class="card-billing">$49.70 per script &mdash; one-time payment</div>
+                    <div class="card-validity">Valid for 3 months from purchase</div>
+                    <p class="card-desc">For brands launching a campaign or testing the service. Ten scripts, use them on your timeline.</p>
+                    <ul class="card-features">
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">10 video ad scripts</span><br><span class="feature-note">30--60 seconds, beat-by-beat with dialogue</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">48--72 hour turnaround</span><br><span class="feature-note">Per script, from complete brief submission</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">1 revision round per script</span><br><span class="feature-note">Submit feedback via form</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">Delivered via Google Doc</span><br><span class="feature-note">Ready to send to production</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">3-month validity</span><br><span class="feature-note">Use anytime in that window</span></span>
+                        </li>
+                    </ul>
+                    <a href="mailto:hi@thecreativerecord.com?subject=Starter Package (10 scripts)" class="btn btn-ghost-inv btn-full btn-lg">Get Started</a>
+                </div>
+
+                <!-- Growth Package — featured -->
+                <div class="pricing-card featured reveal">
+                    <span class="featured-label">Most Popular</span>
+                    <div class="card-plan">Growth Package</div>
+                    <div class="script-count">20 scripts</div>
+                    <div class="card-price">
+                        <span class="price-main">$897</span>
+                    </div>
+                    <div class="card-billing">$44.85 per script &mdash; one-time payment</div>
+                    <div class="card-validity">Valid for 6 months from purchase</div>
+                    <p class="card-desc">For agencies and brands with ongoing creative needs. Enough scripts for quarterly planning or a steady production cadence.</p>
+                    <ul class="card-features">
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">20 video ad scripts</span><br><span class="feature-note">30--60 seconds, beat-by-beat with dialogue</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">48--72 hour turnaround</span><br><span class="feature-note">Per script, from complete brief submission</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">2 revision rounds per script</span><br><span class="feature-note">More flexibility for iteration</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">Delivered via Google Doc</span><br><span class="feature-note">Awareness stage + angle named on every script</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">Bonus: Hook Bank</span><br><span class="feature-note">50 hook formulas for your team to use</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">6-month validity</span><br><span class="feature-note">Plenty of runway for ongoing work</span></span>
+                        </li>
+                    </ul>
+                    <a href="mailto:hi@thecreativerecord.com?subject=Growth Package (20 scripts)" class="btn btn-primary btn-full btn-lg">Get Started</a>
+                </div>
+
+                <!-- Scale Package -->
+                <div class="pricing-card reveal">
+                    <div class="card-plan">Scale Package</div>
+                    <div class="script-count">50 scripts</div>
+                    <div class="card-price">
+                        <span class="price-main">$1,997</span>
+                    </div>
+                    <div class="card-billing">$39.94 per script &mdash; one-time payment</div>
+                    <div class="card-validity">Valid for 12 months from purchase</div>
+                    <p class="card-desc">For teams scaling creative operations. Priority queue, unlimited revisions, and a full year to use your scripts.</p>
+                    <ul class="card-features">
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">50 video ad scripts</span><br><span class="feature-note">30--60 seconds, beat-by-beat with dialogue</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">24--48 hour turnaround</span><br><span class="feature-note">Priority queue -- faster delivery</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">Unlimited revisions per script</span><br><span class="feature-note">Iterate until it's right</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">Delivered via Google Doc</span><br><span class="feature-note">Ready for immediate production use</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">Bonus: Hook Bank + Creative Audit Checklist</span><br><span class="feature-note">Full creative strategy toolkit</span></span>
+                        </li>
+                        <li>
+                            <span class="icon"></span>
+                            <span><span class="feature-label">12-month validity + priority queue</span><br><span class="feature-note">A full year to use your scripts, front-of-line status</span></span>
+                        </li>
+                    </ul>
+                    <a href="mailto:hi@thecreativerecord.com?subject=Scale Package (50 scripts)" class="btn btn-ghost-inv btn-full btn-lg">Get Started</a>
+                </div>
+
+            </div>
+
+            <!-- All plans include -->
+            <div class="plans-footer reveal">
+                <div class="plans-footer-items">
+                    <div class="plans-footer-item">
+                        <span class="check-icon"></span>
+                        No monthly commitment
+                    </div>
+                    <div class="plans-footer-item">
+                        <span class="check-icon"></span>
+                        Use scripts on your schedule
+                    </div>
+                    <div class="plans-footer-item">
+                        <span class="check-icon"></span>
+                        7-day money-back guarantee
+                    </div>
+                    <div class="plans-footer-item">
+                        <span class="check-icon"></span>
+                        Written deliverables -- no calls
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADD-ONS -->
+        <div class="addons-section">
+            <div class="container">
+                <div class="addons-inner">
+                    <div class="addons-label">Add-Ons</div>
+                    <div class="addons-grid">
+                        <div class="addon-card reveal">
+                            <div class="addon-price">$79</div>
+                            <div class="addon-info">
+                                <h4>Script Review</h4>
+                                <p>Submit an existing script. Get it scored, annotated, and returned with specific rewrite notes.</p>
+                            </div>
+                        </div>
+                        <div class="addon-card reveal">
+                            <div class="addon-price">$99</div>
+                            <div class="addon-info">
+                                <h4>Creative Direction Brief</h4>
+                                <p>Static ad concepts and visual direction briefs specific enough to hand to a designer.</p>
+                            </div>
+                        </div>
+                        <div class="addon-card reveal">
+                            <div class="addon-price">+$50</div>
+                            <div class="addon-info">
+                                <h4>Rush Delivery</h4>
+                                <p>Need it in 24 hours? Add rush to any script request in your package.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section class="for-section">
+        <div class="container">
+            <div class="section-header reveal" style="text-align: center; margin-bottom: var(--s6);">
+                <div class="section-label">The Right Fit</div>
+                <h2>Who this is for</h2>
+                <p>Packages work best when your creative volume is real but your schedule is unpredictable.</p>
+            </div>
+            <div class="for-grid">
+                <div class="for-col good reveal">
+                    <h3>Right for you if...</h3>
+                    <ul class="for-list">
+                        <li><span class="dot"></span>You're planning a product launch and need a batch of scripts at once</li>
+                        <li><span class="dot"></span>Agency running multiple client accounts with ongoing creative needs</li>
+                        <li><span class="dot"></span>DTC brand scaling ads and testing new angles each quarter</li>
+                        <li><span class="dot"></span>You want to buy ahead when budget is available, use over time</li>
+                        <li><span class="dot"></span>You're comfortable with async communication and form-based requests</li>
+                        <li><span class="dot"></span>You write clear briefs and don't need strategy hand-holding</li>
+                    </ul>
+                </div>
+                <div class="for-col bad reveal">
+                    <h3>Not the right fit if...</h3>
+                    <ul class="for-list">
+                        <li><span class="dot"></span>You need a strategy partner to think through direction on calls</li>
+                        <li><span class="dot"></span>You want same-day turnaround on creative requests</li>
+                        <li><span class="dot"></span>You're looking for full production -- filming, editing, post-production</li>
+                        <li><span class="dot"></span>You need someone to manage your ad account and media buying</li>
+                        <li><span class="dot"></span>You need design execution, not just written direction</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="usecases-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">How People Use Packages</div>
+                <h2>Three ways packages actually work</h2>
+                <p>Packages work best when you know your creative volume but not your exact schedule.</p>
+            </div>
+            <div class="usecases-grid">
+                <div class="usecase-card reveal">
+                    <div class="usecase-type">Product Launch</div>
+                    <h3>Buy 10 scripts for a launch month</h3>
+                    <p>Campaign going live in 6 weeks. You need 8--10 scripts fast -- different hooks, different angles, a few variations for testing. Buy the Starter Package, batch your requests, get them all back before production starts.</p>
+                    <span class="usecase-package">Starter Package -- $497</span>
+                </div>
+                <div class="usecase-card reveal">
+                    <div class="usecase-type">Agency Client</div>
+                    <h3>Buy 20 scripts for ongoing client work</h3>
+                    <p>You manage creative for 3--4 DTC clients. You need a steady stream of scripts throughout the year but the timing varies by client. Buy the Growth Package, allocate scripts across clients as campaigns come up.</p>
+                    <span class="usecase-package">Growth Package -- $897</span>
+                </div>
+                <div class="usecase-card reveal">
+                    <div class="usecase-type">Growth Phase</div>
+                    <h3>Buy 50 scripts to scale your ad creative</h3>
+                    <p>You're scaling paid media and need to test more angles, more hooks, more formats than your current team can write. Buy the Scale Package, submit requests week by week as your ad account grows.</p>
+                    <span class="usecase-package">Scale Package -- $1,997</span>
                 </div>
             </div>
         </div>
@@ -608,46 +971,54 @@
         <div class="container">
             <div class="section-header reveal" style="text-align: center;">
                 <div class="section-label">Questions</div>
-                <h2>Membership FAQ</h2>
+                <h2>How packages work</h2>
             </div>
             <div class="faq-grid">
                 <div class="faq-item reveal">
-                    <div class="faq-q">Can I cancel anytime?</div>
-                    <div class="faq-a">Monthly memberships cancel anytime, no penalty. Annual memberships retain access until the renewal date when cancelled.</div>
+                    <div class="faq-q">What happens after I buy a package?</div>
+                    <div class="faq-a">You'll receive a confirmation email with a link to the request form and instructions for submitting your first script. No kickoff call. No onboarding session. Fill out the form and your first script is in the queue.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q">What happens to unused feedback credits?</div>
-                    <div class="faq-a">Credits roll over for up to 3 months. Skip a month and you can submit 2 pieces of creative the following month.</div>
+                    <div class="faq-q">How long do I have to use my scripts?</div>
+                    <div class="faq-a">Starter Package (10 scripts) is valid for 3 months. Growth Package (20 scripts) is valid for 6 months. Scale Package (50 scripts) is valid for 12 months. Validity starts from the purchase date.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q">How do I access the community?</div>
-                    <div class="faq-a">After joining, you'll get an invite to our private Circle community -- where members share work, ask questions, and get feedback from peers.</div>
+                    <div class="faq-q">Can I submit multiple requests at once?</div>
+                    <div class="faq-a">Yes. You can batch requests -- useful for launches when you need 5--8 scripts in a short window. Each script still has its own 48--72 hour turnaround from when the brief is submitted. Scale Package customers get priority queue status.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q">What's the difference between the two plans?</div>
-                    <div class="faq-a">Price only. Annual is $290/year (saving $58, or 2 months free). Monthly is $29/month. Both plans include the same access and benefits.</div>
+                    <div class="faq-q">How do revisions work?</div>
+                    <div class="faq-a">Starter includes 1 revision round per script. Growth includes 2 rounds per script. Scale includes unlimited revisions. Submit revision feedback via form. Each revision round has its own 48-hour turnaround.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q">Do you offer team plans?</div>
-                    <div class="faq-a">Yes. Teams of 3+ get 20% off. Email team@thecreativerecord.com for team pricing and invoicing options.</div>
+                    <div class="faq-q">What if I don't use all my scripts?</div>
+                    <div class="faq-a">Unused scripts expire at the end of your validity window (3, 6, or 12 months). If you're running low on time, email us -- in most cases we can extend the window for a reasonable fee rather than let scripts go to waste.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-q">Is there a refund policy?</div>
-                    <div class="faq-a">Yes. If you're not satisfied within 14 days, we'll issue a full refund. No questions asked.</div>
+                    <div class="faq-q">Who writes the scripts?</div>
+                    <div class="faq-a">Sadie Dunhill -- an experienced creative strategist from Goodo Studios. Not a content mill, not rotating freelancers. Every script comes from the same strategist who has seen what converts across hundreds of DTC campaigns.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">What do I need to submit a request?</div>
+                    <div class="faq-a">A clear brief: your brand, product, target audience, the awareness stage you're targeting, and any creative context. The request form has structured prompts. The better your brief, the better the script.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">What if I need more scripts than my package?</div>
+                    <div class="faq-a">You can purchase additional packages at any time. They stack -- your remaining scripts from your current package plus the new ones. Validity resets to the new purchase date for the new batch.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- FINAL CTA -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-inner reveal">
-                <h2>Ready to join?</h2>
-                <p>Start creating better ads today with proven frameworks and expert feedback.</p>
+                <h2>Scripts on your schedule.<br>No monthly pressure.</h2>
+                <p>Buy a package, submit requests when you're ready, get each script in 48--72 hours. No calls. No Slack. No commitment beyond the package you buy.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary btn-lg">Join Annual — $290</a>
-                    <a href="#" class="btn btn-ghost-inv btn-lg">Join Monthly — $29</a>
+                    <a href="#pricing" class="btn btn-primary btn-lg">Choose Your Package</a>
+                    <a href="mailto:hi@thecreativerecord.com" class="btn btn-ghost-inv btn-lg">Questions? Email us</a>
                 </div>
             </div>
         </div>
@@ -658,14 +1029,14 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <a href="/" class="logo">The Creative <em>Record</em></a>
-                    <p class="footer-tagline">Creative strategy frameworks for advertisers. Built by the team at Goodo Studios.</p>
+                    <p class="footer-tagline">Script packages for DTC brands and agencies. Buy in bulk, use on your schedule. Built by Goodo Studios.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Product</h4>
+                    <h4>Packages</h4>
                     <ul>
-                        <li><a href="/skills/">All Skills</a></li>
-                        <li><a href="/feedback/">Feedback</a></li>
-                        <li><a href="/subscribe/">Membership</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#pricing">Add-Ons</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -673,7 +1044,6 @@
                     <ul>
                         <li><a href="/about/">About</a></li>
                         <li><a href="/newsletter/">Newsletter</a></li>
-                        <li><a href="/affiliates/">Affiliates</a></li>
                         <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
                     </ul>
                 </div>
@@ -694,31 +1064,6 @@
     </footer>
 
     <script>
-        let isAnnual = false;
-        
-        function updateUI() {
-            const toggle = document.getElementById('toggle');
-            const labelM = document.getElementById('label-monthly');
-            const labelA = document.getElementById('label-annual');
-            
-            toggle.classList.toggle('on', isAnnual);
-            labelM.classList.toggle('active', !isAnnual);
-            labelA.classList.toggle('active', isAnnual);
-            
-            document.querySelectorAll('.annual-price, .annual-period, .annual-billing').forEach(el => {
-                el.style.display = isAnnual ? '' : 'none';
-            });
-            document.querySelectorAll('.monthly-price, .monthly-period, .monthly-billing').forEach(el => {
-                el.style.display = isAnnual ? 'none' : '';
-            });
-        }
-        
-        function toggleBilling() { isAnnual = !isAnnual; updateUI(); }
-        function setBilling(type) { isAnnual = (type === 'annual'); updateUI(); }
-        
-        // Init: show monthly by default
-        updateUI();
-        
         // Scroll reveal
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
