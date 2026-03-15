@@ -62,3 +62,23 @@ All products are live in the Stripe account (Goodostudios / Mercury).
 - Webhook endpoint: `/api/webhook` (configure in Stripe Dashboard → Webhooks)
 - Webhook secret: set as `STRIPE_WEBHOOK_SECRET` env var in Vercel
 - After purchase: subscriber added to Beehiiv pub_7ae1d56e-7576-41fe-bd64-0cd4af00da66 with product tag
+
+---
+
+## Remaining Setup: Vercel Environment Variables
+
+The payment links work immediately with no config needed. For the `/api/create-checkout` and `/api/webhook` serverless functions, add these in Vercel Dashboard → Project Settings → Environment Variables:
+
+```
+STRIPE_SECRET_KEY=sk_live_[get from Stripe Dashboard → Developers → API Keys]
+STRIPE_WEBHOOK_SECRET=whsec_[get from Stripe Dashboard → Webhooks after creating endpoint]
+```
+
+### Webhook Setup in Stripe Dashboard
+1. Go to https://dashboard.stripe.com/webhooks
+2. Click "Add endpoint"
+3. URL: `https://thecreativerecord.com/api/webhook`
+4. Events: `checkout.session.completed`
+5. Copy the signing secret → paste as `STRIPE_WEBHOOK_SECRET` in Vercel
+6. Redeploy Vercel after adding env vars
+
