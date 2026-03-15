@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Script Framework — Start Here</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #faf9f7;
+      color: #1a1a1a;
+      line-height: 1.7;
+      font-size: 18px;
+    }
+    .hero {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 60px 30px;
+    }
+    .hero h1 {
+      font-size: 2.4em;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+    .hero p {
+      font-size: 1.2em;
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 0.85em;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section {
+      padding: 60px 0;
+      border-bottom: 1px solid #e8e5e0;
+    }
+    .step-block {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      margin-bottom: 48px;
+    }
+    .step-number {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6em;
+      font-weight: bold;
+    }
+    .step-content h3 {
+      font-size: 1.3em;
+      margin-bottom: 8px;
+    }
+    .step-content p {
+      color: #555;
+      font-size: 0.95em;
+    }
+    .file-card {
+      background: #fff;
+      border: 2px solid #e8e5e0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .file-icon {
+      font-size: 2em;
+      flex-shrink: 0;
+    }
+    .file-card h4 {
+      font-size: 1.05em;
+      margin-bottom: 6px;
+    }
+    .file-card p {
+      color: #666;
+      font-size: 0.9em;
+    }
+    .highlight-box {
+      background: #fff8e1;
+      border-left: 5px solid #f9a825;
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      margin: 30px 0;
+    }
+    .highlight-box strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.05em;
+    }
+    h2 {
+      font-size: 1.8em;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+    .time-label {
+      display: inline-block;
+      background: #f0f0f0;
+      color: #555;
+      font-family: Arial, sans-serif;
+      font-size: 0.8em;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .start-tip {
+      background: #e8f5e9;
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .start-tip p {
+      font-size: 1.05em;
+      color: #1b5e20;
+    }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #999;
+      font-size: 0.85em;
+      font-family: Arial, sans-serif;
+    }
+    footer a { color: #666; }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">✓ You're in the right place — start here!</div>
+  <h1>Video Script Framework</h1>
+  <p>Welcome! This guide takes about 5 minutes to read. After that, you'll know exactly what to do.</p>
+</div>
+
+<div class="container">
+
+  <!-- WHAT'S IN THIS FOLDER -->
+  <div class="section">
+    <h2>What You Downloaded</h2>
+    <p style="color:#555; margin-bottom:32px;">You have everything you need right here. Here's what each file does:</p>
+
+    <div class="file-card">
+      <div class="file-icon">📄</div>
+      <div>
+        <h4>README-FIRST.html <span style="color:#2e7d32;font-size:0.8em;">← You're reading this now!</span></h4>
+        <p>This guide. Read it first, always. It tells you what everything is and what order to use it in.</p>
+      </div>
+    </div>
+
+    <div class="file-card">
+      <div class="file-icon">📋</div>
+      <div>
+        <h4>video-script-framework.md</h4>
+        <p>The full framework with all the details. Think of it as your reference manual — you don't need to memorize it, just keep it open while you work.</p>
+      </div>
+    </div>
+
+    <div class="file-card">
+      <div class="file-icon">📁</div>
+      <div>
+        <h4>TEMPLATES/ folder</h4>
+        <p>Blank fill-in-the-blanks templates. Open these, type in your product info, and your script practically writes itself.</p>
+      </div>
+    </div>
+
+    <div class="file-card">
+      <div class="file-icon">📁</div>
+      <div>
+        <h4>EXAMPLES/ folder</h4>
+        <p>Real, completed examples you can read and copy the style of. See exactly what a finished script looks like before you write your own.</p>
+      </div>
+    </div>
+
+    <div class="file-card">
+      <div class="file-icon">🎬</div>
+      <div>
+        <h4>VIDEO-GUIDE.txt</h4>
+        <p>A link to a video walkthrough. Watch someone use this framework from start to finish in under 15 minutes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW TO USE IT -->
+  <div class="section">
+    <h2>How to Use This — Step by Step</h2>
+
+    <div class="step-block">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h3>Read one example <span class="time-label">5 min</span></h3>
+        <p>Open the <strong>EXAMPLES/</strong> folder. Read "example-skincare-brand.md" (or any example). Don't overthink it — just read it like a story. You'll see how the 5 beats flow together.</p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h3>Open your blank template <span class="time-label">2 min</span></h3>
+        <p>Open the <strong>TEMPLATES/</strong> folder. Open "script-template-blank.md". This is your working document. Keep it open.</p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h3>Fill in your product details <span class="time-label">10 min</span></h3>
+        <p>The template has brackets like [YOUR PRODUCT] and [YOUR HOOK]. Replace every bracket with your own words. There are only 8 things to fill in.</p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <h3>Write your script using the 5-beat structure <span class="time-label">20 min</span></h3>
+        <p>The framework document shows you exactly what goes in each beat. Beat 1 is your hook (first 3 seconds). Beat 5 is your call to action. Write one beat at a time.</p>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <h3>Read it out loud and time it <span class="time-label">5 min</span></h3>
+        <p>Read your script aloud and time it. It should be 28–32 seconds. If it's too long, cut from beats 2 and 3 first.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>💡 One thing to remember</strong>
+      You do NOT need to understand advertising to use this. The framework does the thinking for you. Your only job is to fill in what's true about your product.
+    </div>
+  </div>
+
+  <!-- IF YOU GET STUCK -->
+  <div class="section">
+    <h2>If You Get Stuck</h2>
+
+    <p style="margin-bottom:24px;">Most people get stuck in Beat 1 (the hook). That's normal. Here's what to do:</p>
+
+    <div class="file-card">
+      <div class="file-icon">🔍</div>
+      <div>
+        <h4>Check the Hook Bank</h4>
+        <p>The EXAMPLES folder has a "hook-ideas.md" file with 20 hook starters. Pick one, swap in your product, and you're done. You don't have to invent anything from scratch.</p>
+      </div>
+    </div>
+
+    <div class="file-card">
+      <div class="file-icon">📧</div>
+      <div>
+        <h4>Email for help</h4>
+        <p>Still stuck? Email <strong>sadie@goodostudios.com</strong> with your template filled in. I'll write you a hook personally. No charge, no judgment.</p>
+      </div>
+    </div>
+
+    <div class="start-tip">
+      <p>🎉 <strong>You're going to be fine.</strong> Thousands of people have used this framework. The only thing required is that you know your product — and you already do.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Video Script Framework v1.0 &nbsp;|&nbsp; The Creative Record &nbsp;|&nbsp; <a href="mailto:sadie@goodostudios.com">sadie@goodostudios.com</a>
+</footer>
+
+</body>
+</html>
