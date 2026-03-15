@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How to Use Your Skills — The Creative Record</title>
-  <meta name="description" content="Step-by-step guide to downloading and using your skills from The Creative Record. No tech experience needed.">
+  <meta name="description" content="Step-by-step guide to using your Creative Record skills with Claude Code, OpenClaw, Cursor, and any AI platform. Setup takes under 2 minutes.">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -65,7 +65,59 @@
       font-size: 0.9em;
     }
 
-    /* WHAT YOU GET */
+    /* AI PLATFORM GRID */
+    .ai-platforms {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .ai-platforms h2 {
+      font-size: 1.8em;
+      margin-bottom: 12px;
+    }
+    .ai-platforms .subtitle {
+      color: #888;
+      font-family: Arial, sans-serif;
+      margin-bottom: 40px;
+    }
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) { 
+      .platform-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .platform-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    .platform-card .icon { 
+      font-size: 2em; 
+      margin-bottom: 8px; 
+    }
+    .platform-card h4 { 
+      font-size: 0.95em; 
+      margin-bottom: 4px;
+      color: #fff;
+    }
+    .platform-card p { 
+      font-size: 0.75em; 
+      color: #888; 
+      font-family: Arial, sans-serif;
+    }
+    .platform-card.featured {
+      background: rgba(200, 85, 42, 0.15);
+      border-color: rgba(200, 85, 42, 0.3);
+    }
+
+    /* CONTAINER */
     .container {
       max-width: 900px;
       margin: 0 auto;
@@ -95,7 +147,7 @@
       max-width: 640px;
     }
 
-    /* ZIP CONTENTS VISUAL */
+    /* WHAT YOU GET */
     .zip-visual {
       background: #fff;
       border: 2px solid #e8e5e0;
@@ -125,14 +177,60 @@
     .zip-item-text p { font-size: 0.88em; color: #666; font-family: Arial, sans-serif; }
     .zip-item-badge {
       display: inline-block;
-      background: #fff3cd;
-      color: #856404;
+      background: #c8552a;
+      color: #fff;
       font-size: 0.7em;
       padding: 2px 8px;
       border-radius: 4px;
       font-family: Arial, sans-serif;
       margin-left: 8px;
       vertical-align: middle;
+    }
+
+    /* HOW IT WORKS */
+    .how-it-works {
+      background: #f5f5f5;
+      border-radius: 16px;
+      padding: 40px;
+      margin: 40px 0;
+    }
+    .how-it-works h3 {
+      font-size: 1.3em;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .workflow-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 640px) { 
+      .workflow-steps { grid-template-columns: 1fr; }
+    }
+    .workflow-step {
+      text-align: center;
+    }
+    .workflow-step .num {
+      width: 48px;
+      height: 48px;
+      background: #c8552a;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4em;
+      font-weight: bold;
+      margin: 0 auto 16px;
+    }
+    .workflow-step h4 {
+      font-size: 1em;
+      margin-bottom: 8px;
+    }
+    .workflow-step p {
+      font-size: 0.9em;
+      color: #666;
+      font-family: Arial, sans-serif;
     }
 
     /* STEPS */
@@ -186,24 +284,33 @@
     .highlight-box strong { display: block; margin-bottom: 8px; font-size: 1.1em; }
     .highlight-box p { font-size: 0.95em; color: #555; }
 
-    /* NO SPECIAL SOFTWARE */
-    .compat-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 32px;
+    /* MD FILE EXPLAINER */
+    .md-explainer {
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      margin: 40px 0;
     }
-    @media (max-width: 640px) { .compat-grid { grid-template-columns: 1fr 1fr; } }
-    .compat-card {
-      background: #fff;
-      border: 2px solid #e8e5e0;
-      border-radius: 12px;
-      padding: 24px 16px;
-      text-align: center;
+    .md-explainer h3 {
+      font-size: 1.4em;
+      margin-bottom: 16px;
     }
-    .compat-card .icon { font-size: 2.4em; margin-bottom: 10px; }
-    .compat-card h4 { font-size: 0.95em; margin-bottom: 4px; }
-    .compat-card p { font-size: 0.8em; color: #888; font-family: Arial, sans-serif; }
+    .md-explainer p {
+      color: #aaa;
+      font-family: Arial, sans-serif;
+      margin-bottom: 24px;
+    }
+    .md-code {
+      background: #000;
+      border-radius: 8px;
+      padding: 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85em;
+      overflow-x: auto;
+    }
+    .md-code .comment { color: #6b6560; }
+    .md-code .content { color: #fff; }
 
     /* SKILLS LIST */
     .skills-grid {
@@ -249,6 +356,36 @@
       text-decoration: none;
     }
 
+    /* COMPATIBILITY GRID */
+    .compat-section {
+      background: #f8f8f8;
+      border-radius: 16px;
+      padding: 40px;
+      margin: 40px 0;
+    }
+    .compat-section h3 {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .compat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 768px) { 
+      .compat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .compat-card {
+      background: #fff;
+      border: 2px solid #e8e5e0;
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    .compat-card .icon { font-size: 2.4em; margin-bottom: 10px; }
+    .compat-card h4 { font-size: 0.95em; margin-bottom: 4px; }
+    .compat-card p { font-size: 0.8em; color: #888; font-family: Arial, sans-serif; }
+
     footer {
       text-align: center;
       padding: 48px 20px;
@@ -274,18 +411,67 @@
 <!-- HERO -->
 <div class="hero">
   <div class="eyebrow">Using Your Skills</div>
-  <h1>It's simpler<br>than you think.</h1>
-  <p>You don't need to be technical. If you can open an email and click a link, you can use these skills.</p>
-  <div class="reassurance">✓ Works on phone, tablet, Mac, or Windows PC — no special software needed</div>
+  <h1>Use them with<br>any AI platform.</h1>
+  <p>These aren't documents you read—they're .md skill files you use WITH Claude Code, OpenClaw, Cursor, Codex, and any AI tool. Setup takes under 2 minutes.</p>
+  <div class="reassurance">✓ Works with Claude Code · OpenClaw · Cursor · Codex CLI · Gemini CLI · Claude Desktop · ChatGPT · Any LLM</div>
+</div>
+
+<!-- AI PLATFORM GRID -->
+<div class="ai-platforms">
+  <h2>Works with every major AI platform</h2>
+  <p class="subtitle">Drop the .md file into any of these tools and start using your skill immediately</p>
+  
+  <div class="platform-grid">
+    <div class="platform-card featured">
+      <div class="icon">🎯</div>
+      <h4>OpenClaw</h4>
+      <p>Native support</p>
+    </div>
+    <div class="platform-card featured">
+      <div class="icon">◈</div>
+      <h4>Claude Code</h4>
+      <p>Drop & use</p>
+    </div>
+    <div class="platform-card">
+      <div class="icon">⚡</div>
+      <h4>Cursor</h4>
+      <p>Full support</p>
+    </div>
+    <div class="platform-card">
+      <div class="icon">⌘</div>
+      <h4>Codex CLI</h4>
+      <p>Full support</p>
+    </div>
+    <div class="platform-card">
+      <div class="icon">🔮</div>
+      <h4>Gemini CLI</h4>
+      <p>Full support</p>
+    </div>
+    <div class="platform-card">
+      <div class="icon">◈</div>
+      <h4>Claude Desktop</h4>
+      <p>Full support</p>
+    </div>
+    <div class="platform-card">
+      <div class="icon">💬</div>
+      <h4>ChatGPT</h4>
+      <p>Copy & paste</p>
+    </div>
+    <div class="platform-card">
+      <div class="icon">🤖</div>
+      <h4>Any LLM</h4>
+      <p>Markdown works</p>
+    </div>
+  </div>
 </div>
 
 <div class="container">
 
   <!-- WHAT YOU GET -->
   <div class="section">
-    <div class="section-label">Step 0 — What You Get</div>
+    <div class="section-label">What You Get</div>
     <h2>Inside every skill download</h2>
-    <p class="subtitle">After you buy, you'll get an email with a download link. Click the link and you'll download one folder. Here's what's inside it:</p>
+    <p class="subtitle">After you buy, you'll get an email with a download link. Each skill is a folder containing everything you need:</p>
 
     <div class="zip-visual">
       <div class="zip-header">
@@ -297,26 +483,18 @@
       </div>
 
       <div class="zip-item">
-        <div class="zip-item-icon">📄</div>
+        <div class="zip-item-icon">🎯</div>
         <div class="zip-item-text">
-          <h4>README-FIRST.html <span class="zip-item-badge">⬅ START HERE</span></h4>
-          <p>A visual guide that tells you exactly how to use everything. Open this first, every time. It's a webpage — just double-click to open it in your browser.</p>
+          <h4>SKILL.md <span class="zip-item-badge">⬅ START HERE</span></h4>
+          <p>The main skill file—formatted instructions and frameworks designed to work WITH your AI. Drop this into Claude Code, Cursor, or any AI platform.</p>
         </div>
       </div>
 
       <div class="zip-item">
         <div class="zip-item-icon">📋</div>
         <div class="zip-item-text">
-          <h4>The skill document (.md file)</h4>
-          <p>The full framework with all the details. Open with any text editor or just read the README first and come back to this when you need more depth.</p>
-        </div>
-      </div>
-
-      <div class="zip-item">
-        <div class="zip-item-icon">📁</div>
-        <div class="zip-item-text">
           <h4>TEMPLATES/ folder</h4>
-          <p>Fill-in-the-blank documents ready for your product. Everything has clear [BRACKETS] showing you exactly where to type your own information.</p>
+          <p>Fill-in-the-blank templates ready for your AI to complete. Everything has clear [BRACKETS] showing you exactly where your information goes.</p>
         </div>
       </div>
 
@@ -324,7 +502,15 @@
         <div class="zip-item-icon">📁</div>
         <div class="zip-item-text">
           <h4>EXAMPLES/ folder</h4>
-          <p>Completed examples showing what a finished result looks like. Read these before you start your own — they make everything clearer.</p>
+          <p>Completed examples showing what finished output looks like. Share these with your AI so it understands the expected format.</p>
+        </div>
+      </div>
+
+      <div class="zip-item">
+        <div class="zip-item-icon">📖</div>
+        <div class="zip-item-text">
+          <h4>README-FIRST.html</h4>
+          <p>A visual guide that walks you through exactly how to use the skill with your AI platform. Open this in your browser for step-by-step instructions.</p>
         </div>
       </div>
 
@@ -332,132 +518,147 @@
         <div class="zip-item-icon">🎬</div>
         <div class="zip-item-text">
           <h4>VIDEO-GUIDE.txt</h4>
-          <p>A link to a video walkthrough. Watch someone go through the entire process from start to finish.</p>
+          <p>A link to a video walkthrough. Watch someone use the skill with their AI from start to finish.</p>
         </div>
       </div>
+    </div>
 
-      <div class="zip-item">
-        <div class="zip-item-icon">📄</div>
-        <div class="zip-item-text">
-          <h4>QUICK-START.html</h4>
-          <p>A printable 1-page summary. Great to keep open on your phone while you work, or print it out and pin it to your wall.</p>
+    <!-- HOW IT WORKS -->
+    <div class="how-it-works">
+      <h3>How it works in 3 steps</h3>
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <div class="num">1</div>
+          <h4>Download the .md file</h4>
+          <p>Get the SKILL.md file from your download folder</p>
+        </div>
+        <div class="workflow-step">
+          <div class="num">2</div>
+          <h4>Open with your AI</h4>
+          <p>Drop it into Claude Code, Cursor, or copy/paste to ChatGPT</p>
+        </div>
+        <div class="workflow-step">
+          <div class="num">3</div>
+          <h4>Use your skill</h4>
+          <p>Follow the prompts and let your AI execute the framework</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- STEP 1 -->
+  <!-- MD FILES EXPLAINED -->
   <div class="section">
-    <div class="section-label">Step 1 — Download</div>
-    <h2>After you buy, check your email</h2>
-    <p class="subtitle">Your skills are delivered by email. Here's exactly what to do:</p>
+    <div class="section-label">What's a .md File?</div>
+    <h2>Markdown = Universal AI format</h2>
+    <p class="subtitle">.md (Markdown) is the standard format that every AI platform can read. It's not a proprietary file—it's plain text with simple formatting that works everywhere.</p>
 
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="num">1</div>
-        <h3>Check your inbox</h3>
-        <p>After buying, you'll get a confirmation email within a minute. Subject line: "Your Creative Record Skills Are Ready."</p>
-        <div class="visual-hint">
-          <strong>Can't find it?</strong> Check your spam/junk folder. If it's still not there after 5 minutes, email <a href="mailto:sadie@goodostudios.com" style="color:#1a1a1a;">sadie@goodostudios.com</a>
-        </div>
-      </div>
-
-      <div class="step-card">
-        <div class="num">2</div>
-        <h3>Click the download link</h3>
-        <p>The email has a button that says "Download Your Skills." Click it. Your browser will download a folder (or a .zip file).</p>
-        <div class="visual-hint">
-          <strong>On a phone?</strong> The files will save to your Downloads folder. You can also email yourself the link and open it on a computer later.
-        </div>
-      </div>
-
-      <div class="step-card">
-        <div class="num">3</div>
-        <h3>Open the folder</h3>
-        <p>If you downloaded a .zip file, double-click it to open it. This extracts the contents into a regular folder. On a phone, tap it once and it will expand automatically.</p>
-        <div class="visual-hint">
-          <strong>Not sure what a .zip file is?</strong> It's just a compressed folder. Double-clicking it "unzips" it — like opening a package. Nothing installs, nothing changes on your computer.
-        </div>
-      </div>
-
-      <div class="step-card">
-        <div class="num">4</div>
-        <h3>Open README-FIRST.html</h3>
-        <p>Find the file called "README-FIRST.html" and double-click it. It opens in your web browser (like Safari, Chrome, or Edge). This is your guide for everything else.</p>
-        <div class="visual-hint">
-          <strong>What's an .html file?</strong> It's a webpage saved on your computer. It opens like a website but you don't need internet to view it. Just double-click.
-        </div>
+    <div class="md-explainer">
+      <h3>Why .md files are perfect for AI skills</h3>
+      <p>Every major AI platform—Claude Code, OpenClaw, Cursor, Codex, Gemini—natively understands Markdown. No conversion needed. No special apps. Just open and use.</p>
+      
+      <div class="md-code">
+        <div class="comment"># This is a Markdown file (.md)</div>
+        <div class="comment"># It works with EVERY AI platform</div>
+        <br/>
+        <div class="content"># Video Script Framework</div>
+        <br/>
+        <div class="comment">## Instructions for the AI:</div>
+        <div class="content">You are a video script strategist. Follow this</div>
+        <div class="content">5-beat structure to write high-converting scripts...</div>
+        <br/>
+        <div class="comment">## The Framework:</div>
+        <div class="content">1. **Hook** (0-3 seconds): Grab attention</div>
+        <div class="content">2. **Problem** (3-8 seconds): Agitate pain</div>
+        <div class="content">3. **Solution** (8-15 seconds): Introduce product</div>
+        <div class="content">4. **Proof** (15-25 seconds): Show results</div>
+        <div class="content">5. **CTA** (25-30 seconds): Call to action</div>
       </div>
     </div>
 
     <div class="highlight-box">
-      <strong>The only rule: always start with README-FIRST.html</strong>
-      <p>Every skill comes with this guide. It tells you exactly what order to use everything in. If you ever feel lost, close everything, open README-FIRST.html, and start from there.</p>
+      <strong>The key difference: You're not reading this document—you're giving it to your AI</strong>
+      <p>Traditional PDFs = you read and learn, then do the work yourself.<br/>
+      Creative Record skills = your AI reads the framework, then does the work WITH you.</p>
     </div>
   </div>
 
-  <!-- STEP 2 — OPEN MD FILES -->
+  <!-- STEP-BY-STEP -->
   <div class="section">
-    <div class="section-label">Step 2 — Open the Documents</div>
-    <h2>Opening .md files (it's easy)</h2>
-    <p class="subtitle">Some files end in ".md" — that just means they're simple text documents. Here's how to open them:</p>
+    <div class="section-label">Platform-Specific Setup</div>
+    <h2>Getting started takes 2 minutes</h2>
+    <p class="subtitle">Here's exactly how to use your skills with the most popular AI platforms:</p>
 
     <div class="steps-grid">
       <div class="step-card">
-        <div class="num">💻</div>
-        <h3>On a Mac</h3>
-        <p>Double-click the .md file. It might open in TextEdit. That's fine — everything is readable. Or right-click it and choose "Open With" → any text editor or even Google Docs.</p>
+        <div class="num">◈</div>
+        <h3>Claude Code</h3>
+        <p>Drop the SKILL.md file into your project folder. Claude Code will automatically read it and follow the instructions. Type <code>/help</code> to see available commands from the skill.</p>
+        <div class="visual-hint">
+          <strong>Pro tip:</strong> Put skills in a <code>/skills</code> folder in your project root. Claude will reference them automatically.
+        </div>
       </div>
+
       <div class="step-card">
-        <div class="num">🖥️</div>
-        <h3>On Windows</h3>
-        <p>Double-click the .md file. It will open in Notepad. Everything is readable there. Or open Word, Google Docs, or Notion and drag the file in.</p>
+        <div class="num">🎯</div>
+        <h3>OpenClaw</h3>
+        <p>Place the SKILL.md file in your workspace. OpenClaw will load it as a context document. Reference the skill by name in your prompts—OpenClaw will apply the framework automatically.</p>
+        <div class="visual-hint">
+          <strong>Pro tip:</strong> Use the <code>@skill</code> syntax to invoke specific frameworks from your loaded skills.
+        </div>
       </div>
+
       <div class="step-card">
-        <div class="num">📱</div>
-        <h3>On iPhone / iPad</h3>
-        <p>Open the Files app, find the downloaded folder, and tap the .md file. It opens as a text file and is completely readable.</p>
+        <div class="num">⚡</div>
+        <h3>Cursor</h3>
+        <p>Open Cursor, go to File → Open Folder, and select your skill folder. The SKILL.md becomes part of your context. Use Cmd+K (Mac) or Ctrl+K (Windows) to ask Cursor to apply the framework.</p>
+        <div class="visual-hint">
+          <strong>Pro tip:</strong> Add the EXAMPLES/ folder to your workspace so Cursor sees what good output looks like.
+        </div>
       </div>
+
       <div class="step-card">
-        <div class="num">🤖</div>
-        <h3>On Android</h3>
-        <p>Tap the .md file from your Downloads folder. Choose "Open as text file" or use the Google Docs app to open it.</p>
+        <div class="num">💬</div>
+        <h3>ChatGPT / Claude.ai</h3>
+        <p>Open the SKILL.md file in any text editor, select all (Cmd+A), copy (Cmd+C), then paste into your chat. Start with: "Follow this framework:" and paste the content. Save the conversation for reuse.</p>
+        <div class="visual-hint">
+          <strong>Pro tip:</strong> Create a custom GPT with your skill as the instructions for one-click access.
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- NO SPECIAL SOFTWARE -->
+  <!-- COMPATIBILITY -->
   <div class="section">
-    <div class="section-label">Good News</div>
-    <h2>No special software needed</h2>
-    <p class="subtitle">Everything works with what you already have. You do not need to install anything.</p>
+    <div class="section-label">Full Compatibility</div>
+    <h2>Works on any platform that reads text</h2>
+    <p class="subtitle">Because these are standard Markdown files, they work everywhere:</p>
 
     <div class="compat-grid">
       <div class="compat-card">
         <div class="icon">💻</div>
         <h4>Mac</h4>
-        <p>Fully compatible. Safari opens HTML files, TextEdit opens .md files.</p>
+        <p>TextEdit, VS Code, Cursor, Terminal</p>
       </div>
       <div class="compat-card">
         <div class="icon">🖥️</div>
         <h4>Windows</h4>
-        <p>Fully compatible. Edge or Chrome opens HTML, Notepad opens .md files.</p>
+        <p>Notepad, VS Code, WSL, PowerShell</p>
       </div>
       <div class="compat-card">
         <div class="icon">📱</div>
         <h4>iPhone / iPad</h4>
-        <p>Works great. Files app handles everything. Safari opens HTML files.</p>
+        <p>Files app, any text editor</p>
       </div>
       <div class="compat-card">
         <div class="icon">🤖</div>
         <h4>Android</h4>
-        <p>Works great. Use Chrome for HTML files, any text app for .md files.</p>
+        <p>Files app, Google Docs</p>
       </div>
     </div>
 
     <div class="highlight-box" style="margin-top:40px;">
-      <strong>✓ No account to create. No password to remember. No app to download.</strong>
-      <p>Files live on your computer. Open them whenever you want. They don't expire. No subscriptions.</p>
+      <strong>✓ No account to create. No special software. No expiration.</strong>
+      <p>You own the files. They work forever. Every future update is free.</p>
     </div>
   </div>
 
@@ -465,42 +666,42 @@
   <div class="section">
     <div class="section-label">Available Skills</div>
     <h2>Your skills at a glance</h2>
-    <p class="subtitle">Each skill has a README that walks you through exactly how to use it. Here's the one-sentence summary for each:</p>
+    <p class="subtitle">Each skill gives your AI a proven framework. Here's what each one does:</p>
 
     <div class="skills-grid">
       <div class="skill-row">
         <div class="icon">🎬</div>
         <div>
           <h4>Video Script Framework</h4>
-          <p>Write a 30-second video ad script using a 5-beat structure — even if you've never written an ad before.</p>
+          <p>Your AI writes 30-second video ad scripts using a 5-beat structure.</p>
         </div>
       </div>
       <div class="skill-row">
         <div class="icon">🎣</div>
         <div>
           <h4>Hook Bank Template</h4>
-          <p>100+ proven first lines for video ads, organized so you can find the right one in under 10 minutes.</p>
+          <p>Your AI generates proven first lines for video ads, matched to awareness stage.</p>
         </div>
       </div>
       <div class="skill-row">
         <div class="icon">🎥</div>
         <div>
           <h4>UGC Brief Template</h4>
-          <p>Tell creators exactly what to say and show so you get usable content on the first delivery.</p>
+          <p>Your AI writes creator briefs that get usable content on first delivery.</p>
         </div>
       </div>
       <div class="skill-row">
         <div class="icon">✅</div>
         <div>
           <h4>Creative Audit Checklist</h4>
-          <p>Score any video ad on 25 points and know exactly what to fix — in 20 minutes.</p>
+          <p>Your AI scores any video ad on 25 points and tells you exactly what to fix.</p>
         </div>
       </div>
       <div class="skill-row" style="grid-column: 1 / -1;">
         <div class="icon">🔍</div>
         <div>
           <h4>Competitor Analysis Framework</h4>
-          <p>Research competitor ads with the free Meta Ad Library and find the gaps no one else is filling.</p>
+          <p>Your AI researches competitor ads and finds the gaps no one else is filling.</p>
         </div>
       </div>
     </div>
@@ -508,8 +709,8 @@
 
   <!-- HELP BOX -->
   <div class="help-box">
-    <h3>Still not sure? I'll walk you through it.</h3>
-    <p>Email me and I'll personally help you get started. No charge, no judgment. Most questions take one email to solve.</p>
+    <h3>Questions about setup?</h3>
+    <p>Email me and I'll personally walk you through getting started with your AI platform of choice. Most questions take one email to solve.</p>
     <a href="mailto:sadie@goodostudios.com" class="btn">Email sadie@goodostudios.com</a>
   </div>
 
