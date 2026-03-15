@@ -1,297 +1,307 @@
-# The Creative Record - Brand Guidelines
+# The Creative Record — Brand Guidelines
 
-## Visual Identity System
+**Last Updated: March 15, 2026**  
+*Redesigned: warm editorial + tech minimalism. Reference: Aesop warmth, Linear precision.*
 
 ---
 
-## Color Palette
+## Design Philosophy
 
-### Primary Colors
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Navy | `#1a1a2e` | Primary brand color, headings, backgrounds, footer |
-| Coral | `#e94560` | Accent color, CTAs, highlights, hover states |
+**Editorial sophistication meets purposeful restraint.** Every decision should ask: does this feel like it belongs on a top-tier editorial or SaaS site? If not, don't do it.
 
-### Neutral Colors
-| Color | Hex | Usage |
-|-------|-----|-------|
-| White | `#ffffff` | Backgrounds, cards, text on dark |
-| Light Gray | `#f5f5f5` | Section backgrounds, subtle separation |
-| Dark Gray | `#333333` | Body text |
-| Medium Gray | `#666666` | Secondary text, captions |
+The brand lives at the intersection of craft and commerce. It should feel like the person behind it has taste *and* knows what an ROAS is.
 
-### Color Usage Rules
-- Navy dominates: 60% of visual weight
-- White/Light Gray: 30% for space and breathing room
-- Coral accents: 10% for emphasis and CTAs
-- Never use coral for large background areas
+---
+
+## Color System
+
+### Palette
+
+| Token | Hex | Name | Usage |
+|-------|-----|------|-------|
+| `--ink` | `#0f0e0d` | Near-black | Primary text, primary backgrounds |
+| `--ink-2` | `#3d3a36` | Warm charcoal | Secondary headings, body on white |
+| `--ink-3` | `#6b6560` | Warm gray | Body copy, secondary text |
+| `--ink-4` | `#a09890` | Muted warm | Captions, metadata, placeholders |
+| `--terra` | `#c8552a` | Terracotta | Primary accent, CTAs, highlights |
+| `--terra-2` | `#e8714a` | Light terracotta | Hover states, eyebrows on dark |
+| `--terra-3` | `#f4e0d6` | Terra wash | Icon backgrounds, tinted surfaces |
+| `--cream` | `#faf8f5` | Off-white | Site background |
+| `--cream-2` | `#f3f0eb` | Warm cream | Card surfaces, section alternates |
+| `--cream-3` | `#e8e4dd` | Warm border | Dividers, input borders, subtle lines |
+| `--white` | `#ffffff` | White | Cards, inputs, bright surfaces |
+
+### Usage Rules
+- Dark sections (hero, footer, pricing): `--ink` background with white text
+- Light sections (content, skills): `--cream` or `--cream-2` with `--ink` text
+- Accent (`--terra`) appears 10% of visual weight maximum
+- Never use terracotta as a large background area
+- Body copy: always `--ink-3` on light, `rgba(255,255,255,0.55)` on dark
+- Warm neutrals only -- no cool grays, no pure black, no blue-purple
 
 ---
 
 ## Typography
 
 ### Font Stack
+
 ```css
---font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
---font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+--font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+--font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+```
+
+Load from Google Fonts:
+```html
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 ```
 
 ### Type Scale
 
-| Element | Size | Weight | Line Height | Letter Spacing |
-|---------|------|--------|-------------|----------------|
-| H1 (Hero) | 56px / 3.5rem | 800 (Extra Bold) | 1.1 | -0.02em |
-| H2 | 40px / 2.5rem | 700 (Bold) | 1.2 | -0.01em |
-| H3 | 28px / 1.75rem | 700 (Bold) | 1.3 | 0 |
-| H4 | 22px / 1.375rem | 600 (Semibold) | 1.4 | 0 |
-| Body Large | 20px / 1.25rem | 400 (Regular) | 1.6 | 0 |
-| Body | 16px / 1rem | 400 (Regular) | 1.6 | 0 |
-| Body Small | 14px / 0.875rem | 400 (Regular) | 1.5 | 0 |
-| Caption | 12px / 0.75rem | 500 (Medium) | 1.4 | 0.02em |
-| Button | 16px / 1rem | 600 (Semibold) | 1 | 0.01em |
+| Element | Font | Size | Weight | Line Height | Notes |
+|---------|------|------|--------|-------------|-------|
+| Display H1 | Serif | clamp(2.75rem, 5.5vw, 4.5rem) | 400 | 1.08 | Hero headlines |
+| H1 | Serif | clamp(2.25rem, 4vw, 3.5rem) | 400 | 1.15 | Page headers |
+| H2 | Serif | clamp(1.875rem, 3.5vw, 2.875rem) | 400 | 1.15 | Section headers |
+| H3 | Serif | 1.75rem | 400 | 1.2 | Sub-sections |
+| Card Title | Sans | 1.0625rem | 600 | 1.3 | Card headings |
+| Body Large | Sans | 1.1875rem | 400 | 1.7 | Lead text, hero sub |
+| Body | Sans | 1.0625rem | 400 | 1.75 | Article body |
+| Body Small | Sans | 0.9375rem | 400 | 1.65 | Cards, UI |
+| Caption | Sans | 0.875rem | 400 | 1.65 | Meta, helper text |
+| Label | Sans | 0.75rem | 600 | 1.4 | Section labels (uppercase, 0.1em tracking) |
+| Micro | Sans | 0.6875rem | 600 | 1.4 | Badges, tags (uppercase, 0.08em tracking) |
 
 ### Typography Rules
-- Headings: Navy (#1a1a2e) or White on dark backgrounds
-- Body text: Dark Gray (#333333) on light backgrounds
-- Links: Coral (#e94560), underline on hover
-- Max line length: 65 characters for optimal readability
+- H1/H2/H3: always `--font-serif`, weight 400 (not bold)
+- Italic serif headings: use `<em>` for accent words in headlines
+- Cards/UI: always `--font-sans`
+- Section labels: all-caps, `--terra`, 0.1em letter-spacing, with a horizontal rule before
+- Max line length: 70ch for article body, 55ch for lead text
+- Headings on dark: `--white`; body on dark: `rgba(255,255,255,0.55)`
 
 ---
 
 ## Spacing System
 
-### Base Unit: 8px
+**Base unit: 8px**
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| space-1 | 8px | Tight spacing, icon gaps |
-| space-2 | 16px | Component padding, small gaps |
-| space-3 | 24px | Card padding, medium gaps |
-| space-4 | 32px | Section internal spacing |
-| space-5 | 48px | Large component spacing |
-| space-6 | 64px | Section breaks |
-| space-7 | 80px | Major section padding (vertical) |
-| space-8 | 120px | Hero/footer spacing |
+| `--s1` | 8px | Tight gaps, icon spacing |
+| `--s2` | 16px | Small gaps, inline spacing |
+| `--s3` | 24px | Card padding (small), element groups |
+| `--s4` | 32px | Card padding (standard), component gaps |
+| `--s5` | 48px | Section sub-spacing |
+| `--s6` | 64px | Section breaks, footer gap |
+| `--s7` | 96px | Major section padding |
+| `--s8` | 128px | Hero sections, generous page sections |
 
-### Section Spacing
-- Standard section padding: 80px top/bottom
-- Hero section: 120px top/bottom
-- Mobile section padding: 48px top/bottom
-- Container max-width: 1200px
-- Container padding: 24px (mobile), 48px (desktop)
+### Container
+- Max-width: 1180px
+- Padding: 32px desktop, 24px tablet, 16px mobile
+- Narrow container (editorial): 720px
+- Always use consistent padding -- never hard-code random values
 
 ---
 
 ## Buttons
 
-### Primary Button
-- Background: Coral (#e94560)
-- Text: White (#ffffff)
-- Padding: 16px 32px
-- Border-radius: 8px
-- Font-weight: 600
-- Hover: Darken 10%, subtle scale(1.02)
-- Active: Scale(0.98)
-
-### Secondary Button
-- Background: Transparent
-- Border: 2px solid Navy (#1a1a2e)
-- Text: Navy (#1a1a2e)
-- Padding: 14px 30px (accounts for border)
-- Border-radius: 8px
-- Hover: Navy background, white text
-
-### Ghost Button (on dark backgrounds)
-- Background: Transparent
-- Border: 2px solid White (#ffffff)
-- Text: White (#ffffff)
-- Hover: White background, navy text
-
-### Button States
+### Primary
 ```css
-/* Default */
-transition: all 0.2s ease;
-
-/* Hover */
-transform: translateY(-2px);
-box-shadow: 0 4px 12px rgba(233, 69, 96, 0.3);
-
-/* Active */
-transform: translateY(0);
-box-shadow: none;
-
-/* Disabled */
-opacity: 0.5;
-cursor: not-allowed;
+background: #c8552a;
+color: #ffffff;
+border: 1px solid #c8552a;
+padding: 13px 26px;
+border-radius: 8px;
+font-weight: 500;
+font-size: 0.9375rem;
+letter-spacing: 0.01em;
+transition: all 220ms ease;
 ```
+Hover: `background: #b84a24`, `box-shadow: 0 4px 20px rgba(200,85,42,0.22)`, `translateY(-1px)`
+
+### Ghost (on light)
+```css
+background: transparent;
+color: #0f0e0d;
+border: 1px solid #e8e4dd;
+```
+Hover: `background: #f3f0eb`
+
+### Ghost Inverse (on dark)
+```css
+background: transparent;
+color: rgba(255,255,255,0.75);
+border: 1px solid rgba(255,255,255,0.2);
+```
+
+### Sizes
+- Default: 13px 26px padding
+- Large (`btn-lg`): 16px 34px, font-size 1rem
+- Small (`btn-sm`): 9px 18px, font-size 0.8125rem, radius 6px
 
 ---
 
 ## Cards
 
-### Standard Card
-- Background: White (#ffffff)
-- Border-radius: 12px
-- Box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08)
-- Padding: 24px
-- Hover: translateY(-4px), shadow increases
+### Standard Card (light surface)
+```css
+background: #ffffff;
+border: 1px solid #e8e4dd;
+border-radius: 12px;
+```
+Hover: `translateY(-3px)`, `box-shadow: 0 12px 40px rgba(15,14,13,0.10)`
 
-### Feature Card
-- Background: White (#ffffff)
-- Border-radius: 16px
-- Box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06)
-- Padding: 32px
-- Border: 1px solid #f0f0f0
+### Dark Card (on dark bg)
+```css
+background: rgba(255,255,255,0.04);
+border: 1px solid rgba(255,255,255,0.08);
+border-radius: 12px;
+```
+Hover: `border-color: rgba(255,255,255,0.16)`
 
-### Pricing Card (Featured)
-- Background: White (#ffffff)
-- Border: 2px solid Coral (#e94560)
-- Border-radius: 16px
-- Box-shadow: 0 8px 32px rgba(233, 69, 96, 0.15)
-- "Popular" badge: Coral background, white text
-
----
-
-## Form Elements
-
-### Input Fields
-- Background: White (#ffffff)
-- Border: 1px solid #e0e0e0
-- Border-radius: 8px
-- Padding: 14px 16px
-- Font-size: 16px
-- Focus: Border color Coral (#e94560), subtle glow
-
-### Labels
-- Font-size: 14px
-- Font-weight: 500
-- Color: Navy (#1a1a2e)
-- Margin-bottom: 8px
-
-### Checkboxes/Radio
-- Size: 20px x 20px
-- Border: 2px solid #cccccc
-- Checked: Coral (#e94560) fill
-- Border-radius: 4px (checkbox), 50% (radio)
-
----
-
-## Icons
-
-### Style
-- Outline style, 2px stroke
-- Rounded caps and joins
-- Consistent 24x24px viewbox
-
-### Icon Sizes
-| Size | Usage |
-|------|-------|
-| 16px | Inline with text, compact UI |
-| 20px | Buttons, form elements |
-| 24px | Navigation, feature icons |
-| 32px | Large feature highlights |
-| 48px | Hero section icons |
-
-### Icon Colors
-- Default: Navy (#1a1a2e)
-- On dark backgrounds: White (#ffffff)
-- Accent: Coral (#e94560)
-- Muted: Medium Gray (#666666)
-
----
-
-## Border Radius Scale
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| radius-sm | 4px | Small tags, badges |
-| radius-md | 8px | Buttons, inputs |
-| radius-lg | 12px | Cards, modals |
-| radius-xl | 16px | Large cards, feature blocks |
-| radius-full | 9999px | Pills, avatars, badges |
+### Featured Card
+Add `border: 1.5px solid #c8552a` + `box-shadow: 0 0 0 3px #f4e0d6`
 
 ---
 
 ## Shadows
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| shadow-sm | 0 1px 3px rgba(0,0,0,0.08) | Subtle elevation |
-| shadow-md | 0 4px 12px rgba(0,0,0,0.08) | Cards at rest |
-| shadow-lg | 0 8px 24px rgba(0,0,0,0.12) | Hover states, modals |
-| shadow-xl | 0 16px 48px rgba(0,0,0,0.15) | Dropdowns, popovers |
-| shadow-coral | 0 4px 16px rgba(233,69,96,0.25) | Primary button hover |
+| Name | Value | Usage |
+|------|-------|-------|
+| `shadow-sm` | `0 1px 3px rgba(15,14,13,0.06), 0 1px 2px rgba(15,14,13,0.04)` | Subtle lift |
+| `shadow-md` | `0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04)` | Card hover |
+| `shadow-lg` | `0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05)` | Strong elevation |
+| `shadow-terra` | `0 4px 20px rgba(200,85,42,0.22)` | Primary button hover |
+
+All shadows use warm-tinted rgba, never pure black.
 
 ---
 
-## Animation & Transitions
+## Icons
+
+- Style: Feather icons / Lucide (outline, 1.5px stroke, round caps)
+- Viewbox: 24x24
+- Sizes: 16px (inline), 20px (UI), 24px (features), 32px (feature icons)
+- On light: `stroke: var(--terra)` for accents, `stroke: var(--ink-3)` for neutral
+- Wrap in a `border-radius: 12-16px` container with `background: var(--terra-3)` for icon blocks
+
+---
+
+## Border Radius
+
+| Value | Usage |
+|-------|-------|
+| 4px | Small badges |
+| 6px | Small buttons, pill tags |
+| 8px | Standard buttons, inputs, small cards |
+| 12px | Cards, form cards |
+| 16px | Large feature cards, hero elements |
+| 100px | Pills, avatar shapes, filter chips |
+
+---
+
+## Animations & Transitions
 
 ### Timing
 ```css
---transition-fast: 150ms ease;
---transition-base: 200ms ease;
---transition-slow: 300ms ease;
---transition-bounce: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+--t-fast: 150ms ease;     /* hover states, color changes */
+--t-base: 220ms ease;     /* button transforms, card hovers */
+--t-slow: 350ms ease;     /* modals, large reveals */
 ```
 
-### Common Transitions
-- Button hover: 200ms ease
-- Card hover: 300ms ease
-- Modal open: 300ms cubic-bezier(0.16, 1, 0.3, 1)
-- Page transitions: 400ms ease
+### Scroll Reveal
+```javascript
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        }
+    });
+}, { threshold: 0.08 });
+```
+CSS: `opacity: 0; transform: translateY(16px);` → `opacity: 1; transform: translateY(0);` (0.5s ease)
 
-### Motion Principles
-- Use transform and opacity for animations (GPU accelerated)
-- Avoid animating layout properties (width, height, top, left)
-- Respect prefers-reduced-motion
+### Motion Rules
+- Use `transform` and `opacity` only (GPU accelerated)
+- Respect `prefers-reduced-motion`
+- Card hover: `translateY(-3px)` max. Never more than 4px.
+- Button hover: `translateY(-1px)` max
+- No spinning, bouncing, or attention-seeking animations
+
+---
+
+## Atmospheric Elements
+
+### Radial Glows (dark sections)
+```css
+background: radial-gradient(circle, rgba(200,85,42,0.10) 0%, transparent 70%);
+```
+Use as `::after` pseudo-element, large (500-700px), positioned at corners.
+
+### Grain Texture (hero)
+```css
+background-image: url("data:image/svg+xml,<svg...feTurbulence.../>"); 
+opacity: 0.35;
+```
+Subtle noise overlay on dark hero sections. Adds depth without complexity.
+
+### Section Labels
+```css
+font-size: 0.75rem;
+font-weight: 600;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: var(--terra);
+display: flex;
+align-items: center;
+gap: 8px;
+```
+With a `::before` horizontal rule: `width: 24px; height: 1px; background: var(--terra);`
 
 ---
 
 ## Responsive Breakpoints
 
-| Breakpoint | Width | Target |
-|------------|-------|--------|
-| sm | 640px | Large phones |
-| md | 768px | Tablets |
-| lg | 1024px | Small laptops |
-| xl | 1280px | Desktops |
-| 2xl | 1536px | Large screens |
+| Breakpoint | Width | Behavior |
+|------------|-------|----------|
+| Mobile | < 768px | Single column, reduced padding, nav hidden |
+| Tablet | 768–1024px | 2-column grids, medium padding |
+| Desktop | > 1024px | Full layout, 3-column grids |
 
-### Mobile-First Approach
-- Base styles target mobile
-- Use min-width media queries to scale up
-- Touch targets minimum 44px x 44px
-
----
-
-## Usage Examples
-
-### Hero Section
-```
-Background: Navy (#1a1a2e)
-Heading: White, 56px, extra bold
-Subheading: White/70%, 20px
-CTA Button: Coral primary
-Padding: 120px vertical
-```
-
-### Feature Grid
-```
-Background: Light Gray (#f5f5f5)
-Cards: White, 24px padding, 12px radius
-Gap: 24px between cards
-Section padding: 80px vertical
-```
-
-### Pricing Section
-```
-Background: White
-Featured card: Coral border, larger shadow
-Standard cards: Subtle shadow
-Toggle: Coral accent
-Section padding: 80px vertical
-```
+### Mobile Rules
+- Nav links hidden below 768px (hamburger not required for MVP)
+- Grids collapse to 1 column
+- Container padding: 24px → 16px
+- Hero font-size: clamp handles scaling automatically
+- Touch targets: minimum 44px height
 
 ---
 
-*Last Updated: March 14, 2026*
+## Section Structure Pattern
+
+Every section follows this hierarchy:
+1. `section-label` — tiny uppercase eyebrow in terracotta
+2. `h2` — serif headline
+3. `p` — short supporting text (max ~80 chars)
+4. Content (grid, cards, etc.)
+
+Keep section labels and supporting text short. The headline does the heavy lifting.
+
+---
+
+## What Not to Do
+
+- No blue-purple gradients
+- No navy (#1a1a2e) or cool blues anywhere
+- No bright coral (#e94560) -- replaced by terracotta (#c8552a)
+- No system font stack (always load DM Serif + Inter)
+- No `border-radius > 16px` on cards
+- No `box-shadow` with pure black
+- No emoji in UI
+- No sycophantic microcopy ("Amazing!", "You're all set! 🎉")
+- No lorem ipsum -- every placeholder should reference real content
+
+---
+
+*This document is the source of truth for all design decisions. When in doubt: simpler, warmer, quieter.*

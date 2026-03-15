@@ -4,318 +4,1057 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Creative Record — Creative Strategy Frameworks for DTC Brands</title>
+    <meta name="description" content="Download the exact templates, checklists, and scripts used by top-performing DTC brands to create ads that convert.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ============================================
+           DESIGN SYSTEM — THE CREATIVE RECORD
+           Palette: warm charcoal + cream + terracotta
+           Type: DM Serif Display + Inter
+        ============================================ */
+        
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
-            --navy: #1a1a2e;
-            --white: #ffffff;
-            --coral: #e94560;
-            --gray: #6b7280;
-            --light-gray: #f3f4f6;
-            --border: #e5e7eb;
+            /* Color System */
+            --ink:        #0f0e0d;      /* Near-black, primary text */
+            --ink-2:      #3d3a36;      /* Charcoal, secondary headings */
+            --ink-3:      #6b6560;      /* Warm gray, body copy */
+            --ink-4:      #a09890;      /* Muted, captions */
+            --terra:      #c8552a;      /* Terracotta, primary accent */
+            --terra-2:    #e8714a;      /* Lighter terra, hover */
+            --terra-3:    #f4e0d6;      /* Terra wash, subtle bg */
+            --cream:      #faf8f5;      /* Off-white background */
+            --cream-2:    #f3f0eb;      /* Warm card surface */
+            --cream-3:    #e8e4dd;      /* Dividers, borders */
+            --white:      #ffffff;
+            
+            /* Typography */
+            --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            /* Spacing Scale (8px base) */
+            --s1:  8px;
+            --s2:  16px;
+            --s3:  24px;
+            --s4:  32px;
+            --s5:  48px;
+            --s6:  64px;
+            --s7:  96px;
+            --s8:  128px;
+            
+            /* Radius */
+            --r-sm: 4px;
+            --r-md: 6px;
+            --r-lg: 8px;
+            --r-xl: 12px;
+            
+            /* Shadows */
+            --shadow-sm:  0 1px 3px rgba(15,14,13,0.06), 0 1px 2px rgba(15,14,13,0.04);
+            --shadow-md:  0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-lg:  0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            
+            /* Transitions */
+            --t-fast:  150ms ease;
+            --t-base:  220ms ease;
+            --t-slow:  350ms ease;
         }
+        
+        html { font-size: 16px; scroll-behavior: smooth; }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            color: var(--navy);
+            font-family: var(--font-sans);
+            font-weight: 400;
+            color: var(--ink-3);
+            background: var(--cream);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 var(--s4);
+        }
+        
+        /* ---- TYPOGRAPHY ---- */
+        
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+        
+        h4, h5, h6 {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            color: var(--ink-2);
+            line-height: 1.3;
+        }
+        
+        /* ---- BUTTONS ---- */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: var(--r-lg);
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            letter-spacing: 0.01em;
+            text-decoration: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all var(--t-base);
+            white-space: nowrap;
+        }
+        
+        .btn-primary {
+            background: var(--terra);
+            color: var(--white);
+            border-color: var(--terra);
+        }
+        .btn-primary:hover {
+            background: #b84a24;
+            border-color: #b84a24;
+            box-shadow: var(--shadow-terra);
+            transform: translateY(-1px);
+        }
+        .btn-primary:active { transform: translateY(0); box-shadow: none; }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--ink);
+            border-color: var(--cream-3);
+        }
+        .btn-ghost:hover {
+            background: var(--cream-2);
+            border-color: var(--cream-3);
+        }
+        
+        .btn-ghost-inv {
+            background: transparent;
+            color: rgba(255,255,255,0.85);
+            border-color: rgba(255,255,255,0.25);
+        }
+        .btn-ghost-inv:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.45);
+        }
+        
+        .btn-lg {
+            padding: 16px 34px;
+            font-size: 1rem;
+        }
+        
+        /* ---- HEADER / NAV ---- */
+        
+        header {
+            background: rgba(250,248,245,0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3);
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+        
+        .logo em {
+            font-style: italic;
+            color: var(--terra);
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: var(--s5);
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            transition: color var(--t-fast);
+        }
+        
+        .nav-links a:hover { color: var(--ink); }
+        
+        .nav-cta { margin-left: var(--s2); }
+        
+        /* ---- HERO ---- */
+        
+        .hero {
+            background: var(--ink);
+            color: var(--white);
+            padding: var(--s8) 0 112px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Subtle grain overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 0.35;
+            pointer-events: none;
+        }
+        
+        /* Warm glow */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -100px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(200,85,42,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 780px;
+        }
+        
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--terra-2);
+            margin-bottom: var(--s4);
+        }
+        
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--terra-2);
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.75rem, 5.5vw, 4.5rem);
+            color: var(--white);
+            margin-bottom: var(--s3);
+            line-height: 1.08;
+        }
+        
+        .hero h1 em {
+            font-style: italic;
+            color: var(--terra-2);
+        }
+        
+        .hero p {
+            font-size: 1.1875rem;
+            color: rgba(255,255,255,0.58);
+            max-width: 540px;
+            margin-bottom: var(--s5);
+            line-height: 1.7;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: var(--s2);
+            flex-wrap: wrap;
+        }
+        
+        .hero-proof {
+            margin-top: var(--s7);
+            padding-top: var(--s5);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            gap: var(--s7);
+        }
+        
+        .proof-item {}
+        .proof-number {
+            font-family: var(--font-serif);
+            font-size: 2.25rem;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .proof-label {
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.02em;
+        }
+        
+        /* ---- SKILLS SECTION ---- */
+        
+        .skills {
+            padding: var(--s8) 0;
+            background: var(--cream);
+        }
+        
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--terra);
+            margin-bottom: var(--s3);
+        }
+        
+        .section-header {
+            margin-bottom: var(--s6);
+        }
+        
+        .section-header h2 {
+            font-size: clamp(1.875rem, 3.5vw, 2.875rem);
+            margin-bottom: var(--s2);
+        }
+        
+        .section-header p {
+            font-size: 1.0625rem;
+            color: var(--ink-3);
+            max-width: 480px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3);
+        }
+        
+        .skill-card {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--cream-2);
+        }
+        
+        .skill-thumb {
+            height: 164px;
+            background: var(--cream-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--cream-3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-thumb-inner {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: var(--terra-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .skill-thumb svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--terra);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .skill-content {
+            padding: var(--s3);
+        }
+        
+        .skill-tag {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--terra);
+            margin-bottom: 10px;
+        }
+        
+        .skill-content h3 {
+            font-family: var(--font-sans);
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: var(--s1);
+            line-height: 1.3;
+        }
+        
+        .skill-content p {
+            font-size: 0.9rem;
+            color: var(--ink-3);
+            line-height: 1.6;
+            margin-bottom: var(--s3);
+        }
+        
+        .skill-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: var(--s2);
+            border-top: 1px solid var(--cream-3);
+        }
+        
+        .skill-price {
+            font-family: var(--font-sans);
+            font-size: 1.1875rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        
+        .btn-sm {
+            padding: 8px 18px;
+            font-size: 0.8125rem;
+            border-radius: var(--r-md);
+        }
+        
+        .skills-all {
+            text-align: center;
+            margin-top: var(--s5);
+        }
+        
+        /* ---- PRICING SECTION ---- */
+        
+        .pricing {
+            padding: var(--s8) 0;
+            background: var(--ink);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing::before {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            left: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(200,85,42,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .pricing .section-label { color: var(--terra-2); }
+        .pricing .section-header h2 { color: var(--white); }
+        .pricing .section-header p { color: rgba(255,255,255,0.45); }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pricing-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--r-xl);
+            padding: var(--s5) var(--s4);
+            transition: border-color var(--t-base);
+        }
+        
+        .pricing-card:hover {
+            border-color: rgba(255,255,255,0.16);
+        }
+        
+        .pricing-card.featured {
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(200,85,42,0.5);
+            position: relative;
+        }
+        
+        .featured-tag {
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--terra);
+            color: var(--white);
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border-radius: 0 0 var(--r-md) var(--r-md);
+        }
+        
+        .pricing-card h3 {
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: var(--s3);
+        }
+        
+        .price-display {
+            margin-bottom: var(--s3);
+        }
+        
+        .price-amount {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--white);
+            line-height: 1;
+        }
+        
+        .price-period {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.35);
+            margin-left: 4px;
+        }
+        
+        .pricing-desc {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: var(--s4);
+            padding-bottom: var(--s4);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
             line-height: 1.6;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        /* Header */
-        header {
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 100;
-        }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--navy); text-decoration: none; }
-        .logo span { color: var(--coral); }
-        .nav-links { display: flex; gap: 32px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; }
-        .nav-links a:hover { color: var(--coral); }
-        .btn {
-            display: inline-block; padding: 12px 28px; border-radius: 6px;
-            font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
-        }
-        .btn-primary { background: var(--coral); color: var(--white); }
-        .btn-primary:hover { background: #d63d56; }
-        .btn-secondary { background: var(--navy); color: var(--white); }
-        .btn-secondary:hover { background: #2d2d4a; }
-        .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
-        .btn-outline:hover { background: var(--navy); color: var(--white); }
-        
-        /* Hero */
-        .hero { background: var(--navy); color: var(--white); padding: 120px 0 100px; text-align: center; }
-        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
-        .hero p { font-size: 1.25rem; color: #a0a0b0; max-width: 600px; margin: 0 auto 40px; }
-        .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-        
-        /* Skills Preview */
-        .skills { padding: 100px 0; background: var(--white); }
-        .section-header { text-align: center; margin-bottom: 64px; }
-        .section-header h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 16px; }
-        .section-header p { color: var(--gray); font-size: 1.125rem; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
-        .skill-card {
-            background: var(--white); border: 1px solid var(--border); border-radius: 12px;
-            overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .skill-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .skill-thumb {
-            height: 180px; background: var(--light-gray);
-            display: flex; align-items: center; justify-content: center;
-        }
-        .skill-thumb img { max-width: 100%; max-height: 100%; object-fit: cover; }
-        .skill-placeholder {
-            color: var(--gray); font-size: 0.875rem; text-align: center; padding: 20px;
-        }
-        .skill-content { padding: 24px; }
-        .skill-content h3 { font-size: 1.25rem; margin-bottom: 8px; }
-        .skill-content p { color: var(--gray); font-size: 0.9375rem; margin-bottom: 16px; }
-        .skill-meta { display: flex; justify-content: space-between; align-items: center; }
-        .skill-price { font-weight: 700; font-size: 1.125rem; color: var(--coral); }
-        
-        /* Pricing */
-        .pricing { padding: 100px 0; background: var(--light-gray); }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; max-width: 1000px; margin: 0 auto; }
-        .pricing-card {
-            background: var(--white); border-radius: 12px; padding: 40px 32px;
-            text-align: center; border: 2px solid transparent;
-        }
-        .pricing-card.featured { border-color: var(--coral); position: relative; }
-        .featured-badge {
-            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-            background: var(--coral); color: var(--white); padding: 4px 16px;
-            border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-        }
-        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 8px; }
-        .pricing-card .price { font-size: 3rem; font-weight: 800; margin: 16px 0; }
-        .pricing-card .price span { font-size: 1rem; font-weight: 400; color: var(--gray); }
-        .pricing-card p { color: var(--gray); margin-bottom: 24px; }
-        .pricing-card ul { list-style: none; text-align: left; margin-bottom: 32px; }
-        .pricing-card li { padding: 8px 0; padding-left: 28px; position: relative; }
-        .pricing-card li::before {
-            content: "✓"; position: absolute; left: 0; color: var(--coral); font-weight: 700;
+        .pricing-features {
+            list-style: none;
+            margin-bottom: var(--s5);
         }
         
-        /* Social Proof */
-        .social-proof { padding: 100px 0; background: var(--white); }
-        .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 9px 0;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .pricing-features li:last-child { border-bottom: none; }
+        
+        .pricing-features li::before {
+            content: '';
+            display: block;
+            width: 16px;
+            height: 16px;
+            min-width: 16px;
+            border-radius: 50%;
+            background: rgba(200,85,42,0.2);
+            border: 1.5px solid var(--terra);
+            position: relative;
+            top: 1px;
+            background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%23c8552a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .btn-full { width: 100%; }
+        
+        .btn-pricing-secondary {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.75);
+            border-color: rgba(255,255,255,0.12);
+        }
+        .btn-pricing-secondary:hover {
+            background: rgba(255,255,255,0.10);
+            color: var(--white);
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        /* ---- TESTIMONIALS ---- */
+        
+        .testimonials {
+            padding: var(--s8) 0;
+            background: var(--cream-2);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3);
+        }
+        
         .testimonial {
-            background: var(--light-gray); padding: 32px; border-radius: 12px;
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            padding: var(--s4);
         }
-        .testimonial p { font-size: 1.125rem; margin-bottom: 20px; font-style: italic; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .testimonial-avatar {
-            width: 48px; height: 48px; border-radius: 50%; background: var(--border);
-            display: flex; align-items: center; justify-content: center;
+        
+        .testimonial-quote {
+            font-size: 0.9375rem;
+            color: var(--ink-2);
+            line-height: 1.7;
+            margin-bottom: var(--s3);
         }
-        .testimonial-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .testimonial-name { font-weight: 600; }
-        .testimonial-title { font-size: 0.875rem; color: var(--gray); }
         
-        /* FAQ */
-        .faq { padding: 100px 0; background: var(--light-gray); }
-        .faq-list { max-width: 800px; margin: 0 auto; }
-        .faq-item { background: var(--white); border-radius: 8px; margin-bottom: 16px; overflow: hidden; }
-        .faq-question {
-            padding: 24px; font-weight: 600; cursor: pointer; display: flex;
-            justify-content: space-between; align-items: center;
+        .testimonial-quote::before {
+            content: '\201C';
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--terra-3);
+            line-height: 0;
+            vertical-align: -0.5em;
+            margin-right: 4px;
         }
-        .faq-answer { padding: 0 24px 24px; color: var(--gray); }
         
-        /* CTA Section */
-        .cta-section { padding: 100px 0; background: var(--navy); color: var(--white); text-align: center; }
-        .cta-section h2 { font-size: 2.5rem; margin-bottom: 16px; }
-        .cta-section p { color: #a0a0b0; font-size: 1.25rem; margin-bottom: 32px; }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--s2);
+        }
         
-        /* Footer */
-        footer { background: var(--navy); color: #a0a0b0; padding: 60px 0 32px; border-top: 1px solid #2d2d4a; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-brand .logo { color: var(--white); margin-bottom: 16px; display: inline-block; }
-        .footer-brand p { font-size: 0.9375rem; line-height: 1.7; }
-        .footer-links h4 { color: var(--white); margin-bottom: 16px; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: #a0a0b0; text-decoration: none; font-size: 0.9375rem; }
-        .footer-links a:hover { color: var(--white); }
-        .footer-bottom { text-align: center; padding-top: 32px; border-top: 1px solid #2d2d4a; font-size: 0.875rem; }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--terra-3);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-size: 0.9375rem;
+            color: var(--terra);
+        }
+        
+        .author-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        
+        .author-role {
+            font-size: 0.8125rem;
+            color: var(--ink-4);
+        }
+        
+        /* ---- FAQ ---- */
+        
+        .faq {
+            padding: var(--s8) 0;
+            background: var(--cream);
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s2);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-lg);
+            padding: var(--s4);
+            transition: border-color var(--t-fast);
+        }
+        
+        .faq-item:hover { border-color: var(--cream-3); }
+        
+        .faq-q {
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 10px;
+        }
+        
+        .faq-a {
+            font-size: 0.9rem;
+            color: var(--ink-3);
+            line-height: 1.65;
+        }
+        
+        /* ---- CTA SECTION ---- */
+        
+        .cta-section {
+            padding: var(--s8) 0;
+            background: var(--cream-2);
+            text-align: center;
+            border-top: 1px solid var(--cream-3);
+        }
+        
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            margin-bottom: var(--s3);
+        }
+        
+        .cta-section p {
+            font-size: 1.0625rem;
+            color: var(--ink-3);
+            max-width: 460px;
+            margin: 0 auto var(--s5);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: var(--s2);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* ---- FOOTER ---- */
+        
+        footer {
+            background: var(--ink);
+            padding: var(--s7) 0 var(--s5);
+        }
+        
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr 1fr;
+            gap: var(--s7);
+            margin-bottom: var(--s6);
+            padding-bottom: var(--s6);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        
+        .footer-brand .logo {
+            display: inline-block;
+            margin-bottom: var(--s3);
+        }
+        
+        .footer-brand .logo { color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        
+        .footer-tagline {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.35);
+            line-height: 1.7;
+            max-width: 240px;
+        }
+        
+        .footer-col h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: var(--s3);
+        }
+        
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: color var(--t-fast);
+        }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .footer-copy {
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.2);
+        }
+        
+        .footer-made {
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.2);
+        }
+        
+        /* ---- SCROLL REVEAL ---- */
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ---- RESPONSIVE ---- */
+        
+        @media (max-width: 1024px) {
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+        }
         
         @media (max-width: 768px) {
+            .container { padding: 0 var(--s3); }
+            .hero { padding: var(--s7) 0 var(--s7); }
             .hero h1 { font-size: 2.25rem; }
-            .hero p { font-size: 1.1rem; }
+            .hero-proof { gap: var(--s5); }
+            .skills-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-bottom { flex-direction: column; gap: var(--s1); }
             .nav-links { display: none; }
-            .skills-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .nav-cta .btn { padding: 10px 18px; font-size: 0.875rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- HEADER -->
     <header>
         <nav class="container">
-            <a href="/" class="logo">The Creative <span>Record</span></a>
+            <a href="/" class="logo">The Creative <em>Record</em></a>
             <ul class="nav-links">
                 <li><a href="/skills/">Skills</a></li>
                 <li><a href="/feedback/">Feedback</a></li>
-                <li><a href="/subscribe/">Subscribe</a></li>
+                <li><a href="/about/">About</a></li>
             </ul>
-            <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+            <div class="nav-cta">
+                <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+            </div>
         </nav>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <h1>Creative strategy frameworks for DTC brands</h1>
-            <p>Download the exact templates, checklists, and scripts used by top-performing brands to create ads that convert.</p>
-            <div class="hero-cta">
-                <a href="/skills/" class="btn btn-primary" style="font-size: 1.125rem; padding: 16px 36px;">Browse Skills</a>
-                <a href="/subscribe/" class="btn" style="background: transparent; color: var(--white); border: 2px solid var(--white); font-size: 1.125rem; padding: 16px 36px;">Join Membership</a>
+            <div class="hero-inner">
+                <div class="hero-eyebrow">Creative Strategy Frameworks</div>
+                <h1>Stop guessing.<br>Start <em>converting.</em></h1>
+                <p>The exact templates, checklists, and scripts used by top-performing DTC brands to create ads that stop the scroll and drive revenue.</p>
+                <div class="hero-cta">
+                    <a href="/skills/" class="btn btn-primary btn-lg">Browse Skills</a>
+                    <a href="/subscribe/" class="btn btn-ghost-inv btn-lg">Join Membership</a>
+                </div>
+                <div class="hero-proof">
+                    <div class="proof-item">
+                        <div class="proof-number">1,000+</div>
+                        <div class="proof-label">Creatives analyzed</div>
+                    </div>
+                    <div class="proof-item">
+                        <div class="proof-number">50+</div>
+                        <div class="proof-label">DTC brands served</div>
+                    </div>
+                    <div class="proof-item">
+                        <div class="proof-number">$100M+</div>
+                        <div class="proof-label">Ad spend studied</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- SKILLS PREVIEW -->
     <section class="skills">
         <div class="container">
-            <div class="section-header">
-                <h2>Skills that make you faster</h2>
-                <p>Proven frameworks you can implement today — no fluff, just results.</p>
+            <div class="section-header reveal">
+                <div class="section-label">Skills Library</div>
+                <h2>Frameworks that make<br>you faster</h2>
+                <p>Proven tools you can implement today. No theory, no fluff — just the exact systems that work.</p>
             </div>
+
             <div class="skills-grid">
-                <div class="skill-card">
+                <div class="skill-card reveal">
                     <div class="skill-thumb">
-                        <div class="skill-placeholder">[Thumbnail: Script Writing Template]<br>600x400 placeholder</div>
+                        <div class="skill-thumb-inner">
+                            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        </div>
                     </div>
                     <div class="skill-content">
+                        <div class="skill-tag">Script Writing</div>
                         <h3>Video Script Writing System</h3>
-                        <p>The 8-part framework for writing video scripts that hook in 3 seconds and convert by 30.</p>
-                        <div class="skill-meta">
+                        <p>The 8-part framework for writing scripts that hook in 3 seconds and convert by 30. Used by top DTC brands daily.</p>
+                        <div class="skill-footer">
                             <span class="skill-price">$39</span>
-                            <a href="/skills/" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.875rem;">View Details</a>
+                            <a href="/skills/" class="btn btn-ghost btn-sm">View Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="skill-card">
+
+                <div class="skill-card reveal">
                     <div class="skill-thumb">
-                        <div class="skill-placeholder">[Thumbnail: Hook Generation Guide]<br>600x400 placeholder</div>
+                        <div class="skill-thumb-inner">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        </div>
                     </div>
                     <div class="skill-content">
+                        <div class="skill-tag">Hook Generation</div>
                         <h3>Hook Generation Masterclass</h3>
-                        <p>47 proven hook formulas with fill-in-the-blank templates for every awareness stage.</p>
-                        <div class="skill-meta">
+                        <p>47 proven hook formulas with fill-in-the-blank templates for every awareness stage. Stop guessing what stops the scroll.</p>
+                        <div class="skill-footer">
                             <span class="skill-price">$39</span>
-                            <a href="/skills/" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.875rem;">View Details</a>
+                            <a href="/skills/" class="btn btn-ghost btn-sm">View Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="skill-card">
+
+                <div class="skill-card reveal">
                     <div class="skill-thumb">
-                        <div class="skill-placeholder">[Thumbnail: Creative Brief Template]<br>600x400 placeholder</div>
+                        <div class="skill-thumb-inner">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        </div>
                     </div>
                     <div class="skill-content">
+                        <div class="skill-tag">Briefing</div>
                         <h3>Creative Briefing Framework</h3>
-                        <p>The same briefing template used to produce 1000+ performance ads for DTC brands.</p>
-                        <div class="skill-meta">
+                        <p>The same briefing template used to produce 1,000+ performance ads. Turn strategy into production-ready briefs.</p>
+                        <div class="skill-footer">
                             <span class="skill-price">$39</span>
-                            <a href="/skills/" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.875rem;">View Details</a>
+                            <a href="/skills/" class="btn btn-ghost btn-sm">View Details</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 48px;">
-                <a href="/skills/" class="btn btn-outline">View All Skills</a>
+
+            <div class="skills-all reveal">
+                <a href="/skills/" class="btn btn-ghost">View All Five Skills →</a>
             </div>
         </div>
     </section>
 
+    <!-- PRICING -->
     <section class="pricing">
         <div class="container">
-            <div class="section-header">
-                <h2>Choose your access level</h2>
-                <p>Get the frameworks you need, or unlock everything with a membership.</p>
+            <div class="section-header reveal">
+                <div class="section-label">Pricing</div>
+                <h2>Pick your access level</h2>
+                <p>Individual skills or unlock everything with a membership.</p>
             </div>
+
             <div class="pricing-grid">
-                <div class="pricing-card">
+                <div class="pricing-card reveal">
                     <h3>Individual Skill</h3>
-                    <div class="price">$39<span>/skill</span></div>
-                    <p>Perfect if you need one specific framework.</p>
-                    <ul>
+                    <div class="price-display">
+                        <span class="price-amount">$39</span>
+                        <span class="price-period">/ skill</span>
+                    </div>
+                    <p class="pricing-desc">Perfect if you need one specific framework right now. Buy once, own it forever.</p>
+                    <ul class="pricing-features">
                         <li>Single skill download</li>
                         <li>PDF + Notion template</li>
                         <li>Video walkthrough</li>
                         <li>Lifetime access</li>
                     </ul>
-                    <a href="/skills/" class="btn btn-outline" style="width: 100%;">Browse Skills</a>
+                    <a href="/skills/" class="btn btn-ghost-inv btn-full">Browse Skills</a>
                 </div>
-                <div class="pricing-card featured">
-                    <span class="featured-badge">Best Value</span>
+
+                <div class="pricing-card featured reveal">
+                    <span class="featured-tag">Best Value</span>
                     <h3>Complete Bundle</h3>
-                    <div class="price">$99<span>one-time</span></div>
-                    <p>All current skills in one purchase.</p>
-                    <ul>
+                    <div class="price-display">
+                        <span class="price-amount">$99</span>
+                        <span class="price-period">one-time</span>
+                    </div>
+                    <p class="pricing-desc">All five skills in one purchase. Save $96 versus buying individually.</p>
+                    <ul class="pricing-features">
                         <li>All 5 skills included</li>
                         <li>PDFs + Notion templates</li>
                         <li>All video walkthroughs</li>
                         <li>Lifetime access</li>
                         <li>Future updates included</li>
                     </ul>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Buy Bundle — $99</a>
+                    <a href="#" class="btn btn-primary btn-full">Buy Bundle — $99</a>
                 </div>
-                <div class="pricing-card">
+
+                <div class="pricing-card reveal">
                     <h3>Membership</h3>
-                    <div class="price">$29<span>/month</span></div>
-                    <p>For teams and ongoing creative needs.</p>
-                    <ul>
+                    <div class="price-display">
+                        <span class="price-amount">$29</span>
+                        <span class="price-period">/ month</span>
+                    </div>
+                    <p class="pricing-desc">For teams who need ongoing frameworks and expert feedback every month.</p>
+                    <ul class="pricing-features">
                         <li>All skills included</li>
-                        <li>1 feedback credit/month</li>
+                        <li>1 feedback credit / month</li>
                         <li>New skill every month</li>
                         <li>Private community access</li>
                         <li>Cancel anytime</li>
                     </ul>
-                    <a href="/subscribe/" class="btn btn-secondary" style="width: 100%;">Start Membership</a>
+                    <a href="/subscribe/" class="btn btn-ghost-inv btn-full">Start Membership</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="social-proof">
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
+                <div class="section-label">From the Community</div>
                 <h2>Trusted by DTC operators</h2>
-                <p>Teams at fast-growing brands use these frameworks daily.</p>
+                <p>Teams at fast-growing brands use these frameworks every day.</p>
             </div>
-            <div class="testimonials">
-                <div class="testimonial">
-                    <p>"The script writing framework alone saved us weeks of trial and error. Our hook rate improved 40% in the first month."</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial reveal">
+                    <p class="testimonial-quote">The script writing framework alone saved us weeks of trial and error. Our hook rate improved 40% in the first month.</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <span>[Avatar placeholder]</span>
-                        </div>
+                        <div class="avatar">SC</div>
                         <div>
-                            <div class="testimonial-name">Sarah Chen</div>
-                            <div class="testimonial-title">Head of Creative, Aura Nutrition</div>
+                            <div class="author-name">Sarah Chen</div>
+                            <div class="author-role">Head of Creative, Aura Nutrition</div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial">
-                    <p>"Finally, creative strategy that's actually actionable. We've implemented the briefing template across our entire team."</p>
+
+                <div class="testimonial reveal">
+                    <p class="testimonial-quote">Finally, creative strategy that's actually actionable. We've implemented the briefing template across our entire team.</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <span>[Avatar placeholder]</span>
-                        </div>
+                        <div class="avatar">MW</div>
                         <div>
-                            <div class="testimonial-name">Marcus Williams</div>
-                            <div class="testimonial-title">Creative Director, Haven Home</div>
+                            <div class="author-name">Marcus Williams</div>
+                            <div class="author-role">Creative Director, Haven Home</div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial">
-                    <p>"The hook formulas are gold. We reference them before every creative sprint. Worth 10x what I paid."</p>
+
+                <div class="testimonial reveal">
+                    <p class="testimonial-quote">The hook formulas are gold. We reference them before every creative sprint. Worth 10x what I paid.</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <span>[Avatar placeholder]</span>
-                        </div>
+                        <div class="avatar">JP</div>
                         <div>
-                            <div class="testimonial-name">Jessica Park</div>
-                            <div class="testimonial-title">Founder, Bloom Skincare</div>
+                            <div class="author-name">Jessica Park</div>
+                            <div class="author-role">Founder, Bloom Skincare</div>
                         </div>
                     </div>
                 </div>
@@ -323,56 +1062,66 @@
         </div>
     </section>
 
+    <!-- FAQ -->
     <section class="faq">
         <div class="container">
-            <div class="section-header">
-                <h2>Frequently asked questions</h2>
-                <p>Everything you need to know about The Creative Record.</p>
+            <div class="section-header reveal" style="text-align: center;">
+                <div class="section-label">FAQ</div>
+                <h2>Common questions</h2>
             </div>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question">What format are the skills delivered in?</div>
-                    <div class="faq-answer">Each skill includes a comprehensive PDF guide, a customizable Notion template, and a video walkthrough showing exactly how to implement the framework.</div>
+
+            <div class="faq-grid">
+                <div class="faq-item reveal">
+                    <div class="faq-q">What format are the skills delivered in?</div>
+                    <div class="faq-a">Each skill includes a PDF guide, a customizable Notion template, and a video walkthrough showing exactly how to implement the framework.</div>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">Can I use these for client work?</div>
-                    <div class="faq-answer">Absolutely. These frameworks are designed for agency and freelance use. Once you purchase, you can apply them to unlimited client projects.</div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Can I use these for client work?</div>
+                    <div class="faq-a">Yes. Once you purchase, you can apply the frameworks to unlimited client projects. Designed for agency and freelance use.</div>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">How is this different from a course?</div>
-                    <div class="faq-answer">No 6-hour videos to sit through. You get the exact templates, checklists, and frameworks — the tools you actually need to do the work faster.</div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">How is this different from a course?</div>
+                    <div class="faq-a">No 6-hour videos to sit through. You get the exact templates, checklists, and frameworks — the tools you actually need to do the work faster.</div>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">What's included in the membership?</div>
-                    <div class="faq-answer">All current skills, one feedback credit per month (hook review, script triage, or brief diagnosis), a new skill every month, and access to our private community of DTC creatives.</div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">What's included in the membership?</div>
+                    <div class="faq-a">All current skills, one feedback credit per month, a new skill every month, and access to our private community of DTC creatives.</div>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">Do you offer refunds?</div>
-                    <div class="faq-answer">Yes. If you're not satisfied, email within 14 days for a full refund. No questions asked.</div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Do you offer refunds?</div>
+                    <div class="faq-a">Yes. If you're not satisfied, email within 14 days for a full refund. No questions asked.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Do you offer team plans?</div>
+                    <div class="faq-a">Teams of 3+ get 20% off. Contact team@thecreativerecord.com for details.</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA -->
     <section class="cta-section">
         <div class="container">
-            <h2>Ready to level up your creative?</h2>
-            <p>Join hundreds of DTC teams using these frameworks to create better ads, faster.</p>
-            <div class="hero-cta">
-                <a href="/skills/" class="btn btn-primary" style="font-size: 1.125rem; padding: 16px 36px;">Browse Skills</a>
-                <a href="/subscribe/" class="btn" style="background: transparent; color: var(--white); border: 2px solid var(--white); font-size: 1.125rem; padding: 16px 36px;">Join Membership</a>
+            <div class="reveal">
+                <h2>Ready to level up<br>your creative?</h2>
+                <p>Join hundreds of DTC teams using these frameworks to create better ads, faster.</p>
+                <div class="cta-buttons">
+                    <a href="/skills/" class="btn btn-primary btn-lg">Browse Skills</a>
+                    <a href="/subscribe/" class="btn btn-ghost btn-lg">Join Membership</a>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="/" class="logo">The Creative <span>Record</span></a>
-                    <p>Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Product</h4>
                     <ul>
                         <li><a href="/skills/">All Skills</a></li>
@@ -380,14 +1129,14 @@
                         <li><a href="/subscribe/">Membership</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Legal</h4>
                     <ul>
                         <li><a href="#">Privacy</a></li>
@@ -396,9 +1145,25 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 The Creative Record. All rights reserved.</p>
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
 </body>
 </html>

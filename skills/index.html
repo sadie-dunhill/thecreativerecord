@@ -4,172 +4,444 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skills — The Creative Record</title>
+    <meta name="description" content="Proven creative strategy frameworks for DTC brands. Script writing, hook generation, briefing, auditing, and performance analysis.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
-            --navy: #1a1a2e;
-            --white: #ffffff;
-            --coral: #e94560;
-            --gray: #6b7280;
-            --light-gray: #f3f4f6;
-            --border: #e5e7eb;
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
+            
+            --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            
+            --shadow-sm: 0 1px 3px rgba(15,14,13,0.06), 0 1px 2px rgba(15,14,13,0.04);
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-lg: 0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            
+            --t-fast: 150ms ease; --t-base: 220ms ease; --t-slow: 350ms ease;
         }
+        
+        html { font-size: 16px; }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            color: var(--navy);
-            line-height: 1.6;
+            font-family: var(--font-sans);
+            font-weight: 400;
+            color: var(--ink-3);
+            background: var(--cream);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        /* Header */
-        header {
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 100;
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+        
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.15;
         }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--navy); text-decoration: none; }
-        .logo span { color: var(--coral); }
-        .nav-links { display: flex; gap: 32px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; }
-        .nav-links a:hover { color: var(--coral); }
+        
+        /* ---- BUTTONS ---- */
         .btn {
-            display: inline-block; padding: 12px 28px; border-radius: 6px;
-            font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg);
+            font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem;
+            letter-spacing: 0.01em; text-decoration: none; border: 1px solid transparent;
+            cursor: pointer; transition: all var(--t-base); white-space: nowrap;
         }
-        .btn-primary { background: var(--coral); color: var(--white); }
-        .btn-primary:hover { background: #d63d56; }
-        .btn-secondary { background: var(--navy); color: var(--white); }
-        .btn-secondary:hover { background: #2d2d4a; }
-        .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
-        .btn-outline:hover { background: var(--navy); color: var(--white); }
-        .btn-sm { padding: 8px 20px; font-size: 0.875rem; }
+        .btn-primary {
+            background: var(--terra); color: var(--white); border-color: var(--terra);
+        }
+        .btn-primary:hover {
+            background: #b84a24; border-color: #b84a24;
+            box-shadow: var(--shadow-terra); transform: translateY(-1px);
+        }
+        .btn-ghost {
+            background: transparent; color: var(--ink); border-color: var(--cream-3);
+        }
+        .btn-ghost:hover { background: var(--cream-2); }
+        .btn-ghost-inv {
+            background: transparent; color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.2);
+        }
+        .btn-ghost-inv:hover {
+            background: rgba(255,255,255,0.08); color: var(--white); border-color: rgba(255,255,255,0.4);
+        }
+        .btn-sm { padding: 9px 18px; font-size: 0.8125rem; border-radius: var(--r-md); }
+        .btn-full { width: 100%; }
         
-        /* Page Header */
-        .page-header { background: var(--navy); color: var(--white); padding: 80px 0 60px; text-align: center; }
-        .page-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
-        .page-header p { color: #a0a0b0; font-size: 1.25rem; max-width: 600px; margin: 0 auto; }
+        /* ---- HEADER ---- */
+        header {
+            background: rgba(250,248,245,0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3);
+            position: sticky; top: 0; z-index: 200;
+        }
+        nav {
+            display: flex; align-items: center; justify-content: space-between; height: 64px;
+        }
+        .logo {
+            font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400;
+            color: var(--ink); text-decoration: none;
+        }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links {
+            display: flex; align-items: center; gap: var(--s5); list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.9rem; font-weight: 500; color: var(--ink-3);
+            text-decoration: none; transition: color var(--t-fast);
+        }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-links a.active { color: var(--ink); }
         
-        /* Filters */
-        .filters { padding: 32px 0; background: var(--light-gray); border-bottom: 1px solid var(--border); }
-        .filter-list { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        /* ---- PAGE HEADER ---- */
+        .page-header {
+            background: var(--ink);
+            padding: var(--s7) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top: -150px; right: -50px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(200,85,42,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-header-inner { position: relative; z-index: 1; }
+        .page-eyebrow {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--terra-2); margin-bottom: var(--s3); display: flex; align-items: center; gap: 8px;
+        }
+        .page-eyebrow::before {
+            content: ''; display: block; width: 20px; height: 1px; background: var(--terra-2);
+        }
+        .page-header h1 {
+            font-size: clamp(2.25rem, 4vw, 3.5rem);
+            color: var(--white);
+            margin-bottom: var(--s3);
+        }
+        .page-header p {
+            font-size: 1.0625rem;
+            color: rgba(255,255,255,0.5);
+            max-width: 500px;
+            line-height: 1.7;
+        }
+        
+        /* ---- FILTERS ---- */
+        .filters {
+            background: var(--cream);
+            border-bottom: 1px solid var(--cream-3);
+            padding: var(--s3) 0;
+            position: sticky;
+            top: 64px;
+            z-index: 100;
+        }
+        .filter-list {
+            display: flex; gap: var(--s1); flex-wrap: wrap;
+        }
         .filter-btn {
-            padding: 10px 20px; border-radius: 20px; border: 1px solid var(--border);
-            background: var(--white); color: var(--navy); font-weight: 500; cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 100px;
+            border: 1px solid var(--cream-3);
+            background: var(--white);
+            color: var(--ink-3);
+            font-family: var(--font-sans);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--t-fast);
         }
-        .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
-        .filter-btn:hover { border-color: var(--navy); }
+        .filter-btn:hover { border-color: var(--ink-4); color: var(--ink); }
+        .filter-btn.active {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: var(--white);
+        }
         
-        /* Skills Grid */
-        .skills-section { padding: 80px 0; background: var(--white); }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px; }
+        /* ---- SKILLS GRID ---- */
+        .skills-section { padding: var(--s7) 0 var(--s8); }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3);
+        }
         
         .skill-card {
-            background: var(--white); border: 1px solid var(--border); border-radius: 12px;
-            overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; position: relative;
+            background: var(--white);
+            border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
-        .skill-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .skill-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--cream-2);
+        }
         
-        .badge {
-            position: absolute; top: 16px; left: 16px; padding: 6px 12px;
-            border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+        .skill-badge {
+            position: absolute;
+            top: 14px; left: 14px;
+            padding: 5px 12px;
+            border-radius: 100px;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
             z-index: 10;
         }
-        .badge-popular { background: var(--coral); color: var(--white); }
-        .badge-new { background: #10b981; color: var(--white); }
+        .badge-popular { background: var(--terra); color: var(--white); }
+        .badge-new { background: var(--ink); color: var(--white); }
         
         .skill-thumb {
-            height: 200px; background: var(--light-gray);
+            height: 196px;
+            background: var(--cream-2);
             display: flex; align-items: center; justify-content: center;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--cream-3);
         }
-        .skill-placeholder {
-            color: var(--gray); font-size: 0.875rem; text-align: center; padding: 20px;
+        .skill-thumb-icon {
+            width: 68px; height: 68px;
+            border-radius: 16px;
+            background: var(--terra-3);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .skill-thumb-icon svg {
+            width: 32px; height: 32px;
+            stroke: var(--terra); fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
         }
         
-        .skill-content { padding: 24px; }
+        .skill-body {
+            padding: var(--s3);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
         .skill-category {
-            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-            color: var(--coral); letter-spacing: 0.5px; margin-bottom: 8px;
+            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.09em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: 10px;
         }
-        .skill-content h3 { font-size: 1.25rem; margin-bottom: 12px; }
-        .skill-content p { color: var(--gray); font-size: 0.9375rem; margin-bottom: 20px; line-height: 1.6; }
         
-        .skill-features { list-style: none; margin-bottom: 20px; }
-        .skill-features li {
-            padding: 6px 0 6px 24px; font-size: 0.875rem; color: var(--gray);
+        .skill-body h3 {
+            font-family: var(--font-sans);
+            font-size: 1.0625rem; font-weight: 600; color: var(--ink);
+            margin-bottom: 10px; line-height: 1.3;
+        }
+        
+        .skill-body p {
+            font-size: 0.9rem; color: var(--ink-3);
+            line-height: 1.6; margin-bottom: var(--s3);
+        }
+        
+        .skill-includes {
+            list-style: none; margin-bottom: var(--s3); flex: 1;
+        }
+        .skill-includes li {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.8125rem; color: var(--ink-3);
+            padding: 6px 0;
+            border-bottom: 1px solid var(--cream-3);
+        }
+        .skill-includes li:last-child { border-bottom: none; }
+        .skill-includes li::before {
+            content: '';
+            display: block;
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--terra);
+            flex-shrink: 0;
+        }
+        
+        .skill-foot {
+            display: flex; align-items: center; justify-content: space-between;
+            padding-top: var(--s2);
+            border-top: 1px solid var(--cream-3);
+        }
+        
+        .skill-price {
+            font-size: 1.25rem; font-weight: 600; color: var(--ink);
+        }
+        
+        .skill-actions { display: flex; gap: 8px; }
+        
+        /* ---- BUNDLE ---- */
+        .bundle {
+            padding: var(--s7) 0 var(--s8);
+            background: var(--cream-2);
+            border-top: 1px solid var(--cream-3);
+        }
+        
+        .bundle-card {
+            background: var(--ink);
+            border-radius: 16px;
+            padding: var(--s7) var(--s7);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--s6);
+            align-items: center;
             position: relative;
-        }
-        .skill-features li::before {
-            content: "✓"; position: absolute; left: 0; color: var(--coral); font-weight: 700;
+            overflow: hidden;
         }
         
-        .skill-footer {
-            display: flex; justify-content: space-between; align-items: center;
-            padding-top: 20px; border-top: 1px solid var(--border);
+        .bundle-card::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(200,85,42,0.12) 0%, transparent 70%);
+            pointer-events: none;
         }
-        .skill-price { font-weight: 800; font-size: 1.5rem; color: var(--navy); }
-        .skill-actions { display: flex; gap: 12px; }
         
-        /* Bundle CTA */
-        .bundle-cta { padding: 80px 0; background: var(--light-gray); }
-        .bundle-box {
-            background: var(--navy); color: var(--white); border-radius: 16px;
-            padding: 60px; display: flex; align-items: center; justify-content: space-between;
-            gap: 40px; flex-wrap: wrap;
+        .bundle-content { position: relative; z-index: 1; }
+        
+        .bundle-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--terra-2); margin-bottom: var(--s3);
         }
-        .bundle-content h2 { font-size: 2rem; margin-bottom: 12px; }
-        .bundle-content p { color: #a0a0b0; margin-bottom: 24px; max-width: 500px; }
-        .bundle-list { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
-        .bundle-list span { display: flex; align-items: center; gap: 8px; font-size: 0.9375rem; }
-        .bundle-list span::before { content: "✓"; color: var(--coral); font-weight: 700; }
-        .bundle-price { text-align: center; }
-        .bundle-price .price { font-size: 3.5rem; font-weight: 800; }
-        .bundle-price .price span { font-size: 1rem; font-weight: 400; color: #a0a0b0; }
-        .bundle-price p { color: #a0a0b0; font-size: 0.875rem; margin: 8px 0 24px; }
         
-        /* Footer */
-        footer { background: var(--navy); color: #a0a0b0; padding: 60px 0 32px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-brand .logo { color: var(--white); margin-bottom: 16px; display: inline-block; }
-        .footer-brand p { font-size: 0.9375rem; line-height: 1.7; }
-        .footer-links h4 { color: var(--white); margin-bottom: 16px; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: #a0a0b0; text-decoration: none; font-size: 0.9375rem; }
-        .footer-links a:hover { color: var(--white); }
-        .footer-bottom { text-align: center; padding-top: 32px; border-top: 1px solid #2d2d4a; font-size: 0.875rem; }
+        .bundle-content h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            color: var(--white); margin-bottom: var(--s2);
+        }
         
+        .bundle-content p {
+            font-size: 1rem; color: rgba(255,255,255,0.45);
+            margin-bottom: var(--s4); max-width: 480px; line-height: 1.7;
+        }
+        
+        .bundle-skills {
+            display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--s5);
+        }
+        
+        .bundle-skill-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px;
+            padding: 6px 14px;
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .bundle-skill-tag::before {
+            content: '✓';
+            color: var(--terra-2);
+            font-size: 0.75rem;
+        }
+        
+        .bundle-price-block {
+            text-align: center;
+            position: relative; z-index: 1;
+        }
+        
+        .bundle-amount {
+            font-family: var(--font-serif);
+            font-size: 4rem; color: var(--white); line-height: 1;
+        }
+        
+        .bundle-period {
+            font-size: 0.875rem; color: rgba(255,255,255,0.35); display: block; margin-bottom: 6px;
+        }
+        
+        .bundle-savings {
+            font-size: 0.8125rem; color: var(--terra-2); margin-bottom: var(--s4);
+        }
+        
+        /* ---- FOOTER ---- */
+        footer {
+            background: var(--ink); padding: var(--s7) 0 var(--s5);
+        }
+        .footer-top {
+            display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
+            gap: var(--s7); margin-bottom: var(--s6); padding-bottom: var(--s6);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .footer-brand .logo { display: inline-block; margin-bottom: var(--s3); color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
+        .footer-col h4 {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(255,255,255,0.35); margin-bottom: var(--s3);
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--t-fast); }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+        .footer-copy, .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+        
+        /* ---- REVEAL ---- */
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 1024px) {
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+        }
         @media (max-width: 768px) {
-            .page-header h1 { font-size: 2rem; }
+            .container { padding: 0 var(--s3); }
             .skills-grid { grid-template-columns: 1fr; }
-            .bundle-box { padding: 40px 24px; text-align: center; }
-            .bundle-content { width: 100%; }
+            .bundle-card { grid-template-columns: 1fr; padding: var(--s5) var(--s4); }
+            .bundle-price-block { text-align: left; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-bottom { flex-direction: column; gap: 4px; }
             .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <nav class="container">
-            <a href="/" class="logo">The Creative <span>Record</span></a>
+            <a href="/" class="logo">The Creative <em>Record</em></a>
             <ul class="nav-links">
-                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/skills/" class="active">Skills</a></li>
                 <li><a href="/feedback/">Feedback</a></li>
-                <li><a href="/subscribe/">Subscribe</a></li>
+                <li><a href="/about/">About</a></li>
             </ul>
-            <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+            <div>
+                <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+            </div>
         </nav>
     </header>
 
     <section class="page-header">
         <div class="container">
-            <h1>Creative Strategy Skills</h1>
-            <p>Proven frameworks to help you create better ads, faster. Each skill includes templates, checklists, and video walkthroughs.</p>
+            <div class="page-header-inner">
+                <div class="page-eyebrow">Skills Library</div>
+                <h1>Creative Strategy<br><em>Skills</em></h1>
+                <p>Proven frameworks to help you create better ads, faster. Each skill includes templates, checklists, and video walkthroughs.</p>
+            </div>
         </div>
     </section>
 
-    <section class="filters">
+    <div class="filters">
         <div class="container">
             <div class="filter-list">
                 <button class="filter-btn active">All Skills</button>
@@ -180,31 +452,34 @@
                 <button class="filter-btn">Analysis</button>
             </div>
         </div>
-    </section>
+    </div>
 
     <section class="skills-section">
         <div class="container">
             <div class="skills-grid">
+
                 <!-- Skill 1 -->
-                <div class="skill-card">
-                    <span class="badge badge-popular">Most Popular</span>
+                <div class="skill-card reveal">
+                    <span class="skill-badge badge-popular">Most Popular</span>
                     <div class="skill-thumb">
-                        <div class="skill-placeholder">[Thumbnail: Video Script Writing System]<br>680x400 placeholder</div>
+                        <div class="skill-thumb-icon">
+                            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        </div>
                     </div>
-                    <div class="skill-content">
+                    <div class="skill-body">
                         <div class="skill-category">Script Writing</div>
                         <h3>Video Script Writing System</h3>
                         <p>The 8-part framework for writing video scripts that hook in 3 seconds and convert by 30. Used by top DTC brands to produce high-performing creative.</p>
-                        <ul class="skill-features">
+                        <ul class="skill-includes">
                             <li>8-part script structure template</li>
                             <li>Hook formula cheat sheet</li>
                             <li>30-minute video walkthrough</li>
                             <li>Notion + PDF formats</li>
                         </ul>
-                        <div class="skill-footer">
+                        <div class="skill-foot">
                             <span class="skill-price">$39</span>
                             <div class="skill-actions">
-                                <a href="#" class="btn btn-outline btn-sm">Preview</a>
+                                <a href="#" class="btn btn-ghost btn-sm">Preview</a>
                                 <a href="#" class="btn btn-primary btn-sm">Buy Now</a>
                             </div>
                         </div>
@@ -212,25 +487,27 @@
                 </div>
 
                 <!-- Skill 2 -->
-                <div class="skill-card">
-                    <span class="badge badge-new">New</span>
+                <div class="skill-card reveal">
+                    <span class="skill-badge badge-new">New</span>
                     <div class="skill-thumb">
-                        <div class="skill-placeholder">[Thumbnail: Hook Generation Masterclass]<br>680x400 placeholder</div>
+                        <div class="skill-thumb-icon">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        </div>
                     </div>
-                    <div class="skill-content">
+                    <div class="skill-body">
                         <div class="skill-category">Hook Generation</div>
                         <h3>Hook Generation Masterclass</h3>
                         <p>47 proven hook formulas with fill-in-the-blank templates for every awareness stage. Stop guessing what will stop the scroll.</p>
-                        <ul class="skill-features">
-                            <li>47 hook formulas organized by stage</li>
+                        <ul class="skill-includes">
+                            <li>47 hook formulas by awareness stage</li>
                             <li>Fill-in-the-blank templates</li>
                             <li>Real brand examples database</li>
                             <li>Hook testing framework</li>
                         </ul>
-                        <div class="skill-footer">
+                        <div class="skill-foot">
                             <span class="skill-price">$39</span>
                             <div class="skill-actions">
-                                <a href="#" class="btn btn-outline btn-sm">Preview</a>
+                                <a href="#" class="btn btn-ghost btn-sm">Preview</a>
                                 <a href="#" class="btn btn-primary btn-sm">Buy Now</a>
                             </div>
                         </div>
@@ -238,24 +515,26 @@
                 </div>
 
                 <!-- Skill 3 -->
-                <div class="skill-card">
+                <div class="skill-card reveal">
                     <div class="skill-thumb">
-                        <div class="skill-placeholder">[Thumbnail: Creative Briefing Framework]<br>680x400 placeholder</div>
+                        <div class="skill-thumb-icon">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        </div>
                     </div>
-                    <div class="skill-content">
+                    <div class="skill-body">
                         <div class="skill-category">Briefing</div>
                         <h3>Creative Briefing Framework</h3>
-                        <p>The same briefing template used to produce 1000+ performance ads for DTC brands. Turn strategy into production-ready briefs.</p>
-                        <ul class="skill-features">
+                        <p>The same briefing template used to produce 1,000+ performance ads for DTC brands. Turn strategy into production-ready briefs.</p>
+                        <ul class="skill-includes">
                             <li>Complete brief template</li>
                             <li>Strategy-to-brief worksheet</li>
                             <li>Creative direction checklist</li>
                             <li>Client presentation format</li>
                         </ul>
-                        <div class="skill-footer">
+                        <div class="skill-foot">
                             <span class="skill-price">$39</span>
                             <div class="skill-actions">
-                                <a href="#" class="btn btn-outline btn-sm">Preview</a>
+                                <a href="#" class="btn btn-ghost btn-sm">Preview</a>
                                 <a href="#" class="btn btn-primary btn-sm">Buy Now</a>
                             </div>
                         </div>
@@ -263,24 +542,26 @@
                 </div>
 
                 <!-- Skill 4 -->
-                <div class="skill-card">
+                <div class="skill-card reveal">
                     <div class="skill-thumb">
-                        <div class="skill-placeholder">[Thumbnail: Creative Audit Checklist]<br>680x400 placeholder</div>
+                        <div class="skill-thumb-icon">
+                            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        </div>
                     </div>
-                    <div class="skill-content">
+                    <div class="skill-body">
                         <div class="skill-category">Auditing</div>
                         <h3>Creative Audit Checklist</h3>
                         <p>Systematically evaluate your creative performance with this 50-point audit. Identify what's working and what's wasting budget.</p>
-                        <ul class="skill-features">
+                        <ul class="skill-includes">
                             <li>50-point audit framework</li>
                             <li>Hook performance scoring</li>
                             <li>Fatigue detection guide</li>
                             <li>Iteration decision matrix</li>
                         </ul>
-                        <div class="skill-footer">
+                        <div class="skill-foot">
                             <span class="skill-price">$39</span>
                             <div class="skill-actions">
-                                <a href="#" class="btn btn-outline btn-sm">Preview</a>
+                                <a href="#" class="btn btn-ghost btn-sm">Preview</a>
                                 <a href="#" class="btn btn-primary btn-sm">Buy Now</a>
                             </div>
                         </div>
@@ -288,53 +569,59 @@
                 </div>
 
                 <!-- Skill 5 -->
-                <div class="skill-card">
-                    <span class="badge badge-new">New</span>
+                <div class="skill-card reveal">
+                    <span class="skill-badge badge-new">New</span>
                     <div class="skill-thumb">
-                        <div class="skill-placeholder">[Thumbnail: Performance Analysis Toolkit]<br>680x400 placeholder</div>
+                        <div class="skill-thumb-icon">
+                            <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        </div>
                     </div>
-                    <div class="skill-content">
+                    <div class="skill-body">
                         <div class="skill-category">Analysis</div>
                         <h3>Performance Analysis Toolkit</h3>
                         <p>Turn raw data into actionable insights. Learn how to analyze creative performance and make better production decisions.</p>
-                        <ul class="skill-features">
+                        <ul class="skill-includes">
                             <li>Metrics interpretation guide</li>
                             <li>Creative comparison framework</li>
                             <li>Attribution modeling basics</li>
                             <li>Report templates for clients</li>
                         </ul>
-                        <div class="skill-footer">
+                        <div class="skill-foot">
                             <span class="skill-price">$39</span>
                             <div class="skill-actions">
-                                <a href="#" class="btn btn-outline btn-sm">Preview</a>
+                                <a href="#" class="btn btn-ghost btn-sm">Preview</a>
                                 <a href="#" class="btn btn-primary btn-sm">Buy Now</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <section class="bundle-cta">
+    <!-- BUNDLE CTA -->
+    <section class="bundle">
         <div class="container">
-            <div class="bundle-box">
+            <div class="bundle-card reveal">
                 <div class="bundle-content">
-                    <h2>Get all 5 skills</h2>
+                    <div class="bundle-label">Complete Bundle</div>
+                    <h2>Get all 5 skills for $99</h2>
                     <p>Save $96 when you buy the complete bundle. Everything you need to write, brief, audit, and analyze creative that performs.</p>
-                    <div class="bundle-list">
-                        <span>Video Script Writing</span>
-                        <span>Hook Generation</span>
-                        <span>Creative Briefing</span>
-                        <span>Creative Audit</span>
-                        <span>Performance Analysis</span>
+                    <div class="bundle-skills">
+                        <span class="bundle-skill-tag">Video Script Writing</span>
+                        <span class="bundle-skill-tag">Hook Generation</span>
+                        <span class="bundle-skill-tag">Creative Briefing</span>
+                        <span class="bundle-skill-tag">Creative Audit</span>
+                        <span class="bundle-skill-tag">Performance Analysis</span>
                     </div>
-                    <a href="#" class="btn btn-primary" style="font-size: 1.125rem; padding: 16px 32px;">Buy Bundle — $99</a>
+                    <a href="#" class="btn btn-primary" style="font-size: 1rem; padding: 15px 32px;">Buy Bundle — $99</a>
                 </div>
-                <div class="bundle-price">
-                    <div class="price">$99<span>one-time</span></div>
-                    <p>Save $96 vs. individual</p>
-                    <p style="color: var(--coral); font-weight: 600;">Lifetime access + updates</p>
+                <div class="bundle-price-block">
+                    <div class="bundle-amount">$99</div>
+                    <span class="bundle-period">one-time</span>
+                    <div class="bundle-savings">Save $96 vs. individual</div>
+                    <a href="#" class="btn btn-primary btn-full" style="font-size: 1rem; padding: 15px 32px;">Buy Bundle — $99</a>
                 </div>
             </div>
         </div>
@@ -342,12 +629,12 @@
 
     <footer>
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="/" class="logo">The Creative <span>Record</span></a>
-                    <p>Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Product</h4>
                     <ul>
                         <li><a href="/skills/">All Skills</a></li>
@@ -355,14 +642,14 @@
                         <li><a href="/subscribe/">Membership</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Legal</h4>
                     <ul>
                         <li><a href="#">Privacy</a></li>
@@ -371,9 +658,33 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 The Creative Record. All rights reserved.</p>
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Filter interaction
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+        
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 70);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
 </body>
 </html>

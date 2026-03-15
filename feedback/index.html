@@ -4,247 +4,440 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Micro-Feedback — The Creative Record</title>
+    <meta name="description" content="Get expert eyes on your creative in 24 hours. Hook review, script triage, and brief diagnosis from a DTC creative strategist.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
-            --navy: #1a1a2e;
-            --white: #ffffff;
-            --coral: #e94560;
-            --gray: #6b7280;
-            --light-gray: #f3f4f6;
-            --border: #e5e7eb;
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
+            
+            --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            
+            --shadow-sm: 0 1px 3px rgba(15,14,13,0.06);
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-lg: 0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            
+            --t-fast: 150ms ease; --t-base: 220ms ease;
         }
+        
+        html { font-size: 16px; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            color: var(--navy);
-            line-height: 1.6;
+            font-family: var(--font-sans); font-weight: 400;
+            color: var(--ink-3); background: var(--cream);
+            line-height: 1.65; -webkit-font-smoothing: antialiased;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        /* Header */
-        header {
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 100;
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+        
+        h1, h2, h3 {
+            font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.15;
         }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--navy); text-decoration: none; }
-        .logo span { color: var(--coral); }
-        .nav-links { display: flex; gap: 32px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--navy); font-weight: 500; }
-        .nav-links a:hover { color: var(--coral); }
+        
         .btn {
-            display: inline-block; padding: 12px 28px; border-radius: 6px;
-            font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg);
+            font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem;
+            letter-spacing: 0.01em; text-decoration: none; border: 1px solid transparent;
+            cursor: pointer; transition: all var(--t-base); white-space: nowrap;
         }
-        .btn-primary { background: var(--coral); color: var(--white); }
-        .btn-primary:hover { background: #d63d56; }
-        .btn-secondary { background: var(--navy); color: var(--white); }
-        .btn-secondary:hover { background: #2d2d4a; }
-        .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
-        .btn-outline:hover { background: var(--navy); color: var(--white); }
-        
-        /* Page Header */
-        .page-header { background: var(--navy); color: var(--white); padding: 80px 0 60px; text-align: center; }
-        .page-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
-        .page-header p { color: #a0a0b0; font-size: 1.25rem; max-width: 600px; margin: 0 auto; }
-        
-        /* Turnaround Banner */
-        .turnaround-banner {
-            background: var(--coral); color: var(--white); padding: 16px; text-align: center;
-            font-weight: 600; font-size: 0.9375rem;
+        .btn-primary {
+            background: var(--terra); color: var(--white); border-color: var(--terra);
         }
-        .turnaround-banner span { margin: 0 8px; }
+        .btn-primary:hover {
+            background: #b84a24; border-color: #b84a24;
+            box-shadow: var(--shadow-terra); transform: translateY(-1px);
+        }
+        .btn-ghost { background: transparent; color: var(--ink); border-color: var(--cream-3); }
+        .btn-ghost:hover { background: var(--cream-2); }
+        .btn-full { width: 100%; }
+        .btn-lg { padding: 16px 34px; font-size: 1rem; }
         
-        /* Services */
-        .services { padding: 80px 0; background: var(--white); }
-        .section-header { text-align: center; margin-bottom: 64px; }
-        .section-header h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 16px; }
-        .section-header p { color: var(--gray); font-size: 1.125rem; }
+        /* ---- HEADER ---- */
+        header {
+            background: rgba(250,248,245,0.94); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3); position: sticky; top: 0; z-index: 200;
+        }
+        nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links { display: flex; align-items: center; gap: var(--s5); list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
         
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; max-width: 1000px; margin: 0 auto; }
+        /* ---- PAGE HEADER ---- */
+        .page-header {
+            background: var(--ink); padding: var(--s7) 0;
+            position: relative; overflow: hidden;
+        }
+        .page-header::after {
+            content: ''; position: absolute; top: -150px; right: -50px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(200,85,42,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-header-inner { position: relative; z-index: 1; }
+        .page-eyebrow {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--terra-2); margin-bottom: var(--s3); display: flex; align-items: center; gap: 8px;
+        }
+        .page-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--terra-2); }
+        .page-header h1 { font-size: clamp(2.25rem, 4vw, 3.5rem); color: var(--white); margin-bottom: var(--s3); }
+        .page-header p { font-size: 1.0625rem; color: rgba(255,255,255,0.5); max-width: 500px; line-height: 1.7; }
+        
+        /* ---- TURNAROUND BANNER ---- */
+        .banner {
+            background: var(--terra-3); border-bottom: 1px solid rgba(200,85,42,0.15);
+            padding: 13px 0;
+        }
+        .banner-inner {
+            display: flex; align-items: center; justify-content: center; gap: var(--s5);
+        }
+        .banner-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.875rem; font-weight: 500; color: var(--terra);
+        }
+        .banner-dot {
+            width: 6px; height: 6px; border-radius: 50%; background: var(--terra);
+        }
+        
+        /* ---- SERVICES ---- */
+        .services { padding: var(--s8) 0; background: var(--cream); }
+        
+        .section-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: var(--s2);
+        }
+        .section-header { margin-bottom: var(--s6); }
+        .section-header h2 { font-size: clamp(1.875rem, 3.5vw, 2.875rem); margin-bottom: var(--s2); }
+        .section-header p { font-size: 1.0625rem; color: var(--ink-3); max-width: 480px; }
+        
+        .services-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3); max-width: 960px; margin: 0 auto;
+        }
         
         .service-card {
-            background: var(--white); border: 2px solid var(--border); border-radius: 12px;
-            padding: 40px 32px; text-align: center; transition: border-color 0.2s, transform 0.2s;
+            background: var(--white); border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl); padding: var(--s5) var(--s4);
+            text-align: center;
+            transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
         }
-        .service-card:hover { border-color: var(--coral); transform: translateY(-4px); }
-        .service-card.featured { border-color: var(--coral); position: relative; }
-        
-        .service-icon {
-            width: 64px; height: 64px; background: var(--light-gray); border-radius: 16px;
-            display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
-            font-size: 1.75rem;
+        .service-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+        .service-card.featured {
+            border-color: var(--terra); border-width: 1.5px;
+            box-shadow: 0 0 0 3px var(--terra-3);
         }
-        .service-card.featured .service-icon { background: var(--coral); color: var(--white); }
-        
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 12px; }
-        .service-card .price { font-size: 2.5rem; font-weight: 800; color: var(--coral); margin-bottom: 16px; }
-        .service-card .deliverable {
-            background: var(--light-gray); padding: 16px; border-radius: 8px;
-            font-size: 0.9375rem; margin-bottom: 24px;
+        .service-card.featured:hover {
+            box-shadow: 0 0 0 3px var(--terra-3), var(--shadow-lg);
         }
-        .service-card ul { list-style: none; text-align: left; margin-bottom: 32px; }
-        .service-card li { padding: 10px 0 10px 28px; position: relative; border-bottom: 1px solid var(--border); }
-        .service-card li:last-child { border-bottom: none; }
-        .service-card li::before { content: "✓"; position: absolute; left: 0; color: var(--coral); font-weight: 700; }
         
-        /* How It Works */
-        .how-it-works { padding: 80px 0; background: var(--light-gray); }
-        .steps { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
+        .service-icon-wrap {
+            width: 68px; height: 68px; border-radius: 16px;
+            background: var(--cream-2); margin: 0 auto var(--s3);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .service-card.featured .service-icon-wrap { background: var(--terra-3); }
+        .service-icon-wrap svg {
+            width: 30px; height: 30px; stroke: var(--ink-3); fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .service-card.featured .service-icon-wrap svg { stroke: var(--terra); }
+        
+        .service-card h3 {
+            font-family: var(--font-sans); font-size: 1.1875rem; font-weight: 600;
+            color: var(--ink); margin-bottom: var(--s1);
+        }
+        .service-price {
+            font-family: var(--font-serif); font-size: 2.75rem; color: var(--ink);
+            margin-bottom: var(--s1); line-height: 1;
+        }
+        .service-card.featured .service-price { color: var(--terra); }
+        
+        .service-deliverable {
+            background: var(--cream-2); border-radius: var(--r-md);
+            padding: 10px 16px; font-size: 0.8125rem; color: var(--ink-3);
+            margin-bottom: var(--s4); display: inline-block;
+        }
+        
+        .service-features {
+            list-style: none; text-align: left; margin-bottom: var(--s5);
+        }
+        .service-features li {
+            display: flex; align-items: center; gap: 8px;
+            padding: 9px 0; font-size: 0.875rem; color: var(--ink-3);
+            border-bottom: 1px solid var(--cream-3);
+        }
+        .service-features li:last-child { border-bottom: none; }
+        .service-features li::before {
+            content: ''; display: block; width: 5px; height: 5px;
+            border-radius: 50%; background: var(--terra); flex-shrink: 0;
+        }
+        
+        /* ---- HOW IT WORKS ---- */
+        .how { padding: var(--s8) 0; background: var(--cream-2); border-top: 1px solid var(--cream-3); }
+        
+        .steps-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: var(--s3); max-width: 820px; margin: 0 auto;
+        }
+        
         .step {
-            flex: 1; min-width: 200px; max-width: 260px; background: var(--white);
-            padding: 32px 24px; border-radius: 12px; text-align: center;
+            background: var(--white); border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl); padding: var(--s4); text-align: center;
         }
-        .step-number {
-            width: 48px; height: 48px; background: var(--navy); color: var(--white);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 1.25rem; margin: 0 auto 20px;
-        }
-        .step h3 { font-size: 1.125rem; margin-bottom: 8px; }
-        .step p { color: var(--gray); font-size: 0.9375rem; }
         
-        /* Form Section */
-        .form-section { padding: 80px 0; background: var(--white); }
-        .form-container { max-width: 600px; margin: 0 auto; }
+        .step-num {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: var(--ink); color: var(--white);
+            font-family: var(--font-serif); font-size: 1.125rem;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto var(--s3);
+        }
+        .step h3 {
+            font-family: var(--font-sans); font-size: 1.0625rem; font-weight: 600;
+            color: var(--ink); margin-bottom: 8px;
+        }
+        .step p { font-size: 0.9rem; color: var(--ink-3); line-height: 1.65; }
+        
+        /* ---- FORM ---- */
+        .form-section { padding: var(--s8) 0; background: var(--cream); }
+        
+        .form-wrap {
+            max-width: 580px; margin: 0 auto;
+        }
+        
         .form-card {
-            background: var(--white); border: 1px solid var(--border); border-radius: 12px;
-            padding: 48px;
+            background: var(--white); border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl); padding: var(--s7) var(--s5);
         }
+        
         .form-card h2 { font-size: 1.75rem; margin-bottom: 8px; }
-        .form-card > p { color: var(--gray); margin-bottom: 32px; }
+        .form-card > p { font-size: 0.9375rem; color: var(--ink-3); margin-bottom: var(--s5); }
         
-        .form-group { margin-bottom: 24px; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9375rem; }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 12px 16px; border: 1px solid var(--border);
-            border-radius: 8px; font-size: 1rem; font-family: inherit;
+        /* Service selector */
+        .service-select { display: grid; gap: 10px; margin-bottom: var(--s5); }
+        
+        .service-opt {
+            border: 1.5px solid var(--cream-3); border-radius: var(--r-lg);
+            padding: var(--s2) var(--s3); cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: border-color var(--t-fast), background var(--t-fast);
         }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-            outline: none; border-color: var(--coral);
+        .service-opt:hover { border-color: var(--ink-4); }
+        .service-opt.selected { border-color: var(--terra); background: var(--terra-3); }
+        
+        .opt-info h4 { font-size: 0.9375rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+        .opt-info p { font-size: 0.8125rem; color: var(--ink-4); }
+        .opt-price { font-weight: 600; color: var(--terra); font-size: 1rem; }
+        
+        /* Form fields */
+        .form-group { margin-bottom: var(--s4); }
+        .form-group label {
+            display: block; font-size: 0.875rem; font-weight: 600;
+            color: var(--ink-2); margin-bottom: 8px;
         }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        
-        .service-select { display: grid; gap: 12px; margin-bottom: 24px; }
-        .service-option {
-            border: 2px solid var(--border); border-radius: 8px; padding: 16px;
-            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-            transition: border-color 0.2s;
+        .form-input {
+            width: 100%; padding: 12px 16px;
+            border: 1.5px solid var(--cream-3); border-radius: var(--r-lg);
+            font-size: 0.9375rem; font-family: var(--font-sans);
+            color: var(--ink); background: var(--white);
+            transition: border-color var(--t-fast), box-shadow var(--t-fast);
         }
-        .service-option:hover { border-color: var(--gray); }
-        .service-option.selected { border-color: var(--coral); background: #fff5f7; }
-        .service-option-info h4 { font-size: 1rem; margin-bottom: 4px; }
-        .service-option-info p { font-size: 0.875rem; color: var(--gray); }
-        .service-option-price { font-weight: 700; color: var(--coral); }
-        
-        .file-upload {
-            border: 2px dashed var(--border); border-radius: 8px;
-            padding: 32px; text-align: center; cursor: pointer;
-            transition: border-color 0.2s, background 0.2s;
+        .form-input:focus {
+            outline: none; border-color: var(--terra);
+            box-shadow: 0 0 0 3px var(--terra-3);
         }
-        .file-upload:hover { border-color: var(--coral); background: #fff5f7; }
-        .file-upload p { color: var(--gray); font-size: 0.9375rem; margin-top: 12px; }
+        .form-input::placeholder { color: var(--ink-4); }
+        textarea.form-input { resize: vertical; min-height: 120px; line-height: 1.6; }
         
-        .form-submit { width: 100%; padding: 16px; font-size: 1.125rem; margin-top: 8px; }
+        /* File upload */
+        .file-zone {
+            border: 2px dashed var(--cream-3); border-radius: var(--r-lg);
+            padding: var(--s5); text-align: center; cursor: pointer;
+            transition: border-color var(--t-fast), background var(--t-fast);
+        }
+        .file-zone:hover { border-color: var(--terra-2); background: var(--terra-3); }
         
-        /* Trust */
-        .trust { padding: 60px 0; background: var(--light-gray); text-align: center; }
-        .trust p { color: var(--gray); font-size: 0.9375rem; margin-bottom: 24px; }
-        .guarantee {
-            display: inline-flex; align-items: center; gap: 12px;
-            background: var(--white); padding: 16px 24px; border-radius: 8px;
-            font-weight: 600;
+        .upload-icon {
+            width: 44px; height: 44px; margin: 0 auto var(--s2);
+        }
+        .upload-icon svg {
+            width: 44px; height: 44px; stroke: var(--ink-4); fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .file-zone p { font-size: 0.9rem; color: var(--ink-3); margin-bottom: 4px; }
+        .file-zone span { font-size: 0.8125rem; color: var(--ink-4); }
+        
+        .form-submit {
+            font-size: 1rem; padding: 15px; border-radius: var(--r-lg);
         }
         
-        /* Footer */
-        footer { background: var(--navy); color: #a0a0b0; padding: 60px 0 32px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-brand .logo { color: var(--white); margin-bottom: 16px; display: inline-block; }
-        .footer-brand p { font-size: 0.9375rem; line-height: 1.7; }
-        .footer-links h4 { color: var(--white); margin-bottom: 16px; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: #a0a0b0; text-decoration: none; font-size: 0.9375rem; }
-        .footer-links a:hover { color: var(--white); }
-        .footer-bottom { text-align: center; padding-top: 32px; border-top: 1px solid #2d2d4a; font-size: 0.875rem; }
+        /* ---- GUARANTEE ---- */
+        .guarantee { padding: var(--s5) 0; background: var(--cream-2); border-top: 1px solid var(--cream-3); }
+        .guarantee-inner {
+            display: flex; align-items: center; justify-content: center; gap: var(--s3);
+        }
+        .guarantee-badge {
+            width: 52px; height: 52px; border-radius: 50%;
+            border: 2px solid var(--terra-3);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .guarantee-badge svg {
+            width: 24px; height: 24px; stroke: var(--terra); fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .guarantee-text h4 { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 600; color: var(--ink); }
+        .guarantee-text p { font-size: 0.875rem; color: var(--ink-3); }
         
+        /* ---- FOOTER ---- */
+        footer { background: var(--ink); padding: var(--s7) 0 var(--s5); }
+        .footer-top {
+            display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
+            gap: var(--s7); margin-bottom: var(--s6); padding-bottom: var(--s6);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .footer-brand .logo { display: inline-block; margin-bottom: var(--s3); color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
+        .footer-col h4 {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(255,255,255,0.35); margin-bottom: var(--s3);
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--t-fast); }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+        .footer-copy, .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+        
+        /* ---- REVEAL ---- */
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        @media (max-width: 1024px) {
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+        }
         @media (max-width: 768px) {
-            .page-header h1 { font-size: 2rem; }
+            .container { padding: 0 var(--s3); }
             .services-grid { grid-template-columns: 1fr; }
-            .steps { flex-direction: column; align-items: center; }
-            .form-card { padding: 32px 24px; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .form-card { padding: var(--s5) var(--s3); }
+            .banner-inner { gap: var(--s3); flex-wrap: wrap; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-bottom { flex-direction: column; gap: 4px; }
             .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <nav class="container">
-            <a href="/" class="logo">The Creative <span>Record</span></a>
+            <a href="/" class="logo">The Creative <em>Record</em></a>
             <ul class="nav-links">
                 <li><a href="/skills/">Skills</a></li>
-                <li><a href="/feedback/">Feedback</a></li>
-                <li><a href="/subscribe/">Subscribe</a></li>
+                <li><a href="/feedback/" class="active">Feedback</a></li>
+                <li><a href="/about/">About</a></li>
             </ul>
-            <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+            <div>
+                <a href="/subscribe/" class="btn btn-primary">Get Access</a>
+            </div>
         </nav>
     </header>
 
     <section class="page-header">
         <div class="container">
-            <h1>Micro-Feedback</h1>
-            <p>Get expert eyes on your creative in 24 hours. Specific, actionable feedback that makes your ads perform better.</p>
+            <div class="page-header-inner">
+                <div class="page-eyebrow">Micro-Feedback</div>
+                <h1>Expert eyes on your<br><em>creative in 24 hours</em></h1>
+                <p>Specific, actionable feedback from a DTC creative strategist. Submit your hook, script, or brief -- get back concrete fixes, not vague encouragement.</p>
+            </div>
         </div>
     </section>
 
-    <div class="turnaround-banner">
-        <span>⚡ 24-Hour Turnaround</span> | <span>💯 Satisfaction Guarantee</span> | <span>🎯 Actionable Fixes</span>
+    <div class="banner">
+        <div class="container">
+            <div class="banner-inner">
+                <div class="banner-item"><div class="banner-dot"></div>24-Hour Turnaround</div>
+                <div class="banner-item"><div class="banner-dot"></div>100% Satisfaction Guarantee</div>
+                <div class="banner-item"><div class="banner-dot"></div>Actionable Fixes, Not Vague Notes</div>
+            </div>
+        </div>
     </div>
 
     <section class="services">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
+                <div class="section-label">Services</div>
                 <h2>Choose your feedback type</h2>
-                <p>Three ways to get expert creative strategy help — pick what you need.</p>
+                <p>Three ways to get expert creative strategy help. Pick exactly what you need.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🪝</div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon-wrap">
+                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
                     <h3>Hook Review</h3>
-                    <div class="price">$49</div>
-                    <div class="deliverable">Submit 3 hooks → Get 3 rewrites</div>
-                    <ul>
+                    <div class="service-price">$49</div>
+                    <div class="service-deliverable">Submit 3 hooks → Get 3 rewrites</div>
+                    <ul class="service-features">
                         <li>Review of your 3 hooks</li>
                         <li>3 rewritten alternatives</li>
                         <li>Why each works (or doesn't)</li>
-                        <li>Awareness stage targeting</li>
+                        <li>Awareness stage targeting notes</li>
                         <li>24-hour delivery</li>
                     </ul>
-                    <button class="btn btn-outline" style="width: 100%;" onclick="selectService('hook')">Select Hook Review</button>
+                    <button class="btn btn-ghost btn-full" onclick="selectService('hook')">Select Hook Review</button>
                 </div>
 
-                <div class="service-card featured">
-                    <div class="service-icon">📝</div>
+                <div class="service-card featured reveal">
+                    <div class="service-icon-wrap">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
                     <h3>Script Triage</h3>
-                    <div class="price">$79</div>
-                    <div class="deliverable">Submit 30s script → Get verdict + fixes</div>
-                    <ul>
+                    <div class="service-price">$79</div>
+                    <div class="service-deliverable">Submit script → Get verdict + fixes</div>
+                    <ul class="service-features">
                         <li>Full script review</li>
-                        <li>Pass/fail verdict</li>
+                        <li>Pass/fail verdict with rationale</li>
                         <li>Specific fixes with line edits</li>
                         <li>Structure recommendations</li>
                         <li>Persuasion angle feedback</li>
                         <li>24-hour delivery</li>
                     </ul>
-                    <button class="btn btn-primary" style="width: 100%;" onclick="selectService('script')">Select Script Triage</button>
+                    <button class="btn btn-primary btn-full" onclick="selectService('script')">Select Script Triage</button>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">📋</div>
+                <div class="service-card reveal">
+                    <div class="service-icon-wrap">
+                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
                     <h3>Brief Diagnosis</h3>
-                    <div class="price">$99</div>
-                    <div class="deliverable">Submit brief → Get 3 improvements</div>
-                    <ul>
+                    <div class="service-price">$99</div>
+                    <div class="service-deliverable">Submit brief → Get 3 improvements</div>
+                    <ul class="service-features">
                         <li>Creative brief review</li>
                         <li>Strategy assessment</li>
                         <li>3 specific improvements</li>
@@ -252,122 +445,130 @@
                         <li>Production-ready notes</li>
                         <li>24-hour delivery</li>
                     </ul>
-                    <button class="btn btn-outline" style="width: 100%;" onclick="selectService('brief')">Select Brief Diagnosis</button>
+                    <button class="btn btn-ghost btn-full" onclick="selectService('brief')">Select Brief Diagnosis</button>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <section class="how-it-works">
+    <!-- HOW IT WORKS -->
+    <section class="how">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal" style="text-align: center;">
+                <div class="section-label">Process</div>
                 <h2>How it works</h2>
-                <p>Simple process, fast turnaround, actionable results.</p>
             </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
+            <div class="steps-grid">
+                <div class="step reveal">
+                    <div class="step-num">1</div>
                     <h3>Submit</h3>
-                    <p>Fill out the form and upload your hooks, script, or brief.</p>
+                    <p>Fill out the form below and upload your hooks, script, or brief. Add any context about your brand or target audience.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
+                <div class="step reveal">
+                    <div class="step-num">2</div>
                     <h3>Review</h3>
-                    <p>We analyze your creative against proven frameworks.</p>
+                    <p>We analyze your creative against proven DTC frameworks -- hook formulas, awareness stages, persuasion structures.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
+                <div class="step reveal">
+                    <div class="step-num">3</div>
                     <h3>Receive</h3>
-                    <p>Get your feedback within 24 hours via email.</p>
+                    <p>Get your feedback within 24 hours via email. Specific, actionable, ready to implement.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FORM -->
     <section class="form-section">
         <div class="container">
-            <div class="form-container">
+            <div class="form-wrap reveal">
                 <div class="form-card">
-                    <h2>Submit for feedback</h2>
-                    <p>Select a service and upload your creative.</p>
-                    
+                    <h2>Submit your creative</h2>
+                    <p>Select a service and upload your creative. We'll send feedback within 24 hours.</p>
+
                     <form>
-                        <div class="service-select">
-                            <div class="service-option" data-service="hook" onclick="selectService('hook')">
-                                <div class="service-option-info">
+                        <!-- Service select -->
+                        <div class="service-select" id="serviceSelect">
+                            <div class="service-opt" data-service="hook" onclick="selectService('hook')">
+                                <div class="opt-info">
                                     <h4>Hook Review</h4>
                                     <p>3 hooks → 3 rewrites</p>
                                 </div>
-                                <span class="service-option-price">$49</span>
+                                <span class="opt-price">$49</span>
                             </div>
-                            <div class="service-option selected" data-service="script" onclick="selectService('script')">
-                                <div class="service-option-info">
+                            <div class="service-opt selected" data-service="script" onclick="selectService('script')">
+                                <div class="opt-info">
                                     <h4>Script Triage</h4>
                                     <p>30s script → verdict + fixes</p>
                                 </div>
-                                <span class="service-option-price">$79</span>
+                                <span class="opt-price">$79</span>
                             </div>
-                            <div class="service-option" data-service="brief" onclick="selectService('brief')">
-                                <div class="service-option-info">
+                            <div class="service-opt" data-service="brief" onclick="selectService('brief')">
+                                <div class="opt-info">
                                     <h4>Brief Diagnosis</h4>
                                     <p>Brief → 3 improvements</p>
                                 </div>
-                                <span class="service-option-price">$99</span>
+                                <span class="opt-price">$99</span>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Jane Smith" required>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="jane@company.com" required>
                         </div>
 
                         <div class="form-group">
                             <label>Upload Your Creative</label>
-                            <div class="file-upload">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--gray);">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                    <polyline points="17 8 12 3 7 8"/>
-                                    <line x1="12" y1="3" x2="12" y2="15"/>
-                                </svg>
-                                <p>Drag and drop your file here, or click to browse</p>
-                                <p style="font-size: 0.8125rem; margin-top: 8px;">PDF, DOC, TXT, or image files accepted</p>
+                            <div class="file-zone">
+                                <div class="upload-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                </div>
+                                <p>Drag and drop or click to upload</p>
+                                <span>PDF, DOC, TXT, or image — up to 10MB</span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="notes">Additional Notes (Optional)</label>
-                            <textarea id="notes" name="notes" placeholder="Any context about your brand, target audience, or specific concerns..."></textarea>
+                            <label for="notes">Additional Context <span style="font-weight:400; color:var(--ink-4);">(Optional)</span></label>
+                            <textarea id="notes" name="notes" class="form-input" placeholder="Tell us about your brand, target audience, or specific concerns you want addressed..."></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary form-submit">Submit for Feedback — $79</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary btn-full form-submit">Submit for Feedback — $79</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="trust">
+    <!-- GUARANTEE -->
+    <div class="guarantee">
         <div class="container">
-            <p>Not satisfied? We'll refund 100% of your payment. No questions asked.</p>
-            <div class="guarantee">
-                <span>✓</span> 14-Day Money-Back Guarantee
+            <div class="guarantee-inner">
+                <div class="guarantee-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="guarantee-text">
+                    <h4>14-Day Money-Back Guarantee</h4>
+                    <p>Not satisfied? We'll refund 100% of your payment. No questions asked.</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <footer>
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="/" class="logo">The Creative <span>Record</span></a>
-                    <p>Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Product</h4>
                     <ul>
                         <li><a href="/skills/">All Skills</a></li>
@@ -375,14 +576,14 @@
                         <li><a href="/subscribe/">Membership</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Legal</h4>
                     <ul>
                         <li><a href="#">Privacy</a></li>
@@ -391,19 +592,33 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 The Creative Record. All rights reserved.</p>
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
             </div>
         </div>
     </footer>
 
     <script>
+        const prices = { hook: 49, script: 79, brief: 99 };
+        
         function selectService(service) {
-            document.querySelectorAll('.service-option').forEach(el => el.classList.remove('selected'));
+            document.querySelectorAll('.service-opt').forEach(el => el.classList.remove('selected'));
             document.querySelector('[data-service="' + service + '"]').classList.add('selected');
-            
-            const prices = { hook: 49, script: 79, brief: 99 };
-            document.querySelector('.form-submit').textContent = 'Submit for Feedback — $' + prices[service];
+            document.getElementById('submitBtn').textContent = 'Submit for Feedback — $' + prices[service];
         }
+        
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => observer.observe(el));
     </script>
+
 </body>
 </html>

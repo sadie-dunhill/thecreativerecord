@@ -3,305 +3,497 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - The Creative Record</title>
-    <meta name="description" content="The Creative Record is built by Sadie Dunhill, a creative strategist who has analyzed 1000+ DTC ad creatives.">
+    <title>About — The Creative Record</title>
+    <meta name="description" content="The Creative Record is built by Sadie Dunhill, a creative strategist who has analyzed 1,000+ DTC ad creatives. No theory. Just the tools that work.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --navy: #1a1a2e;
-            --coral: #e94560;
-            --white: #ffffff;
-            --gray: #f5f5f5;
-            --dark-gray: #333333;
-            --light-gray: #666666;
+            --ink:        #0f0e0d;
+            --ink-2:      #3d3a36;
+            --ink-3:      #6b6560;
+            --ink-4:      #a09890;
+            --terra:      #c8552a;
+            --terra-2:    #e8714a;
+            --terra-3:    #f4e0d6;
+            --cream:      #faf8f5;
+            --cream-2:    #f3f0eb;
+            --cream-3:    #e8e4dd;
+            --white:      #ffffff;
+            
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+            --s5: 48px; --s6: 64px; --s7: 96px; --s8: 128px;
+            
+            --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 12px;
+            
+            --shadow-md: 0 4px 16px rgba(15,14,13,0.07), 0 2px 4px rgba(15,14,13,0.04);
+            --shadow-lg: 0 12px 40px rgba(15,14,13,0.10), 0 4px 8px rgba(15,14,13,0.05);
+            --shadow-terra: 0 4px 20px rgba(200,85,42,0.22);
+            
+            --t-fast: 150ms ease; --t-base: 220ms ease;
         }
         
+        html { font-size: 16px; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--dark-gray);
-            background: var(--white);
+            font-family: var(--font-sans); font-weight: 400;
+            color: var(--ink-3); background: var(--cream);
+            line-height: 1.65; -webkit-font-smoothing: antialiased;
         }
         
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 var(--s4); }
+        .container-narrow { max-width: 720px; margin: 0 auto; padding: 0 var(--s4); }
         
-        /* Navigation */
-        nav {
-            background: var(--white);
-            border-bottom: 1px solid #eee;
-            padding: 16px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--navy);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--coral);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark-gray);
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--coral);
-        }
-        
-        .nav-cta {
-            background: var(--coral);
-            color: var(--white) !important;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-        
-        /* Header */
-        .page-header {
-            background: linear-gradient(135deg, var(--navy) 0%, #16213e 100%);
-            color: var(--white);
-            padding: 100px 0;
-            text-align: center;
-        }
-        
-        .page-header h1 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-        
-        .page-header p {
-            font-size: 20px;
-            opacity: 0.9;
-        }
-        
-        /* Content */
-        .content {
-            padding: 80px 0;
-        }
-        
-        .content h2 {
-            font-size: 32px;
-            color: var(--navy);
-            margin: 48px 0 24px;
-        }
-        
-        .content h3 {
-            font-size: 24px;
-            color: var(--navy);
-            margin: 32px 0 16px;
-        }
-        
-        .content p {
-            margin-bottom: 20px;
-            font-size: 18px;
-            line-height: 1.7;
-        }
-        
-        .content ul {
-            margin: 20px 0;
-            padding-left: 24px;
-        }
-        
-        .content li {
-            margin-bottom: 12px;
-            font-size: 18px;
-        }
-        
-        .highlight-box {
-            background: var(--gray);
-            padding: 32px;
-            border-radius: 12px;
-            margin: 32px 0;
-            border-left: 4px solid var(--coral);
-        }
-        
-        .highlight-box p {
-            margin: 0;
-            font-size: 20px;
-            font-style: italic;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            margin: 48px 0;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--coral);
-        }
-        
-        .stat-label {
-            color: var(--light-gray);
-            font-size: 16px;
+        h1, h2, h3 {
+            font-family: var(--font-serif); font-weight: 400; color: var(--ink); line-height: 1.15;
         }
         
         .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 18px;
-            transition: all 0.2s;
-            margin-top: 16px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 26px; border-radius: var(--r-lg);
+            font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem;
+            letter-spacing: 0.01em; text-decoration: none; border: 1px solid transparent;
+            cursor: pointer; transition: all var(--t-base); white-space: nowrap;
+        }
+        .btn-primary { background: var(--terra); color: var(--white); border-color: var(--terra); }
+        .btn-primary:hover { background: #b84a24; border-color: #b84a24; box-shadow: var(--shadow-terra); transform: translateY(-1px); }
+        .btn-ghost { background: transparent; color: var(--ink); border-color: var(--cream-3); }
+        .btn-ghost:hover { background: var(--cream-2); }
+        
+        /* ---- HEADER ---- */
+        header {
+            background: rgba(250,248,245,0.94); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--cream-3); position: sticky; top: 0; z-index: 200;
+        }
+        nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+        .logo em { font-style: italic; color: var(--terra); }
+        .nav-links { display: flex; align-items: center; gap: var(--s5); list-style: none; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+        
+        /* ---- PAGE HEADER ---- */
+        .page-header {
+            background: var(--ink); padding: var(--s8) 0 var(--s7);
+            position: relative; overflow: hidden;
+        }
+        .page-header::before {
+            content: ''; position: absolute; top: -100px; right: -100px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(200,85,42,0.09) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-header::after {
+            content: ''; position: absolute; bottom: -100px; left: 10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(200,85,42,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner { position: relative; z-index: 1; max-width: 820px; }
+        
+        .page-eyebrow {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--terra-2); margin-bottom: var(--s3); display: flex; align-items: center; gap: 8px;
+        }
+        .page-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--terra-2); }
+        
+        .page-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem); color: var(--white); margin-bottom: var(--s4); line-height: 1.1;
+        }
+        .page-header h1 em { font-style: italic; color: var(--terra-2); }
+        
+        .page-header-lead {
+            font-size: 1.1875rem; color: rgba(255,255,255,0.5);
+            max-width: 560px; line-height: 1.7; margin-bottom: var(--s6);
         }
         
-        .btn-primary {
-            background: var(--coral);
-            color: white;
+        .header-stats {
+            display: flex; gap: var(--s6); padding-top: var(--s5);
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .stat-num { font-family: var(--font-serif); font-size: 2rem; color: var(--white); line-height: 1; margin-bottom: 4px; }
+        .stat-label { font-size: 0.8125rem; color: rgba(255,255,255,0.35); }
+        
+        /* ---- CONTENT ---- */
+        .content-section { padding: var(--s8) 0; }
+        
+        .content-grid {
+            display: grid; grid-template-columns: 1fr 3fr; gap: var(--s7); align-items: start;
         }
         
-        .btn-primary:hover {
-            background: #d63d56;
+        .content-sidebar { position: sticky; top: 100px; }
+        
+        .sidebar-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--terra); margin-bottom: var(--s3);
+        }
+        .sidebar-nav { list-style: none; }
+        .sidebar-nav li { margin-bottom: 4px; }
+        .sidebar-nav a {
+            font-size: 0.875rem; color: var(--ink-4); text-decoration: none;
+            padding: 6px 0; display: block; border-left: 2px solid transparent;
+            padding-left: var(--s2); transition: all var(--t-fast);
+        }
+        .sidebar-nav a:hover { color: var(--ink); border-color: var(--cream-3); }
+        .sidebar-nav a.active { color: var(--ink); border-color: var(--terra); }
+        
+        .content-body {}
+        
+        .content-block { margin-bottom: var(--s7); }
+        .content-block:last-child { margin-bottom: 0; }
+        
+        .block-label {
+            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--terra); margin-bottom: var(--s3); display: flex; align-items: center; gap: 8px;
+        }
+        .block-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--terra); }
+        
+        .content-block h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem); margin-bottom: var(--s4);
         }
         
-        /* Footer */
-        footer {
-            background: #0f0f1a;
-            color: var(--white);
-            padding: 48px 0;
-            text-align: center;
+        .prose p {
+            font-size: 1.0625rem; color: var(--ink-2); line-height: 1.75;
+            margin-bottom: var(--s3);
+        }
+        .prose p:last-child { margin-bottom: 0; }
+        
+        .prose strong { font-weight: 600; color: var(--ink); }
+        
+        /* Pull quote */
+        .pull-quote {
+            background: var(--cream-2); border-left: 3px solid var(--terra);
+            border-radius: 0 var(--r-lg) var(--r-lg) 0;
+            padding: var(--s4) var(--s5); margin: var(--s5) 0;
+        }
+        .pull-quote p {
+            font-family: var(--font-serif); font-size: 1.375rem; color: var(--ink-2);
+            line-height: 1.5; font-style: italic; margin: 0 !important;
         }
         
-        footer p {
-            opacity: 0.6;
+        /* Differentiators list */
+        .diff-list { list-style: none; margin-top: var(--s4); }
+        .diff-item {
+            display: grid; grid-template-columns: 48px 1fr; gap: var(--s3);
+            align-items: start; padding: var(--s4) 0;
+            border-bottom: 1px solid var(--cream-3);
         }
+        .diff-item:last-child { border-bottom: none; }
+        .diff-num {
+            font-family: var(--font-serif); font-size: 2rem; color: var(--cream-3);
+            line-height: 1; padding-top: 4px;
+        }
+        .diff-text h4 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+        .diff-text p { font-size: 0.9375rem; color: var(--ink-3); line-height: 1.65; }
         
-        /* Mobile */
+        /* Bio block */
+        .bio-card {
+            background: var(--cream-2); border: 1px solid var(--cream-3);
+            border-radius: var(--r-xl); padding: var(--s5); margin-top: var(--s5);
+        }
+        .bio-header { display: flex; gap: var(--s4); align-items: flex-start; margin-bottom: var(--s4); }
+        .bio-avatar {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: var(--terra-3); flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-serif); font-size: 1.5rem; color: var(--terra);
+        }
+        .bio-name { font-family: var(--font-sans); font-size: 1.1875rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+        .bio-role { font-size: 0.875rem; color: var(--ink-4); }
+        .bio-card p { font-size: 0.9375rem; color: var(--ink-3); line-height: 1.7; margin-bottom: var(--s2); }
+        .bio-card p:last-child { margin-bottom: 0; }
+        
+        /* ---- CTA ---- */
+        .cta-section {
+            padding: var(--s8) 0; background: var(--ink);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(200,85,42,0.1) 0%, transparent 70%);
+        }
+        .cta-inner { position: relative; z-index: 1; }
+        .cta-section h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: var(--s3); }
+        .cta-section p { font-size: 1.0625rem; color: rgba(255,255,255,0.45); max-width: 440px; margin: 0 auto var(--s5); }
+        .cta-buttons { display: flex; gap: var(--s2); justify-content: center; flex-wrap: wrap; }
+        .btn-ghost-inv {
+            background: transparent; color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-ghost-inv:hover {
+            background: rgba(255,255,255,0.08); color: var(--white); border-color: rgba(255,255,255,0.4);
+        }
+        .btn-lg { padding: 16px 34px; font-size: 1rem; }
+        
+        /* ---- FOOTER ---- */
+        footer { background: var(--ink); padding: var(--s7) 0 var(--s5); border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-top {
+            display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
+            gap: var(--s7); margin-bottom: var(--s6); padding-bottom: var(--s6);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .footer-brand .logo { display: inline-block; margin-bottom: var(--s3); color: var(--white); }
+        .footer-brand .logo em { color: var(--terra-2); }
+        .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
+        .footer-col h4 {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(255,255,255,0.35); margin-bottom: var(--s3);
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: var(--s2); }
+        .footer-col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--t-fast); }
+        .footer-col a:hover { color: rgba(255,255,255,0.85); }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+        .footer-copy, .footer-made { font-size: 0.8125rem; color: rgba(255,255,255,0.2); }
+        
+        /* ---- REVEAL ---- */
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        @media (max-width: 1024px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-sidebar { display: none; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+        }
         @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 32px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .content h2 {
-                font-size: 28px;
-            }
+            .container, .container-narrow { padding: 0 var(--s3); }
+            .header-stats { gap: var(--s4); flex-wrap: wrap; }
+            .bio-header { flex-direction: column; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-bottom { flex-direction: column; gap: 4px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="/" class="logo">The Creative <span>Record</span></a>
-            <div class="nav-links">
-                <a href="/skills/">Skills</a>
-                <a href="/feedback/">Feedback</a>
-                <a href="/subscribe/">Membership</a>
-                <a href="/subscribe/" class="nav-cta">Get Started</a>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">The Creative <em>Record</em></a>
+            <ul class="nav-links">
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/about/" class="active">About</a></li>
+            </ul>
+            <div>
+                <a href="/skills/" class="btn btn-primary">Browse Skills</a>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <section class="page-header">
         <div class="container">
-            <h1>About The Creative Record</h1>
-            <p>Built by someone who has analyzed 1,000+ DTC ad creatives so you don't have to guess.</p>
+            <div class="hero-inner">
+                <div class="page-eyebrow">About</div>
+                <h1>Built by someone who's<br>done the <em>actual work</em></h1>
+                <p class="page-header-lead">The Creative Record isn't a theory. It's a collection of frameworks extracted from analyzing over a thousand real DTC creatives -- what worked, what didn't, and exactly why.</p>
+                <div class="header-stats">
+                    <div>
+                        <div class="stat-num">1,000+</div>
+                        <div class="stat-label">Creatives analyzed</div>
+                    </div>
+                    <div>
+                        <div class="stat-num">50+</div>
+                        <div class="stat-label">DTC brands</div>
+                    </div>
+                    <div>
+                        <div class="stat-num">$100M+</div>
+                        <div class="stat-label">Ad spend studied</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="content">
+    <section class="content-section">
         <div class="container">
-            <h2>The Problem</h2>
-            <p>Most DTC brands are guessing with their creative. They hire agencies that charge $20K for 3 concepts. They sit through 6-hour courses that teach theory but don't give them tools. They copy competitors without understanding why the creative works.</p>
-            
-            <p>The result? Ads that look good but don't convert. Content that fills feeds but doesn't find customers. Budget spent on production that doesn't perform.</p>
+            <div class="content-grid">
+                <!-- Sidebar nav -->
+                <aside class="content-sidebar">
+                    <div class="sidebar-label">On This Page</div>
+                    <ul class="sidebar-nav">
+                        <li><a href="#problem" class="active">The Problem</a></li>
+                        <li><a href="#solution">The Solution</a></li>
+                        <li><a href="#different">What Makes This Different</a></li>
+                        <li><a href="#who">Who Built This</a></li>
+                        <li><a href="#mission">The Mission</a></li>
+                    </ul>
+                </aside>
 
-            <h2>The Solution</h2>
-            <p>The Creative Record is a collection of skills -- downloadable frameworks, templates, and checklists that you can use immediately. No theory. No fluff. Just the exact tools used by brands that scale.</p>
+                <!-- Main content -->
+                <div class="content-body">
 
-            <div class="highlight-box">
-                <p>"I don't teach creative strategy. I document what works and give you the tools to do it yourself."</p>
+                    <div class="content-block reveal" id="problem">
+                        <div class="block-label">The Problem</div>
+                        <h2>Most DTC brands are guessing with their creative</h2>
+                        <div class="prose">
+                            <p>They hire agencies that charge $20K for three concepts. They sit through 6-hour courses that teach theory but don't hand them tools. They copy competitors without understanding why the creative works -- or, more often, why it doesn't.</p>
+                            <p>The result is predictable: ads that look good but don't convert. Content that fills feeds but doesn't find customers. Budget spent on production that performs below potential because nobody asked the right strategic questions before the camera rolled.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-block reveal" id="solution">
+                        <div class="block-label">The Solution</div>
+                        <h2>Tools, not theory</h2>
+                        <div class="prose">
+                            <p>The Creative Record is a collection of skills -- downloadable frameworks, templates, and checklists you can use immediately. No abstract strategy. No academic frameworks divorced from execution. Just the exact tools used by brands that consistently produce ads that scale.</p>
+                        </div>
+                        <div class="pull-quote">
+                            <p>"I don't teach creative strategy. I document what works and give you the tools to do it yourself."</p>
+                        </div>
+                    </div>
+
+                    <div class="content-block reveal" id="different">
+                        <div class="block-label">What Makes This Different</div>
+                        <h2>Three things that separate<br>this from everything else</h2>
+                        <ul class="diff-list">
+                            <li class="diff-item">
+                                <div class="diff-num">01</div>
+                                <div class="diff-text">
+                                    <h4>Based on real analysis, not best practices</h4>
+                                    <p>Every framework in The Creative Record comes from reverse-engineering actual winning creatives. Not hypotheticals. Not what works in theory. Real ads that real brands are running right now, studied for what's actually driving performance.</p>
+                                </div>
+                            </li>
+                            <li class="diff-item">
+                                <div class="diff-num">02</div>
+                                <div class="diff-text">
+                                    <h4>Immediately usable, not eventually useful</h4>
+                                    <p>You don't need to watch hours of video or read a 200-page book before you can apply anything. Download the skill, open it, use it. Most people implement what they learn within 24 hours of downloading.</p>
+                                </div>
+                            </li>
+                            <li class="diff-item">
+                                <div class="diff-num">03</div>
+                                <div class="diff-text">
+                                    <h4>Priced for the work it enables, not what it cost to make</h4>
+                                    <p>$39 for a skill that took weeks to develop. $29/month for ongoing access to everything. Compare that to a $5K agency retainer or a $2K course that teaches you 10% of what you actually need. The value is deliberate. Democratizing creative strategy means making it accessible.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block reveal" id="who">
+                        <div class="block-label">Who Built This</div>
+                        <h2>The person behind<br>the frameworks</h2>
+                        <div class="bio-card">
+                            <div class="bio-header">
+                                <div class="bio-avatar">SD</div>
+                                <div>
+                                    <div class="bio-name">Sadie Dunhill</div>
+                                    <div class="bio-role">Creative Strategist, Goodo Studios</div>
+                                </div>
+                            </div>
+                            <p>I've spent the last several years as a creative strategist at Goodo Studios, working with DTC brands to make ads that actually convert. Before that, I was a dancer. Seriously. I approach creative the way you approach a performance -- with discipline, precision, and a deep respect for craft.</p>
+                            <p>I write The Creative Record newsletter, post about creative strategy at @sadie_goodo, and obsess over what makes people stop scrolling and take action. The Creative Record is where I put the things I keep having to explain from scratch.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-block reveal" id="mission">
+                        <div class="block-label">The Mission</div>
+                        <h2>Democratize creative strategy</h2>
+                        <div class="prose">
+                            <p>Every brand deserves access to frameworks that work, regardless of their budget. Every creative strategist deserves tools that make them better -- not just busier.</p>
+                            <p>Right now, the best creative strategy lives inside expensive agency retainers and inaccessible consulting relationships. The Creative Record is a direct challenge to that. If the frameworks exist, they should be available to anyone willing to use them.</p>
+                            <p>Use them well.</p>
+                        </div>
+                        <div style="margin-top: var(--s5);">
+                            <a href="/skills/" class="btn btn-primary">Browse the Skills</a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+        </div>
+    </section>
 
-            <h2>What Makes This Different</h2>
-            
-            <h3>1. It's Based on Real Analysis</h3>
-            <p>Every framework in The Creative Record comes from analyzing actual winning creatives. Not theory. Not "best practices." Real ads that real brands are running right now. I've reverse-engineered what works and packaged it into usable tools.</p>
-
-            <h3>2. It's Immediately Usable</h3>
-            <p>You don't need to watch hours of video or read a 200-page book. Download the skill, open it, use it. Most people apply what they learn within 24 hours of downloading.</p>
-
-            <h3>3. It's Affordable</h3>
-            <p>$39 for a skill that took weeks to develop. $29/month for ongoing access to everything. Compare that to a $5K agency retainer or a $2K course. The value is ridiculous because the delivery is efficient.</p>
-
-            <h2>The Numbers</h2>
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number">1,000+</div>
-                    <div class="stat-label">Creatives Analyzed</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Brands Worked With</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">$100M+</div>
-                    <div class="stat-label">Ad Spend Analyzed</div>
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-inner reveal">
+                <h2>Ready to start?</h2>
+                <p>Browse the skills library or join the membership for full access.</p>
+                <div class="cta-buttons">
+                    <a href="/skills/" class="btn btn-primary btn-lg">Browse Skills</a>
+                    <a href="/subscribe/" class="btn btn-ghost-inv btn-lg">Join Membership</a>
                 </div>
             </div>
-
-            <h2>Who Built This</h2>
-            <p>I'm Sadie Dunhill. I've spent the last few years as a creative strategist at Goodo Studios, working with DTC brands to make ads that actually convert. Before that, I was a dancer (seriously). I approach creative with discipline, precision, and a deep respect for craft.</p>
-            
-            <p>I write The Creative Record newsletter, tweet about creative strategy at @sadie_goodo, and obsess over what makes people stop scrolling and take action.</p>
-
-            <h2>The Mission</h2>
-            <p>Democratize creative strategy. Every brand deserves access to frameworks that work, regardless of their budget. Every creative strategist deserves tools that make them better, not just busier.</p>
-
-            <p>The Creative Record is my contribution to that mission. Use it well.</p>
-
-            <p><a href="/skills/" class="btn btn-primary">Browse the Skills</a></p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 The Creative Record. Built by @sadie_goodo.</p>
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/" class="logo">The Creative <em>Record</em></a>
+                    <p class="footer-tagline">Creative strategy frameworks for DTC brands. Built by the team at Goodo Studios.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/skills/">All Skills</a></li>
+                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/subscribe/">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="mailto:hi@thecreativerecord.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 The Creative Record. All rights reserved.</span>
+                <span class="footer-made">Built by Goodo Studios</span>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => observer.observe(el));
+        
+        // Active sidebar nav on scroll
+        const sections = document.querySelectorAll('[id]');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        sections.forEach(s => sectionObserver.observe(s));
+    </script>
+
 </body>
 </html>
