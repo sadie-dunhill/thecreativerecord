@@ -543,8 +543,8 @@
         }
         .footer-top {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: var(--s6);
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: var(--s5);
             padding-bottom: var(--s5);
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
@@ -565,11 +565,76 @@
             .sample-inner { grid-template-columns: 1fr; gap: var(--s5); }
             .benefits-grid { grid-template-columns: 1fr 1fr; }
             .testimonials-grid { grid-template-columns: 1fr 1fr; }
-            .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s4); }
+            .footer-top { grid-template-columns: 1fr 1fr 1fr; gap: var(--s4); }
+            .footer-top .footer-brand { grid-column: 1 / -1; }
         }
+
+        /* ---- HAMBURGER / MOBILE NAV ---- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 36px;
+            height: 36px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 300;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--ink);
+            border-radius: 2px;
+            transition: all var(--t-base);
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0; right: 0;
+            background: var(--cream);
+            border-bottom: 1px solid var(--cream-3);
+            padding: var(--s3) var(--s4) var(--s4);
+            z-index: 199;
+            box-shadow: var(--shadow-md);
+            flex-direction: column;
+            gap: var(--s2);
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--ink-2);
+            text-decoration: none;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--cream-3);
+            transition: color var(--t-fast);
+        }
+        .mobile-nav a:last-child { border-bottom: none; }
+        .mobile-nav a.btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: var(--s1);
+            padding: 12px 20px;
+            border-radius: var(--r-lg);
+            color: var(--white);
+            background: var(--terra);
+            border-bottom: none;
+        }
+        .mobile-nav a.btn-primary:hover { background: #b84a24; }
 
         @media (max-width: 600px) {
             .nav-links { display: none; }
+            .hamburger { display: flex; }
             .benefits-grid { grid-template-columns: 1fr; }
             .testimonials-grid { grid-template-columns: 1fr; }
             .form-inline { flex-direction: column; }
@@ -586,12 +651,25 @@
             <a href="/" class="logo">The Creative <em>Record</em></a>
             <ul class="nav-links">
                 <li><a href="/skills/">Skills</a></li>
-                <li><a href="/feedback/">Feedback</a></li>
+                <li><a href="/script-desk/">Script Desk</a></li>
+                <li><a href="/custom-skill/">Custom Skill</a></li>
                 <li><a href="/about/">About</a></li>
-                <li><a href="/subscribe/" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.875rem;">Join</a></li>
+                <li><a href="/subscribe/" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.875rem;">Book the Desk</a></li>
             </ul>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </nav>
     </header>
+
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="/skills/">Skills</a>
+        <a href="/script-desk/">Script Desk</a>
+        <a href="/custom-skill/">Custom Skill</a>
+        <a href="/about/">About</a>
+        <a href="/subscribe/" class="btn-primary">Book the Desk</a>
+    </nav>
 
     <!-- HERO -->
     <section class="hero">
@@ -783,10 +861,19 @@
                     <p class="footer-tagline">Creative strategy frameworks for advertisers. Built by the team at Goodo Studios.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Product</h4>
+                    <h4>Skills</h4>
                     <ul>
                         <li><a href="/skills/">All Skills</a></li>
-                        <li><a href="/feedback/">Feedback</a></li>
+                        <li><a href="/skills/#video-script">Video Script Framework</a></li>
+                        <li><a href="/skills/#ugc-brief">UGC Brief Template</a></li>
+                        <li><a href="/skills/#hook-bank">Hook Bank Template</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="/script-desk/">Script Desk</a></li>
+                        <li><a href="/custom-skill/">Custom Skill</a></li>
                         <li><a href="/subscribe/">Membership</a></li>
                     </ul>
                 </div>
@@ -825,6 +912,23 @@
             });
         }, { threshold: 0.1 });
         reveals.forEach(el => observer.observe(el));
+
+        // Hamburger / mobile nav
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+        // Close mobile nav on link click
+        mobileNav.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
 
         // Form handlers
         function handleSignup(e, formId) {
