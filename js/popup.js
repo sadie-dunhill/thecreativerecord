@@ -12,7 +12,7 @@
   const BEEHIIV_PUB_ID = 'pub_7ae1d56e-7576-41fe-bd64-0cd4af00da66';
   const BEEHIIV_API_KEY = '5go8eJrMa0lUpgw5QZkcNFOkzfe4Md2hM8EbGKWcm6RZgkaPXUUiLie1ejMuQEHc';
   const POPUP_KEY = 'tcr_popup_shown';
-  const DOWNLOAD_URL = '/hooks-preview.pdf';
+  const DOWNLOAD_URL = '/hooks-preview.html';
 
   // ── Don't show if already dismissed this session ──────────────────────────
   if (sessionStorage.getItem(POPUP_KEY)) return;
@@ -304,7 +304,7 @@
         </div>
         <p class="tcr-success-headline">It's on its way.</p>
         <p class="tcr-success-body">Check your inbox for the Hook Vault — 25 formulas ready to use in your next ad.</p>
-        <a href="${DOWNLOAD_URL}" class="tcr-download-btn" download>
+        <a href="${DOWNLOAD_URL}" class="tcr-download-btn" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8 1v9M4.5 6.5L8 10l3.5-3.5M2 13h12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
