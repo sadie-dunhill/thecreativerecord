@@ -227,6 +227,80 @@ P.S. You have lifetime access. If I update these files, you'll get the new versi
   return response.json();
 }
 
+async function createPurchaseRecord({ email, stripeSessionId, priceId, productTag, amount }) {
+  const SUPABASE_URL = process.env.SUPABASE_URL;
+  const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
+  
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
+    console.error('Supabase credentials not configured');
+    return;
+  }
+  
+  const productNames = {
+    'video-script-framework': 'Video Script Framework',
+    'hook-bank-template': 'Hook Bank Template',
+    'ugc-brief-template': 'UGC Brief Template',
+    'creative-audit-checklist': 'Creative Audit Checklist',
+    'competitor-analysis-framework': 'Competitor Analysis Framework',
+    'skill-bundle': 'Complete Skill Bundle',
+    'script-desk-starter': 'Script Desk Starter',
+    'script-desk-growth': 'Script Desk Growth',
+    'script-desk-scale': 'Script Desk Scale',
+    'custom-skill': 'Custom Skill Creation',
+  };
+  
+  const productTypes = {
+    'video-script-framework': 'skill',
+    'hook-bank-template': 'skill',
+    'ugc-brief-template': 'skill',
+    'creative-audit-checklist': 'skill',
+    'competitor-analysis-framework': 'skill',
+    'skill-bundle': 'skill',
+    'script-desk-starter': 'script_desk',
+    'script-desk-growth': 'script_desk',
+    'script-desk-scale': 'script_desk',
+    'custom-skill': 'custom_skill',
+  };
+  
+  const scriptsRemaining = {
+    'script-desk-starter': 10,
+    'script-desk-growth': 20,
+    'script-desk-scale': 50,
+  };
+  
+  const expiryMonths = {
+    'script-desk-starter': 3,
+    'script-desk-growth': 6,
+    'script-desk-scale': 12,
+  };
+  
+  const expiresAt = expiryMonths[productTag] 
+    ? new Date(Date.now() + expiryMonths[productTag] * 30 * 24 * 60 * 60 * 1000).toISOString()
+    : null;
+  
+  const purchase = {
+    email,
+    stripe_session_id: stripeSessionId,
+    product_id: priceId,
+    product_name: productNames[productTag] || productTag,
+    product_type: productTypes[productTag] || 'unknown',
+    amount_paid: amount,
+    scripts_remaining: scriptsRemaining[productTag] || null,
+    expires_at: expiresAt,
+  };
+  
+  await fetch(`${SUPABASE_URL}/rest/v1/purchases`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_SERVICE_KEY,
+      'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
+      'Prefer': 'return=minimal',
+    },
+    body: JSON.stringify(purchase),
+  });
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -281,6 +355,20 @@ module.exports = async function handler(req, res) {
     const productTag = PRICE_TO_TAG[priceId] || 'unknown-product';
 
     console.log(`Purchase: ${email} bought ${productTag} (${priceId})`);
+
+    // Create purchase record in database
+    try {
+      await createPurchaseRecord({
+        email,
+        stripeSessionId: sessionId,
+        priceId,
+        productTag,
+        amount: lineItems[0]?.amount_total || 0,
+      });
+    } catch (dbErr) {
+      console.error('Database error:', dbErr);
+      // Continue -- don't fail webhook if DB fails
+    }
 
     // Add to Beehiiv
     await addToBeehiiv(email, productTag);

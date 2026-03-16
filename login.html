@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — The Creative Record</title>
+    <meta name="description" content="Access your purchased skills and Script Desk account.">
+    <meta name="robots" content="noindex">
+    
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --ink: #0f0e0d;
+            --ink-2: #3d3a36;
+            --ink-3: #6b6560;
+            --terra: #c8552a;
+            --terra-2: #e8714a;
+            --cream: #faf8f5;
+            --cream-2: #f3f0eb;
+            --cream-3: #e8e4dd;
+            --white: #ffffff;
+            --error: #dc2626;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--ink);
+            background: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        
+        .auth-container {
+            width: 100%;
+            max-width: 420px;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 48px;
+            box-shadow: 0 4px 20px rgba(15,14,13,0.08);
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .auth-header a {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        
+        .auth-header a em {
+            font-style: italic;
+            color: var(--terra);
+        }
+        
+        .auth-header h1 {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            margin-top: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .auth-header p {
+            color: var(--ink-3);
+            font-size: 0.9375rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--ink-2);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--cream-3);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: var(--font-sans);
+            transition: border-color 0.2s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--terra);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--ink);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: var(--terra);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: var(--error);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.875rem;
+            display: none;
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--cream-2);
+        }
+        
+        .auth-footer p {
+            color: var(--ink-3);
+            font-size: 0.875rem;
+        }
+        
+        .auth-footer a {
+            color: var(--terra);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .tab-switch {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .tab-switch button {
+            flex: 1;
+            padding: 12px;
+            background: var(--cream-2);
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .tab-switch button.active {
+            background: var(--ink);
+            color: var(--white);
+        }
+        
+        #signup-form { display: none; }
+        #signup-form.active { display: block; }
+        #login-form { display: none; }
+        #login-form.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <a href="/">The Creative <em>Record</em></a>
+            <h1>Welcome back</h1>
+            <p>Access your purchased skills and Script Desk</p>
+        </div>
+        
+        <div class="tab-switch">
+            <button class="active" onclick="showTab('login')">Sign In</button>
+            <button onclick="showTab('signup')">Create Account</button>
+        </div>
+        
+        <div class="error-message" id="error-message"></div>
+        
+        <!-- Login Form -->
+        <form id="login-form" class="active" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" name="email" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn" id="login-btn">Sign In</button>
+        </form>
+        
+        <!-- Signup Form -->
+        <form id="signup-form" onsubmit="handleSignup(event)">
+            <div class="form-group">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" name="name" required placeholder="Jane Smith">
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" name="email" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" name="password" required placeholder="••••••••" minlength="8">
+            </div>
+            <button type="submit" class="btn" id="signup-btn">Create Account</button>
+        </form>
+        
+        <div class="auth-footer">
+            <p>Need help? <a href="mailto:sadie@goodostudios.com">Contact support</a></p>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tab) {
+            document.querySelectorAll('.tab-switch button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('form').forEach(f => f.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tab + '-form').classList.add('active');
+            
+            // Clear errors
+            document.getElementById('error-message').style.display = 'none';
+        }
+        
+        function showError(msg) {
+            const el = document.getElementById('error-message');
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+        
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('login-btn');
+            btn.disabled = true;
+            btn.textContent = 'Signing in...';
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            try {
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                });
+                
+                const data = await res.json();
+                
+                if (!res.ok) {
+                    throw new Error(data.error || 'Login failed');
+                }
+                
+                // Store session
+                localStorage.setItem('tcr_session', JSON.stringify(data.session));
+                localStorage.setItem('tcr_user', JSON.stringify(data.user));
+                
+                // Redirect to account
+                window.location.href = '/account.html';
+                
+            } catch (err) {
+                showError(err.message);
+                btn.disabled = false;
+                btn.textContent = 'Sign In';
+            }
+        }
+        
+        async function handleSignup(e) {
+            e.preventDefault();
+            const btn = document.getElementById('signup-btn');
+            btn.disabled = true;
+            btn.textContent = 'Creating account...';
+            
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            
+            try {
+                const res = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password }),
+                });
+                
+                const data = await res.json();
+                
+                if (!res.ok) {
+                    throw new Error(data.error || 'Signup failed');
+                }
+                
+                showError('Account created! Please check your email to confirm, then sign in.');
+                showTab('login');
+                
+            } catch (err) {
+                showError(err.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Create Account';
+            }
+        }
+        
+        // Check if already logged in
+        const session = localStorage.getItem('tcr_session');
+        if (session) {
+            const s = JSON.parse(session);
+            if (s.expires_at > Date.now()) {
+                window.location.href = '/account.html';
+            }
+        }
+    </script>
+</body>
+</html>
