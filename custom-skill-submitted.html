@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Request Received — The Creative Record</title>
+    <meta name="description" content="Your custom skill request has been received. Complete payment to begin.">
+    
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0f0e0d;
+            --ink-2: #3d3a36;
+            --ink-3: #6b6560;
+            --terra: #c8552a;
+            --terra-2: #e8714a;
+            --cream: #faf8f5;
+            --cream-2: #f3f0eb;
+            --white: #ffffff;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-sans);
+            background: var(--cream);
+            color: var(--ink-3);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        
+        .container {
+            max-width: 560px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--ink);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 48px;
+        }
+        
+        .logo em {
+            color: var(--terra);
+            font-style: normal;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--terra);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            color: white;
+            font-size: 40px;
+        }
+        
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--ink);
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+        
+        p {
+            font-size: 1.0625rem;
+            margin-bottom: 32px;
+            color: var(--ink-2);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            background: var(--terra);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1.0625rem;
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover {
+            background: #b84a24;
+            transform: translateY(-1px);
+        }
+        
+        .secondary {
+            display: block;
+            margin-top: 24px;
+            color: var(--ink-3);
+            text-decoration: none;
+            font-size: 0.9375rem;
+        }
+        
+        .secondary:hover {
+            color: var(--terra);
+        }
+        
+        .details {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 32px 0;
+            text-align: left;
+        }
+        
+        .details h3 {
+            font-family: var(--font-serif);
+            color: var(--ink);
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+        
+        .details ul {
+            margin-left: 20px;
+            color: var(--ink-2);
+        }
+        
+        .details li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="logo">The Creative <em>Record</em></a>
+        
+        <div class="success-icon">✓</div>
+        
+        <h1>Request received</h1>
+        
+        <p>Your custom skill request has been submitted. Complete payment to begin the 48-hour turnaround.</p>
+        
+        <div class="details">
+            <h3>What happens next:</h3>
+            <ul>
+                <li>Complete payment below</li>
+                <li>We'll review your documents within 24 hours</li>
+                <li>Your custom skill delivered in 48 hours</li>
+                <li>One round of revisions included</li>
+            </ul>
+        </div>
+        
+        <a href="https://buy.stripe.com/eVq00jbEbf8da4a8T42cg09" class="btn">Complete Payment — $20</a>
+        
+        <a href="/" class="secondary">← Back to homepage</a>
+    </div>
+</body>
+</html>

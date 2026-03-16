@@ -1012,12 +1012,49 @@
 
     <!-- FINAL CTA -->
     <section class="cta-section">
-        <div class="container">
+        <div class="container" style="max-width: 680px;">
             <div class="section-eyebrow" style="justify-content: center; margin-bottom: var(--s3);">Get Started</div>
-            <h2 class="reveal">Your expertise deserves<br>a better document</h2>
-            <p class="reveal">Send us the mess. We'll send back a skill.</p>
-            <a href="https://buy.stripe.com/eVq00jbEbf8da4a8T42cg09" class="btn btn-primary btn-lg reveal">Get Your Custom Skill — $20</a>
-            <p class="cta-sub reveal">$20 · 48-hour turnaround · One revision included</p>
+            <h2 class="reveal" style="text-align: center;">Your expertise deserves<br>a better document</h2>
+            <p class="reveal" style="text-align: center;">Send us the mess. We'll send back a skill.</p>
+            
+            <!-- Custom Skill Form -->
+            <form id="custom-skill-form" class="reveal" style="margin-top: var(--s5); text-align: left; background: var(--white); padding: var(--s5); border-radius: var(--r-xl); box-shadow: var(--shadow-lg);">
+                <div style="margin-bottom: var(--s3);">
+                    <label for="email" style="display: block; font-weight: 500; color: var(--ink); margin-bottom: 8px;">Email *</label>
+                    <input type="email" id="email" name="email" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--cream-3); border-radius: var(--r-md); font-size: 1rem; font-family: var(--font-sans);"
+                        placeholder="you@company.com">
+                </div>
+                
+                <div style="margin-bottom: var(--s3);">
+                    <label for="skill_name" style="display: block; font-weight: 500; color: var(--ink); margin-bottom: 8px;">What should we call this skill? *</label>
+                    <input type="text" id="skill_name" name="skill_name" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--cream-3); border-radius: var(--r-md); font-size: 1rem; font-family: var(--font-sans);"
+                        placeholder="e.g., Client Onboarding System">
+                </div>
+                
+                <div style="margin-bottom: var(--s3);">
+                    <label for="skill_description" style="display: block; font-weight: 500; color: var(--ink); margin-bottom: 8px;">Describe the process or knowledge *</label>
+                    <textarea id="skill_description" name="skill_description" required rows="4" style="width: 100%; padding: 12px 16px; border: 1px solid var(--cream-3); border-radius: var(--r-md); font-size: 1rem; font-family: var(--font-sans); resize: vertical;"
+                        placeholder="What problem does this solve? Who uses it? What are the key steps?"></textarea>
+                </div>
+                
+                <div style="margin-bottom: var(--s3);">
+                    <label for="document_urls" style="display: block; font-weight: 500; color: var(--ink); margin-bottom: 8px;">Document links (optional)</label>
+                    <textarea id="document_urls" name="document_urls" rows="2" style="width: 100%; padding: 12px 16px; border: 1px solid var(--cream-3); border-radius: var(--r-md); font-size: 1rem; font-family: var(--font-sans); resize: vertical;"
+                        placeholder="Paste Google Drive, Notion, or other links (one per line)"></textarea>
+                </div>
+                
+                <div style="margin-bottom: var(--s4);">
+                    <label for="additional_notes" style="display: block; font-weight: 500; color: var(--ink); margin-bottom: 8px;">Anything else? (optional)</label>
+                    <textarea id="additional_notes" name="additional_notes" rows="2" style="width: 100%; padding: 12px 16px; border: 1px solid var(--cream-3); border-radius: var(--r-md); font-size: 1rem; font-family: var(--font-sans); resize: vertical;"
+                        placeholder="Specific formatting, examples to include, etc."></textarea>
+                </div>
+                
+                <div id="form-error" style="display: none; background: #fef2f2; color: #991b1b; padding: 12px 16px; border-radius: var(--r-md); margin-bottom: var(--s3); font-size: 0.9375rem;"></div>
+                
+                <button type="submit" id="submit-btn" class="btn btn-primary btn-lg" style="width: 100%;">Get Your Custom Skill — $20</button>
+                
+                <p style="text-align: center; margin-top: var(--s3); font-size: 0.875rem; color: var(--ink-4);">$20 · 48-hour turnaround · One revision included</p>
+            </form>
         </div>
     </section>
 
@@ -1093,6 +1130,62 @@
             });
         }, { threshold: 0.08 });
         reveals.forEach(el => observer.observe(el));
+
+        // Custom Skill Form submission
+        const skillForm = document.getElementById('custom-skill-form');
+        if (skillForm) {
+            skillForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const btn = document.getElementById('submit-btn');
+                const errorDiv = document.getElementById('form-error');
+                
+                btn.disabled = true;
+                btn.textContent = 'Submitting...';
+                errorDiv.style.display = 'none';
+                
+                // Collect data
+                const data = {
+                    email: document.getElementById('email').value.trim(),
+                    skill_name: document.getElementById('skill_name').value.trim(),
+                    skill_description: document.getElementById('skill_description').value.trim(),
+                    document_urls: document.getElementById('document_urls').value.trim().split('\n').filter(u => u.trim()),
+                    additional_notes: document.getElementById('additional_notes').value.trim(),
+                };
+                
+                // Validate
+                if (!data.email || !data.skill_name || !data.skill_description) {
+                    errorDiv.textContent = 'Please fill in all required fields.';
+                    errorDiv.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = 'Get Your Custom Skill — $20';
+                    return;
+                }
+                
+                try {
+                    const response = await fetch('/api/submit-custom-skill', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (!response.ok) {
+                        throw new Error(result.error || 'Submission failed');
+                    }
+                    
+                    // Success - redirect to confirmation page
+                    window.location.href = '/custom-skill-submitted.html';
+                    
+                } catch (err) {
+                    errorDiv.textContent = err.message;
+                    errorDiv.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = 'Get Your Custom Skill — $20';
+                }
+            });
+        }
 
         // Hamburger menu
         const hamburger = document.getElementById('hamburger');
