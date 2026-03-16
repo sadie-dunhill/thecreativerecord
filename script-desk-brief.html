@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Brief — Script Desk</title>
+    <meta name="description" content="Submit your video script brief. Comprehensive briefing leads to stronger creative.">
+    <meta name="robots" content="noindex">
+    
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --ink: #0f0e0d;
+            --ink-2: #3d3a36;
+            --ink-3: #6b6560;
+            --terra: #c8552a;
+            --terra-2: #e8714a;
+            --cream: #faf8f5;
+            --cream-2: #f3f0eb;
+            --cream-3: #e8e4dd;
+            --white: #ffffff;
+            --error: #dc2626;
+            --font-serif: 'DM Serif Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--ink);
+            background: var(--cream);
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 48px 24px; }
+        
+        header { text-align: center; margin-bottom: 48px; }
+        header a { font-family: var(--font-serif); font-size: 1.5rem; color: var(--ink); text-decoration: none; }
+        header a em { font-style: italic; color: var(--terra); }
+        header h1 { font-family: var(--font-serif); font-size: 2.5rem; margin-top: 24px; margin-bottom: 12px; }
+        header p { color: var(--ink-3); font-size: 1.125rem; }
+        
+        .progress { background: var(--cream-2); border-radius: 8px; height: 8px; margin-bottom: 48px; overflow: hidden; }
+        .progress-bar { background: var(--terra); height: 100%; width: 0%; transition: width 0.3s; }
+        
+        .form-section { background: var(--white); border-radius: 12px; padding: 32px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(15,14,13,0.04); }
+        .form-section h2 { font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 8px; }
+        .form-section > p { color: var(--ink-3); font-size: 0.9375rem; margin-bottom: 24px; }
+        
+        .field { margin-bottom: 24px; }
+        .field label { display: block; font-weight: 500; font-size: 0.9375rem; margin-bottom: 6px; }
+        .field label .optional { color: var(--ink-3); font-weight: 400; }
+        .field .hint { display: block; color: var(--ink-3); font-size: 0.875rem; margin-bottom: 8px; }
+        .field input, .field textarea, .field select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--cream-3);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: var(--font-sans);
+            transition: border-color 0.2s;
+        }
+        .field input:focus, .field textarea:focus, .field select:focus {
+            outline: none;
+            border-color: var(--terra);
+        }
+        .field textarea { min-height: 100px; resize: vertical; }
+        
+        .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 12px; }
+        .radio-group label, .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--cream);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .radio-group label:hover, .checkbox-group label:hover { background: var(--cream-2); }
+        .radio-group input, .checkbox-group input { margin-top: 2px; }
+        .radio-group .option-title { font-weight: 500; display: block; margin-bottom: 4px; }
+        .radio-group .option-desc { font-size: 0.875rem; color: var(--ink-3); }
+        
+        .char-counter { text-align: right; font-size: 0.8125rem; color: var(--ink-3); margin-top: 4px; }
+        .char-counter.warning { color: var(--terra); }
+        
+        .error-banner {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: var(--error);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: none;
+        }
+        .error-banner.visible { display: block; }
+        
+        .submit-section { text-align: center; padding-top: 24px; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            background: var(--ink);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: var(--terra); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        
+        .required-note { text-align: center; color: var(--ink-3); font-size: 0.875rem; margin-top: 16px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/">The Creative <em>Record</em></a>
+            <h1>Script Desk Brief</h1>
+            <p>The more detail you provide, the stronger the script. Plan for 10-15 minutes.</p>
+        </header>
+        
+        <div class="progress">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <div class="error-banner" id="error-banner"></div>
+        
+        <form id="brief-form">
+            
+            <!-- SECTION 1: BRAND INTELLIGENCE -->
+            <div class="form-section">
+                <h2>1. Brand Intelligence</h2>
+                <p>I research every client, but your input accelerates quality work.</p>
+                
+                <div class="field">
+                    <label for="product-url">Product URL <span class="optional">(optional but recommended)</span></label>
+                    <span class="hint">I'll scrape your site for positioning, tone, and details.</span>
+                    <input type="url" id="product-url" name="product_url" placeholder="https://yoursite.com/product">
+                </div>
+                
+                <div class="field">
+                    <label for="competitors">Top 3 competitors whose ads you want to beat</label>
+                    <span class="hint">Brand names or links. What are they doing wrong? Why are you better?</span>
+                    <textarea id="competitors" name="competitors" rows="3" placeholder="1. Competitor A - their ads are generic and don't show results...
+2. Competitor B - they focus on features not benefits...
+3. Competitor C - missing the convenience angle..."></textarea>
+                </div>
+                
+                <div class="field">
+                    <label for="current-ads">Your current ads (if any) <span class="optional">(optional)</span></label>
+                    <span class="hint">Links or descriptions. What's working? What's not?</span>
+                    <textarea id="current-ads" name="current_ads" rows="3"></textarea>
+                </div>
+                
+                <div class="field">
+                    <label for="reviews">Customer reviews/testimonials <span class="optional">(paste or describe)</span></label>
+                    <span class="hint">What do customers actually say? Pull from Amazon, your site, Trustpilot. Best: "I lost 15 lbs in 3 weeks." Worst: "Great product."</span>
+                    <textarea id="reviews" name="reviews" rows="4" placeholder="&quot;I was skeptical but after 2 weeks my energy is through the roof...&quot;
+&quot;The only greens powder that doesn't taste like lawn clippings...&quot;
+&quot;Down 12 lbs in 30 days without changing anything else...&quot;"></textarea>
+                </div>
+                
+                <div class="field">
+                    <label for="brand-voice">Your brand voice</label>
+                    <span class="hint">Professional / Casual / Irreverent / Authoritative? Words you'd never use?</span>
+                    <input type="text" id="brand-voice" name="brand_voice" placeholder="e.g. Casual but credible. Like a knowledgeable friend, not a professor. Never use 'revolutionary' or 'groundbreaking.'">
+                </div>
+            </div>
+            
+            <!-- SECTION 2: PRODUCT -->
+            <div class="form-section">
+                <h2>2. Product</h2>
+                
+                <div class="field">
+                    <label for="product-name">Product name *</label>
+                    <input type="text" id="product-name" name="product_name" required placeholder="e.g. Organifi Green Juice">
+                </div>
+                
+                <div class="field">
+                    <label for="product-desc">Product description * (50+ words)</label>
+                    <span class="hint">NOT: "The best greens powder." YES: Specific features, benefits, how it works.</span>
+                    <textarea id="product-desc" name="product_description" required rows="4" placeholder="A powdered greens supplement with 30+ organic ingredients including spirulina, chlorella, and ashwagandha. Mixes into water in 10 seconds. Tastes like mild green tea, not lawn clippings. One scoop = 5 servings of vegetables."></textarea>
+                    <div class="char-counter" id="desc-counter">0 words</div>
+                </div>
+                
+                <div class="field">
+                    <label for="main-problem">Main problem your product solves *</label>
+                    <span class="hint">One sentence. What pain does your customer feel?</span>
+                    <input type="text" id="main-problem" name="main_problem" required placeholder="e.g. Busy professionals skip meals and feel sluggish by 3pm">
+                </div>
+            </div>
+            
+            <!-- SECTION 3: TARGET CUSTOMER -->
+            <div class="form-section">
+                <h2>3. Target Customer</h2>
+                
+                <div class="field">
+                    <label for="target-customer">Describe your dream customer *</label>
+                    <span class="hint">Be specific. Give me a person, not a demographic.</span>
+                    <textarea id="target-customer" name="target_customer" required rows="3" placeholder="e.g. Sarah, 34, marketing manager at a tech company, works 50+ hours, has two kids, feels guilty about feeding them cereal for dinner, wants to be healthier but has zero time"></textarea>
+                </div>
+                
+                <div class="field">
+                    <label for="keeps-up-at-night">What keeps them up at night? *</label>
+                    <span class="hint">Fear, frustration, or aspiration related to your product.</span>
+                    <textarea id="keeps-up-at-night" name="keeps_up_at_night" required rows="2" placeholder="e.g. Worrying that their lack of energy is affecting their work performance and their ability to be present with their kids"></textarea>
+                </div>
+                
+                <div class="field">
+                    <label for="already-tried">What have they already tried? *</label>
+                    <span class="hint">Shows market sophistication. Helps position against alternatives.</span>
+                    <textarea id="already-tried" name="already_tried" required rows="2" placeholder="e.g. Meal prep (failed), other supplements (too many pills), energy drinks (crash by 4pm), coffee (jitters and insomnia)"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECTION 4: PROOF & CREDIBILITY -->
+            <div class="form-section">
+                <h2>4. Proof & Credibility</h2>
+                
+                <div class="field">
+                    <label for="best-result">Best customer result * (specific with numbers)</label>
+                    <span class="hint">The most impressive, specific outcome a customer achieved.</span>
+                    <input type="text" id="best-result" name="best_result" required placeholder="e.g. 87% of customers report more energy within 2 weeks; Average customer loses 12 lbs in 30 days">
+                </div>
+                
+                <div class="field">
+                    <label for="why-trust">Why should they trust you? *</label>
+                    <span class="hint">Credentials, experience, reviews, guarantees, media mentions.</span>
+                    <textarea id="why-trust" name="why_trust" required rows="2" placeholder="e.g. Formulated by Dr. X, 50,000+ customers, featured in Women's Health, 90-day money-back guarantee"></textarea>
+                </div>
+                
+                <div class="field">
+                    <label for="risk">What's the risk if they don't buy? *</label>
+                    <span class="hint">Stakes. What happens if they do nothing?</span>
+                    <input type="text" id="risk" name="risk" required placeholder="e.g. Continued energy crashes affecting career and family life; health decline from poor nutrition">
+                </div>
+            </div>
+            
+            <!-- SECTION 5: CREATIVE DIRECTION -->
+            <div class="form-section">
+                <h2>5. Creative Direction</h2>
+                
+                <div class="field">
+                    <label>What awareness stage is your customer in? *</label>
+                    <span class="hint">This determines what your ad needs to say. <a href="/awareness-stages" target="_blank">Learn about awareness stages →</a></span>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="awareness_stage" value="unaware" required>
+                            <span>
+                                <span class="option-title">Unaware</span>
+                                <span class="option-desc">They don't know they have a problem yet</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="awareness_stage" value="problem-aware">
+                            <span>
+                                <span class="option-title">Problem-Aware</span>
+                                <span class="option-desc">They know the problem, don't know solutions exist</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="awareness_stage" value="solution-aware">
+                            <span>
+                                <span class="option-title">Solution-Aware</span>
+                                <span class="option-desc">They know solutions exist, don't know your product</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="awareness_stage" value="product-aware">
+                            <span>
+                                <span class="option-title">Product-Aware</span>
+                                <span class="option-desc">They know your product, deciding if it's right for them</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="awareness_stage" value="most-aware">
+                            <span>
+                                <span class="option-title">Most-Aware</span>
+                                <span class="option-desc">They're ready to buy, need the right offer</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="awareness_stage" value="not-sure">
+                            <span>
+                                <span class="option-title">Not sure — recommend one</span>
+                                <span class="option-desc">I'll suggest the best stage to target</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label>Hook angle preference *</label>
+                    <span class="hint">The approach to stopping the scroll. <a href="/hook-angles" target="_blank">See examples →</a></span>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="hook_angle" value="contrarian" required>
+                            <span>
+                                <span class="option-title">Contrarian</span>
+                                <span class="option-desc">"You've been lied to about..."</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="hook_angle" value="transformation">
+                            <span>
+                                <span class="option-title">Transformation</span>
+                                <span class="option-desc">"How I went from X to Y..."</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="hook_angle" value="unique-mechanism">
+                            <span>
+                                <span class="option-title">Unique Mechanism</span>
+                                <span class="option-desc">"The real reason you can't..."</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="hook_angle" value="enemy">
+                            <span>
+                                <span class="option-title">Enemy</span>
+                                <span class="option-desc">"Big [industry] doesn't want you to know..."</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="hook_angle" value="specificity">
+                            <span>
+                                <span class="option-title">Specificity</span>
+                                <span class="option-desc">"The exact 3-step process..."</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="hook_angle" value="identity">
+                            <span>
+                                <span class="option-title">Identity</span>
+                                <span class="option-desc">"For [type of person] who..."</span>
+                            </span>
+                        </label>
+                        <label>
+                            <input type="radio" name="hook_angle" value="recommend">
+                            <span>
+                                <span class="option-title">Recommend one for me</span>
+                                <span class="option-desc">Based on my product and audience</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label for="platforms">Where will this ad run? *</label>
+                    <span class="hint">Different platforms = different structures and conventions.</span>
+                    <select id="platforms" name="platforms" required>
+                        <option value="">Select primary platform...</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="instagram">Instagram (Reels/Feed)</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="youtube">YouTube (Long-form)</option>
+                        <option value="youtube-shorts">YouTube Shorts</option>
+                        <option value="connected-tv">Connected TV</option>
+                        <option value="multiple">Multiple platforms</option>
+                    </select>
+                </div>
+                
+                <div class="field">
+                    <label for="examples">Example ads you like <span class="optional">(links or descriptions)</span></label>
+                    <span class="hint">What specifically do you like? Tone, structure, hook?</span>
+                    <textarea id="examples" name="examples" rows="3" placeholder="e.g. Purple mattress humor approach; Dr. Squatch UGC style; Anything by [specific creator]"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECTION 6: LOGISTICS -->
+            <div class="form-section">
+                <h2>6. Delivery</h2>
+                
+                <div class="field">
+                    <label for="email">Email for delivery *</label>
+                    <input type="email" id="email" name="email" required placeholder="you@company.com">
+                </div>
+                
+                <div class="field">
+                    <label for="notes">Anything else?</label>
+                    <span class="hint">Constraints, requirements, must-includes, things to avoid.</span>
+                    <textarea id="notes" name="notes" rows="3" placeholder="e.g. Must include our 90-day guarantee; Can't show before/after photos; CEO wants to be the spokesperson; Avoid 'medical' language"></textarea>
+                </div>
+            </div>
+            
+            <div class="submit-section">
+                <button type="submit" class="btn" id="submit-btn">Submit Brief →</button>
+                <p class="required-note">* Required fields. Comprehensive briefs produce stronger creative.</p>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        // Word counter for product description
+        const descField = document.getElementById('product-desc');
+        const descCounter = document.getElementById('desc-counter');
+        
+        descField.addEventListener('input', function() {
+            const words = this.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+            descCounter.textContent = words + ' words';
+            descCounter.classList.toggle('warning', words < 50);
+        });
+        
+        // Progress bar
+        const form = document.getElementById('brief-form');
+        const progressBar = document.getElementById('progress-bar');
+        
+        function updateProgress() {
+            const required = form.querySelectorAll('[required]');
+            const filled = Array.from(required).filter(f => {
+                if (f.type === 'radio') {
+                    const name = f.name;
+                    return form.querySelector(`input[name="${name}"]:checked`);
+                }
+                return f.value.trim().length > 0;
+            }).length;
+            const percent = (filled / required.length) * 100;
+            progressBar.style.width = percent + '%';
+        }
+        
+        form.addEventListener('input', updateProgress);
+        form.addEventListener('change', updateProgress);
+        
+        // Form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submit-btn');
+            const errorBanner = document.getElementById('error-banner');
+            
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+            errorBanner.classList.remove('visible');
+            
+            // Collect form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Add radio values
+            data.awareness_stage = form.querySelector('input[name="awareness_stage"]:checked')?.value;
+            data.hook_angle = form.querySelector('input[name="hook_angle"]:checked')?.value;
+            
+            // Validate
+            const required = ['product_name', 'product_description', 'main_problem', 'target_customer', 'keeps_up_at_night', 'already_tried', 'best_result', 'why_trust', 'risk', 'awareness_stage', 'hook_angle', 'platforms', 'email'];
+            const missing = required.filter(f => !data[f]);
+            
+            if (missing.length > 0) {
+                errorBanner.textContent = 'Please fill in all required fields.';
+                errorBanner.classList.add('visible');
+                btn.disabled = false;
+                btn.textContent = 'Submit Brief →';
+                return;
+            }
+            
+            // Submit
+            try {
+                const response = await fetch('/api/submit-brief', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                
+                const result = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(result.error || 'Submission failed');
+                }
+                
+                // Success - redirect to thanks
+                window.location.href = '/brief-submitted.html';
+                
+            } catch (err) {
+                errorBanner.textContent = err.message;
+                errorBanner.classList.add('visible');
+                btn.disabled = false;
+                btn.textContent = 'Submit Brief →';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -900,23 +900,179 @@
     </footer>
 
     <script>
+        // Check auth and load data
+        async function initAccount() {
+            // Check for session
+            const sessionData = localStorage.getItem('tcr_session');
+            const userData = localStorage.getItem('tcr_user');
+            
+            if (!sessionData) {
+                window.location.href = '/login.html';
+                return;
+            }
+            
+            const session = JSON.parse(sessionData);
+            const user = JSON.parse(userData);
+            
+            // Check if token expired
+            if (session.expires_at < Date.now()) {
+                localStorage.removeItem('tcr_session');
+                localStorage.removeItem('tcr_user');
+                window.location.href = '/login.html';
+                return;
+            }
+            
+            // Update UI with user data
+            const initials = user.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+            document.getElementById('navAvatar').textContent = initials;
+            document.getElementById('navName').textContent = user.name.split(' ')[0];
+            document.getElementById('sidebarAvatar').textContent = initials;
+            document.getElementById('sidebarName').textContent = user.name;
+            document.getElementById('sidebarEmail').textContent = user.email;
+            
+            // Fetch purchases and requests
+            try {
+                const response = await fetch('/api/user/purchases', {
+                    headers: {
+                        'Authorization': `Bearer ${session.access_token}`,
+                    },
+                });
+                
+                if (response.status === 401) {
+                    // Token invalid, redirect to login
+                    localStorage.removeItem('tcr_session');
+                    localStorage.removeItem('tcr_user');
+                    window.location.href = '/login.html';
+                    return;
+                }
+                
+                const data = await response.json();
+                renderPurchases(data.purchases);
+                renderServiceRequests(data.service_requests);
+                
+            } catch (err) {
+                console.error('Failed to load data:', err);
+                showError('Failed to load your account data. Please refresh.');
+            }
+        }
+        
+        function renderPurchases(purchases) {
+            const container = document.querySelector('.skills-grid');
+            if (!container) return;
+            
+            if (!purchases || purchases.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No purchases yet</h3>
+                        <p>You haven't purchased any skills or Script Desk sessions.</p>
+                        <a href="/skills/" class="btn btn-primary">Browse Skills</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Group purchases by type
+            const skills = purchases.filter(p => p.product_type === 'skill');
+            const scriptDesks = purchases.filter(p => p.product_type === 'script_desk');
+            
+            let html = '';
+            
+            // Script Desk card if active
+            const activeDesk = scriptDesks.find(p => p.status === 'active' && p.scripts_remaining > 0);
+            if (activeDesk) {
+                const expiryDate = new Date(activeDesk.expires_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                html += `
+                    <div class="skill-card" style="border: 2px solid var(--terra);">
+                        <div class="skill-card-header" style="background: var(--terra);">
+                            <div class="skill-card-icon" style="background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3);">
+                                <svg viewBox="0 0 24 24" style="stroke: white;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            </div>
+                        </div>
+                        <div class="skill-card-body">
+                            <div class="skill-tag" style="color: var(--terra);">${activeDesk.product_name}</div>
+                            <h4>Active Script Desk</h4>
+                            <p>${activeDesk.scripts_remaining} scripts remaining • Valid until ${expiryDate}</p>
+                        </div>
+                        <div class="skill-card-footer">
+                            <a href="/script-desk-brief.html" class="btn-download" style="background: var(--terra);">Submit Brief</a>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Individual skills
+            skills.forEach(purchase => {
+                const productFiles = {
+                    'Video Script Framework': '/skills/packaging/video-script-framework/TEMPLATES/script-template-blank.md',
+                    'Hook Bank Template': '/skills/hook-bank-template.md',
+                    'UGC Brief Template': '/skills/ugc-brief-template.md',
+                    'Creative Audit Checklist': '/skills/creative-audit-checklist.md',
+                    'Competitor Analysis Framework': '/skills/competitor-analysis-framework.md',
+                };
+                
+                const downloadUrl = productFiles[purchase.product_name] || '/skills/';
+                
+                html += `
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-card-icon">
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            </div>
+                        </div>
+                        <div class="skill-card-body">
+                            <div class="skill-tag">Skill</div>
+                            <h4>${purchase.product_name}</h4>
+                            <p>Purchased ${new Date(purchase.created_at).toLocaleDateString()}</p>
+                        </div>
+                        <div class="skill-card-footer">
+                            <a href="${downloadUrl}" download class="btn-download">Download</a>
+                            <span class="skill-purchased-date">Lifetime access</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html || `
+                <div class="empty-state">
+                    <h3>No skills purchased</h3>
+                    <p>Your purchases will appear here.</p>
+                </div>
+            `;
+        }
+        
+        function renderServiceRequests(requests) {
+            // This would update a service requests panel if it exists
+            console.log('Service requests:', requests);
+        }
+        
+        function showError(msg) {
+            // Show error banner
+            const banner = document.createElement('div');
+            banner.className = 'error-banner visible';
+            banner.textContent = msg;
+            banner.style.cssText = 'background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 16px; border-radius: 8px; margin: 16px 32px;';
+            document.querySelector('.account-main').prepend(banner);
+        }
+        
+        // Initialize on load
+        initAccount();
+        
+        // Logout handler
+        document.getElementById('logout-btn')?.addEventListener('click', () => {
+            localStorage.removeItem('tcr_session');
+            localStorage.removeItem('tcr_user');
+            window.location.href = '/';
+        });
+    </script>
+
+    <script>
+        // Panel switching (keep existing)
         function showPanel(name, btn) {
-            // hide all panels
             document.querySelectorAll('.account-panel').forEach(p => p.classList.remove('active'));
-            // deactivate all nav items
             document.querySelectorAll('.sidebar-nav-item').forEach(b => b.classList.remove('active'));
-            // show target
             document.getElementById('panel-' + name).classList.add('active');
             btn.classList.add('active');
         }
-
-        // Simulate logged-in user (would be replaced with real auth)
-        const user = { name: 'Sarah Gardner', email: 'sarah@example.com', initials: 'SG', plan: 'Member' };
-        document.getElementById('navAvatar').textContent = user.initials;
-        document.getElementById('navName').textContent = user.name.split(' ')[0] + ' ' + user.name.split(' ')[1][0] + '.';
-        document.getElementById('sidebarAvatar').textContent = user.initials;
-        document.getElementById('sidebarName').textContent = user.name;
-        document.getElementById('sidebarEmail').textContent = user.email;
     </script>
 
     <script>
