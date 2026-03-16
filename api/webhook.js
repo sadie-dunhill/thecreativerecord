@@ -127,6 +127,106 @@ async function getSessionDetails(sessionId) {
   return response.json();
 }
 
+// Gmail OAuth for product delivery (from env vars)
+const GMAIL_CLIENT_ID = process.env.GMAIL_CLIENT_ID;
+const GMAIL_CLIENT_SECRET = process.env.GMAIL_CLIENT_SECRET;
+const GMAIL_REFRESH_TOKEN = process.env.GMAIL_REFRESH_TOKEN;
+
+const PRODUCT_DELIVERY_URLS = {
+  'video-script-framework': 'https://thecreativerecord.com/skills/packaging/video-script-framework/',
+  'hook-bank-template': 'https://thecreativerecord.com/skills/hook-bank-template.html',
+  'ugc-brief-template': 'https://thecreativerecord.com/skills/ugc-brief-template.html',
+  'creative-audit-checklist': 'https://thecreativerecord.com/skills/creative-audit-checklist.html',
+  'competitor-analysis-framework': 'https://thecreativerecord.com/skills/competitor-analysis-framework.html',
+  'skill-bundle': 'https://thecreativerecord.com/account',
+  'script-desk-starter': 'https://thecreativerecord.com/account',
+  'script-desk-growth': 'https://thecreativerecord.com/account',
+  'script-desk-scale': 'https://thecreativerecord.com/account',
+  'custom-skill': 'https://thecreativerecord.com/account',
+};
+
+const PRODUCT_NAMES = {
+  'video-script-framework': 'Video Script Framework',
+  'hook-bank-template': 'Hook Bank Template',
+  'ugc-brief-template': 'UGC Brief Template',
+  'creative-audit-checklist': 'Creative Audit Checklist',
+  'competitor-analysis-framework': 'Competitor Analysis Framework',
+  'skill-bundle': 'Complete Skill Bundle',
+  'script-desk-starter': 'Script Desk Starter',
+  'script-desk-growth': 'Script Desk Growth',
+  'script-desk-scale': 'Script Desk Scale',
+  'custom-skill': 'Custom Skill Creation',
+};
+
+async function getGmailAccessToken() {
+  const response = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id: GMAIL_CLIENT_ID,
+      client_secret: GMAIL_CLIENT_SECRET,
+      refresh_token: GMAIL_REFRESH_TOKEN,
+      grant_type: 'refresh_token',
+    }),
+  });
+  
+  const data = await response.json();
+  return data.access_token;
+}
+
+async function sendDeliveryEmail(to, productTag) {
+  const productName = PRODUCT_NAMES[productTag] || 'Your Purchase';
+  const downloadUrl = PRODUCT_DELIVERY_URLS[productTag] || 'https://thecreativerecord.com/account';
+  
+  const subject = `Your ${productName} — The Creative Record`;
+  const body = `Hi there,
+
+Thanks for purchasing ${productName}!
+
+Your download link:
+${downloadUrl}
+
+How to access your purchase:
+1. Click the link above
+2. If prompted, use the email address you used at checkout: ${to}
+3. Download your files and start creating
+
+Questions? Reply to this email — I'm here to help.
+
+— Sadie
+The Creative Record
+
+P.S. You have lifetime access. If I update these files, you'll get the new versions free.`;
+
+  const accessToken = await getGmailAccessToken();
+  
+  const emailRaw = [
+    `To: ${to}`,
+    `From: Sadie Dunhill <sadie@goodostudios.com>`,
+    `Subject: ${subject}`,
+    'Content-Type: text/plain; charset="UTF-8"',
+    '',
+    body,
+  ].join('\r\n');
+  
+  const encodedEmail = Buffer.from(emailRaw).toString('base64').replace(/\+/g, '-').replace(/\//g, '_');
+
+  const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/sadie@goodostudios.com/messages/send', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ raw: encodedEmail }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Gmail send failed: ${await response.text()}`);
+  }
+
+  return response.json();
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -186,10 +286,20 @@ module.exports = async function handler(req, res) {
     await addToBeehiiv(email, productTag);
     console.log(`Added ${email} to Beehiiv with tag: ${productTag}`);
 
+    // Send product delivery email
+    try {
+      await sendDeliveryEmail(email, productTag);
+      console.log(`Delivered ${productTag} to ${email}`);
+    } catch (deliveryErr) {
+      console.error('Delivery email failed:', deliveryErr);
+      // Don't fail the webhook if delivery fails -- we can retry manually
+    }
+
     return res.status(200).json({
       received: true,
       email,
       product: productTag,
+      delivered: true,
     });
 
   } catch (err) {
