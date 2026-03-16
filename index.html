@@ -1483,14 +1483,32 @@
         reveals.forEach(el => observer.observe(el));
 
         // Newsletter signup
-        function handleNewsletterSignup(e) {
+        async function handleNewsletterSignup(e) {
             e.preventDefault();
             const email = document.getElementById('homepage-email').value;
             if (!email) return;
-            document.getElementById('homepage-form-fields').style.display = 'none';
-            document.getElementById('homepage-success').style.display = 'block';
-            // TODO: Wire to Beehiiv API — pub_7ae1d56e-7576-41fe-bd64-0cd4af00da66
-            console.log('Newsletter signup:', email);
+            
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        email,
+                        utm_source: 'homepage',
+                        utm_medium: 'newsletter-strip'
+                    })
+                });
+                
+                if (response.ok) {
+                    document.getElementById('homepage-form-fields').style.display = 'none';
+                    document.getElementById('homepage-success').style.display = 'block';
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            } catch (err) {
+                console.error('Newsletter signup error:', err);
+                alert('Something went wrong. Please try again.');
+            }
         }
 
         // Hamburger menu
