@@ -595,11 +595,40 @@
       btn.disabled = true;
       btn.textContent = 'Submitting…';
 
-      // Send notification email via Beehiiv custom field update
-      // (MVP: store in sessionStorage, redirect to thanks page)
-      // In production this would POST to a backend endpoint
+      // Submit to backend API first
       try {
-        // Add brief data as a Beehiiv subscriber tag/note for manual processing
+        const response = await fetch('/api/submit-brief', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: brief.email,
+            company: user.company || '',
+            product_name: brief.product_name,
+            product_description: brief.product_desc,
+            target_customer: brief.target_audience,
+            hook_angle: brief.hook_angle,
+            platforms: brief.platforms,
+            examples: brief.examples,
+            desk_package: 'free', // This is the free script offer
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Submission failed');
+        }
+
+        const result = await response.json();
+        console.log('Brief submitted:', result);
+
+      } catch (err) {
+        console.error('Brief submission error:', err);
+        // Continue anyway - don't block the user
+      }
+
+      // Also add to Beehiiv (for newsletter only, not service tracking)
+      try {
         await fetch('https://api.beehiiv.com/v2/publications/pub_7ae1d56e-7576-41fe-bd64-0cd4af00da66/subscriptions', {
           method: 'POST',
           headers: {
@@ -612,15 +641,11 @@
             send_welcome_email: false,
             utm_source: 'free-script-brief',
             utm_medium: 'organic',
-            tags: ['free-script-brief-submitted', 'pending-script-delivery'],
-            custom_fields: [
-              { name: 'product_name', value: brief.product_name },
-              { name: 'company', value: brief.company || brief.product_name }
-            ]
+            tags: ['free-script-lead'],
           })
         });
       } catch (err) {
-        console.warn('Submission error (non-fatal):', err);
+        console.warn('Beehiiv signup error (non-fatal):', err);
       }
 
       // Save brief to sessionStorage for the thanks page
