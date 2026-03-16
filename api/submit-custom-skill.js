@@ -47,6 +47,9 @@ module.exports = async function handler(req, res) {
     // Send alert email
     await sendAlertEmail(skill);
 
+    // Also add to Beehiiv newsletter
+    await addToNewsletter(email, 'custom-skill-customer');
+
     return res.status(200).json({
       success: true,
       skill_id: skill.id,
@@ -116,4 +119,30 @@ Turnaround: 48 hours from document review`;
     },
     body: JSON.stringify({ raw: encodedEmail }),
   });
+}
+
+async function addToNewsletter(email, tag) {
+  // Add to Beehiiv for newsletter purposes
+  const BEEHIIV_API_KEY = '5go8eJrMa0lUpgw5QZkcNFOkzfe4Md2hM8EbGKWcm6RZgkaPXUUiLie1ejMuQEHc';
+  const BEEHIIV_PUB_ID = 'pub_7ae1d56e-7576-41fe-bd64-0cd4af00da66';
+
+  try {
+    await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        reactivate_existing: true,
+        send_welcome_email: false,
+        utm_source: 'custom-skill',
+        tags: [tag],
+      }),
+    });
+  } catch (err) {
+    console.error('Newsletter signup error:', err);
+    // Don't fail the request if newsletter signup fails
+  }
 }
