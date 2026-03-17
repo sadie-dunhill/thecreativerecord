@@ -1,398 +1,249 @@
-/**
- * Vercel Serverless Function: /api/webhook
- *
- * Handles Stripe webhook events.
- * Listens for: checkout.session.completed
- *
- * On purchase:
- *   1. Retrieves customer email from Stripe session
- *   2. Adds subscriber to Beehiiv with product tag
- *   3. Sends welcome email via Beehiiv
- *
- * Environment variables:
- *   STRIPE_SECRET_KEY        — Stripe secret key
- *   STRIPE_WEBHOOK_SECRET    — Stripe webhook signing secret (from Dashboard)
- *
- * Set webhook endpoint in Stripe Dashboard:
- *   https://dashboard.stripe.com/webhooks
- *   URL: https://thecreativerecord.com/api/webhook
- *   Events: checkout.session.completed
- */
+// /api/webhook.js - Stripe webhook handler with Postmark email integration
+// Receives checkout.session.completed events and sends product delivery emails
 
-const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+const POSTMARK_API_KEY = process.env.POSTMARK_API_KEY;
+const POSTMARK_FROM = process.env.POSTMARK_FROM_EMAIL || 'sadie@thecreativerecord.com';
 
-const BEEHIIV_API_KEY  = '5go8eJrMa0lUpgw5QZkcNFOkzfe4Md2hM8EbGKWcm6RZgkaPXUUiLie1ejMuQEHc';
-const BEEHIIV_PUB_ID   = 'pub_7ae1d56e-7576-41fe-bd64-0cd4af00da66';
-
-// Map Stripe price IDs to human-readable product tags
-const PRICE_TO_TAG = {
-  'price_1TBLuhI5RI2Lzo6Rweb3wat8': 'video-script-framework',
-  'price_1TBLuiI5RI2Lzo6RMK95uLAd': 'hook-bank-template',
-  'price_1TBLujI5RI2Lzo6RqUd68NEh': 'ugc-brief-template',
-  'price_1TBLujI5RI2Lzo6R0XPbrzrn': 'creative-audit-checklist',
-  'price_1TBLukI5RI2Lzo6RLvSqRKse': 'competitor-analysis-framework',
-  'price_1TBLutI5RI2Lzo6RZ36r8mrR': 'skill-bundle',
-  'price_1TBLuuI5RI2Lzo6RseEEt91d': 'script-desk-starter',
-  'price_1TBLuvI5RI2Lzo6RXa2M1CUw': 'script-desk-growth',
-  'price_1TBLuvI5RI2Lzo6RZYZ3u4ra': 'script-desk-scale',
-  'price_1TBLuwI5RI2Lzo6RIi1PbnHk': 'custom-skill',
-};
-
-// Require raw body for Stripe signature verification
-export const config = {
-  api: {
-    bodyParser: false,
+// Product mapping for email content
+const PRODUCT_EMAILS = {
+  'prod_U9fFJL8tra20Hf': {
+    name: 'Video Script Framework',
+    subject: 'Your Video Script Framework is ready'
   },
+  'prod_U9fFoAAn0dMjKz': {
+    name: 'Hook Bank Template', 
+    subject: 'Your Hook Bank Template is ready'
+  },
+  'prod_U9fFAlE3TxWU98': {
+    name: 'UGC Brief Template',
+    subject: 'Your UGC Brief Template is ready'
+  },
+  'prod_U9fFi5iAD5nV7U': {
+    name: 'Creative Audit Checklist',
+    subject: 'Your Creative Audit Checklist is ready'
+  },
+  'prod_U9fFNkEYSsNFPP': {
+    name: 'Competitor Analysis Framework',
+    subject: 'Your Competitor Analysis Framework is ready'
+  },
+  'prod_U9fF63AVa1RWNc': {
+    name: 'Complete Skill Bundle',
+    subject: 'Your Complete Skill Bundle is ready'
+  },
+  'prod_U9fFPd3zi3B5vG': {
+    name: 'Script Desk Starter',
+    service: true,
+    subject: 'Welcome to Script Desk'
+  },
+  'prod_U9fF8AHBSeMJ61': {
+    name: 'Script Desk Growth',
+    service: true,
+    subject: 'Welcome to Script Desk'
+  },
+  'prod_U9fFKfDT6E5qIP': {
+    name: 'Script Desk Scale',
+    service: true,
+    subject: 'Welcome to Script Desk'
+  },
+  'prod_U9fF5btLj8GXHK': {
+    name: 'Custom Skill Creation',
+    service: true,
+    subject: 'Your Custom Skill request received'
+  }
 };
 
-async function getRawBody(req) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    req.on('data', (chunk) => chunks.push(chunk));
-    req.on('end', () => resolve(Buffer.concat(chunks)));
-    req.on('error', reject);
-  });
-}
-
-async function verifyStripeSignature(rawBody, signature, secret) {
-  // Stripe signature verification without the SDK
-  // Format: t=timestamp,v1=hash
-  if (!secret || !signature) return true; // Skip if no secret configured (dev mode)
-
-  const crypto = require('crypto');
-  const parts = signature.split(',');
-  const timestamp = parts.find(p => p.startsWith('t=')).slice(2);
-  const v1 = parts.find(p => p.startsWith('v1=')).slice(3);
-
-  const signed = `${timestamp}.${rawBody.toString()}`;
-  const expected = crypto
-    .createHmac('sha256', secret)
-    .update(signed)
-    .digest('hex');
-
-  if (expected !== v1) {
-    throw new Error('Webhook signature mismatch');
-  }
-
-  // Check timestamp (within 5 minutes)
-  const tolerance = 300;
-  if (Math.abs(Date.now() / 1000 - parseInt(timestamp)) > tolerance) {
-    throw new Error('Webhook timestamp too old');
-  }
-
-  return true;
-}
-
-async function addToBeehiiv(email, productTag) {
-  const payload = {
-    email,
-    reactivate_existing: true,
-    send_welcome_email: true,
-    utm_source: 'stripe',
-    utm_medium: 'purchase',
-    utm_campaign: productTag,
-    tags: ['customer', productTag],
-  };
-
-  const response = await fetch(
-    `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`,
-    {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    }
-  );
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(`Beehiiv error: ${data.message || JSON.stringify(data)}`);
-  }
-
-  return data;
-}
-
-async function getSessionDetails(sessionId) {
-  const response = await fetch(
-    `https://api.stripe.com/v1/checkout/sessions/${sessionId}?expand[]=line_items`,
-    {
-      headers: {
-        'Authorization': `Basic ${Buffer.from(STRIPE_SECRET_KEY + ':').toString('base64')}`,
-      },
-    }
-  );
-  return response.json();
-}
-
-// Gmail OAuth for product delivery (from env vars)
-const GMAIL_CLIENT_ID = process.env.GMAIL_CLIENT_ID;
-const GMAIL_CLIENT_SECRET = process.env.GMAIL_CLIENT_SECRET;
-const GMAIL_REFRESH_TOKEN = process.env.GMAIL_REFRESH_TOKEN;
-
-const PRODUCT_DELIVERY_URLS = {
-  'video-script-framework': 'https://thecreativerecord.com/skills/packaging/video-script-framework/',
-  'hook-bank-template': 'https://thecreativerecord.com/skills/hook-bank-template.html',
-  'ugc-brief-template': 'https://thecreativerecord.com/skills/ugc-brief-template.html',
-  'creative-audit-checklist': 'https://thecreativerecord.com/skills/creative-audit-checklist.html',
-  'competitor-analysis-framework': 'https://thecreativerecord.com/skills/competitor-analysis-framework.html',
-  'skill-bundle': 'https://thecreativerecord.com/account',
-  'script-desk-starter': 'https://thecreativerecord.com/account',
-  'script-desk-growth': 'https://thecreativerecord.com/account',
-  'script-desk-scale': 'https://thecreativerecord.com/account',
-  'custom-skill': 'https://thecreativerecord.com/account',
-};
-
-const PRODUCT_NAMES = {
-  'video-script-framework': 'Video Script Framework',
-  'hook-bank-template': 'Hook Bank Template',
-  'ugc-brief-template': 'UGC Brief Template',
-  'creative-audit-checklist': 'Creative Audit Checklist',
-  'competitor-analysis-framework': 'Competitor Analysis Framework',
-  'skill-bundle': 'Complete Skill Bundle',
-  'script-desk-starter': 'Script Desk Starter',
-  'script-desk-growth': 'Script Desk Growth',
-  'script-desk-scale': 'Script Desk Scale',
-  'custom-skill': 'Custom Skill Creation',
-};
-
-async function getGmailAccessToken() {
-  const response = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      client_id: GMAIL_CLIENT_ID,
-      client_secret: GMAIL_CLIENT_SECRET,
-      refresh_token: GMAIL_REFRESH_TOKEN,
-      grant_type: 'refresh_token',
-    }),
-  });
-  
-  const data = await response.json();
-  return data.access_token;
-}
-
-async function sendDeliveryEmail(to, productTag) {
-  const productName = PRODUCT_NAMES[productTag] || 'Your Purchase';
-  const downloadUrl = PRODUCT_DELIVERY_URLS[productTag] || 'https://thecreativerecord.com/account';
-  
-  const subject = `Your ${productName} — The Creative Record`;
-  const body = `Hi there,
-
-Thanks for purchasing ${productName}!
-
-Your download link:
-${downloadUrl}
-
-How to access your purchase:
-1. Click the link above
-2. If prompted, use the email address you used at checkout: ${to}
-3. Download your files and start creating
-
-Questions? Reply to this email — I'm here to help.
-
-— Sadie
-The Creative Record
-
-P.S. You have lifetime access. If I update these files, you'll get the new versions free.`;
-
-  const accessToken = await getGmailAccessToken();
-  
-  const emailRaw = [
-    `To: ${to}`,
-    `From: Sadie Dunhill <sadie@goodostudios.com>`,
-    `Subject: ${subject}`,
-    'Content-Type: text/plain; charset="UTF-8"',
-    '',
-    body,
-  ].join('\r\n');
-  
-  const encodedEmail = Buffer.from(emailRaw).toString('base64').replace(/\+/g, '-').replace(/\//g, '_');
-
-  const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/sadie@goodostudios.com/messages/send', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ raw: encodedEmail }),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Gmail send failed: ${await response.text()}`);
-  }
-
-  return response.json();
-}
-
-async function createPurchaseRecord({ email, stripeSessionId, priceId, productTag, amount }) {
-  const SUPABASE_URL = process.env.SUPABASE_URL;
-  const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
-  
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
-    console.error('Supabase credentials not configured');
-    return;
-  }
-  
-  const productNames = {
-    'video-script-framework': 'Video Script Framework',
-    'hook-bank-template': 'Hook Bank Template',
-    'ugc-brief-template': 'UGC Brief Template',
-    'creative-audit-checklist': 'Creative Audit Checklist',
-    'competitor-analysis-framework': 'Competitor Analysis Framework',
-    'skill-bundle': 'Complete Skill Bundle',
-    'script-desk-starter': 'Script Desk Starter',
-    'script-desk-growth': 'Script Desk Growth',
-    'script-desk-scale': 'Script Desk Scale',
-    'custom-skill': 'Custom Skill Creation',
-  };
-  
-  const productTypes = {
-    'video-script-framework': 'skill',
-    'hook-bank-template': 'skill',
-    'ugc-brief-template': 'skill',
-    'creative-audit-checklist': 'skill',
-    'competitor-analysis-framework': 'skill',
-    'skill-bundle': 'skill',
-    'script-desk-starter': 'script_desk',
-    'script-desk-growth': 'script_desk',
-    'script-desk-scale': 'script_desk',
-    'custom-skill': 'custom_skill',
-  };
-  
-  const scriptsRemaining = {
-    'script-desk-starter': 10,
-    'script-desk-growth': 20,
-    'script-desk-scale': 50,
-  };
-  
-  const expiryMonths = {
-    'script-desk-starter': 3,
-    'script-desk-growth': 6,
-    'script-desk-scale': 12,
-  };
-  
-  const expiresAt = expiryMonths[productTag] 
-    ? new Date(Date.now() + expiryMonths[productTag] * 30 * 24 * 60 * 60 * 1000).toISOString()
-    : null;
-  
-  const purchase = {
-    email,
-    stripe_session_id: stripeSessionId,
-    product_id: priceId,
-    product_name: productNames[productTag] || productTag,
-    product_type: productTypes[productTag] || 'unknown',
-    amount_paid: amount,
-    scripts_remaining: scriptsRemaining[productTag] || null,
-    expires_at: expiresAt,
-  };
-  
-  await fetch(`${SUPABASE_URL}/rest/v1/purchases`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': SUPABASE_SERVICE_KEY,
-      'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
-      'Prefer': 'return=minimal',
-    },
-    body: JSON.stringify(purchase),
-  });
-}
-
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
+  // Only accept POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  let rawBody;
-  try {
-    rawBody = await getRawBody(req);
-  } catch (err) {
-    return res.status(400).json({ error: 'Could not read body' });
-  }
-
-  // Verify Stripe signature if webhook secret is set
+  // Get the Stripe signature from headers
   const signature = req.headers['stripe-signature'];
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-
-  try {
-    await verifyStripeSignature(rawBody, signature, webhookSecret);
-  } catch (err) {
-    console.error('Webhook signature error:', err.message);
-    return res.status(400).json({ error: err.message });
+  if (!signature) {
+    console.log('No Stripe signature');
+    return res.status(400).json({ error: 'Missing signature' });
   }
 
-  let event;
   try {
-    event = JSON.parse(rawBody.toString());
-  } catch (err) {
-    return res.status(400).json({ error: 'Invalid JSON' });
-  }
+    const event = req.body;
+    
+    // Handle checkout completion
+    if (event.type === 'checkout.session.completed') {
+      const session = event.data.object;
+      
+      const customerEmail = session.customer_details?.email;
+      const customerName = session.customer_details?.name?.split(' ')[0] || 'there';
+      
+      if (!customerEmail) {
+        console.log('No customer email in session');
+        return res.status(200).json({ received: true, warning: 'No customer email' });
+      }
 
-  // Only handle checkout completion
-  if (event.type !== 'checkout.session.completed') {
-    return res.status(200).json({ received: true, ignored: true });
-  }
+      // Get product from line items
+      const lineItems = session.line_items?.data || [];
+      if (lineItems.length === 0) {
+        console.log('No line items');
+        return res.status(200).json({ received: true, warning: 'No line items' });
+      }
 
-  const session = event.data.object;
-  const sessionId = session.id;
+      const productId = lineItems[0].price?.product;
+      const product = PRODUCT_EMAILS[productId];
 
-  try {
-    // Get full session details with line items
-    const fullSession = await getSessionDetails(sessionId);
-    const email = fullSession.customer_details?.email || fullSession.customer_email;
+      if (!product) {
+        console.log('Unknown product:', productId);
+        return res.status(200).json({ received: true, warning: 'Unknown product' });
+      }
 
-    if (!email) {
-      console.error('No email in session:', sessionId);
-      return res.status(200).json({ received: true, error: 'No email found' });
-    }
-
-    // Get the price ID from line items
-    const lineItems = fullSession.line_items?.data || [];
-    const priceId = lineItems[0]?.price?.id;
-    const productTag = PRICE_TO_TAG[priceId] || 'unknown-product';
-
-    console.log(`Purchase: ${email} bought ${productTag} (${priceId})`);
-
-    // Create purchase record in database
-    try {
-      await createPurchaseRecord({
-        email,
-        stripeSessionId: sessionId,
-        priceId,
-        productTag,
-        amount: lineItems[0]?.amount_total || 0,
+      // Send email via Postmark
+      await sendProductEmail(customerEmail, customerName, product);
+      
+      // Also add to Beehiiv (existing logic)
+      await addToBeehiiv(customerEmail, productId);
+      
+      console.log('Email sent to:', customerEmail, 'for product:', product.name);
+      
+      return res.status(200).json({ 
+        received: true, 
+        emailSent: true,
+        product: product.name 
       });
-    } catch (dbErr) {
-      console.error('Database error:', dbErr);
-      // Continue -- don't fail webhook if DB fails
     }
 
-    // Add to Beehiiv
-    await addToBeehiiv(email, productTag);
-    console.log(`Added ${email} to Beehiiv with tag: ${productTag}`);
-
-    // Send product delivery email
-    try {
-      await sendDeliveryEmail(email, productTag);
-      console.log(`Delivered ${productTag} to ${email}`);
-    } catch (deliveryErr) {
-      console.error('Delivery email failed:', deliveryErr);
-      // Don't fail the webhook if delivery fails -- we can retry manually
-    }
-
-    return res.status(200).json({
-      received: true,
-      email,
-      product: productTag,
-      delivered: true,
+    // Acknowledge other events
+    return res.status(200).json({ received: true });
+    
+  } catch (error) {
+    console.error('Webhook error:', error);
+    // Still return 200 to prevent Stripe retries
+    return res.status(200).json({ 
+      received: true, 
+      error: error.message 
     });
-
-  } catch (err) {
-    console.error('Webhook processing error:', err);
-    // Return 200 to acknowledge receipt -- Stripe will retry on 5xx
-    return res.status(200).json({ received: true, error: err.message });
   }
-};
+}
+
+async function sendProductEmail(toEmail, customerName, product) {
+  const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${product.subject}</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #0f0e0d; background: #faf8f5; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; }
+        .logo { text-align: center; margin-bottom: 30px; }
+        h1 { color: #0f0e0d; font-size: 24px; margin-bottom: 20px; }
+        .button { display: inline-block; background: #c8552a; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: 600; margin: 20px 0; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e5e5; font-size: 14px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h2 style="margin: 0; color: #0f0e0d;">The Creative Record</h2>
+        </div>
+        
+        <h1>Hey ${customerName},</h1>
+        
+        <p>Thanks for purchasing <strong>${product.name}</strong>. Your product is ready.</p>
+        
+        <p style="text-align: center;">
+            <a href="https://thecreativerecord.com/account" class="button">Access Your Product</a>
+        </p>
+        
+        <p>You'll need to log in with the email you used for purchase. If you don't have an account yet, create one with the same email and your purchase will be linked automatically.</p>
+        
+        <p>Questions? Just reply to this email.</p>
+        
+        <div class="footer">
+            <p>— Sadie<br>
+            The Creative Record</p>
+        </div>
+    </div>
+</body>
+</html>`;
+
+  const textBody = `Hey ${customerName},
+
+Thanks for purchasing ${product.name}. Your product is ready.
+
+Access it here: https://thecreativerecord.com/account
+
+You'll need to log in with the email you used for purchase. If you don't have an account yet, create one with the same email and your purchase will be linked automatically.
+
+Questions? Just reply to this email.
+
+— Sadie
+The Creative Record`;
+
+  const response = await fetch('https://api.postmarkapp.com/email', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-Postmark-Server-Token': POSTMARK_API_KEY
+    },
+    body: JSON.stringify({
+      From: POSTMARK_FROM,
+      To: toEmail,
+      Subject: product.subject,
+      HtmlBody: htmlBody,
+      TextBody: textBody,
+      MessageStream: 'outbound'
+    })
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Postmark error: ${error}`);
+  }
+
+  return response.json();
+}
+
+async function addToBeehiiv(email, productId) {
+  // Existing Beehiiv integration
+  const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
+  const BEEHIIV_PUBLICATION_ID = 'pub_7ae1d56e-7576-41fe-bd64-0cd4af00da66';
+  
+  if (!BEEHIIV_API_KEY) {
+    console.log('Beehiiv not configured');
+    return;
+  }
+
+  const productNames = {
+    'prod_U9fFJL8tra20Hf': 'video-script-framework',
+    'prod_U9fFoAAn0dMjKz': 'hook-bank-template',
+    'prod_U9fFAlE3TxWU98': 'ugc-brief-template',
+    'prod_U9fFi5iAD5nV7U': 'creative-audit-checklist',
+    'prod_U9fFNkEYSsNFPP': 'competitor-analysis-framework',
+    'prod_U9fF63AVa1RWNc': 'skill-bundle',
+    'prod_U9fFPd3zi3B5vG': 'script-desk',
+    'prod_U9fF8AHBSeMJ61': 'script-desk',
+    'prod_U9fFKfDT6E5qIP': 'script-desk',
+    'prod_U9fF5btLj8GXHK': 'custom-skill'
+  };
+
+  const tag = productNames[productId] || 'purchase';
+
+  try {
+    await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        tags: [tag],
+        reactivate_existing: true
+      })
+    });
+  } catch (error) {
+    console.error('Beehiiv error:', error);
+    // Don't throw - email is more important
+  }
+}
